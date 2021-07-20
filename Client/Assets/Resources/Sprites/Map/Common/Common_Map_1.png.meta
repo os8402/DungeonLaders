@@ -1,0 +1,5312 @@
+fileFormatVersion: 2
+guid: bb88a829aecbd6f4e962469292ff72d4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2639705435507305547
+    second: Map_Tile_0
+  - first:
+      213: -7183089230931152071
+    second: Map_Tile_1
+  - first:
+      213: 8842662623348876023
+    second: Map_Tile_2
+  - first:
+      213: -376589845878264077
+    second: Map_Tile_3
+  - first:
+      213: 1822924392182628882
+    second: Map_Tile_4
+  - first:
+      213: 5147154403014274266
+    second: Map_Tile_5
+  - first:
+      213: -2251735320813022259
+    second: Map_Tile_6
+  - first:
+      213: -4200966698734550701
+    second: Map_Tile_7
+  - first:
+      213: -8805810744799997573
+    second: Map_Tile_8
+  - first:
+      213: -8916798123257513401
+    second: Map_Tile_9
+  - first:
+      213: -3670863900959325024
+    second: Map_Tile_10
+  - first:
+      213: 4561688978002424816
+    second: Map_Tile_11
+  - first:
+      213: 6631759196710585928
+    second: Map_Tile_12
+  - first:
+      213: -4027670250466816012
+    second: Map_Tile_13
+  - first:
+      213: -5324221510298990296
+    second: Map_Tile_14
+  - first:
+      213: 2261504565164448494
+    second: Map_Tile_15
+  - first:
+      213: -1524093342988107147
+    second: Map_Tile_16
+  - first:
+      213: -5968424216396604508
+    second: Map_Tile_17
+  - first:
+      213: 5871550250531232186
+    second: Map_Tile_18
+  - first:
+      213: 2564455820249114474
+    second: Map_Tile_19
+  - first:
+      213: 7549259074025287712
+    second: Map_Tile_20
+  - first:
+      213: 355511861585884681
+    second: Map_Tile_21
+  - first:
+      213: -8075251858229548399
+    second: Map_Tile_22
+  - first:
+      213: -5845605962855058546
+    second: Map_Tile_23
+  - first:
+      213: -2024615866962741369
+    second: Map_Tile_24
+  - first:
+      213: 3499845579623050008
+    second: Map_Tile_25
+  - first:
+      213: -2367977658661185065
+    second: Map_Tile_26
+  - first:
+      213: -8537720118712452795
+    second: Map_Tile_27
+  - first:
+      213: -1061268385445022017
+    second: Map_Tile_28
+  - first:
+      213: 6074276411165007933
+    second: Map_Tile_29
+  - first:
+      213: 8865956098842182812
+    second: Map_Tile_30
+  - first:
+      213: -5656400282987066783
+    second: Map_Tile_31
+  - first:
+      213: 7724583844565954510
+    second: Map_Tile_32
+  - first:
+      213: -4163357480667503499
+    second: Map_Tile_33
+  - first:
+      213: 1044914894403453297
+    second: Map_Tile_34
+  - first:
+      213: 1959168985873483016
+    second: Map_Tile_35
+  - first:
+      213: -113669281503945917
+    second: Map_Tile_36
+  - first:
+      213: 3243081918459070921
+    second: Map_Tile_37
+  - first:
+      213: 4394399840580222343
+    second: Map_Tile_38
+  - first:
+      213: 4231873975513960729
+    second: Map_Tile_39
+  - first:
+      213: 3500964309999077325
+    second: Map_Tile_40
+  - first:
+      213: -8985432292828337778
+    second: Map_Tile_41
+  - first:
+      213: -6733649751993636186
+    second: Map_Tile_42
+  - first:
+      213: 1117395320002122415
+    second: Map_Tile_43
+  - first:
+      213: -2299958793274067270
+    second: Map_Tile_44
+  - first:
+      213: 5737647515693901833
+    second: Map_Tile_45
+  - first:
+      213: -5779295343338050670
+    second: Map_Tile_46
+  - first:
+      213: 6452975529662856908
+    second: Map_Tile_47
+  - first:
+      213: -9211188271652921239
+    second: Map_Tile_48
+  - first:
+      213: -6674876862366216918
+    second: Map_Tile_49
+  - first:
+      213: 6852028503904577110
+    second: Map_Tile_50
+  - first:
+      213: -7612650404166265155
+    second: Map_Tile_51
+  - first:
+      213: 3207501293024454491
+    second: Map_Tile_52
+  - first:
+      213: -726078170112205403
+    second: Map_Tile_53
+  - first:
+      213: -8400078163805835876
+    second: Map_Tile_54
+  - first:
+      213: 515881629189861944
+    second: Map_Tile_55
+  - first:
+      213: -4640958786808088262
+    second: Map_Tile_56
+  - first:
+      213: 6910695355035435021
+    second: Map_Tile_57
+  - first:
+      213: 6736825247100055471
+    second: Map_Tile_58
+  - first:
+      213: -3820162503781870716
+    second: Map_Tile_59
+  - first:
+      213: 2943077667050085887
+    second: Map_Tile_60
+  - first:
+      213: 3636702791785476402
+    second: Map_Tile_61
+  - first:
+      213: -2303439395481899745
+    second: Map_Tile_62
+  - first:
+      213: -3833818863557784916
+    second: Map_Tile_63
+  - first:
+      213: -6665607038929601526
+    second: Map_Tile_64
+  - first:
+      213: -812526711983184360
+    second: Map_Tile_65
+  - first:
+      213: 8770361001379779510
+    second: Map_Tile_66
+  - first:
+      213: -2550169154592605135
+    second: Map_Tile_67
+  - first:
+      213: -1227083368529506062
+    second: Map_Tile_68
+  - first:
+      213: 6071128262611453624
+    second: Map_Tile_69
+  - first:
+      213: 305859708514441842
+    second: Map_Tile_70
+  - first:
+      213: -2963988527072566553
+    second: Map_Tile_71
+  - first:
+      213: -4575470994085904540
+    second: Map_Tile_72
+  - first:
+      213: 3441775521970486304
+    second: Map_Tile_73
+  - first:
+      213: -8222044252008633222
+    second: Map_Tile_74
+  - first:
+      213: 2586391768394181752
+    second: Map_Tile_75
+  - first:
+      213: 5551537236452083779
+    second: Map_Tile_76
+  - first:
+      213: 6857613833664959291
+    second: Map_Tile_77
+  - first:
+      213: -4238599644389551586
+    second: Map_Tile_78
+  - first:
+      213: 1835554985041077913
+    second: Map_Tile_79
+  - first:
+      213: -8053834246082278276
+    second: Map_Tile_80
+  - first:
+      213: 938090802361409994
+    second: Map_Tile_81
+  - first:
+      213: -5682535536303506595
+    second: Map_Tile_82
+  - first:
+      213: 2774620626387058130
+    second: Map_Tile_83
+  - first:
+      213: 2649922676019706583
+    second: Map_Tile_84
+  - first:
+      213: -5676701830680566568
+    second: Map_Tile_85
+  - first:
+      213: -8253232424112661744
+    second: Map_Tile_86
+  - first:
+      213: -507799546891124316
+    second: Map_Tile_87
+  - first:
+      213: 2294571413199099631
+    second: Map_Tile_88
+  - first:
+      213: 737787964580193070
+    second: Map_Tile_89
+  - first:
+      213: 6694493012860502428
+    second: Map_Tile_90
+  - first:
+      213: 7972243407055673537
+    second: Map_Tile_91
+  - first:
+      213: 3929503997077095484
+    second: Map_Tile_92
+  - first:
+      213: -6325663546772449529
+    second: Map_Tile_93
+  - first:
+      213: -4078749849161021822
+    second: Map_Tile_94
+  - first:
+      213: -4870848855196742505
+    second: Map_Tile_95
+  - first:
+      213: 5373169180647446435
+    second: Map_Tile_96
+  - first:
+      213: 3690464178921485284
+    second: Map_Tile_97
+  - first:
+      213: 8488242937942275738
+    second: Map_Tile_98
+  - first:
+      213: -36144594713573582
+    second: Map_Tile_99
+  - first:
+      213: -6615936260403906757
+    second: Map_Tile_100
+  - first:
+      213: 8233201952270685930
+    second: Map_Tile_101
+  - first:
+      213: -23459483212375876
+    second: Map_Tile_102
+  - first:
+      213: 2423065628113124857
+    second: Map_Tile_103
+  - first:
+      213: -1899334713810464628
+    second: Map_Tile_104
+  - first:
+      213: -95686325852107887
+    second: Map_Tile_105
+  - first:
+      213: -1521471445580806596
+    second: Map_Tile_106
+  - first:
+      213: 2784232418245227881
+    second: Map_Tile_107
+  - first:
+      213: 8753498319247377373
+    second: Map_Tile_108
+  - first:
+      213: 4507786745975324805
+    second: Map_Tile_109
+  - first:
+      213: 8705310080435502231
+    second: Map_Tile_110
+  - first:
+      213: 900947497246776477
+    second: Map_Tile_111
+  - first:
+      213: 629628948977405587
+    second: Map_Tile_112
+  - first:
+      213: 1143384649329716934
+    second: Map_Tile_113
+  - first:
+      213: 498697180989030326
+    second: Map_Tile_114
+  - first:
+      213: -207775819706391380
+    second: Map_Tile_115
+  - first:
+      213: -2806977344261795586
+    second: Map_Tile_116
+  - first:
+      213: -4883978629907315535
+    second: Map_Tile_117
+  - first:
+      213: 2003450419882709166
+    second: Map_Tile_118
+  - first:
+      213: 8046848917754235182
+    second: Map_Tile_119
+  - first:
+      213: 2858957842491097502
+    second: Map_Tile_120
+  - first:
+      213: -3970672808501734066
+    second: Map_Tile_121
+  - first:
+      213: 8298359940728920828
+    second: Map_Tile_122
+  - first:
+      213: -2166340849283928214
+    second: Map_Tile_123
+  - first:
+      213: 913532349193396484
+    second: Map_Tile_124
+  - first:
+      213: -8145770446139231647
+    second: Map_Tile_125
+  - first:
+      213: 6646641304586215909
+    second: Map_Tile_126
+  - first:
+      213: 8541867506677855928
+    second: Map_Tile_127
+  - first:
+      213: 743255540974742093
+    second: Map_Tile_128
+  - first:
+      213: -1105827638177285987
+    second: Map_Tile_129
+  - first:
+      213: 4493467045483777593
+    second: Map_Tile_130
+  - first:
+      213: 142607961078444953
+    second: Map_Tile_131
+  - first:
+      213: -7279514169731161471
+    second: Map_Tile_132
+  - first:
+      213: -911433318928664262
+    second: Map_Tile_133
+  - first:
+      213: 7487728375094965734
+    second: Map_Tile_134
+  - first:
+      213: 7942650278149986232
+    second: Map_Tile_135
+  - first:
+      213: 3846858114783289748
+    second: Map_Tile_136
+  - first:
+      213: 4016059644523974205
+    second: Map_Tile_137
+  - first:
+      213: -9182036080474521412
+    second: Map_Tile_138
+  - first:
+      213: -5803362240449190715
+    second: Map_Tile_139
+  - first:
+      213: -9125301712314413562
+    second: Map_Tile_140
+  - first:
+      213: -7954732040800091774
+    second: Map_Tile_141
+  - first:
+      213: 8823508668964212722
+    second: Map_Tile_142
+  - first:
+      213: -1374228554688602206
+    second: Map_Tile_143
+  - first:
+      213: -7266500774138612402
+    second: Map_Tile_144
+  - first:
+      213: 396249469948298774
+    second: Map_Tile_145
+  - first:
+      213: 8341861463396743678
+    second: Map_Tile_146
+  - first:
+      213: 9111357580742615811
+    second: Map_Tile_147
+  - first:
+      213: -3900960881671623145
+    second: Map_Tile_148
+  - first:
+      213: 4372223352508407579
+    second: Map_Tile_149
+  - first:
+      213: -9200030070831977541
+    second: Map_Tile_150
+  - first:
+      213: 3158035751630301466
+    second: Map_Tile_151
+  - first:
+      213: -6569398514822203357
+    second: Map_Tile_152
+  - first:
+      213: -8725466931979107219
+    second: Map_Tile_153
+  - first:
+      213: -8531606179506839343
+    second: Map_Tile_154
+  - first:
+      213: 6921890155077778718
+    second: Map_Tile_155
+  - first:
+      213: -6242890004768083936
+    second: Map_Tile_156
+  - first:
+      213: 1323401789746838885
+    second: Map_Tile_157
+  - first:
+      213: -8529189937796496884
+    second: Map_Tile_158
+  - first:
+      213: 7324385088105705261
+    second: Map_Tile_159
+  - first:
+      213: 6451458564050508833
+    second: Map_Tile_160
+  - first:
+      213: -3357486514147547357
+    second: Map_Tile_161
+  - first:
+      213: 8414895005418158302
+    second: Map_Tile_162
+  - first:
+      213: 323826085947109998
+    second: Map_Tile_163
+  - first:
+      213: -5574561056639877978
+    second: Map_Tile_164
+  - first:
+      213: 3381996612897173317
+    second: Map_Tile_165
+  - first:
+      213: 5532846299594539596
+    second: Map_Tile_166
+  - first:
+      213: -4579187519842481184
+    second: Map_Tile_167
+  - first:
+      213: -5657362777117476707
+    second: Map_Tile_168
+  - first:
+      213: 7562180113177959658
+    second: Map_Tile_169
+  - first:
+      213: 3675839704316705120
+    second: Map_Tile_170
+  - first:
+      213: 7081647439432468200
+    second: Map_Tile_171
+  - first:
+      213: -6693828249948913897
+    second: Map_Tile_172
+  - first:
+      213: 7805789713898499979
+    second: Map_Tile_173
+  - first:
+      213: 270951600834353658
+    second: Map_Tile_174
+  - first:
+      213: 2236629895740531221
+    second: Map_Tile_175
+  - first:
+      213: 5852178649325420257
+    second: Map_Tile_176
+  - first:
+      213: 7391205473318370490
+    second: Map_Tile_177
+  - first:
+      213: -8847552177139294327
+    second: Map_Tile_178
+  - first:
+      213: -6299641009940427682
+    second: Map_Tile_179
+  - first:
+      213: 357635672343302295
+    second: Map_Tile_180
+  - first:
+      213: 7210511237975191788
+    second: Map_Tile_181
+  - first:
+      213: 7892284922268844278
+    second: Map_Tile_182
+  - first:
+      213: 2318041735693449606
+    second: Map_Tile_183
+  - first:
+      213: 803923404559755470
+    second: Map_Tile_184
+  - first:
+      213: 858171669567634175
+    second: Map_Tile_185
+  - first:
+      213: 6499086053008944251
+    second: Map_Tile_186
+  - first:
+      213: 6354171847627617392
+    second: Map_Tile_187
+  - first:
+      213: 8021324458948052016
+    second: Map_Tile_188
+  - first:
+      213: 1962016304296478260
+    second: Map_Tile_189
+  - first:
+      213: 7939945339910095017
+    second: Map_Tile_190
+  - first:
+      213: -6411926330362125715
+    second: Map_Tile_191
+  - first:
+      213: -1774575491701819130
+    second: Map_Tile_192
+  - first:
+      213: 1699222581690969959
+    second: Map_Tile_193
+  - first:
+      213: 1774477744324324337
+    second: Map_Tile_194
+  - first:
+      213: 8649455735665457232
+    second: Map_Tile_195
+  - first:
+      213: 8825584321194662243
+    second: Map_Tile_196
+  - first:
+      213: 3398332181007337541
+    second: Map_Tile_197
+  - first:
+      213: 9207075358377273111
+    second: Map_Tile_198
+  - first:
+      213: 6086501990429090203
+    second: Map_Tile_199
+  - first:
+      213: -6010540172443020320
+    second: Map_Tile_200
+  - first:
+      213: -7294712438068118583
+    second: Map_Tile_201
+  - first:
+      213: 4326813681856066029
+    second: Map_Tile_202
+  - first:
+      213: -4136742424081752987
+    second: Map_Tile_203
+  - first:
+      213: 2202166174216380688
+    second: Map_Tile_204
+  - first:
+      213: 605366158717632293
+    second: Map_Tile_205
+  - first:
+      213: -1893857081915778264
+    second: Map_Tile_206
+  - first:
+      213: 5807300455106183299
+    second: Map_Tile_207
+  - first:
+      213: 4766091964206165397
+    second: Map_Tile_208
+  - first:
+      213: 6339528087543766062
+    second: Map_Tile_209
+  - first:
+      213: -3239226399309472606
+    second: Map_Tile_210
+  - first:
+      213: -2150064996607111534
+    second: Map_Tile_211
+  - first:
+      213: -7951235285541119304
+    second: Map_Tile_212
+  - first:
+      213: 2535419425637191923
+    second: Map_Tile_213
+  - first:
+      213: -4141614962610869163
+    second: Map_Tile_214
+  - first:
+      213: -4511507859597071740
+    second: Map_Tile_215
+  - first:
+      213: 7337120407340635075
+    second: Map_Tile_216
+  - first:
+      213: -1921118343084742298
+    second: Map_Tile_217
+  - first:
+      213: -7293253297120449135
+    second: Map_Tile_218
+  - first:
+      213: -1430141807416319394
+    second: Map_Tile_219
+  - first:
+      213: 4407935887392880133
+    second: Map_Tile_220
+  - first:
+      213: 1434334430695448686
+    second: Map_Tile_221
+  - first:
+      213: 9092795470574968329
+    second: Map_Tile_222
+  - first:
+      213: -4902728905292203465
+    second: Map_Tile_223
+  - first:
+      213: 8268960222286040792
+    second: Map_Tile_224
+  - first:
+      213: 6803128810124625495
+    second: Map_Tile_225
+  - first:
+      213: -8990332440893291857
+    second: Map_Tile_226
+  - first:
+      213: -5879300167058910790
+    second: Map_Tile_227
+  - first:
+      213: 3836428319178851666
+    second: Map_Tile_228
+  - first:
+      213: -580501832194823262
+    second: Map_Tile_229
+  - first:
+      213: 1808661435011317099
+    second: Map_Tile_230
+  - first:
+      213: -5166954393956002160
+    second: Map_Tile_231
+  - first:
+      213: -7654309415513057219
+    second: Map_Tile_232
+  - first:
+      213: 7645753853592102392
+    second: Map_Tile_233
+  - first:
+      213: 885589817175415786
+    second: Map_Tile_234
+  - first:
+      213: -7349599541584164291
+    second: Map_Tile_235
+  - first:
+      213: -6941247809768217745
+    second: Map_Tile_236
+  - first:
+      213: 8115476643244788306
+    second: Map_Tile_237
+  - first:
+      213: 5710868576354507275
+    second: Map_Tile_238
+  - first:
+      213: 3062246971210165361
+    second: Map_Tile_239
+  - first:
+      213: -6905387849697159722
+    second: Map_Tile_240
+  - first:
+      213: 3123086030729349
+    second: Map_Tile_241
+  - first:
+      213: -8133997281160516785
+    second: Map_Tile_242
+  - first:
+      213: 8874222038555890717
+    second: Map_Tile_243
+  - first:
+      213: 1852284938964982913
+    second: Map_Tile_244
+  - first:
+      213: -1603650259774318491
+    second: Map_Tile_245
+  - first:
+      213: -2686048647403726901
+    second: Map_Tile_246
+  - first:
+      213: -1423557630441714239
+    second: Map_Tile_247
+  - first:
+      213: -4466450346624775954
+    second: Map_Tile_248
+  - first:
+      213: 4794903757076820429
+    second: Map_Tile_249
+  - first:
+      213: 131955420899064012
+    second: Map_Tile_250
+  - first:
+      213: 8550041400127447982
+    second: Map_Tile_251
+  - first:
+      213: -7945182552682652680
+    second: Map_Tile_252
+  - first:
+      213: 1536064122171535801
+    second: Map_Tile_253
+  - first:
+      213: 3636184854689710335
+    second: Map_Tile_254
+  - first:
+      213: 1306487816250286204
+    second: Map_Tile_255
+  - first:
+      213: -3628717911191443193
+    second: Map_Tile_256
+  - first:
+      213: -1975825552008881642
+    second: Map_Tile_257
+  - first:
+      213: 7781303861293760263
+    second: Map_Tile_258
+  - first:
+      213: 5099586705301580154
+    second: Map_Tile_259
+  - first:
+      213: 2726949259719435430
+    second: Map_Tile_260
+  - first:
+      213: 1126845193492796964
+    second: Map_Tile_261
+  - first:
+      213: -2005459167702191661
+    second: Map_Tile_262
+  - first:
+      213: -3765487294910236753
+    second: Map_Tile_263
+  - first:
+      213: 7443884154628459071
+    second: Map_Tile_264
+  - first:
+      213: -7602992636788990366
+    second: Map_Tile_265
+  - first:
+      213: -5543589140353340867
+    second: Map_Tile_266
+  - first:
+      213: 7432123661772017154
+    second: Map_Tile_267
+  - first:
+      213: 5862245468603167880
+    second: Map_Tile_268
+  - first:
+      213: -1382661599498597811
+    second: Map_Tile_269
+  - first:
+      213: -1836787077137388995
+    second: Map_Tile_270
+  - first:
+      213: 5436335045254245488
+    second: Map_Tile_271
+  - first:
+      213: -5810498288734735109
+    second: Map_Tile_272
+  - first:
+      213: 7563894094925877006
+    second: Map_Tile_273
+  - first:
+      213: 2291720922470707088
+    second: Map_Tile_274
+  - first:
+      213: -2947550576906611826
+    second: Map_Tile_275
+  - first:
+      213: 5180541362116837660
+    second: Map_Tile_276
+  - first:
+      213: 3656397605671613787
+    second: Map_Tile_277
+  - first:
+      213: 362506041742140851
+    second: Map_Tile_278
+  - first:
+      213: 937155341976050406
+    second: Map_Tile_279
+  - first:
+      213: -7178053446125757013
+    second: Map_Tile_280
+  - first:
+      213: 6250727699936774977
+    second: Map_Tile_281
+  - first:
+      213: -2384905592372028683
+    second: Map_Tile_282
+  - first:
+      213: 9146287598367277656
+    second: Map_Tile_283
+  - first:
+      213: 2087108092355268371
+    second: Map_Tile_284
+  - first:
+      213: 2789423850125234041
+    second: Map_Tile_285
+  - first:
+      213: -5350458529080993604
+    second: Map_Tile_286
+  - first:
+      213: -5720088519903767685
+    second: Map_Tile_287
+  - first:
+      213: -8662726979851786017
+    second: Map_Tile_288
+  - first:
+      213: 439073879236368898
+    second: Map_Tile_289
+  - first:
+      213: 1082178779454525717
+    second: Map_Tile_290
+  - first:
+      213: -3684839401401495367
+    second: Map_Tile_291
+  - first:
+      213: 1394723066536497306
+    second: Map_Tile_292
+  - first:
+      213: 771822661750832041
+    second: Map_Tile_293
+  - first:
+      213: 303596024611453598
+    second: Map_Tile_294
+  - first:
+      213: 1426629826174980416
+    second: Map_Tile_295
+  - first:
+      213: 2845993326722614866
+    second: Map_Tile_296
+  - first:
+      213: -3696867425920372260
+    second: Map_Tile_297
+  - first:
+      213: 4312387482897994046
+    second: Map_Tile_298
+  - first:
+      213: -6987158534328464184
+    second: Map_Tile_299
+  - first:
+      213: -5177666367641687341
+    second: Map_Tile_300
+  - first:
+      213: -3806927629705520514
+    second: Map_Tile_301
+  - first:
+      213: 6331921213677524274
+    second: Map_Tile_302
+  - first:
+      213: 3912629938852290098
+    second: Map_Tile_303
+  - first:
+      213: 6200085700858785598
+    second: Map_Tile_304
+  - first:
+      213: -7587640303707793159
+    second: Map_Tile_305
+  - first:
+      213: 1205922102053998395
+    second: Map_Tile_306
+  - first:
+      213: 4604909413594273172
+    second: Map_Tile_307
+  - first:
+      213: 3766570621491389184
+    second: Map_Tile_308
+  - first:
+      213: -4375262360464857604
+    second: Map_Tile_309
+  - first:
+      213: 5088205833212716592
+    second: Map_Tile_310
+  - first:
+      213: -1595623357856272601
+    second: Map_Tile_311
+  - first:
+      213: 2534989695369393826
+    second: Map_Tile_312
+  - first:
+      213: -755584172731449394
+    second: Map_Tile_313
+  - first:
+      213: -86431879471592726
+    second: Map_Tile_314
+  - first:
+      213: 4595047967621375256
+    second: Map_Tile_315
+  - first:
+      213: -7806497168848476168
+    second: Map_Tile_316
+  - first:
+      213: 3744145882893394930
+    second: Map_Tile_317
+  - first:
+      213: 6082426414976121977
+    second: Map_Tile_318
+  - first:
+      213: 8468616227294932681
+    second: Map_Tile_319
+  - first:
+      213: -5902920020135685635
+    second: Map_Tile_320
+  - first:
+      213: -8482461064489225242
+    second: Map_Tile_321
+  - first:
+      213: 3606594468609862273
+    second: Map_Tile_322
+  - first:
+      213: 196812988299138548
+    second: Map_Tile_323
+  - first:
+      213: 2051934239889095674
+    second: Map_Tile_324
+  - first:
+      213: 4716449762734408933
+    second: Map_Tile_325
+  - first:
+      213: -8827747043440130381
+    second: Map_Tile_326
+  - first:
+      213: 7511582436260915505
+    second: Map_Tile_327
+  - first:
+      213: 6563235719672458639
+    second: Map_Tile_328
+  - first:
+      213: -5864168153085100829
+    second: Map_Tile_329
+  - first:
+      213: -7250821883190955467
+    second: Map_Tile_330
+  - first:
+      213: 1895849384492515206
+    second: Map_Tile_331
+  - first:
+      213: -1397131783514235431
+    second: Map_Tile_332
+  - first:
+      213: -688466391672221312
+    second: Map_Tile_333
+  - first:
+      213: -5580021762869829437
+    second: Map_Tile_334
+  - first:
+      213: 8863527110002334384
+    second: Map_Tile_335
+  - first:
+      213: -12062642380320721
+    second: Map_Tile_336
+  - first:
+      213: 3537478101589102986
+    second: Map_Tile_337
+  - first:
+      213: 3993273136715445386
+    second: Map_Tile_338
+  - first:
+      213: 5927258692118096194
+    second: Map_Tile_339
+  - first:
+      213: 6142046253231174729
+    second: Map_Tile_340
+  - first:
+      213: -881733458858198834
+    second: Map_Tile_341
+  - first:
+      213: 8753172455789006123
+    second: Map_Tile_342
+  - first:
+      213: -1924279323126864321
+    second: Map_Tile_343
+  - first:
+      213: -3197777927854703589
+    second: Map_Tile_344
+  - first:
+      213: 8325801133290726614
+    second: Map_Tile_345
+  - first:
+      213: -2022290474299550739
+    second: Map_Tile_346
+  - first:
+      213: 1708732510172256839
+    second: Map_Tile_347
+  - first:
+      213: 509157622080350283
+    second: Map_Tile_348
+  - first:
+      213: 2536499549911340270
+    second: Map_Tile_349
+  - first:
+      213: -7565879806996720970
+    second: Map_Tile_350
+  - first:
+      213: -170472103711392066
+    second: Map_Tile_351
+  - first:
+      213: 2478976463958234224
+    second: Map_Tile_352
+  - first:
+      213: 3960008913604973900
+    second: Map_Tile_353
+  - first:
+      213: 6204587072342940313
+    second: Map_Tile_354
+  - first:
+      213: -8472820608543862564
+    second: Map_Tile_355
+  - first:
+      213: -920562420224701386
+    second: Map_Tile_356
+  - first:
+      213: 4537629079944295275
+    second: Map_Tile_357
+  - first:
+      213: 8556580319640133991
+    second: Map_Tile_358
+  - first:
+      213: -6973453164839388306
+    second: Map_Tile_359
+  - first:
+      213: 7393339787714452867
+    second: Map_Tile_360
+  - first:
+      213: 2102978576367075221
+    second: Map_Tile_361
+  - first:
+      213: 7581172018480492329
+    second: Map_Tile_362
+  - first:
+      213: -5348256919856951332
+    second: Map_Tile_363
+  - first:
+      213: -7136020124465002487
+    second: Map_Tile_364
+  - first:
+      213: 8060091132318463877
+    second: Map_Tile_365
+  - first:
+      213: 3040963513084576290
+    second: Map_Tile_366
+  - first:
+      213: 2014143710637745850
+    second: Map_Tile_367
+  - first:
+      213: -6914995820255294582
+    second: Map_Tile_368
+  - first:
+      213: 7090561819325875040
+    second: Map_Tile_369
+  - first:
+      213: 9107338507908950066
+    second: Map_Tile_370
+  - first:
+      213: 1626258115401863501
+    second: Map_Tile_371
+  - first:
+      213: -5804064025181306768
+    second: Map_Tile_372
+  - first:
+      213: -7532240731623525617
+    second: Map_Tile_373
+  - first:
+      213: -1779490840039783257
+    second: Map_Tile_374
+  - first:
+      213: -2477703716611291013
+    second: Map_Tile_375
+  - first:
+      213: 4808606126580033986
+    second: Map_Tile_376
+  - first:
+      213: -7326402588383897021
+    second: Map_Tile_377
+  - first:
+      213: 6563871977405324316
+    second: Map_Tile_378
+  - first:
+      213: 2952509851207967386
+    second: Map_Tile_379
+  - first:
+      213: 8367370324146811777
+    second: Map_Tile_380
+  - first:
+      213: -6201673184459294217
+    second: Map_Tile_381
+  - first:
+      213: 6829913583243619813
+    second: Map_Tile_382
+  - first:
+      213: -2610337186542442975
+    second: Map_Tile_383
+  - first:
+      213: -5714487631643127683
+    second: Map_Tile_384
+  - first:
+      213: 7722341632384544690
+    second: Map_Tile_385
+  - first:
+      213: 6917351176387294910
+    second: Map_Tile_386
+  - first:
+      213: -6346424030375864896
+    second: Map_Tile_387
+  - first:
+      213: -7833874407665387186
+    second: Map_Tile_388
+  - first:
+      213: -6252371357260257834
+    second: Map_Tile_389
+  - first:
+      213: 2081877659797873785
+    second: Map_Tile_390
+  - first:
+      213: -1604736502548216241
+    second: Map_Tile_391
+  - first:
+      213: -8513478053497325431
+    second: Map_Tile_392
+  - first:
+      213: -8610765441141006306
+    second: Map_Tile_393
+  - first:
+      213: 3020825314316675912
+    second: Map_Tile_394
+  - first:
+      213: -9146426492345404754
+    second: Map_Tile_395
+  - first:
+      213: -6683527183328641616
+    second: Map_Tile_396
+  - first:
+      213: 2182687463060583427
+    second: Map_Tile_397
+  - first:
+      213: -7270084328188863116
+    second: Map_Tile_398
+  - first:
+      213: 4754207205543758591
+    second: Map_Tile_399
+  - first:
+      213: -4998300784465554530
+    second: Map_Tile_400
+  - first:
+      213: 736270828429852828
+    second: Map_Tile_401
+  - first:
+      213: 4495984105717816007
+    second: Map_Tile_402
+  - first:
+      213: -6073511344445005461
+    second: Map_Tile_403
+  - first:
+      213: 6563038191135344403
+    second: Map_Tile_404
+  - first:
+      213: 8388529585673224345
+    second: Map_Tile_405
+  - first:
+      213: -5296446365659294960
+    second: Map_Tile_406
+  - first:
+      213: 4048257257278662291
+    second: Map_Tile_407
+  - first:
+      213: 5834821398123732214
+    second: Map_Tile_408
+  - first:
+      213: -7822306275957594980
+    second: Map_Tile_409
+  - first:
+      213: 6413199273028476743
+    second: Map_Tile_410
+  - first:
+      213: 7611149608416432480
+    second: Map_Tile_411
+  - first:
+      213: 7664241918553291120
+    second: Map_Tile_412
+  - first:
+      213: -3280624708781988732
+    second: Map_Tile_413
+  - first:
+      213: -5406060315273505376
+    second: Map_Tile_414
+  - first:
+      213: -2392231193613337382
+    second: Map_Tile_415
+  - first:
+      213: -6852748581500543976
+    second: Map_Tile_416
+  - first:
+      213: 295140823117867216
+    second: Map_Tile_417
+  - first:
+      213: 6689891617331463214
+    second: Map_Tile_418
+  - first:
+      213: -1519367249045903221
+    second: Map_Tile_419
+  - first:
+      213: 3158832829609952793
+    second: Map_Tile_420
+  - first:
+      213: 5931377007448812102
+    second: Map_Tile_421
+  - first:
+      213: -1277313705086593306
+    second: Map_Tile_422
+  - first:
+      213: -1710463755532281268
+    second: Map_Tile_423
+  - first:
+      213: 8428782959005045688
+    second: Map_Tile_424
+  - first:
+      213: 3325668719077635473
+    second: Map_Tile_425
+  - first:
+      213: 1173560431306119066
+    second: Map_Tile_426
+  - first:
+      213: -3769614043190424243
+    second: Map_Tile_427
+  - first:
+      213: -5316776196495622953
+    second: Map_Tile_428
+  - first:
+      213: -3142272170669751262
+    second: Map_Tile_429
+  - first:
+      213: 8033522346100065904
+    second: Map_Tile_430
+  - first:
+      213: -7498575774301264592
+    second: Map_Tile_431
+  - first:
+      213: -8354109032901473697
+    second: Map_Tile_432
+  - first:
+      213: 1568953877561472975
+    second: Map_Tile_433
+  - first:
+      213: 1091697895683079459
+    second: Map_Tile_434
+  - first:
+      213: 5553438025006669820
+    second: Map_Tile_435
+  - first:
+      213: 4824279133793279430
+    second: Map_Tile_436
+  - first:
+      213: 2632180397234705216
+    second: Map_Tile_437
+  - first:
+      213: 7607986011978409544
+    second: Map_Tile_438
+  - first:
+      213: 8670540605467846124
+    second: Map_Tile_439
+  - first:
+      213: -9164778850921596427
+    second: Map_Tile_440
+  - first:
+      213: -5494696673987706357
+    second: Map_Tile_441
+  - first:
+      213: 813127007622898665
+    second: Map_Tile_442
+  - first:
+      213: 5995769204818558085
+    second: Map_Tile_443
+  - first:
+      213: 7161990488908206165
+    second: Map_Tile_444
+  - first:
+      213: 6588017046383377004
+    second: Map_Tile_445
+  - first:
+      213: 829476214385184243
+    second: Map_Tile_446
+  - first:
+      213: -8725427125003306506
+    second: Map_Tile_447
+  - first:
+      213: -964290491100461483
+    second: Map_Tile_448
+  - first:
+      213: 679957713098158620
+    second: Map_Tile_449
+  - first:
+      213: -6225887461386866990
+    second: Map_Tile_450
+  - first:
+      213: 7408531995302000917
+    second: Map_Tile_451
+  - first:
+      213: -8061139968978620228
+    second: Map_Tile_452
+  - first:
+      213: 5546007427509724931
+    second: Map_Tile_453
+  - first:
+      213: -2887100148703428389
+    second: Map_Tile_454
+  - first:
+      213: -7487387592018986067
+    second: Map_Tile_455
+  - first:
+      213: -7567316617455309919
+    second: Map_Tile_456
+  - first:
+      213: 3354301226597092776
+    second: Map_Tile_457
+  - first:
+      213: -2684556847208143180
+    second: Map_Tile_458
+  - first:
+      213: 5811688364598963188
+    second: Map_Tile_459
+  - first:
+      213: 907074531991551742
+    second: Map_Tile_460
+  - first:
+      213: 5548877263021083521
+    second: Map_Tile_461
+  - first:
+      213: -3642581175922556147
+    second: Map_Tile_462
+  - first:
+      213: 3013734429711904024
+    second: Map_Tile_463
+  - first:
+      213: -2386335022767692969
+    second: Map_Tile_464
+  - first:
+      213: -6273234783857216332
+    second: Map_Tile_465
+  - first:
+      213: -4424832025528323046
+    second: Map_Tile_466
+  - first:
+      213: -2851779299808837139
+    second: Map_Tile_467
+  - first:
+      213: 4225935167039226421
+    second: Map_Tile_468
+  - first:
+      213: 8495315936571386308
+    second: Map_Tile_469
+  - first:
+      213: -541989790313684511
+    second: Map_Tile_470
+  - first:
+      213: -8433428258005517429
+    second: Map_Tile_471
+  - first:
+      213: 983104237637320780
+    second: Map_Tile_472
+  - first:
+      213: -5500384848187826950
+    second: Map_Tile_473
+  - first:
+      213: -6428405943600770950
+    second: Map_Tile_474
+  - first:
+      213: 4067468041791794258
+    second: Map_Tile_475
+  - first:
+      213: 7290027779064173296
+    second: Map_Tile_476
+  - first:
+      213: 7992794274674241813
+    second: Map_Tile_477
+  - first:
+      213: -8735293998047523397
+    second: Map_Tile_478
+  - first:
+      213: -3284656105263561479
+    second: Map_Tile_479
+  - first:
+      213: 4917865042906033550
+    second: Map_Tile_480
+  - first:
+      213: -709389458573941722
+    second: Map_Tile_481
+  - first:
+      213: 4782212990464994234
+    second: Map_Tile_482
+  - first:
+      213: 2584418352691012837
+    second: Map_Tile_483
+  - first:
+      213: 6826945341254643596
+    second: Map_Tile_484
+  - first:
+      213: 4560181373073856303
+    second: Map_Tile_485
+  - first:
+      213: 5527254134161864956
+    second: Map_Tile_486
+  - first:
+      213: 2013017153665293971
+    second: Map_Tile_487
+  - first:
+      213: -6205592597131291991
+    second: Map_Tile_488
+  - first:
+      213: -5449720807606573038
+    second: Map_Tile_489
+  - first:
+      213: 3392198260671238262
+    second: Map_Tile_490
+  - first:
+      213: 1610953051987160140
+    second: Map_Tile_491
+  - first:
+      213: 8977660018850177882
+    second: Map_Tile_492
+  - first:
+      213: -5115749499668445065
+    second: Map_Tile_493
+  - first:
+      213: -2745401159178700864
+    second: Map_Tile_494
+  - first:
+      213: -2989750750435877036
+    second: Map_Tile_495
+  - first:
+      213: -7790666181912477365
+    second: Map_Tile_496
+  - first:
+      213: 6635805678051607684
+    second: Map_Tile_497
+  - first:
+      213: 3476480418650243773
+    second: Map_Tile_498
+  - first:
+      213: 5876089324827043936
+    second: Map_Tile_499
+  - first:
+      213: 3114830899012133770
+    second: Map_Tile_500
+  - first:
+      213: 162942856170477425
+    second: Map_Tile_501
+  - first:
+      213: 6716912522535397992
+    second: Map_Tile_502
+  - first:
+      213: 5352435665130198335
+    second: Map_Tile_503
+  - first:
+      213: -8476943476899013151
+    second: Map_Tile_504
+  - first:
+      213: 6456843091099137817
+    second: Map_Tile_505
+  - first:
+      213: 6145770304544379495
+    second: Map_Tile_506
+  - first:
+      213: 7267827896611691772
+    second: Map_Tile_507
+  - first:
+      213: -3680603055275488988
+    second: Map_Tile_508
+  - first:
+      213: 3219618621684090308
+    second: Map_Tile_509
+  - first:
+      213: -6442558966834934035
+    second: Map_Tile_510
+  - first:
+      213: 4822742612155799353
+    second: Map_Tile_511
+  - first:
+      213: 7036836277893899908
+    second: Map_Tile_512
+  - first:
+      213: -4297078225552189914
+    second: Map_Tile_513
+  - first:
+      213: 2822100493881382866
+    second: Map_Tile_514
+  - first:
+      213: 8358136144389391857
+    second: Map_Tile_515
+  - first:
+      213: -6589831818747510602
+    second: Map_Tile_516
+  - first:
+      213: 5093724266708971447
+    second: Map_Tile_517
+  - first:
+      213: 9131844348592545657
+    second: Map_Tile_518
+  - first:
+      213: -2994608126543549610
+    second: Map_Tile_519
+  - first:
+      213: -8852760807165552840
+    second: Map_Tile_520
+  - first:
+      213: -2363591711501285623
+    second: Map_Tile_521
+  - first:
+      213: -233161130240030149
+    second: Map_Tile_522
+  - first:
+      213: 230071223030199876
+    second: Map_Tile_523
+  - first:
+      213: -1977275052668855972
+    second: Map_Tile_524
+  - first:
+      213: -5932480145639238242
+    second: Map_Tile_525
+  - first:
+      213: -6204881360912553744
+    second: Map_Tile_526
+  - first:
+      213: -1788307146048243025
+    second: Map_Tile_527
+  - first:
+      213: -8910065693893072998
+    second: Map_Tile_528
+  - first:
+      213: 1388356004689541768
+    second: Map_Tile_529
+  - first:
+      213: 7964448851045608022
+    second: Map_Tile_530
+  - first:
+      213: -8773202948787657328
+    second: Map_Tile_531
+  - first:
+      213: -7259510725857117202
+    second: Map_Tile_532
+  - first:
+      213: -2370095328341568346
+    second: Map_Tile_533
+  - first:
+      213: 2786306927656104825
+    second: Map_Tile_534
+  - first:
+      213: -8551063531131873830
+    second: Map_Tile_535
+  - first:
+      213: -2677411138852177286
+    second: Map_Tile_536
+  - first:
+      213: 2864023228761646763
+    second: Map_Tile_537
+  - first:
+      213: 4835229028356870962
+    second: Map_Tile_538
+  - first:
+      213: 8886837376148798184
+    second: Map_Tile_539
+  - first:
+      213: -6975738666639033513
+    second: Map_Tile_540
+  - first:
+      213: 2088738757461103685
+    second: Map_Tile_541
+  - first:
+      213: -5292470110327059324
+    second: Map_Tile_542
+  - first:
+      213: 247173631800619510
+    second: Map_Tile_543
+  - first:
+      213: -8911436873459495098
+    second: Map_Tile_544
+  - first:
+      213: -5211940384737126744
+    second: Map_Tile_545
+  - first:
+      213: 1083353105239176720
+    second: Map_Tile_546
+  - first:
+      213: -6612577813528965637
+    second: Map_Tile_547
+  - first:
+      213: -6668281884642444894
+    second: Map_Tile_548
+  - first:
+      213: 1824811600723961031
+    second: Map_Tile_549
+  - first:
+      213: 1388551671578139605
+    second: Map_Tile_550
+  - first:
+      213: -7957942721093473877
+    second: Map_Tile_551
+  - first:
+      213: -3140351784316359169
+    second: Map_Tile_552
+  - first:
+      213: -3446308296743974319
+    second: Map_Tile_553
+  - first:
+      213: -7842824022874986148
+    second: Map_Tile_554
+  - first:
+      213: 4354467141384083855
+    second: Map_Tile_555
+  - first:
+      213: 8215380640215878054
+    second: Map_Tile_556
+  - first:
+      213: 6592278555157673491
+    second: Map_Tile_557
+  - first:
+      213: 4482387726755970647
+    second: Map_Tile_558
+  - first:
+      213: -3731279555644805058
+    second: Map_Tile_559
+  - first:
+      213: 2412429201294463543
+    second: Map_Tile_560
+  - first:
+      213: 3055313499946364722
+    second: Map_Tile_561
+  - first:
+      213: 8709397539756497987
+    second: Map_Tile_562
+  - first:
+      213: -3700470335567877111
+    second: Map_Tile_563
+  - first:
+      213: 6265349180218206831
+    second: Map_Tile_564
+  - first:
+      213: 175648759528261950
+    second: Map_Tile_565
+  - first:
+      213: 6209102997830559334
+    second: Map_Tile_566
+  - first:
+      213: -5380439317158464900
+    second: Map_Tile_567
+  - first:
+      213: -8644627564264521789
+    second: Map_Tile_568
+  - first:
+      213: -1297350508580184986
+    second: Map_Tile_569
+  - first:
+      213: -3379458187988176154
+    second: Map_Tile_570
+  - first:
+      213: -8411693693589481264
+    second: Map_Tile_571
+  - first:
+      213: -1516944491852128981
+    second: Map_Tile_572
+  - first:
+      213: 1044466680719708844
+    second: Map_Tile_573
+  - first:
+      213: -3614004259427265468
+    second: Map_Tile_574
+  - first:
+      213: -4517021822239289816
+    second: Map_Tile_575
+  - first:
+      213: 2322023506886728521
+    second: Map_Tile_576
+  - first:
+      213: 7090310255699854
+    second: Map_Tile_577
+  - first:
+      213: -8899922926157101614
+    second: Map_Tile_578
+  - first:
+      213: -9201754873042695582
+    second: Map_Tile_579
+  - first:
+      213: 8207735755624891888
+    second: Map_Tile_580
+  - first:
+      213: -5345941433079533656
+    second: Map_Tile_581
+  - first:
+      213: -3542469096150956968
+    second: Map_Tile_582
+  - first:
+      213: -7735725732072650404
+    second: Map_Tile_583
+  - first:
+      213: 1508862278219691639
+    second: Map_Tile_584
+  - first:
+      213: -462516129567588278
+    second: Map_Tile_585
+  - first:
+      213: 8107604027546562306
+    second: Map_Tile_586
+  - first:
+      213: -4591834198050043817
+    second: Map_Tile_587
+  - first:
+      213: 7594783997225609161
+    second: Map_Tile_588
+  - first:
+      213: -761284158160426364
+    second: Map_Tile_589
+  - first:
+      213: -7829759848775354116
+    second: Map_Tile_590
+  - first:
+      213: 5935739977058645845
+    second: Map_Tile_591
+  - first:
+      213: -3632694913340225747
+    second: Map_Tile_592
+  - first:
+      213: -3995372466789933328
+    second: Map_Tile_593
+  - first:
+      213: 4116087880018995463
+    second: Map_Tile_594
+  - first:
+      213: 2759246484127454186
+    second: Map_Tile_595
+  - first:
+      213: 6022728007754353259
+    second: Map_Tile_596
+  - first:
+      213: 4470450634931925004
+    second: Map_Tile_597
+  - first:
+      213: 630321636092903204
+    second: Map_Tile_598
+  - first:
+      213: -3922136390384828734
+    second: Map_Tile_599
+  - first:
+      213: 5485774662468140579
+    second: Map_Tile_600
+  - first:
+      213: 7467701662496620796
+    second: Map_Tile_601
+  - first:
+      213: -7000575044630852918
+    second: Map_Tile_602
+  - first:
+      213: 937528851278821188
+    second: Map_Tile_603
+  - first:
+      213: 6622309392800931389
+    second: Map_Tile_604
+  - first:
+      213: -813593620483323212
+    second: Map_Tile_605
+  - first:
+      213: -6677986242773174726
+    second: Map_Tile_606
+  - first:
+      213: -4718327552532246998
+    second: Map_Tile_607
+  - first:
+      213: 7788059634768689933
+    second: Map_Tile_608
+  - first:
+      213: -3052908606389781759
+    second: Map_Tile_609
+  - first:
+      213: -7423113183083806471
+    second: Map_Tile_610
+  - first:
+      213: -4699340569973611323
+    second: Map_Tile_611
+  - first:
+      213: -767115335010605015
+    second: Map_Tile_612
+  - first:
+      213: -6103425695941287788
+    second: Map_Tile_613
+  - first:
+      213: 4752660108068466201
+    second: Map_Tile_614
+  - first:
+      213: -7618738363715750102
+    second: Map_Tile_615
+  - first:
+      213: 3944078004493181046
+    second: Map_Tile_616
+  - first:
+      213: 3349881833885720364
+    second: Map_Tile_617
+  - first:
+      213: 7855136486808597160
+    second: Map_Tile_618
+  - first:
+      213: 7776346258450672022
+    second: Map_Tile_619
+  - first:
+      213: -1635814481149807094
+    second: Map_Tile_620
+  - first:
+      213: 2669898304257512280
+    second: Map_Tile_621
+  - first:
+      213: 5968266485867475040
+    second: Map_Tile_622
+  - first:
+      213: 5668030322030452244
+    second: Map_Tile_623
+  - first:
+      213: -6094824628406390221
+    second: Map_Tile_624
+  - first:
+      213: 2099211292941800308
+    second: Map_Tile_625
+  - first:
+      213: -8364236503577999279
+    second: Map_Tile_626
+  - first:
+      213: 4986583574989281231
+    second: Map_Tile_627
+  - first:
+      213: -3897008138550961541
+    second: Map_Tile_628
+  - first:
+      213: 5609753003700835851
+    second: Map_Tile_629
+  - first:
+      213: 7650498912612695810
+    second: Map_Tile_630
+  - first:
+      213: -7855278539770462717
+    second: Map_Tile_631
+  - first:
+      213: -5908552710215955958
+    second: Map_Tile_632
+  - first:
+      213: -2580192380796954053
+    second: Map_Tile_633
+  - first:
+      213: -5154399377314643446
+    second: Map_Tile_634
+  - first:
+      213: -4388921149108520023
+    second: Map_Tile_635
+  - first:
+      213: 2992120248995055936
+    second: Map_Tile_636
+  - first:
+      213: -4088432311765926539
+    second: Map_Tile_637
+  - first:
+      213: 4283411973641172500
+    second: Map_Tile_638
+  - first:
+      213: -8320825411943847957
+    second: Map_Tile_639
+  - first:
+      213: 1724970097205443812
+    second: Map_Tile_640
+  - first:
+      213: 6637392336766483847
+    second: Map_Tile_641
+  - first:
+      213: 4716174437765446972
+    second: Map_Tile_642
+  - first:
+      213: -7952646943218840230
+    second: Map_Tile_643
+  - first:
+      213: -983994808249196786
+    second: Map_Tile_644
+  - first:
+      213: -6110882738624324862
+    second: Map_Tile_645
+  - first:
+      213: -2808199085686744131
+    second: Map_Tile_646
+  - first:
+      213: -8265410805958292253
+    second: Map_Tile_647
+  - first:
+      213: -6216951990133065048
+    second: Map_Tile_648
+  - first:
+      213: -2465247888404046981
+    second: Map_Tile_649
+  - first:
+      213: -5931840830361982711
+    second: Map_Tile_650
+  - first:
+      213: 2625035504843036700
+    second: Map_Tile_651
+  - first:
+      213: -3057772713765125319
+    second: Map_Tile_652
+  - first:
+      213: 2457983083493043526
+    second: Map_Tile_653
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Map_Tile_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 992
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b35be464e1ed5bd0800000000000000
+      internalID: -2639705435507305547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 992
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9333a60f66a805c90800000000000000
+      internalID: -7183089230931152071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 992
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f265553ec277ba70800000000000000
+      internalID: 8842662623348876023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 992
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fe286ac78516caf0800000000000000
+      internalID: -376589845878264077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 992
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 212c07093145c4910800000000000000
+      internalID: 1822924392182628882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 992
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adce0c3a8ad5e6740800000000000000
+      internalID: 5147154403014274266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 992
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc35dbae7aa30c0e0800000000000000
+      internalID: -2251735320813022259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 992
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3518ea09b0b23b5c0800000000000000
+      internalID: -4200966698734550701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 992
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b71d0e468c97bc580800000000000000
+      internalID: -8805810744799997573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 992
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74abd51a95b214480800000000000000
+      internalID: -8916798123257513401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 992
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a4c38c2bb87e0dc0800000000000000
+      internalID: -3670863900959325024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 960
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f336a5e4ff5e4f30800000000000000
+      internalID: 4561688978002424816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_12
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 960
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8464dd35addb80c50800000000000000
+      internalID: 6631759196710585928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 960
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ff44882f37da18c0800000000000000
+      internalID: -4027670250466816012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_14
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 960
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 829822dceb09c16b0800000000000000
+      internalID: -5324221510298990296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_15
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 960
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eea1d888b6a726f10800000000000000
+      internalID: 2261504565164448494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_16
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 960
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57208a6fd2559dae0800000000000000
+      internalID: -1524093342988107147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_17
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 960
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ab57d81cc5eb2da0800000000000000
+      internalID: -5968424216396604508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_18
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 960
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab915c318dfeb7150800000000000000
+      internalID: 5871550250531232186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_19
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 960
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a67a1204bf6c69320800000000000000
+      internalID: 2564455820249114474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_20
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 960
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 020fba0512b54c860800000000000000
+      internalID: 7549259074025287712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_21
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 960
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 906b34f87280fe400800000000000000
+      internalID: 355511861585884681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 928
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19a2a6e2831feef80800000000000000
+      internalID: -8075251858229548399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_23
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 928
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e837e1f195c30eea0800000000000000
+      internalID: -5845605962855058546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_24
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 928
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 787f01b889e17e3e0800000000000000
+      internalID: -2024615866962741369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_25
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 928
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81b272ef203f19030800000000000000
+      internalID: 3499845579623050008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_26
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 928
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d950739dd0432fd0800000000000000
+      internalID: -2367977658661185065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_27
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 928
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 549307c69cce38980800000000000000
+      internalID: -8537720118712452795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_28
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 928
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb6723ab60e9541f0800000000000000
+      internalID: -1061268385445022017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_29
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 928
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d30660b863a2c4450800000000000000
+      internalID: 6074276411165007933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_30
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 928
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9442b919143a0b70800000000000000
+      internalID: 8865956098842182812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_31
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 928
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16a032959ed6081b0800000000000000
+      internalID: -5656400282987066783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_32
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 928
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecf231d741c333b60800000000000000
+      internalID: 7724583844565954510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 896
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57429d30e68c836c0800000000000000
+      internalID: -4163357480667503499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_34
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 896
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 171ce6d6f88408e00800000000000000
+      internalID: 1044914894403453297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_35
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 896
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80583f100dd503b10800000000000000
+      internalID: 1959168985873483016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_36
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 896
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b5516046a2c6ef0800000000000000
+      internalID: -113669281503945917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_37
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 896
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c9ce3f72ddb10d20800000000000000
+      internalID: 3243081918459070921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_38
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 896
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78d31da5f5b0cfc30800000000000000
+      internalID: 4394399840580222343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_39
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 896
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 911dab495f2aaba30800000000000000
+      internalID: 4231873975513960729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_40
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 896
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc7c0d4bd7ce59030800000000000000
+      internalID: 3500964309999077325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_41
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 896
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e89a4a0cfe45d4380800000000000000
+      internalID: -8985432292828337778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_42
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 896
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aaa58a1a354d82a0800000000000000
+      internalID: -6733649751993636186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_43
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 896
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa219629f19c18f00800000000000000
+      internalID: 1117395320002122415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_44
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 864
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab6fcd8c9a7e410e0800000000000000
+      internalID: -2299958793274067270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_45
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 864
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9086653240830af40800000000000000
+      internalID: 5737647515693901833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_46
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 864
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29b24485181dbcfa0800000000000000
+      internalID: -5779295343338050670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_47
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 864
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cceb7dd0e039d8950800000000000000
+      internalID: 6452975529662856908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_48
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 864
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96022e4e1194b2080800000000000000
+      internalID: -9211188271652921239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_49
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 864
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2d0033dbd21e53a0800000000000000
+      internalID: -6674876862366216918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_50
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 864
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6566516ee9b471f50800000000000000
+      internalID: 6852028503904577110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_51
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 864
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db69f6c7ace6a5690800000000000000
+      internalID: -7612650404166265155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_52
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 864
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5724539e65538c20800000000000000
+      internalID: 3207501293024454491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_53
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 864
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5addb4f40c37ce5f0800000000000000
+      internalID: -726078170112205403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_54
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 864
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9d66d06a6dec6b80800000000000000
+      internalID: -8400078163805835876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_55
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 832
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 832f206cb97c82700800000000000000
+      internalID: 515881629189861944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_56
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 832
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a39731f7290089fb0800000000000000
+      internalID: -4640958786808088262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_57
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 832
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0044db9fc8b7ef50800000000000000
+      internalID: 6910695355035435021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_58
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 832
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faf28477ed20e7d50800000000000000
+      internalID: 6736825247100055471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_59
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 832
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48390d1617e0cfac0800000000000000
+      internalID: -3820162503781870716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_60
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 832
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffdd7ea8b89e7d820800000000000000
+      internalID: 2943077667050085887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_61
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 832
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2317b0acbe9287230800000000000000
+      internalID: 3636702791785476402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_62
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 832
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1d29aee21a8800e0800000000000000
+      internalID: -2303439395481899745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_63
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 832
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caa42785e0a8bcac0800000000000000
+      internalID: -3833818863557784916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_64
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 832
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0cf148c6b10f73a0800000000000000
+      internalID: -6665607038929601526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_65
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 832
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 816e9b9a24359b4f0800000000000000
+      internalID: -812526711983184360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_66
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 800
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b35e270dd496b970800000000000000
+      internalID: 8770361001379779510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_67
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 800
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13c795f4aaafb9cd0800000000000000
+      internalID: -2550169154592605135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_68
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 800
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f0520d7d2688fee0800000000000000
+      internalID: -1227083368529506062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_69
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 800
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b64ac61dfaf04450800000000000000
+      internalID: 6071128262611453624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_70
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 800
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27a9b1dc8c1ae3400800000000000000
+      internalID: 305859708514441842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_71
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 800
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e2a185732ccdd6d0800000000000000
+      internalID: -2963988527072566553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_72
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 800
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46ff76d6f59a080c0800000000000000
+      internalID: -4575470994085904540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_73
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 800
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02c7fa71a94a3cf20800000000000000
+      internalID: 3441775521970486304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_74
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 800
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7cab77a05e65ed80800000000000000
+      internalID: -8222044252008633222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_75
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 800
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87c212d2c95b4e320800000000000000
+      internalID: 2586391768394181752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_76
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 800
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 348841804b50b0d40800000000000000
+      internalID: 5551537236452083779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_77
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 800
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b339762d2732b2f50800000000000000
+      internalID: 6857613833664959291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_78
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e12501b94187d25c0800000000000000
+      internalID: -4238599644389551586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_79
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 768
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9962211a883397910800000000000000
+      internalID: 1835554985041077913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_80
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 768
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7cc36a9c680b3090800000000000000
+      internalID: -8053834246082278276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_81
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 768
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac120d15d94c40d00800000000000000
+      internalID: 938090802361409994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_82
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 768
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5b781f79049321b0800000000000000
+      internalID: -5682535536303506595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_83
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 768
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ddb54652ce618620800000000000000
+      internalID: 2774620626387058130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_84
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7da386a42aa66c420800000000000000
+      internalID: 2649922676019706583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_85
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 768
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d4a97ee2cd4831b0800000000000000
+      internalID: -5676701830680566568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_86
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 768
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01b570876d0a67d80800000000000000
+      internalID: -8253232424112661744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_87
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 768
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a14376a00fe3f8f0800000000000000
+      internalID: -507799546891124316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_88
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 736
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe69f7b0b84f7df10800000000000000
+      internalID: 2294571413199099631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_89
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 736
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e236c5cae362d3a00800000000000000
+      internalID: 737787964580193070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_90
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 736
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9182ee1ded97ec50800000000000000
+      internalID: 6694493012860502428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_91
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 736
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c8d084d32913ae60800000000000000
+      internalID: 7972243407055673537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_92
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 736
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c340241e017688630800000000000000
+      internalID: 3929503997077095484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_93
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 704
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7079dfdd48ab638a0800000000000000
+      internalID: -6325663546772449529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_94
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 704
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28644115f9e5567c0800000000000000
+      internalID: -4078749849161021822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_95
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 704
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79c4167e5c4476cb0800000000000000
+      internalID: -4870848855196742505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_96
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 704
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a7519ac6e4519a40800000000000000
+      internalID: 5373169180647446435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_97
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 704
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e33be82e99273330800000000000000
+      internalID: 3690464178921485284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_98
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 672
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a96744bbafb4cc570800000000000000
+      internalID: 8488242937942275738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_99
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 672
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2370c8fbea69f7ff0800000000000000
+      internalID: -36144594713573582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_100
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 672
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b37bffd16097f24a0800000000000000
+      internalID: -6615936260403906757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_101
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 672
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae69521ed85324270800000000000000
+      internalID: 8233201952270685930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_102
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 672
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb8138c69b7acaff0800000000000000
+      internalID: -23459483212375876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_103
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fd342fc95570a120800000000000000
+      internalID: 2423065628113124857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_104
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 640
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8052c1142534a5e0800000000000000
+      internalID: -1899334713810464628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_105
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 640
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19b09b92bcd0caef0800000000000000
+      internalID: -95686325852107887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_106
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 640
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c36814608c5a2eae0800000000000000
+      internalID: -1521471445580806596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_107
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 640
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96532a502a493a620800000000000000
+      internalID: 2784232418245227881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_108
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 640
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd308b4e75caa7970800000000000000
+      internalID: 8753498319247377373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_109
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 608
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 580c2158920ee8e30800000000000000
+      internalID: 4507786745975324805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_110
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 608
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79c3cfb35697fc870800000000000000
+      internalID: 8705310080435502231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_111
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 608
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9cdbaea9fec08c00800000000000000
+      internalID: 900947497246776477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_112
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 608
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39ec9147134ecb800800000000000000
+      internalID: 629628948977405587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_113
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 608
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ceaee8d74e1edf00800000000000000
+      internalID: 1143384649329716934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_114
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 608
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bff653a17abbe600800000000000000
+      internalID: 498697180989030326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_115
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 608
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca42c792ef4dd1df0800000000000000
+      internalID: -207775819706391380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_116
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 608
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef0d4b63afc9b09d0800000000000000
+      internalID: -2806977344261795586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_117
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b486c1005f983cb0800000000000000
+      internalID: -4883978629907315535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_118
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 576
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea0573aca8fadcb10800000000000000
+      internalID: 2003450419882709166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_119
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 576
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e294af7e4762caf60800000000000000
+      internalID: 8046848917754235182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_120
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 576
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e91cf75a20f0da720800000000000000
+      internalID: 2858957842491097502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_121
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 576
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4593f14e1655e8c0800000000000000
+      internalID: -3970672808501734066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_122
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 576
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfa9a754662b92370800000000000000
+      internalID: 8298359940728920828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_123
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 576
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6f6300b97c9fe1e0800000000000000
+      internalID: -2166340849283928214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_124
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 576
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 401208cd4d48dac00800000000000000
+      internalID: 913532349193396484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_125
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 576
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 162fef7ffe864fe80800000000000000
+      internalID: -8145770446139231647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_126
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 576
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e1ec451d0d9d3c50800000000000000
+      internalID: 6646641304586215909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_127
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 576
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b63cf59d3fca8670800000000000000
+      internalID: 8541867506677855928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_128
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 544
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4ae3210af2905a00800000000000000
+      internalID: 743255540974742093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_129
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 544
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9832ab3f9f47a0f0800000000000000
+      internalID: -1105827638177285987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_130
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 544
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93e0cff68700c5e30800000000000000
+      internalID: 4493467045483777593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_131
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 544
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 993393e5f25aaf100800000000000000
+      internalID: 142607961078444953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_132
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 544
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18260cf5e68f9fa90800000000000000
+      internalID: -7279514169731161471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_133
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 544
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a393dc4b930f953f0800000000000000
+      internalID: -911433318928664262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_134
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 544
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e5f5241941c9e760800000000000000
+      internalID: 7487728375094965734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_135
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 544
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b799449856f93e60800000000000000
+      internalID: 7942650278149986232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_136
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 544
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 491acf8e219c26530800000000000000
+      internalID: 3846858114783289748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_137
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 544
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3e02acf7f8ebb730800000000000000
+      internalID: 4016059644523974205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_138
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb00f7455dad29080800000000000000
+      internalID: -9182036080474521412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_139
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c46c133ac0567fa0800000000000000
+      internalID: -5803362240449190715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_140
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60e4c39c07a6c5180800000000000000
+      internalID: -9125301712314413562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_141
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28141b8da5d1b9190800000000000000
+      internalID: -7954732040800091774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_142
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ff013ea266637a70800000000000000
+      internalID: 8823508668964212722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_143
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2af56951962cdece0800000000000000
+      internalID: -1374228554688602206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_144
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e45fd55ab04382b90800000000000000
+      internalID: -7266500774138612402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_145
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61684b22bc2cf7500800000000000000
+      internalID: 396249469948298774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_146
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef9784bcdce34c370800000000000000
+      internalID: 8341861463396743678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_147
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 303e9b5127b027e70800000000000000
+      internalID: 9111357580742615811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_148
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71ea44d0fb00dd9c0800000000000000
+      internalID: -3900960881671623145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_149
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1f5eec59f14dac30800000000000000
+      internalID: 4372223352508407579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_150
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbbe529f46de25080800000000000000
+      internalID: -9200030070831977541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_151
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1968ebb8c893db20800000000000000
+      internalID: 3158035751630301466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_152
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3283b006bdec4d4a0800000000000000
+      internalID: -6569398514822203357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tile_153
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d64c7fb0e0ae8e680800000000000000
+      internalID: -8725466931979107219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
