@@ -6,13 +6,15 @@ public class Managers : MonoBehaviour
 {
     static Managers _instance;
 
-    public static Managers Instance { get { Init(); return _instance; } } 
+    public static Managers Instance { get { Init(); return _instance; } }
 
 
+    
 
+    
     static void Init()
     {
-
+        //TEST
     }
 
     void Start()
@@ -24,4 +26,6 @@ public class Managers : MonoBehaviour
     {
         
     }
+
+    
 }
