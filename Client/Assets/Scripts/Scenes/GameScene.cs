@@ -12,6 +12,8 @@ public class GameScene : BaseScene
 
         Managers.Map.LoadMap(1);
 
+        Managers.Resource.Instantiate("Character/Player");
+
     }
 
     public override void Clear()

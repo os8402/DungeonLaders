@@ -51,5 +51,12 @@ public class Util
         return null;
     }
 
+    public static Quaternion RotateDir2D(Vector2 startPos, Vector2 targetPos)
+    {
+        Vector2 direction = targetPos - startPos;
+        float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+        return Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
 
 }

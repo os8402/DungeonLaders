@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Define
 {
+    public enum CreatureState
+    {
+        Idle,
+        Move,
+        Attack,
+        Death,
+    }
     public enum Scene
     {
         Unknown,

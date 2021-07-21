@@ -18,6 +18,7 @@ public class Managers : MonoBehaviour
     SoundManager _sound = new SoundManager();
     UIManager _ui = new UIManager();
     MapManager _map = new MapManager();
+    InputManager _input = new InputManager();
 
     public static DataManager Data { get { return Instance._data; } }
     public static PoolManager Pool { get { return Instance._pool; } }
@@ -26,16 +27,17 @@ public class Managers : MonoBehaviour
     public static SoundManager Sound { get { return Instance._sound; } }
     public static UIManager UI { get { return Instance._ui; } }
     public static MapManager Map { get { return Instance._map; } }
-	#endregion
+    public static InputManager Input { get { return Instance._input; } }
+    #endregion
 
-	void Start()
+    void Start()
     {
         Init();
 	}
 
     void Update()
     {
-
+        _input.InputUpdate();
     }
 
     static void Init()
@@ -64,5 +66,6 @@ public class Managers : MonoBehaviour
         Scene.Clear();
         UI.Clear();
         Pool.Clear();
+        Input.Clear();
     }
 }
