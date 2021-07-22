@@ -4,11 +4,28 @@ using UnityEngine;
 
 public class Define
 {
+    public enum Weapons
+    {
+        Empty,
+        Sword,
+        Bow,
+        Staff, 
+        Spear, 
+    }
+
+    public enum FacingDirection
+    {
+        UP = 270,
+        DOWN = 90,
+        LEFT = 180,
+        RIGHT = 0
+    }
+
     public enum CreatureState
     {
         Idle,
         Move,
-        Attack,
+        Skill,
         Death,
     }
     public enum Scene

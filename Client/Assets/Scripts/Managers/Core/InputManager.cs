@@ -11,7 +11,7 @@ public class InputManager
 
     public void InputUpdate()
     {
-
+        
         if (Input.anyKey == false)
         {
             KeyIdleEvent?.Invoke();

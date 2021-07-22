@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class Util
 {
@@ -50,13 +51,29 @@ public class Util
 
         return null;
     }
-
-    public static Quaternion RotateDir2D(Vector2 startPos, Vector2 targetPos)
+    static float GetAtan(Vector2 startPos, Vector2 targetPos, bool player = false)
     {
         Vector2 direction = targetPos - startPos;
-        float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+        float angle; 
+
+        if(player)
+            angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+        else
+            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        return angle;
+    }
+    public static Quaternion RotateDir2D(Vector2 startPos, Vector2 targetPos , bool player = false)
+    {
+        float angle = GetAtan(startPos, targetPos, player);
         return Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
+    public static Quaternion LookAt2D(Vector2 startPos, Vector2 targetPos, FacingDirection facing = FacingDirection.RIGHT)
+    {
 
+        float angle = GetAtan(targetPos, startPos);
+        angle -= (float)facing;
+        return Quaternion.AngleAxis(angle, Vector3.forward);
+    }
 }

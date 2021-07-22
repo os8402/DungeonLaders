@@ -258,8 +258,8 @@ TextureImporter:
       name: weapon_1
       rect:
         serializedVersion: 2
-        x: 48
-        y: 219
+        x: 0
+        y: 228
         width: 11
         height: 28
       alignment: 0

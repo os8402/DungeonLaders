@@ -12,7 +12,11 @@ public class GameScene : BaseScene
 
         Managers.Map.LoadMap(1);
 
-        Managers.Resource.Instantiate("Character/Player");
+        int idx = 1; 
+        Managers.Resource.Instantiate("Character/Warrior" , name : $"Warrior_{idx.ToString("000")}");
+        Managers.Resource.Instantiate("Character/Skeleton" , name : $"Skeleton_{idx.ToString("000")}");
+
+
 
     }
 

@@ -21,7 +21,7 @@ public class ResourceManager
         return Resources.Load<T>(path);
     }
 
-    public GameObject Instantiate(string path, Transform parent = null)
+    public GameObject Instantiate(string path, Transform parent = null, string name = null)
     {
         GameObject original = Load<GameObject>($"Prefabs/{path}");
         if (original == null)
@@ -34,7 +34,9 @@ public class ResourceManager
             return Managers.Pool.Pop(original, parent).gameObject;
 
         GameObject go = Object.Instantiate(original, parent);
-        go.name = original.name;
+
+        go.name = (name == null ? original.name : name);
+
         return go;
     }
 
