@@ -5,28 +5,68 @@ using UnityEngine;
 
 public class InputManager 
 {
-    public Action keyMoveEvent = null;
-    public Action KeyIdleEvent = null;
+    public Action keyInputEvent = null;
 
+    public bool W = false;
+    public bool A = false;
+    public bool D = false;
+    public bool S = false;
+    public bool Mouse_Left = false;
+    public float H = 0.0f;
+    public float V = 0.0f;
 
     public void InputUpdate()
     {
         
         if (Input.anyKey == false)
         {
-            KeyIdleEvent?.Invoke();
+            RemoveKeyInput();
             return;
         }
-
-        keyMoveEvent?.Invoke();
+            
+        KeyMapping();
+        keyInputEvent?.Invoke();
             
        
     }
 
+    public void KeyMapping()
+    {
+        W = Input.GetKey(KeyCode.W);
+        A = Input.GetKey(KeyCode.A);
+        S = Input.GetKey(KeyCode.S);
+        D = Input.GetKey(KeyCode.D);
+        Mouse_Left = Input.GetMouseButtonDown(0);
+        H = Input.GetAxisRaw("Horizontal");
+        V = Input.GetAxisRaw("Vertical");
+
+    }
+
+
+    public bool PressMoveKey()
+    {
+        bool press = false;
+        if (W || A || S || D)
+            press = true;
+
+        return press;
+    }
+
+    public void RemoveKeyInput()
+    {
+        W = false;
+        A = false;
+        S = false;
+        D = false;
+        Mouse_Left = false;
+        H = 0.0f;
+        V = 0.0f;
+    }
+
     public void Clear()
     {
-        KeyIdleEvent = null; 
-        keyMoveEvent = null; 
+
+        keyInputEvent = null; 
     }
 
 

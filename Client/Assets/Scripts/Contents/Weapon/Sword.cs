@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class Sword : BaseWeapon
 {
     //TODO : 검은 공격할 때 방향에 따라 Sorting Order도 적용
     private int _swordDir = 0;
-    
+    public Transform temp_target;
     public int SwordDir
     {
         get { return _swordDir; }
@@ -21,7 +22,8 @@ public class Sword : BaseWeapon
 
     void Awake()
     {
-        Init(); 
+        Init();
+   
        
     }
     protected override void Init()
@@ -30,13 +32,19 @@ public class Sword : BaseWeapon
         _attackRange = 2.0f;
     }
 
-    void Update()
-    {
-        UpdateRotation();
-    }
-
     protected override void UpdateRotation()
     {
+        //if (temp_target == null)
+        //    temp_target = GameObject.Find("1").transform;
+
+        //Vector3 targetPos = temp_target.position.normalized;
+
+        //float dot = Vector3.Dot(targetPos, transform.up);
+
+        //Debug.Log($"{gameObject.name}  :  {dot}");
+
+
+
         if (_owner.Dir == -1)
         {
             //무기의 위치 , 마우스 위치
@@ -44,10 +52,10 @@ public class Sword : BaseWeapon
             {
                 //Up
                 case 0:
-                    _q = Util.LookAt2D(transform.position, _owner.Cam.MousePos);
+                    _q = Util.LookAt2D(transform.position, _targetPos);
                     break;
                 case 1:
-                    _q = Util.LookAt2D(_owner.Cam.MousePos, transform.position);
+                    _q = Util.LookAt2D(_targetPos, transform.position);
                     break;
             }
         }
@@ -57,10 +65,10 @@ public class Sword : BaseWeapon
             {
                 case 0:
 
-                    _q = Util.LookAt2D(_owner.Cam.MousePos, transform.position);
+                    _q = Util.LookAt2D(_targetPos, transform.position);
                     break;
                 case 1:
-                    _q = Util.LookAt2D(transform.position, _owner.Cam.MousePos);
+                    _q = Util.LookAt2D(transform.position, _targetPos);
                     break;
             }
         }
@@ -71,6 +79,27 @@ public class Sword : BaseWeapon
     public override void SkillEvent()
     {
         SwordDir = (1 - SwordDir);  // -1 연산 
+
+        GameObject go = Managers.Resource.Instantiate("Effect/Sword/Sword_Eff_001");
+        EffectController ec = go.GetComponent<EffectController>();
+
+        Vector3 moveDir = _targetPos - transform.position;
+        Quaternion rot;
+
+        rot = Util.LookAt2D(_targetPos, transform.position, FacingDirection.LEFT);
+
+        ec.transform.parent = _owner.transform;
+        ec.transform.localPosition = moveDir.normalized * 1.2f;
+        ec.Pos = Vector3Int.RoundToInt(ec.transform.position);
+        ec.Dir = _owner.Dir;
+        ec.Owner = _owner;
+
+
+        ec.transform.localRotation = rot;
+      //  Debug.Log(ec.Pos);
+
+ 
+
     }
 
 

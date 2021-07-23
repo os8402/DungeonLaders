@@ -4,12 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public struct Pos
-{
-	public Pos(int y, int x) { Y = y; X = x; }
-	public int Y;
-	public int X;
-}
+
 
 public struct PQNode : IComparable<PQNode>
 {
@@ -39,11 +34,18 @@ public class MapManager
     public int SizeY { get { return MaxY - MinY + 1; } }
 
     bool[,] _collision;
+    public GameObject[,] Objects { get; private set; }
 
 	bool[,] closed;
 	int[,] open;
 	Pos[,] parent; // 경로추적을 위해서
 
+	public void SetPosObject(Vector3Int vec3 , GameObject go)
+    {
+		Pos pos = Cell2Pos(vec3);
+		Managers.Map.Objects[pos.Y, pos.X] = go;
+	}
+	
 	public bool CanGo(Vector3Int cellPos)
 	{
 		if (cellPos.x < MinX || cellPos.x > MaxX)
@@ -53,7 +55,7 @@ public class MapManager
 
 		int x = cellPos.x - MinX;
 		int y = MaxY - cellPos.y;
-		return !_collision[y, x];
+		return !_collision[y, x] && (Objects[y ,x] == false);
 	}
 
 	public void LoadMap(int mapId)
@@ -82,8 +84,10 @@ public class MapManager
         int xCount = MaxX - MinX + 1;
         int yCount = MaxY - MinY + 1;
         _collision = new bool[yCount, xCount];
+		Objects = new GameObject[yCount, xCount];
 
-        for (int y = 0; y < yCount; y++)
+
+		for (int y = 0; y < yCount; y++)
         {
             string line = reader.ReadLine();
             for (int x = 0; x < xCount; x++)      
@@ -213,13 +217,13 @@ public class MapManager
 		return cells;
 	}
 
-	Pos Cell2Pos(Vector3Int cell)
+	public Pos Cell2Pos(Vector3Int cell)
 	{
 		// CellPos -> ArrayPos
 		return new Pos(MaxY - cell.y, cell.x - MinX);
 	}
 
-	Vector3Int Pos2Cell(Pos pos)
+	public Vector3Int Pos2Cell(Pos pos)
 	{
 		// ArrayPos -> CellPos
 		return new Vector3Int(pos.X + MinX, MaxY - pos.Y, 0);

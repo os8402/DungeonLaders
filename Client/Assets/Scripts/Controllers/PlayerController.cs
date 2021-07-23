@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 
-public class PlayerController : BaseController
+public class PlayerController : CreatureController
 {
 
     private ChasePlayerCam _cam;
-    public ChasePlayerCam Cam { get { return _cam; }}
+    public ChasePlayerCam Cam { get { return _cam; } }
 
+    [SerializeField]
     private bool _moveKeyPressed = false;
     private bool _mouseKeyPressed = false;
 
@@ -23,33 +24,23 @@ public class PlayerController : BaseController
         _cam = camera.GetComponent<ChasePlayerCam>();
         _cam.Init();
 
-        Managers.Input.keyMoveEvent -= UpdateMoveInput;
-        Managers.Input.keyMoveEvent += UpdateMoveInput;
-        Managers.Input.KeyIdleEvent -= UpdateIdle;
-        Managers.Input.KeyIdleEvent += UpdateIdle;
-
-        //무기별 스킬 등록
-
-        WEAPONS = Weapons.Sword;
-  
-        if (WEAPONS != Weapons.Empty)
-        {
-            weapon = Util.FindChild<BaseWeapon>(gameObject, "Sword", true);
-            _skillEvent -= weapon.SkillEvent;
-            _skillEvent += weapon.SkillEvent;
-        }
+        Managers.Input.keyInputEvent -= UpdateInput;
+        Managers.Input.keyInputEvent += UpdateInput;
 
     }
- 
+
 
 
     void Start()
     {
         Init();
     }
-    void Update()
+
+    protected override void UpdateController()
     {
-        UpdateRotation();
+        _moveKeyPressed = Managers.Input.PressMoveKey();
+
+        base.UpdateController();
     }
 
     protected override void UpdateRotation()
@@ -68,70 +59,62 @@ public class PlayerController : BaseController
         else return;
 
     }
-
-    protected override void UpdateMoving()
+    protected override void UpdateIdle()
     {
-        if (_moveKeyPressed == false)
+       // Debug.Log(transform.position.normalized);
+
+        if (_moveKeyPressed)
+        {
+            CL_STATE = ControllerState.Move;
             return;
-
-        Vector3 destPos  = _grid.CellToWorld(Pos) + new Vector3(0.5f , 0.5f);
-        Vector3 moveDir = destPos - transform.position;
-
-        float dist = moveDir.magnitude;
-
-        if(dist < Speed * Time.deltaTime)
-        {
-            transform.position = destPos;
-            _moveKeyPressed = false;
-
-
         }
-        else
-        {
-            transform.position += moveDir.normalized * Speed * Time.deltaTime;
-           
-        }
+
+        CL_STATE = ControllerState.Idle;
     }
 
-
-    void UpdateMoveInput()
+    protected override void MoveToNextPos()
     {
-        if(_moveKeyPressed == false)
+
+        if (_moveKeyPressed == false)
         {
-            float h = Input.GetAxisRaw("Horizontal");
-            float v = Input.GetAxisRaw("Vertical");
-            Vector3Int destPos = Pos;
-
-            destPos += new Vector3Int((int)h, (int)v, 0);
-            Debug.Log(destPos);
-
-            if (Managers.Map.CanGo(destPos))
-            {
-                Pos = destPos;
-                _moveKeyPressed = true;
-            }
+            CL_STATE = ControllerState.Idle;
+            return;
         }
 
-        UpdateMoving();
-
-        if (_coSkill == null && Input.GetMouseButtonDown(0))
+        Vector3Int destPos = Pos;
+     
+        destPos += new Vector3Int((int)Managers.Input.H, (int)Managers.Input.V, 0);
+    
+        if (Managers.Map.CanGo(destPos))
         {
-            if (CREATURE_STATE == CreatureState.Skill)
+            if(Managers.Object.FindCreature(destPos) == null)
+            {         
+               Pos = destPos;           
+            }           
+        }
+
+    }
+
+    void UpdateInput()
+    {
+ 
+        if (_coSkill == null && Managers.Input.Mouse_Left)
+        {
+            if (CL_STATE == ControllerState.Skill)
                 return;
 
             // 스킬 공격 
-            _coSkill = StartCoroutine("CoSkillAttack", 0.2f);      
+            _coSkill = StartCoroutine("CoSkillAttack", 0.2f);
         }
     }
 
-     IEnumerator CoSkillAttack(float time)
+    IEnumerator CoSkillAttack(float time)
     {
-        CREATURE_STATE = CreatureState.Skill;
         _skillEvent?.Invoke();
-        
         yield return new WaitForSeconds(time);
-        _coSkill = null; 
+        _coSkill = null;
+     
     }
 
-    
+
 }
