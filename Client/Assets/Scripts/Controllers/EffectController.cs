@@ -7,6 +7,8 @@ public class EffectController : BaseController
 
     Coroutine _coHit = null;
     public CreatureController Owner { get; set; }
+    public List<Vector3Int> AttackList { get; set; }
+
 
     private void Awake()
     {
@@ -41,30 +43,31 @@ public class EffectController : BaseController
 
     protected override void UpdateController() { }
 
+    void AttackObject()
+    {
+        if (AttackList == null)
+            return;
+
+        foreach (Vector3Int pos in AttackList)
+        {
+            
+            GameObject obj = Managers.Map.Objects[pos.y , pos.x];
+
+            if (obj == null || Owner.gameObject == obj)
+                continue;
+
+            CreatureController cc = obj.GetComponent<CreatureController>();
+
+            Debug.Log($"Attak : {obj.name} , ({pos}) , Hp : {cc.Hp} ");
+            cc.OnDamaged(Owner.gameObject, 10);
+
+        }
+    }
 
     IEnumerator CoHitCreature(float time)
     {
 
-
-        Dictionary<int, GameObject> list = Managers.Object.FindHitCreature(Pos, 2);
-        foreach (GameObject obj in list.Values)
-        {
-            if (obj == gameObject || Owner.gameObject == obj)
-                continue;
-
-            Vector3 targetPos = obj.transform.position.normalized;
-
-            float dot = Vector3.Dot(targetPos, transform.up);
-
-            Debug.Log($"{obj.name}_({dot})");
-            if (dot >= 0f)
-            {
-                Debug.Log("타격 성공");
-            }
-
-        }
-           
-
+        AttackObject();
         yield return new WaitForSeconds(time);
         Managers.Resource.Destroy(gameObject);
     }

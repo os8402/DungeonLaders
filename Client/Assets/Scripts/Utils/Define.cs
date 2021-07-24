@@ -25,7 +25,8 @@ public class Define
         UP = 270,
         DOWN = 90,
         LEFT = 180,
-        RIGHT = 0
+        RIGHT = 0,
+
     }
 
     public enum ControllerState

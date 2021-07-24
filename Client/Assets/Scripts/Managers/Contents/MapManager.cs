@@ -40,19 +40,34 @@ public class MapManager
 	int[,] open;
 	Pos[,] parent; // 경로추적을 위해서
 
+	public int CellDistFromZero(int x , int y)
+    {
+		return Math.Abs(x) + Math.Abs(y);
+	}
+
+
 	public void SetPosObject(Vector3Int vec3 , GameObject go)
     {
 		Pos pos = Cell2Pos(vec3);
 		Managers.Map.Objects[pos.Y, pos.X] = go;
 	}
 	
-	public bool CanGo(Vector3Int cellPos)
-	{
+	public bool OutOfMap(Vector3Int cellPos)
+    {
 		if (cellPos.x < MinX || cellPos.x > MaxX)
 			return false;
 		if (cellPos.y < MinY || cellPos.y > MaxY)
 			return false;
 
+		return true;
+	}
+
+	public bool CanGo(Vector3Int cellPos)
+	{
+
+		if (OutOfMap(cellPos) == false)
+			return false; 
+				
 		int x = cellPos.x - MinX;
 		int y = MaxY - cellPos.y;
 		return !_collision[y, x] && (Objects[y ,x] == false);

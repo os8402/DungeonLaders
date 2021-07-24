@@ -9,7 +9,7 @@ public abstract  class BaseController : MonoBehaviour
     protected int id;
     public int Id { get { return id; } set { id = value; } }
 
-    protected float Speed { get; private set; } = 10.0f;
+    protected float Speed { get;  set; } = 10.0f;
     protected bool _ignoreCollision = false; 
 
     protected SpriteRenderer _spriteRenderer;
@@ -35,7 +35,6 @@ public abstract  class BaseController : MonoBehaviour
 
            _spriteRenderer.flipX = (_dir == 1 ? true : false);
             float flipY = (_dir == 1 ? 180 : 0);
-          //  transform.rotation = Quaternion.Euler(new Vector3(0, flipY, 0));
          
             UpdateAnimation();
 
@@ -86,7 +85,6 @@ public abstract  class BaseController : MonoBehaviour
     }
     void Update()
     {
-        UpdateRotation();
         UpdateController();
     }
 
@@ -97,13 +95,16 @@ public abstract  class BaseController : MonoBehaviour
         {
             case ControllerState.Idle:
                 UpdateIdle();
+                UpdateRotation();
                 break;
             case ControllerState.Move:
                 UpdateMoving();
+                UpdateRotation();
                 break;
             case ControllerState.Skill:
                 break;
             case ControllerState.Death:
+            
                 break;
 
         }
@@ -160,11 +161,5 @@ public abstract  class BaseController : MonoBehaviour
                 break;
         }
     }
-
-    protected virtual void OnDamaged()
-    {
-        Debug.Log($"{name} -> Hit");
-    }
-
 
 }

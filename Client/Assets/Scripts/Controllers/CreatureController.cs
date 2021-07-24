@@ -7,7 +7,7 @@ using static Define;
 public class CreatureController : BaseController
 {
 
-    protected int Hp { get; private set; } = 100;
+    public int Hp { get; private set; } = 100;
 
     protected Transform _hand;
     protected BaseWeapon myWeapon;
@@ -15,6 +15,8 @@ public class CreatureController : BaseController
 
     protected Coroutine _coSkill = null;
     protected Action _skillEvent = null;
+
+ 
 
     void Start()
     {
@@ -66,5 +68,54 @@ public class CreatureController : BaseController
 
     protected override void UpdateRotation() { }
 
+    public virtual void OnDamaged(GameObject attacker, int damage)
+    {
+        //나중에 서버로 옮길건데 멀티스레드에선 갑자기 없어질 수도 잇어서 return
+        if (attacker == null)
+            return;
+
+        if (CL_STATE == ControllerState.Death)
+            return;
+
+        damage = Mathf.Max(0, damage);
+        Hp = Mathf.Max(0, Hp - damage);
+
+        if(Hp <= 0)
+        {
+           
+            OnDead(attacker);
+            return;
+        }
+
+
+        ConvertColorHit();
+
+    }
+    
+    void ConvertColorHit()
+    {
+        if(_spriteRenderer.color == Color.white)
+        {
+            _spriteRenderer.color = Color.red;
+            Invoke("ConvertColorHit", 0.2f);
+        }
+            
+        else
+        {
+            CancelInvoke();
+            _spriteRenderer.color = Color.white;
+        }
+  
+    }
+
+    public virtual void OnDead(GameObject attacker)
+    {
+        Debug.Log($"{attacker.name} -> {gameObject.name} Kill!");
+        CL_STATE = ControllerState.Death;
+
+        //시체가 남는걸로..
+
+        Managers.Resource.Destroy(_hand.gameObject);
+    }
 
 }

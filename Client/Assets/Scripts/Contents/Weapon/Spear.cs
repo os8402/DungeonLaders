@@ -12,7 +12,7 @@ public class Spear : BaseWeapon
     protected override void Init()
     {
         base.Init();
-        _attackRange = 2.0f;
+        _attackRange = 3;
     }
 
     protected override void UpdateRotation()
@@ -26,5 +26,10 @@ public class Spear : BaseWeapon
 
     }
 
+    protected override List<Vector3Int> GetAttackRange(Vector3Int cellPos, int dirX, int dirY, int range)
+    {
+        List<Vector3Int> attackList = new List<Vector3Int>();
 
+        return attackList;
+    }
 }

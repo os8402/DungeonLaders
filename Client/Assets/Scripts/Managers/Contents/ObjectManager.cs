@@ -42,7 +42,7 @@ public class ObjectManager
 		return null;
 	}
 
-	public Dictionary<int, GameObject> FindHitCreature(Vector3Int myPos , int range)
+	public Dictionary<int, GameObject> FindHitCreature(Vector3Int myPos)
     {
 		Dictionary<int, GameObject> list = new Dictionary<int, GameObject>();
 		Pos pos = Managers.Map.Cell2Pos(myPos);

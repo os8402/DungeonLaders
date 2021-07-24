@@ -6,11 +6,12 @@ using UnityEngine;
 public abstract class BaseWeapon : MonoBehaviour
 {
     protected int id;
+    public int Id { get; set; }
     protected SpriteRenderer _spriteRenderer;
     protected CreatureController _owner;
 
     protected Vector3 _targetPos; 
-    protected float _attackRange = 0;
+    protected int _attackRange = 1;
     protected Quaternion _q = new Quaternion();
 
     void Awake()
@@ -39,8 +40,15 @@ public abstract class BaseWeapon : MonoBehaviour
            _targetPos =  _owner.GetComponent<PlayerController>().Cam.MousePos;
 
         
-        else if (_owner.GetType() == typeof(MonsterController))       
-            _targetPos = _owner.GetComponent<MonsterController>().Target.position;
+        else if (_owner.GetType() == typeof(MonsterController))
+        {
+            PlayerController target = _owner.GetComponent<MonsterController>().Target;
+            if (target == null)
+                return;
+
+            _targetPos = _owner.GetComponent<MonsterController>().Target.transform.position;
+        }
+          
         
     }
 
@@ -49,8 +57,12 @@ public abstract class BaseWeapon : MonoBehaviour
         GetControllerType();
         UpdateRotation();
     }
+    //무기별 공격 범위
+    protected abstract List<Vector3Int> GetAttackRange(Vector3Int cellPos, int dirX, int dirY, int range);
 
+    //무기별 회전 처리
     protected abstract void UpdateRotation();
+    //무기별 스킬 이벤트
     public abstract void SkillEvent();
 
 }
