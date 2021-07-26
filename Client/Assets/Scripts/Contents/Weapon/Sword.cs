@@ -14,6 +14,9 @@ public class Sword : BaseWeapon
         get { return _swordDir; }
         set
         {
+            if (_owner == null)
+                return;
+
             _swordDir = value;
             int ownerOrder = _owner.SpriteRenderer.sortingOrder;
             int myOrder = (_swordDir == 1 ? ownerOrder + 5 : ownerOrder - 5);
@@ -42,54 +45,52 @@ public class Sword : BaseWeapon
     //   ㅁ ㅁ      ㅁ me
     //   이런 느낌으로 구현
 
-    protected override List<Vector3Int> GetAttackRange(Vector3Int cellPos ,int dirX, int dirY, int range)
+    protected override List<Vector3Int> GetAttackRange(Vector3Int cellPos , int range)
     {
         List<Vector3Int> attack_pos_list = new List<Vector3Int>();
 
         int X, Y;
 
-         X = (dirX > 0 ? -1 : 1);
-         Y = (dirY > 0 ? 1 : -1);
+         X = (cellPos.x > 0 ? -1 : 1);
+         Y = (cellPos.y < 0 ? 1 : -1);
            
         int[] dy = { 0, Y, Y };
         int[] dx = { X, 0, X };
 
-        bool[,] visited = new bool[Managers.Map.SizeY, Managers.Map.SizeX];
+        Dictionary<Vector3Int, bool> visited = new Dictionary<Vector3Int, bool>();
         Queue<Vector3Int> q = new Queue<Vector3Int>();
 
         if (Managers.Map.OutOfMap(cellPos) == false)
             return null;
 
-        int mapX = cellPos.x - Managers.Map.MinX;
-        int mapY = Managers.Map.MaxY - cellPos.y;
-   
-        attack_pos_list.Add(new Vector3Int(mapX , mapY , 0));
+        attack_pos_list.Add(cellPos);
+        visited[cellPos] = true;
 
-        q.Enqueue(new Vector3Int(mapX, mapY, 0));
-        visited[mapY, mapX] = true; 
+        q.Enqueue(cellPos);
+       
 
         while (q.Count > 0)
         {
-            Vector3Int deq = q.Dequeue();
+            Vector3Int cur = q.Dequeue();
 
             for (int i = 0; i < dx.Length; i++)
             {
-                int ny = deq.y + dy[i];
-                int nx = deq.x + dx[i];
+                int ny = cur.y + dy[i];
+                int nx = cur.x + dx[i];
+                Vector3Int nextPos = new Vector3Int(nx, ny, 0);
 
                 //이미 방문했다면 넘김
-                if (visited[ny, nx])
+                if (visited.ContainsKey(nextPos))
                     continue;
 
                 //공격 범위를 벗어났는지 체크. 
-                if (Mathf.Abs(ny - mapY) > range)
+                if (Mathf.Abs(ny - cellPos.y) > range)
                     continue;
-                if (Mathf.Abs(nx - mapX) > range)
+                if (Mathf.Abs(nx - cellPos.x) > range)
                     continue;
          
-                Vector3Int nextPos = new Vector3Int(nx, ny, 0); 
                 q.Enqueue(nextPos);
-                visited[ny, nx] = true;
+                visited[nextPos] = true;
 
                 attack_pos_list.Add(nextPos);
             }
@@ -144,28 +145,26 @@ public class Sword : BaseWeapon
         Vector3 moveDir = _targetPos - transform.position;
         Quaternion rot = Util.LookAt2D(_targetPos, transform.position, FacingDirection.LEFT);
 
-
         ec.transform.parent = _owner.transform;
+        //소유자 등록 [누가 공격했는지 전달해줘야 함 ] 
+        ec.Owner = _owner;
+
+        // 실제 좌표 
+        ec.Pos = _owner.Pos;
+
 
         //대각 4방향만 구현했음
         int dirX = (moveDir.normalized.x > 0 ? 1 : -1) * _attackRange;
         int dirY = (moveDir.normalized.y > 0 ? 1 : -1) * _attackRange;
 
+        List<Vector3Int> attackList = GetAttackRange(new Vector3Int(dirX, dirY, 0), _attackRange);
+        ec.AttackList = attackList;
 
         //보여주기용 좌표
-        ec.transform.localPosition = new Vector2(dirX , dirY);
-        // 실제 좌표 - 소수점 전부 내려야 정확합니다. [월드 포지션 보내야함]
-        ec.Pos = Vector3Int.FloorToInt(ec.transform.position);
-        //소유자 등록 [주인은 못 때리도록^^ ] 
-        ec.Owner = _owner;
-
         ec.transform.localPosition = new Vector2(dirX * 0.5f, dirY * 0.5f);
         ec.transform.localRotation = rot;
 
 
-        List<Vector3Int> attackList = GetAttackRange(ec.Pos, dirX, dirY, _attackRange);
-        ec.AttackList = attackList;
-        
     }
 
 

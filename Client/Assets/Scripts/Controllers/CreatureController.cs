@@ -7,7 +7,10 @@ using static Define;
 public class CreatureController : BaseController
 {
 
-    public int Hp { get; private set; } = 100;
+
+    public int Hp { get; protected set; } = 100;
+
+    public int TeamId { get; set; }
 
     protected Transform _hand;
     protected BaseWeapon _myWeapon;
@@ -16,7 +19,8 @@ public class CreatureController : BaseController
     protected Coroutine _coSkill = null;
     protected Action _skillEvent = null;
 
- 
+    private Coroutine _coDead = null; 
+    
 
     void Start()
     {
@@ -27,21 +31,34 @@ public class CreatureController : BaseController
         get { return _dir; }
         set
         {
-            base.Dir = value; 
+            base.Dir = value;
             // TODO : 나중에 json에서 파싱된 값을 가져와야 함
+            if (_hand == null)
+                return;
+
             Vector2 hand = new Vector2(-0.2f, -0.3f);
             hand.x = (_dir == 1 ? hand.x * -1 : hand.x);
             _hand.localPosition = hand;
 
         }
     }
+    protected override void Init()
+    {
+        base.Init();
+        Managers.Object.Add(gameObject);
+        GameObject go = Managers.Resource.Instantiate("Effect/Common/Resurrect_Eff");
+        go.transform.position = new Vector3(transform.position.x + 0.25f, transform.position.y) ;
+    }
+
 
     public void CreateWeapon(Weapons weapon, int idx)
     {
         if (weapon == Weapons.Empty)
             return;
 
-        _hand = Util.FindChild<Transform>(gameObject, "Weapon_Hand", true);
+        WEAPONS = weapon;
+
+        _hand = Util.FindChild<Transform>(gameObject, "Weapon_Hand", false);
 
         string name = weapon.ToString();
 
@@ -55,11 +72,6 @@ public class CreatureController : BaseController
 
     }
 
-    protected override void Init()
-    {
-        base.Init();
-       
-    }
 
 
     protected override void MoveToNextPos() { }
@@ -113,9 +125,31 @@ public class CreatureController : BaseController
         Debug.Log($"{attacker.name} -> {gameObject.name} Kill!");
         CL_STATE = ControllerState.Death;
 
-        //시체가 남는걸로..  
-        Managers.Resource.Destroy(_hand.gameObject);
-      
+        _coDead = StartCoroutine(CoCreatureDead(3 , attacker));
+
+
+
     }
+
+    IEnumerator CoCreatureDead(float time , GameObject attacker)
+    {
+        _hand.gameObject.SetActive(false);
+
+        //TODO : 죽엇다고 이벤트 전달
+     
+        yield return new WaitForSeconds(time);
+
+        Managers.Object.Remove(gameObject);
+        CreatureController cc = gameObject.GetComponent<CreatureController>();
+
+        int nameIndex = gameObject.name.LastIndexOf('_');
+        string myName = gameObject.name.Substring(0, nameIndex);
+
+        //부.활
+        Managers.Object.CreateCreature(myName, id, TeamId, WEAPONS);
+
+    }
+
+
 
 }

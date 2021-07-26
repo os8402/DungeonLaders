@@ -10,8 +10,8 @@ public class ChasePlayerCam : MonoBehaviour
     public Vector3 MousePos { get; private set; }
     [SerializeField]
     private float _range = 3f;
-    [SerializeField]
-    private float _lerp_speed = 5f;
+ //   [SerializeField]
+  //  private float _lerp_speed = 5f;
 
     Vector3 _destMove;
 
@@ -45,10 +45,11 @@ public class ChasePlayerCam : MonoBehaviour
         UpdateMoveCamera();
     }
  
-    void UpdateMoveCamera()
+    public void UpdateMoveCamera()
     {         
         //플레이어를 찍고 있는 카메라 안에서 마우스 포지션을 뽑음
         MousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = Vector3.Lerp(transform.position, DestMove, _lerp_speed * Time.deltaTime);   
+        // transform.position = Vector3.Lerp(transform.position, DestMove, _lerp_speed * Time.deltaTime);
+        transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y, -10);
     }
 }

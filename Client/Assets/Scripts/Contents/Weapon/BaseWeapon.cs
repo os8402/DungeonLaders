@@ -13,6 +13,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
     protected Vector3 _targetPos; 
     protected int _attackRange = 1;
+    public int AttackRange { get { return _attackRange; } }
     protected Quaternion _q = new Quaternion();
 
     void Awake()
@@ -59,7 +60,7 @@ public abstract class BaseWeapon : MonoBehaviour
         UpdateRotation();
     }
     //무기별 공격 범위
-    protected abstract List<Vector3Int> GetAttackRange(Vector3Int cellPos, int dirX, int dirY, int range);
+    protected abstract List<Vector3Int> GetAttackRange(Vector3Int cellPos , int range);
 
     //무기별 회전 처리
     protected abstract void UpdateRotation();

@@ -14,10 +14,8 @@ public class MonsterController : CreatureController
     Coroutine _coSearch;
     [SerializeField]
     float _searchRange = 10.0f;
-    [SerializeField]
-    int _skillRange = 1;
 
-  
+
     public override ControllerState CL_STATE
     {
         get { return _cl_state; }
@@ -27,6 +25,15 @@ public class MonsterController : CreatureController
 
             //몬스터는 무기 위치 초기화 필요
             _myWeapon.transform.localPosition = Vector2.zero;
+
+
+            if(_cl_state == ControllerState.Move)
+            {
+                if (_target == null)
+                    return;
+                _target.deadTargetEvent -= CheckDeadTarget;
+                _target.deadTargetEvent += CheckDeadTarget;
+            }
 
 
             //스테이트 변경 시에 자동으로 취소
@@ -56,9 +63,9 @@ public class MonsterController : CreatureController
     }
 
 
-
     protected override void UpdateRotation()
     {
+
         if (_target == null)
             return;
 
@@ -91,27 +98,23 @@ public class MonsterController : CreatureController
     protected override void MoveToNextPos()
     {
 
- 
         if (_target == null)
         {
             CL_STATE = ControllerState.Idle;
             return;
         }
 
-
         //스킬사용여부
         Vector3Int dir = (_target.Pos - Pos);
         int dist = Managers.Map.CellDistFromZero(dir.x, dir.y);
-        Debug.Log($"{gameObject.name} : {dist} Pos : {dir}");
+        int skillRange = _myWeapon.AttackRange;
 
         //8방향검사
-        if (dist <= _skillRange && (Mathf.Abs(dir.x) <= 1 && Mathf.Abs(dir.y) <= 1))
+        if (dist <= skillRange * 2 && Mathf.Abs(dir.x) <= skillRange && Mathf.Abs(dir.y) <= skillRange)
         {
             CL_STATE = ControllerState.Skill;
             return;
         }
-
-
 
         List<Vector3Int> path = Managers.Map.FindPath(Pos, _target.Pos, ignoreDestCollision : true);
         if (path.Count < 2 || (_target != null && path.Count > 20))
@@ -141,7 +144,7 @@ public class MonsterController : CreatureController
         // 유효한 타겟인지
         if (_target == null)
         { 
-            CL_STATE = ControllerState.Move;
+            CL_STATE = ControllerState.Idle;
             return;
         }
 
@@ -151,8 +154,9 @@ public class MonsterController : CreatureController
         // 스킬이 아직 사용 가능한지
         Vector3Int dir = (_target.Pos - Pos);
         int dist = Managers.Map.CellDistFromZero(dir.x , dir.y);
+        int skillRange = _myWeapon.AttackRange;
 
-        bool canUseSkill = (dist <= _skillRange && (Mathf.Abs(dir.x) <= 1 && Mathf.Abs(dir.y) <= 1));
+        bool canUseSkill = (dist <= skillRange * 2 && Mathf.Abs(dir.x) <= skillRange && Mathf.Abs(dir.y) <= skillRange);
          
 
         if (canUseSkill == false)
@@ -180,8 +184,14 @@ public class MonsterController : CreatureController
 
             _target = Managers.Object.Find((go) =>
             {
+                if (go == null)
+                    return false; 
+
                 PlayerController pc = go.GetComponent<PlayerController>();
                 if (pc == null)
+                    return false;
+
+                if (pc.Hp <= 0)
                     return false;
 
                 Vector3Int dir = (pc.Pos - Pos);
@@ -202,6 +212,15 @@ public class MonsterController : CreatureController
         _skillEvent?.Invoke();
         yield return new WaitForSeconds(time);
         _coSkill = null;
+
+    }
+
+    //타겟이 죽었나 확인
+    void CheckDeadTarget(PlayerController pc)
+    {
+        if(pc == _target)       
+            _target = null; 
+        
 
     }
 }

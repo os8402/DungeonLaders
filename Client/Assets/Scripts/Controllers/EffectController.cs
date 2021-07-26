@@ -50,15 +50,22 @@ public class EffectController : BaseController
 
         foreach (Vector3Int pos in AttackList)
         {
-            
-            GameObject obj = Managers.Map.Objects[pos.y , pos.x];
 
-            if (obj == null || Owner.gameObject == obj)
+            int mapX = (Pos.x +  pos.x) - Managers.Map.MinX;
+            int mapY = Managers.Map.MaxY - (Pos.y + pos.y);
+
+            GameObject go = Managers.Map.Objects[mapY, mapX];
+      
+            if (go == null || Owner.gameObject == go)
                 continue;
 
-            CreatureController cc = obj.GetComponent<CreatureController>();
+            CreatureController cc = go.GetComponent<CreatureController>();
+            Debug.Log($"{Owner.TeamId} vs {cc.TeamId}");
 
-            Debug.Log($"Attak : {obj.name} , ({pos}) , Hp : {cc.Hp} ");
+            if (Owner.TeamId == cc.TeamId)
+                continue;
+
+            Debug.Log($"Attak : {go.name} , ({pos}) , Hp : {cc.Hp} ");
             cc.OnDamaged(Owner.gameObject, 10);
 
         }

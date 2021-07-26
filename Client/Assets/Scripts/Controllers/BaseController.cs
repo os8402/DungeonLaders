@@ -105,6 +105,7 @@ public abstract  class BaseController : MonoBehaviour
                 break;
             case ControllerState.Skill:
                 UpdateSkill();
+                UpdateRotation();
                 break;
             case ControllerState.Death:
             

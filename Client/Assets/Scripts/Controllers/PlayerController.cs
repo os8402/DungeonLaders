@@ -14,15 +14,18 @@ public class PlayerController : CreatureController
     private bool _moveKeyPressed = false;
     private bool _mouseKeyPressed = false;
 
+    //죽었을 때 이벤트 날려서 물어봐야 함 [바로 사라지지않기 때문에] 
+    public Action<PlayerController> deadTargetEvent = null;
+
     protected override void Init()
     {
         base.Init();
+        Hp = 200;
 
         Transform camera = Camera.main.transform;
-        camera.parent = transform;
-        camera.position = new Vector3(0, 1, -10);
         _cam = camera.GetComponent<ChasePlayerCam>();
         _cam.Init();
+  
 
         Managers.Input.keyInputEvent -= UpdateInput;
         Managers.Input.keyInputEvent += UpdateInput;
@@ -35,7 +38,7 @@ public class PlayerController : CreatureController
     {
         Init();
     }
-
+  
     protected override void UpdateController()
     {
         _moveKeyPressed = Managers.Input.PressMoveKey();
@@ -109,6 +112,15 @@ public class PlayerController : CreatureController
         _coSkill = null;
  
 
+    }
+
+    public override void OnDead(GameObject attacker)
+    {
+
+        base.OnDead(attacker);
+        deadTargetEvent.Invoke(this);
+        Managers.Input.Clear();
+        
     }
 
 

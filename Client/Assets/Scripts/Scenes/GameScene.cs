@@ -9,35 +9,28 @@ public class GameScene : BaseScene
     {
         base.Init();
 
-        SceneType = Define.Scene.Game;
+        SceneType = Scene.Game;
 
         Managers.Map.LoadMap(1);
 
-        int idx = 1; 
-        GameObject player = Managers.Resource.Instantiate("Character/Warrior" , name : $"Warrior_{idx.ToString("000")}");
-        Managers.Object.Add(player);
-        PlayerController pc = player.GetComponent<PlayerController>();
-        pc.CreateWeapon(Weapons.Sword , 1);
+        int idx = 1;
+        int teamId = 1 << 24;
 
-        for (; idx < 6; idx++)
+        Managers.Object.CreateCreature("Warrior", idx ,  teamId , Weapons.Sword);
+
+        teamId = 2 << 24;
+
+        for (; idx < 15; idx++)
         {
-            Vector3Int initPos = new Vector3Int
-            {
-                x = Random.Range(Managers.Map.MinX + 1, Managers.Map.MaxX - 1),
-                y = Random.Range(Managers.Map.MinY + 1, Managers.Map.MaxY - 1),
-            };
-
-            GameObject monster = Managers.Resource.Instantiate("Character/Skeleton", name: $"Skeleton_{idx.ToString("000")}");
-
-            MonsterController mc = monster.GetComponent<MonsterController>();
-            mc.Pos = initPos;
-            mc.CreateWeapon(Weapons.Spear, 1);
-            mc.Id = idx; 
-
-            Managers.Object.Add(monster);
+            if(idx % 2 == 0)
+                Managers.Object.CreateCreature("Skeleton", idx, teamId , Weapons.Spear); 
+            else
+                Managers.Object.CreateCreature("Skeleton", idx , teamId , Weapons.Sword);
         }
 
     }
+
+ 
 
     public override void Clear()
     {
