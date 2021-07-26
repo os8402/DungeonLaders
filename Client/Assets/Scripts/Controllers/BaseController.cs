@@ -41,8 +41,9 @@ public abstract  class BaseController : MonoBehaviour
         }
     }
 
-    private ControllerState _cl_state = ControllerState.Idle;
-    public ControllerState CL_STATE
+    [SerializeField]
+    protected ControllerState _cl_state = ControllerState.Idle;
+    public virtual ControllerState CL_STATE
     {
         get { return _cl_state; }
         set
@@ -82,6 +83,7 @@ public abstract  class BaseController : MonoBehaviour
         Vector3 pos = Managers.Map.CurrentGrid.CellToWorld(Pos) + new Vector3(.5f, .5f);
         transform.position = pos;
 
+
     }
     void Update()
     {
@@ -102,6 +104,7 @@ public abstract  class BaseController : MonoBehaviour
                 UpdateRotation();
                 break;
             case ControllerState.Skill:
+                UpdateSkill();
                 break;
             case ControllerState.Death:
             
@@ -137,6 +140,10 @@ public abstract  class BaseController : MonoBehaviour
     }
 
 
+    protected virtual void UpdateSkill()
+    { 
+
+    }
 
     protected virtual void UpdateAnimation()
     {
@@ -155,6 +162,9 @@ public abstract  class BaseController : MonoBehaviour
                 break;
             case ControllerState.Move:
                 _animator.Play($"{subName}_Move");
+                break;
+            case ControllerState.Skill:
+                _animator.Play($"{subName}_Skill");
                 break;
             case ControllerState.Death:
                 _animator.Play($"{subName}_Death");

@@ -8,6 +8,7 @@ public abstract class BaseWeapon : MonoBehaviour
     protected int id;
     public int Id { get; set; }
     protected SpriteRenderer _spriteRenderer;
+    [SerializeField]
     protected CreatureController _owner;
 
     protected Vector3 _targetPos; 

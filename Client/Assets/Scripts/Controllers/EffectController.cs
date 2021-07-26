@@ -35,7 +35,7 @@ public class EffectController : BaseController
     {   
        if(_coHit == null)
         {
-            StartCoroutine("CoHitCreature", 1.5f);
+            StartCoroutine("CoHitCreature", 0.5f);
         }
     }
 

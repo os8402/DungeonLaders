@@ -10,7 +10,7 @@ public class CreatureController : BaseController
     public int Hp { get; private set; } = 100;
 
     protected Transform _hand;
-    protected BaseWeapon myWeapon;
+    protected BaseWeapon _myWeapon;
     public Weapons WEAPONS { get; protected set; } = Weapons.Empty;
 
     protected Coroutine _coSkill = null;
@@ -49,9 +49,9 @@ public class CreatureController : BaseController
         go.transform.parent = _hand;
         go.transform.localPosition = Vector3.zero;
 
-        myWeapon = go.GetComponent<BaseWeapon>();
-        _skillEvent -= myWeapon.SkillEvent;
-        _skillEvent += myWeapon.SkillEvent;
+        _myWeapon = go.GetComponent<BaseWeapon>();
+        _skillEvent -= _myWeapon.SkillEvent;
+        _skillEvent += _myWeapon.SkillEvent;
 
     }
 
@@ -113,9 +113,9 @@ public class CreatureController : BaseController
         Debug.Log($"{attacker.name} -> {gameObject.name} Kill!");
         CL_STATE = ControllerState.Death;
 
-        //시체가 남는걸로..
-
+        //시체가 남는걸로..  
         Managers.Resource.Destroy(_hand.gameObject);
+      
     }
 
 }

@@ -151,10 +151,10 @@ public class Sword : BaseWeapon
         int dirX = (moveDir.normalized.x > 0 ? 1 : -1) * _attackRange;
         int dirY = (moveDir.normalized.y > 0 ? 1 : -1) * _attackRange;
 
-        //플레이어에게 종속되어 있어서 로컬 포지션
-        //자연스럽게 보여주기 위한 용도라 계산할 좌표는 Controller 안에 있는 Pos가 처리해야합니다. 
+
+        //보여주기용 좌표
         ec.transform.localPosition = new Vector2(dirX , dirY);
-        //소수점 전부 내려야 정확합니다. [월드 포지션 보내야함]
+        // 실제 좌표 - 소수점 전부 내려야 정확합니다. [월드 포지션 보내야함]
         ec.Pos = Vector3Int.FloorToInt(ec.transform.position);
         //소유자 등록 [주인은 못 때리도록^^ ] 
         ec.Owner = _owner;

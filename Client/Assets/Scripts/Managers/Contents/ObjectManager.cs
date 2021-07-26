@@ -27,7 +27,7 @@ public class ObjectManager
 	}
 
 
-	public GameObject FindCreature(Vector3Int cellPos)
+	public GameObject Find(Vector3Int cellPos)
 	{
 		foreach (GameObject obj in _objects)
 		{
@@ -42,40 +42,13 @@ public class ObjectManager
 		return null;
 	}
 
-	public Dictionary<int, GameObject> FindHitCreature(Vector3Int myPos)
-    {
-		Dictionary<int, GameObject> list = new Dictionary<int, GameObject>();
-		Pos pos = Managers.Map.Cell2Pos(myPos);
 
-		int[] _deltaY = new int[] { 1, -1, 0, 0, -1, 1, 1, -1 };
-		int[] _deltaX = new int[] { 0, 0, -1, 1, -1, -1, 1, 1 };
-
-
-		for(int i = 0; i < _deltaY.Length; i++)
-        {
-			for(int j = 0; j < _deltaX.Length; j++)
-            {
-				GameObject obj = Managers.Map.Objects[pos.Y + _deltaY[i], pos.X + _deltaX[j]];
-				if (obj  != null)
-                {
-					CreatureController cc = obj.GetComponent<CreatureController>();
-					if (list.ContainsKey(cc.Id) == false)
-						list.Add(cc.Id , obj);
-				}
-					
-			}
-        }
-
-		return list;
-    }
-
-
-	public GameObject Find(Func<GameObject, bool> condition)
+	public PlayerController Find(Func<GameObject, bool> condition)
 	{
 		foreach (GameObject obj in _objects)
 		{
 			if (condition.Invoke(obj))
-				return obj;
+				return obj.GetComponent<PlayerController>();
 		}
 
 		return null;

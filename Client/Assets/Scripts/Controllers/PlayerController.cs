@@ -85,12 +85,9 @@ public class PlayerController : CreatureController
      
         destPos += new Vector3Int((int)Managers.Input.H, (int)Managers.Input.V, 0);
     
-        if (Managers.Map.CanGo(destPos))
-        {
-            if(Managers.Object.FindCreature(destPos) == null)
-            {         
-               Pos = destPos;           
-            }           
+        if (Managers.Map.CanGo(destPos) && Managers.Object.Find(destPos) == null)
+        {      
+               Pos = destPos;                            
         }
 
     }
@@ -100,9 +97,6 @@ public class PlayerController : CreatureController
  
         if (_coSkill == null && Managers.Input.Mouse_Left)
         {
-            if (CL_STATE == ControllerState.Skill)
-                return;
-
             // 스킬 공격 
             _coSkill = StartCoroutine("CoSkillAttack", 0.2f);
         }
@@ -113,7 +107,8 @@ public class PlayerController : CreatureController
         _skillEvent?.Invoke();
         yield return new WaitForSeconds(time);
         _coSkill = null;
-     
+ 
+
     }
 
 
