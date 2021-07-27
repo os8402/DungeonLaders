@@ -55,17 +55,17 @@ public class MapManager
 	public bool OutOfMap(Vector3Int cellPos)
     {
 		if (cellPos.x < MinX || cellPos.x > MaxX)
-			return false;
+			return true;
 		if (cellPos.y < MinY || cellPos.y > MaxY)
-			return false;
+			return true;
 
-		return true;
+		return false;
 	}
 
 	public bool CanGo(Vector3Int cellPos)
 	{
 
-		if (OutOfMap(cellPos) == false)
+		if (OutOfMap(cellPos))
 			return false; 
 				
 		int x = cellPos.x - MinX;

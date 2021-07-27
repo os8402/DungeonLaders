@@ -19,13 +19,13 @@ public class PlayerController : CreatureController
 
     protected override void Init()
     {
-        base.Init();
-        Hp = 200;
+        MaxHp = 1000;
 
+        base.Init();
+   
         Transform camera = Camera.main.transform;
         _cam = camera.GetComponent<ChasePlayerCam>();
         _cam.Init();
-  
 
         Managers.Input.keyInputEvent -= UpdateInput;
         Managers.Input.keyInputEvent += UpdateInput;
@@ -64,7 +64,6 @@ public class PlayerController : CreatureController
     }
     protected override void UpdateIdle()
     {
-       // Debug.Log(transform.position.normalized);
 
         if (_moveKeyPressed)
         {

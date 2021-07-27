@@ -7,8 +7,21 @@ using static Define;
 public class CreatureController : BaseController
 {
 
+    HpBar _hpBar;
 
-    public int Hp { get; protected set; } = 100;
+    protected int _hp;
+    public int MaxHp { get; protected set; } = 100;
+    public int Hp
+    {
+        get { return _hp; }
+      
+        set 
+        {
+            _hp = value;
+            UpdateHpBar();
+        }
+    }
+
 
     public int TeamId { get; set; }
 
@@ -48,6 +61,30 @@ public class CreatureController : BaseController
         Managers.Object.Add(gameObject);
         GameObject go = Managers.Resource.Instantiate("Effect/Common/Resurrect_Eff");
         go.transform.position = new Vector3(transform.position.x + 0.25f, transform.position.y) ;
+        Hp = MaxHp;
+        AddHpBar();
+
+    }
+
+    protected void AddHpBar()
+    {
+        GameObject go = Managers.Resource.Instantiate("UI/HpBar", transform);
+        go.transform.localPosition = new Vector3(0, 0.2f, 0);
+        go.name = "HpBar";
+        _hpBar = go.GetComponent<HpBar>();
+        UpdateHpBar();
+    }
+
+    void UpdateHpBar()
+    {
+        if (_hpBar == null)
+            return;
+
+        float ratio = 0.0f;
+        if (MaxHp > 0)
+            ratio = ((float)Hp / MaxHp);
+
+        _hpBar.SetHpBar(ratio);
     }
 
 
@@ -122,17 +159,18 @@ public class CreatureController : BaseController
 
     public virtual void OnDead(GameObject attacker)
     {
+
         Debug.Log($"{attacker.name} -> {gameObject.name} Kill!");
-        CL_STATE = ControllerState.Death;
-
+     
         _coDead = StartCoroutine(CoCreatureDead(3 , attacker));
-
-
 
     }
 
     IEnumerator CoCreatureDead(float time , GameObject attacker)
     {
+        CL_STATE = ControllerState.Death;
+
+        _hpBar.gameObject.SetActive(false);
         _hand.gameObject.SetActive(false);
 
         //TODO : 죽엇다고 이벤트 전달

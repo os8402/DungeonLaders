@@ -9,7 +9,6 @@ public class MonsterController : CreatureController
     private PlayerController _target; 
     public PlayerController Target { get { return _target; } }
 
-    Coroutine _coSkill;
     Coroutine _coPatrol;
     Coroutine _coSearch;
     [SerializeField]
@@ -110,7 +109,7 @@ public class MonsterController : CreatureController
         int skillRange = _myWeapon.AttackRange;
 
         //8방향검사
-        if (dist <= skillRange * 2 && Mathf.Abs(dir.x) <= skillRange && Mathf.Abs(dir.y) <= skillRange)
+        if (dist <= skillRange + 1 && Mathf.Abs(dir.x) <= skillRange && Mathf.Abs(dir.y) <= skillRange)
         {
             CL_STATE = ControllerState.Skill;
             return;
@@ -156,7 +155,7 @@ public class MonsterController : CreatureController
         int dist = Managers.Map.CellDistFromZero(dir.x , dir.y);
         int skillRange = _myWeapon.AttackRange;
 
-        bool canUseSkill = (dist <= skillRange * 2 && Mathf.Abs(dir.x) <= skillRange && Mathf.Abs(dir.y) <= skillRange);
+        bool canUseSkill = (dist <= skillRange + 1 && Mathf.Abs(dir.x) <= skillRange && Mathf.Abs(dir.y) <= skillRange);
          
 
         if (canUseSkill == false)

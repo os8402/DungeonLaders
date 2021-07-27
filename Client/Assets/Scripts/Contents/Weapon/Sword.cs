@@ -60,9 +60,6 @@ public class Sword : BaseWeapon
         Dictionary<Vector3Int, bool> visited = new Dictionary<Vector3Int, bool>();
         Queue<Vector3Int> q = new Queue<Vector3Int>();
 
-        if (Managers.Map.OutOfMap(cellPos) == false)
-            return null;
-
         attack_pos_list.Add(cellPos);
         visited[cellPos] = true;
 
@@ -135,35 +132,26 @@ public class Sword : BaseWeapon
         transform.rotation = _q;
     }
 
+    protected override int GetDirFromNormal(float num)
+    {
+
+        int dir = (num > 0 ? 1 : -1) * _attackRange;
+
+        return dir;
+
+    }
+
     public override void SkillEvent()
     {
+
+        base.SkillEvent();
+
         SwordDir = (1 - SwordDir);  // -1 연산 
 
-        GameObject go = Managers.Resource.Instantiate("Effect/Sword/Sword_Eff_001");
-        EffectController ec = go.GetComponent<EffectController>();
-
-        Vector3 moveDir = _targetPos - transform.position;
-        Quaternion rot = Util.LookAt2D(_targetPos, transform.position, FacingDirection.LEFT);
-
-        ec.transform.parent = _owner.transform;
-        //소유자 등록 [누가 공격했는지 전달해줘야 함 ] 
-        ec.Owner = _owner;
-
-        // 실제 좌표 
-        ec.Pos = _owner.Pos;
-
-
-        //대각 4방향만 구현했음
-        int dirX = (moveDir.normalized.x > 0 ? 1 : -1) * _attackRange;
-        int dirY = (moveDir.normalized.y > 0 ? 1 : -1) * _attackRange;
-
-        List<Vector3Int> attackList = GetAttackRange(new Vector3Int(dirX, dirY, 0), _attackRange);
-        ec.AttackList = attackList;
-
         //보여주기용 좌표
-        ec.transform.localPosition = new Vector2(dirX * 0.5f, dirY * 0.5f);
-        ec.transform.localRotation = rot;
-
+        _ec.transform.localPosition = new Vector2(_attackPos.x * 0.5f, _attackPos.y * 0.5f);
+        _ec.transform.localRotation = _rot;
+        _ec = null;
 
     }
 

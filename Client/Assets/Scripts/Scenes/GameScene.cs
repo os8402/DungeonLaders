@@ -16,7 +16,7 @@ public class GameScene : BaseScene
         int idx = 1;
         int teamId = 1 << 24;
 
-        Managers.Object.CreateCreature("Warrior", idx ,  teamId , Weapons.Sword);
+        Managers.Object.CreateCreature("Warrior", idx ,  teamId , Weapons.Spear);
 
         teamId = 2 << 24;
 

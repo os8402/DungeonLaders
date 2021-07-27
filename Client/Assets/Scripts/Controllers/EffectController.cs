@@ -51,8 +51,33 @@ public class EffectController : BaseController
         foreach (Vector3Int pos in AttackList)
         {
 
-            int mapX = (Pos.x +  pos.x) - Managers.Map.MinX;
+            Vector3Int destPos = Pos + pos; 
+            //맵을 벗어낫는지 체크
+            if (Managers.Map.OutOfMap(destPos))
+                continue;
+
+            int mapX = (Pos.x + pos.x) - Managers.Map.MinX;
             int mapY = Managers.Map.MaxY - (Pos.y + pos.y);
+
+            {
+                //개발단계에서 공격범위 확인 용
+                //서버에서 패킷보낼 때 잘못 갈 수도 있으므로 대비하기 위함
+                SpriteRenderer seeAttack = Managers.Resource.Instantiate("Effect/Common/AttackRange_Eff").GetComponent<SpriteRenderer>();
+                seeAttack.transform.position = new Vector3(Pos.x + pos.x, Pos.y + pos.y) + (Vector3.one * 0.5f);
+
+                if (Owner.GetType() == typeof(PlayerController))
+                {
+                    seeAttack.color = Color.yellow;
+                    seeAttack.sortingOrder += 1;
+                }
+                                    
+                else
+                    seeAttack.color = Color.blue;
+
+            }
+
+
+       
 
             GameObject go = Managers.Map.Objects[mapY, mapX];
       
@@ -60,8 +85,6 @@ public class EffectController : BaseController
                 continue;
 
             CreatureController cc = go.GetComponent<CreatureController>();
-            Debug.Log($"{Owner.TeamId} vs {cc.TeamId}");
-
             if (Owner.TeamId == cc.TeamId)
                 continue;
 
