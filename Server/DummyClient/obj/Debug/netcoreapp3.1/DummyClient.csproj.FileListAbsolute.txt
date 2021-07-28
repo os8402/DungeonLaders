@@ -1,0 +1,16 @@
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\bin\Debug\netcoreapp3.1\DummyClient.exe
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\bin\Debug\netcoreapp3.1\DummyClient.deps.json
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\bin\Debug\netcoreapp3.1\DummyClient.runtimeconfig.json
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\bin\Debug\netcoreapp3.1\DummyClient.runtimeconfig.dev.json
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\bin\Debug\netcoreapp3.1\DummyClient.dll
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\bin\Debug\netcoreapp3.1\DummyClient.pdb
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\bin\Debug\netcoreapp3.1\ServerCore.dll
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\bin\Debug\netcoreapp3.1\ServerCore.pdb
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.csproj.AssemblyReference.cache
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.AssemblyInfoInputs.cache
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.AssemblyInfo.cs
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.csproj.CoreCompileInputs.cache
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.csproj.CopyComplete
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.dll
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.pdb
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.genruntimeconfig.cache
