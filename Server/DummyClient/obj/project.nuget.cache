@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "i6rFITmAoeHeHOdt2perqV0wawEWCXga+PHDyGLTuleTfPlTNqhWXcYQYE+60XZyuXph66Zy2Jk+hwAQL60mPg==",
+  "dgSpecHash": "LmuKhfRkGSZ97zNZynfx+/9lNZ81RctcnsDc82BWyeFpm2RbSj9zykZzxJvJ96pNijqMjP/QVLN5DrOYEBPuGw==",
   "success": true,
   "projectFilePath": "C:\\Users\\lenovo\\Documents\\GitHub\\DungeonLaders\\Server\\DummyClient\\DummyClient.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\lenovo\\.nuget\\packages\\google.protobuf\\3.17.3\\google.protobuf.3.17.3.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
+  ],
   "logs": []
 }

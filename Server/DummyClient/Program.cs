@@ -1,26 +1,42 @@
 ﻿using ServerCore;
 using System;
 using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
 
 namespace DummyClient
 {
-    class Program
-    {
-        static Connector connector = new Connector();
-        static int port = 7777;
 
-        static int dummyCount = 5;
 
-        static void Main(string[] args)
-        {
-            string name = Dns.GetHostName();
-            IPHostEntry ipHost = Dns.GetHostEntry(name);
-            IPAddress ipAddr = ipHost.AddressList[1];
-            IPEndPoint endPoint = new IPEndPoint(ipAddr, port);
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			// DNS (Domain Name System)
+			string host = Dns.GetHostName();
+			IPHostEntry ipHost = Dns.GetHostEntry(host);
+			IPAddress ipAddr = ipHost.AddressList[0];
+			IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
 
-          //  connector.Init(endPoint, { ()=> return new Session()}, dummyCount);
+			Connector connector = new Connector();
 
-            //IPEndPoint
-        }
-    }
+			connector.Connect(endPoint, () => { return SessionManager.Instance.Generate(); } ,
+				500);
+
+			while (true)
+			{
+				try
+				{
+					SessionManager.Instance.SendForEach();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+
+				Thread.Sleep(250);
+			}
+		}
+	}
 }

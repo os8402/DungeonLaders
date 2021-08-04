@@ -1,0 +1,15 @@
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\PacketGenerator\bin\PacketGenerator.exe
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\PacketGenerator\bin\PacketGenerator.deps.json
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\PacketGenerator\bin\PacketGenerator.runtimeconfig.json
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\PacketGenerator\bin\PacketGenerator.runtimeconfig.dev.json
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\PacketGenerator\bin\PacketGenerator.dll
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\PacketGenerator\bin\PacketGenerator.pdb
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\PacketGenerator\obj\Debug\PacketGenerator.csproj.AssemblyReference.cache
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\PacketGenerator\obj\Debug\PacketGenerator.AssemblyInfoInputs.cache
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\PacketGenerator\obj\Debug\PacketGenerator.AssemblyInfo.cs
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\PacketGenerator\obj\Debug\PacketGenerator.csproj.CoreCompileInputs.cache
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\PacketGenerator\obj\Debug\PacketGenerator.dll
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\PacketGenerator\obj\Debug\PacketGenerator.pdb
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\PacketGenerator\obj\Debug\PacketGenerator.genruntimeconfig.cache
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\PacketGenerator\bin\Google.Protobuf.dll
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\PacketGenerator\obj\Debug\PacketGenerator.csproj.CopyComplete

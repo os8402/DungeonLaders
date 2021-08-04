@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "RAveydmclMLRIX6zH6xg2FdvW4u3a5wWu8+YFXh6vdAPS/hPyxsRPZw5rd2ABBYf9UYzItFkd8HpYn/Y83fmdQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lenovo\\Documents\\GitHub\\DungeonLaders\\Server\\PacketGenerator\\PacketGenerator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lenovo\\.nuget\\packages\\google.protobuf\\3.17.3\\google.protobuf.3.17.3.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
+  ],
+  "logs": []
+}
