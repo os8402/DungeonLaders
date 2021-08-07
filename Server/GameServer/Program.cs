@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using GameServer.Game;
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using ServerCore;
@@ -26,7 +27,7 @@ namespace GameServer
 
 		static void Main(string[] args)
         {
-           
+			RoomManager.Instance.Add();
 
             // DNS (Domain Name System)
             string host = Dns.GetHostName();
@@ -37,7 +38,7 @@ namespace GameServer
 			_listener.Init(endPoint, () => { return SessionManager.Instance.Generate(); });
 			Console.WriteLine("Listening...");
 
-			FlushRoom();
+			JobTimer.Instace.Push(FlushRoom);
 
 			while (true)
 			{

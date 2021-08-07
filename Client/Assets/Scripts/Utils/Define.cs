@@ -29,13 +29,6 @@ public class Define
 
     }
 
-    public enum ControllerState
-    {
-        Idle,
-        Move,
-        Skill,
-        Death,
-    }
     public enum Scene
     {
         Unknown,

@@ -20,7 +20,7 @@ public class InputManager
         
         if (Input.anyKey == false)
         {
-            RemoveKeyInput();
+            InitInputData();
             return;
         }
             
@@ -29,6 +29,17 @@ public class InputManager
             
        
     }
+    public void InitInputData()
+    {
+        W = false;
+        A = false;
+        S = false;
+        D = false;
+        Mouse_Left = false;
+        H = 0.0f;
+        V = 0.0f;
+    }
+
 
     public void KeyMapping()
     {
@@ -52,17 +63,7 @@ public class InputManager
         return press;
     }
 
-    public void RemoveKeyInput()
-    {
-        W = false;
-        A = false;
-        S = false;
-        D = false;
-        Mouse_Left = false;
-        H = 0.0f;
-        V = 0.0f;
-    }
-
+   
     public void Clear()
     {
 

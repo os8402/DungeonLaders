@@ -48,18 +48,20 @@ public abstract class BaseWeapon : MonoBehaviour
         if (_owner == null)
             Init();
 
-        if (_owner.GetType() == typeof(PlayerController))      
-           _targetPos =  _owner.GetComponent<PlayerController>().Cam.MousePos;
+        _targetPos = _owner.GetComponent<CreatureController>().TargetPos;
+
+        //  if (_owner.GetType() == typeof(PlayerController))      
+       // _targetPos =  _owner.GetComponent<CreatureController>().TargetPos;
 
         
-        else if (_owner.GetType() == typeof(MonsterController))
-        {
-            PlayerController target = _owner.GetComponent<MonsterController>().Target;
-            if (target == null)
-                return;
+        //else if (_owner.GetType() == typeof(MonsterController))
+        //{
+        //    PlayerController target = _owner.GetComponent<MonsterController>().Target;
+        //    if (target == null)
+        //        return;
 
-            _targetPos = _owner.GetComponent<MonsterController>().Target.transform.position;
-        }
+        //    _targetPos = _owner.GetComponent<MonsterController>().Target.transform.position;
+        //}
           
         
     }
@@ -91,7 +93,7 @@ public abstract class BaseWeapon : MonoBehaviour
         _ec.transform.parent = transform.parent;
 
         //실제 좌표
-        _ec.Pos = _owner.Pos;
+        _ec.CellPos = _owner.CellPos;
         //소유자 등록 [누가 공격했는지 전달해줘야 함 ] 
         _ec.Owner = _owner;
 

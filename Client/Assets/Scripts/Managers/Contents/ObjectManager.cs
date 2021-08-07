@@ -1,4 +1,5 @@
 ﻿
+using Google.Protobuf.Protocol;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,31 +8,91 @@ using static Define;
 
 public class ObjectManager
 {
-	//Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
-	List<GameObject> _objects = new List<GameObject>();
+	public MyPlayerController MyPlayer { get; set; }
+	Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
 
-
-
-	public void Add(GameObject go)
+	public void Add(PlayerInfo info , bool myPlayer = false)
+    {
+		if (myPlayer)
+        {
+			CreateCreature("MyWarrior", info, Weapons.Spear);
+	
+		}
+		else
+        {
+			CreateCreature("Warrior", info , Weapons.Spear);
+		}
+    }
+	public void CreateCreature(string prefabName, PlayerInfo info, Weapons weapons = Weapons.Empty)
 	{
-		_objects.Add(go);
+
+		GameObject go = Managers.Resource.Instantiate
+		($"Character/{prefabName}", name: $"{prefabName}_{info.PlayerId.ToString("000")}");
+		CreatureController cc = go.GetComponent<CreatureController>();
+
+		cc.PosInfo = info.PosInfo;
+		cc.Id = info.PlayerId;
+		cc.TeamId = info.TeamId;
+		cc.SyncPos();
+
+		cc.CreateWeapon(weapons, 1);
+
+		//Vector3Int initPos;
+		//int loop = 0; //무한루프 방지용
+
+		//while (true)
+		//{
+
+		//	initPos = new Vector3Int
+		//	{
+		//		x = UnityEngine.Random.Range(Managers.Map.MinX + 1, Managers.Map.MaxX - 1),
+		//		y = UnityEngine.Random.Range(Managers.Map.MinY + 1, Managers.Map.MaxY - 1),
+		//	};
+
+		//	loop++;
+
+		//	if (Managers.Map.CanGo(initPos) || loop >= 200)
+		//		break;
+
+		//}
+
+
+	}
+
+	public void Add(int id , GameObject go)
+	{
+		_objects.Add(id , go);
 	}
 
 
-	public void Remove(GameObject go)
-	{
-		if (go == null)
+
+	public void RemoveMyPlayer()
+    {
+		if (MyPlayer == null)
 			return;
 
-		_objects.Remove(go);
+		Remove(MyPlayer.Id);
+		MyPlayer = null; 
+    }
+	public void Remove(int id)
+	{
+		GameObject go = null;
+		if (_objects.TryGetValue(id, out go) == false)
+			return;
+
+		_objects.Remove(id);
 		Managers.Resource.Destroy(go);
 
 	}
-
-
+	public GameObject FindById(int id)
+    {
+		GameObject go = null;
+		_objects.TryGetValue(id, out go);
+		return go; 
+    }
 	public GameObject Find(Vector3Int cellPos)
 	{
-		foreach (GameObject obj in _objects)
+		foreach (GameObject obj in _objects.Values)
 		{
 			if (obj == null)
 				continue;
@@ -40,7 +101,7 @@ public class ObjectManager
 			if (cc == null)
 				continue;
 
-			if (cc.Pos == cellPos)
+			if (cc.CellPos == cellPos)
 				return obj;
 		}
 
@@ -50,7 +111,7 @@ public class ObjectManager
 
 	public PlayerController Find(Func<GameObject, bool> condition)
 	{
-		foreach (GameObject obj in _objects)
+		foreach (GameObject obj in _objects.Values)
 		{
 			if (condition.Invoke(obj))
 				return obj.GetComponent<PlayerController>();
@@ -60,39 +121,10 @@ public class ObjectManager
 	}
 
 
-	public void CreateCreature(string prefabName, int idx , int teamId,  Weapons weapons = Weapons.Empty)
-	{
-		Vector3Int initPos;
-		int loop = 0; //무한루프 방지용
 
-		while (true)
-		{
-
-			initPos = new Vector3Int
-			{
-				x = UnityEngine.Random.Range(Managers.Map.MinX + 1, Managers.Map.MaxX - 1),
-				y = UnityEngine.Random.Range(Managers.Map.MinY + 1, Managers.Map.MaxY - 1),
-			};
-
-			loop++;
-
-			if (Managers.Map.CanGo(initPos) || loop >= 200)
-				break;
-
-		}
-
-		GameObject go = Managers.Resource.Instantiate($"Character/{prefabName}", name: $"{prefabName}_{idx.ToString("000")}");
-		CreatureController cc = go.GetComponent<CreatureController>();
-
-		cc.Pos = initPos;
-		cc.Id = idx;
-		cc.TeamId = teamId;
-
-		cc.CreateWeapon(weapons, 1);
-	}
 	public void Clear()
 	{
-		foreach (GameObject obj in _objects)
+		foreach (GameObject obj in _objects.Values)
 			Managers.Resource.Destroy(obj);
 		_objects.Clear();
 	}

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Protobuf.Protocol;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,10 @@ public abstract  class BaseController : MonoBehaviour
     protected int id;
     public int Id { get { return id; } set { id = value; } }
 
+
+    [SerializeField]
+    //  CellPos , CL_STATE , Dir이 갱신되면 True로 바꾸고 패킷전송
+    protected bool _updated = false; 
     protected float Speed { get;  set; } = 10.0f;
     protected bool _ignoreCollision = false; 
 
@@ -17,60 +22,88 @@ public abstract  class BaseController : MonoBehaviour
 
     protected Animator _animator;
 
+    PositionInfo _positionInfo = new PositionInfo();
+    public PositionInfo PosInfo
+    {
+        get { return _positionInfo; }
+        set
+        {
+            if (_positionInfo.Equals(value))
+                return;
+
+            CellPos = new Vector3Int(value.PosX, value.PosY, 0);
+            CL_STATE = value.State;
+            Dir = value.Dir;
+        
+        }
+    }
+
     //1.여기서 방향을 받는 김에 회전도 같이 설정
     //2.마우스 위치를 기준으로 합니다. 
     //3.관련 기능 매핑해둘 것
-    protected int _dir = 0;
+  
     public virtual int Dir
     {
 
-        get { return _dir; }
+        get { return PosInfo.Dir; }
         set
         {
-            _dir = value;
+            if (PosInfo.Dir.Equals(value))
+                return;
+
+            PosInfo.Dir = value;
 
             //초기화가 안된 것
             if (_spriteRenderer == null)
                 return;
 
-           _spriteRenderer.flipX = (_dir == 1 ? true : false);
-            float flipY = (_dir == 1 ? 180 : 0);
+           _spriteRenderer.flipX = (Dir == 1 ? true : false);
+            float flipY = (Dir == 1 ? 180 : 0);
          
             UpdateAnimation();
+            _updated = true;
 
         }
     }
 
-    [SerializeField]
-    protected ControllerState _cl_state = ControllerState.Idle;
     public virtual ControllerState CL_STATE
     {
-        get { return _cl_state; }
+        get { return PosInfo.State; }
         set
         {
-            _cl_state = value;
+            if (PosInfo.State.Equals(value))
+                return;
+
+            PosInfo.State = value;
             UpdateAnimation();
+            _updated = true;
         }
     }
 
     //1. State 체크
     //2. 애니메이션 변경 
     //3.관련 기능 매핑해둘 것
-    private Vector3Int _pos;
-    public Vector3Int Pos
+
+    public Vector3Int CellPos
     {
-        get { return _pos; }
+        get { return new Vector3Int(PosInfo.PosX, PosInfo.PosY, 0); }
         set
         {
-            if(_ignoreCollision == false)
-             Managers.Map.SetPosObject(_pos, null);
-            
-            _pos = value;
-            
-            if(_ignoreCollision == false)
-             Managers.Map.SetPosObject(_pos, gameObject);
+            if (PosInfo.PosX == value.x && PosInfo.PosY == value.y)
+                return;
+
+       //     if (_ignoreCollision == false)
+          //   Managers.Map.SetPosObject(CellPos, null);
+
+            PosInfo.PosX = value.x;
+            PosInfo.PosY = value.y;
+            _updated = true;
+
+        //    if (_ignoreCollision == false)
+            // Managers.Map.SetPosObject(CellPos, gameObject);
             
             UpdateAnimation();
+        
         }
     }
 
@@ -80,11 +113,15 @@ public abstract  class BaseController : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
 
-        Vector3 pos = Managers.Map.CurrentGrid.CellToWorld(Pos) + new Vector3(.5f, .5f);
+        Vector3 pos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(0.5f, 0.5f);
         transform.position = pos;
-
-
     }
+    public void SyncPos()
+    {
+        Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(0.5f, 0.5f);
+        transform.position = destPos;
+    }
+
     void Update()
     {
         UpdateController();
@@ -99,7 +136,7 @@ public abstract  class BaseController : MonoBehaviour
                 UpdateIdle();
                 UpdateRotation();
                 break;
-            case ControllerState.Move:
+            case ControllerState.Moving:
                 UpdateMoving();
                 UpdateRotation();
                 break;
@@ -107,7 +144,7 @@ public abstract  class BaseController : MonoBehaviour
                 UpdateSkill();
                 UpdateRotation();
                 break;
-            case ControllerState.Death:
+            case ControllerState.Dead:
             
                 break;
 
@@ -122,7 +159,7 @@ public abstract  class BaseController : MonoBehaviour
     protected virtual void UpdateMoving()
     {
         
-        Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(Pos) + new Vector3(0.5f, 0.5f);
+        Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(0.5f, 0.5f);
         Vector3 moveDir = destPos - transform.position;
 
 
@@ -136,7 +173,7 @@ public abstract  class BaseController : MonoBehaviour
         else
         {
             transform.position += moveDir.normalized * Speed * Time.deltaTime;
-            CL_STATE = ControllerState.Move;
+            CL_STATE = ControllerState.Moving;
         }
     }
 
@@ -154,21 +191,24 @@ public abstract  class BaseController : MonoBehaviour
         //오브젝트의 이름을 알기위해
         //나중에 클래스가 추가되면 수정
         int lastIndex = gameObject.name.LastIndexOf('_');
+
         string subName = gameObject.name.Substring(0, lastIndex);
+        subName = subName.Replace("My", string.Empty);
+
 
         switch (CL_STATE)
         {
             case ControllerState.Idle:
                 _animator.Play($"{subName}_Idle");
                 break;
-            case ControllerState.Move:
-                _animator.Play($"{subName}_Move");
+            case ControllerState.Moving:
+                _animator.Play($"{subName}_Moving");
                 break;
             case ControllerState.Skill:
                 _animator.Play($"{subName}_Skill");
                 break;
-            case ControllerState.Death:
-                _animator.Play($"{subName}_Death");
+            case ControllerState.Dead:
+                _animator.Play($"{subName}_Dead");
                 break;
         }
     }

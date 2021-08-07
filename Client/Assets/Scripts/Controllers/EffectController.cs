@@ -51,19 +51,19 @@ public class EffectController : BaseController
         foreach (Vector3Int pos in AttackList)
         {
 
-            Vector3Int destPos = Pos + pos; 
+            Vector3Int destPos = CellPos + pos; 
             //맵을 벗어낫는지 체크
             if (Managers.Map.OutOfMap(destPos))
                 continue;
 
-            int mapX = (Pos.x + pos.x) - Managers.Map.MinX;
-            int mapY = Managers.Map.MaxY - (Pos.y + pos.y);
+            int mapX = (CellPos.x + pos.x) - Managers.Map.MinX;
+            int mapY = Managers.Map.MaxY - (CellPos.y + pos.y);
 
             {
                 //개발단계에서 공격범위 확인 용
                 //서버에서 패킷보낼 때 잘못 갈 수도 있으므로 대비하기 위함
                 SpriteRenderer seeAttack = Managers.Resource.Instantiate("Effect/Common/AttackRange_Eff").GetComponent<SpriteRenderer>();
-                seeAttack.transform.position = new Vector3(Pos.x + pos.x, Pos.y + pos.y) + (Vector3.one * 0.5f);
+                seeAttack.transform.position = new Vector3(CellPos.x + pos.x, CellPos.y + pos.y) + (Vector3.one * 0.5f);
 
                 if (Owner.GetType() == typeof(PlayerController))
                 {

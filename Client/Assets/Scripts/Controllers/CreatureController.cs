@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Protobuf.Protocol;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,10 @@ using static Define;
 
 public class CreatureController : BaseController
 {
+ 
 
     HpBar _hpBar;
+    public Vector3 TargetPos { get; set; } 
 
     protected int _hp;
     public int MaxHp { get; protected set; } = 100;
@@ -41,7 +44,7 @@ public class CreatureController : BaseController
     }
     public override int Dir
     {
-        get { return _dir; }
+        get { return PosInfo.Dir; }
         set
         {
             base.Dir = value;
@@ -50,7 +53,7 @@ public class CreatureController : BaseController
                 return;
 
             Vector2 hand = new Vector2(-0.2f, -0.3f);
-            hand.x = (_dir == 1 ? hand.x * -1 : hand.x);
+            hand.x = (Dir == 1 ? hand.x * -1 : hand.x);
             _hand.localPosition = hand;
 
         }
@@ -58,9 +61,9 @@ public class CreatureController : BaseController
     protected override void Init()
     {
         base.Init();
-        Managers.Object.Add(gameObject);
-        GameObject go = Managers.Resource.Instantiate("Effect/Common/Resurrect_Eff");
-        go.transform.position = new Vector3(transform.position.x + 0.25f, transform.position.y) ;
+        Managers.Object.Add(id , gameObject);
+        GameObject eff = Managers.Resource.Instantiate("Effect/Common/Resurrect_Eff");
+        eff.transform.position = new Vector3(transform.position.x + 0.25f, transform.position.y) ;
         Hp = MaxHp;
         AddHpBar();
 
@@ -123,7 +126,7 @@ public class CreatureController : BaseController
         if (attacker == null)
             return;
 
-        if (CL_STATE == ControllerState.Death)
+        if (CL_STATE == ControllerState.Dead)
             return;
 
         damage = Mathf.Max(0, damage);
@@ -168,7 +171,7 @@ public class CreatureController : BaseController
 
     IEnumerator CoCreatureDead(float time , GameObject attacker)
     {
-        CL_STATE = ControllerState.Death;
+        CL_STATE = ControllerState.Dead;
 
         _hpBar.gameObject.SetActive(false);
         _hand.gameObject.SetActive(false);
@@ -177,14 +180,14 @@ public class CreatureController : BaseController
      
         yield return new WaitForSeconds(time);
 
-        Managers.Object.Remove(gameObject);
+        Managers.Object.Remove(id);
         CreatureController cc = gameObject.GetComponent<CreatureController>();
 
         int nameIndex = gameObject.name.LastIndexOf('_');
         string myName = gameObject.name.Substring(0, nameIndex);
 
         //부.활
-        Managers.Object.CreateCreature(myName, id, TeamId, WEAPONS);
+        //Managers.Object.CreateCreature(myName, id, TeamId, WEAPONS);
 
     }
 
