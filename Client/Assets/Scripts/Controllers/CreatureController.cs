@@ -10,7 +10,6 @@ public class CreatureController : BaseController
  
 
     HpBar _hpBar;
-    public Vector3 TargetPos { get; set; } 
 
     protected int _hp;
     public int MaxHp { get; protected set; } = 100;
@@ -29,11 +28,11 @@ public class CreatureController : BaseController
     public int TeamId { get; set; }
 
     protected Transform _hand;
-    protected BaseWeapon _myWeapon;
-    public Weapons WEAPONS { get; protected set; } = Weapons.Empty;
+    public BaseWeapon MyWeapon { get; set;  }
+    public Weapons WEAPON_TYPES { get; protected set; } = Weapons.Empty;
 
     protected Coroutine _coSkill = null;
-    protected Action _skillEvent = null;
+    protected Action<List<AttackPos>> _skillEvent = null;
 
     private Coroutine _coDead = null; 
     
@@ -91,24 +90,26 @@ public class CreatureController : BaseController
     }
 
 
-    public void CreateWeapon(Weapons weapon, int idx)
+    public void CreateWeapon(WeaponInfo weaponInfo, int idx)
     {
-        if (weapon == Weapons.Empty)
+        if (weaponInfo.WeaponType == Weapons.Empty)
             return;
 
-        WEAPONS = weapon;
+        WEAPON_TYPES = weaponInfo.WeaponType;
 
         _hand = Util.FindChild<Transform>(gameObject, "Weapon_Hand", false);
 
-        string name = weapon.ToString();
+        string name = weaponInfo.WeaponType.ToString();
 
        GameObject go =Managers.Resource.Instantiate($"Weapon/{name}_{idx.ToString("000")}");
         go.transform.parent = _hand;
         go.transform.localPosition = Vector3.zero;
 
-        _myWeapon = go.GetComponent<BaseWeapon>();
-        _skillEvent -= _myWeapon.SkillEvent;
-        _skillEvent += _myWeapon.SkillEvent;
+        MyWeapon = go.GetComponent<BaseWeapon>();
+        MyWeapon.Id = weaponInfo.WeaponId;
+      
+        _skillEvent -= MyWeapon.SkillEvent;
+        _skillEvent += MyWeapon.SkillEvent;
 
     }
 

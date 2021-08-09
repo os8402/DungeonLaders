@@ -11,14 +11,6 @@ public struct Pos
 
 public class Define
 {
-    public enum Weapons
-    {
-        Empty,
-        Sword,
-        Bow,
-        Staff, 
-        Spear, 
-    }
 
     public enum FacingDirection
     {

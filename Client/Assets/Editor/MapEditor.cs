@@ -19,7 +19,7 @@ public class MapEditor
 	private static void GenerateMap()
 	{
 		GenerateByPath("Assets/Resources/Map");
-		//GenerateByPath("../Common/MapData");
+		GenerateByPath("../Common/MapData");
 	}
 
 	private static void GenerateByPath(string pathPrefix)

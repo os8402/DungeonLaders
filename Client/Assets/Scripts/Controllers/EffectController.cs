@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Google.Protobuf.Protocol;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class EffectController : BaseController
 
     Coroutine _coHit = null;
     public CreatureController Owner { get; set; }
-    public List<Vector3Int> AttackList { get; set; }
+    public List<AttackPos> AttackList { get; set; }
 
 
     private void Awake()
@@ -48,47 +49,54 @@ public class EffectController : BaseController
         if (AttackList == null)
             return;
 
-        foreach (Vector3Int pos in AttackList)
+        foreach (AttackPos pos in AttackList)
         {
-
-            Vector3Int destPos = CellPos + pos; 
-            //맵을 벗어낫는지 체크
+            Vector3Int attkPos = new Vector3Int(pos.AttkPosX, pos.AttkPosY , 0);
+            Vector3Int destPos = CellPos + attkPos; 
+            //맵을 벗어낫는지 attkPos
             if (Managers.Map.OutOfMap(destPos))
                 continue;
 
-            int mapX = (CellPos.x + pos.x) - Managers.Map.MinX;
-            int mapY = Managers.Map.MaxY - (CellPos.y + pos.y);
+            int mapX = (CellPos.x + attkPos.x) - Managers.Map.MinX;
+            int mapY = Managers.Map.MaxY - (CellPos.y + attkPos.y);
 
+            #region 디버그용_공격범위 표시
             {
                 //개발단계에서 공격범위 확인 용
                 //서버에서 패킷보낼 때 잘못 갈 수도 있으므로 대비하기 위함
+
                 SpriteRenderer seeAttack = Managers.Resource.Instantiate("Effect/Common/AttackRange_Eff").GetComponent<SpriteRenderer>();
-                seeAttack.transform.position = new Vector3(CellPos.x + pos.x, CellPos.y + pos.y) + (Vector3.one * 0.5f);
+                Vector3 visiblePos = new Vector3(CellPos.x + attkPos.x, CellPos.y + attkPos.y);
+
+                if (visiblePos == Owner.CellPos)
+                    seeAttack.gameObject.SetActive(false);
+
+                seeAttack.transform.position = visiblePos + (Vector3.one * 0.5f);
 
                 if (Owner.GetType() == typeof(PlayerController))
                 {
                     seeAttack.color = Color.yellow;
                     seeAttack.sortingOrder += 1;
                 }
-                                    
+
                 else
                     seeAttack.color = Color.blue;
 
             }
-
-
-       
+            #endregion
 
             GameObject go = Managers.Map.Objects[mapY, mapX];
-      
+
             if (go == null || Owner.gameObject == go)
                 continue;
 
             CreatureController cc = go.GetComponent<CreatureController>();
+
             if (Owner.TeamId == cc.TeamId)
                 continue;
 
-            Debug.Log($"Attak : {go.name} , ({pos}) , Hp : {cc.Hp} ");
+
+            Debug.Log($"Attack : {go.name} , ({attkPos}) , Hp : {cc.Hp} ");
             cc.OnDamaged(Owner.gameObject, 10);
 
         }

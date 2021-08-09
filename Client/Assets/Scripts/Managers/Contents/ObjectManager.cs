@@ -15,27 +15,28 @@ public class ObjectManager
     {
 		if (myPlayer)
         {
-			CreateCreature("MyWarrior", info, Weapons.Spear);
+			CreateCreature("MyWarrior", info);
 	
 		}
 		else
         {
-			CreateCreature("Warrior", info , Weapons.Spear);
+			CreateCreature("Warrior", info);
 		}
     }
-	public void CreateCreature(string prefabName, PlayerInfo info, Weapons weapons = Weapons.Empty)
+	public void CreateCreature(string prefabName, PlayerInfo info)
 	{
 
 		GameObject go = Managers.Resource.Instantiate
 		($"Character/{prefabName}", name: $"{prefabName}_{info.PlayerId.ToString("000")}");
 		CreatureController cc = go.GetComponent<CreatureController>();
 
+	
 		cc.PosInfo = info.PosInfo;
 		cc.Id = info.PlayerId;
 		cc.TeamId = info.TeamId;
 		cc.SyncPos();
 
-		cc.CreateWeapon(weapons, 1);
+		cc.CreateWeapon(info.WeaponInfo, 1);
 
 		//Vector3Int initPos;
 		//int loop = 0; //무한루프 방지용

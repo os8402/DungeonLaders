@@ -43,27 +43,54 @@ public class MyPlayerController : PlayerController
         CheckUpdatedFlag();
 
     }
-    protected void CheckUpdatedFlag()
+
+    protected override void UpdateRotation()
     {
-        if (_updated)
+        Quaternion q = Util.RotateDir2D(transform.position, TargetPos, true);
+
+        if (q.z > Quaternion.identity.z) // 오른쪽
         {
-            Debug.Log("패킷 전송");
-            C_Move movePacket = new C_Move();
-            movePacket.PosInfo = PosInfo;
-            Managers.Network.Send(movePacket);
-            _updated = false;
+            Dir = 1;
         }
+        else if (q.z < Quaternion.identity.z)// 왼쪽
+        {
+            Dir = -1;
+        }
+
+        else return;
+
     }
 
     void UpdateInput()
     {
 
-        if (_coSkill == null && Managers.Input.Mouse_Left)
+        if (_coSkillCoolTime == null && Managers.Input.Mouse_Left)
         {
-            // 스킬 공격 
-            _coSkill = StartCoroutine("CoSkillAttack", 0.2f);
+            Debug.Log("Skill!");
+
+            C_Skill skill = new C_Skill()
+            {
+                TargetInfo = new TargetInfo()
+            };
+     
+            skill.TargetInfo.TargetPosX = TargetPos.x;
+            skill.TargetInfo.TargetPosY = TargetPos.y;
+
+            Managers.Network.Send(skill);
+
+            _coSkillCoolTime = StartCoroutine("CoInputCoolTime",0.2f);
+
         }
     }
+
+    Coroutine _coSkillCoolTime; 
+    IEnumerator CoInputCoolTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _coSkillCoolTime = null;
+    }
+
+
     protected override void UpdateIdle()
     {
 
@@ -84,6 +111,17 @@ public class MyPlayerController : PlayerController
         base.UpdateController();
     }
 
+    protected override void CheckUpdatedFlag()
+    {
+        if (_updated)
+        {
  
+            C_Move movePacket = new C_Move();
+            movePacket.PosInfo = PosInfo;
+            Managers.Network.Send(movePacket);
+            _updated = false;
+        }
+    }
+
 
 }

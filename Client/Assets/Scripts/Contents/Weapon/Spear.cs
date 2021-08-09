@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Google.Protobuf.Protocol;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
@@ -18,21 +19,6 @@ public class Spear : BaseWeapon
         _attackRange = 1;
     }
     
-    //창은 바라보는 방향 + attackRange만 계산해주면 됩니다.
-    //     ㅁ           
-    // ㅁ  me  ㅁ
-    //     ㅁ      
-
-    protected override List<Vector3Int> GetAttackRange(Vector3Int cellPos, int range)
-    {
-        List<Vector3Int> attackList = new List<Vector3Int>();
-
-        for (int i = 1; i <= range; i++)       
-            attackList.Add(new Vector3Int(cellPos.x * i, cellPos.y * i, 0));
-        
-
-        return attackList;
-    }
 
     protected override void UpdateRotation()
     {
@@ -44,24 +30,11 @@ public class Spear : BaseWeapon
 
     }
 
-    protected override int GetDirFromNormal(float num )
+
+    public override void SkillEvent(List<AttackPos> attackList)
     {
 
-        int dir = 0; 
-
-        if (num >= 0.05f)
-            dir = 1;
-        else if (num <= -0.05f)
-            dir = -1;
-
-        return dir; 
-
-    }
-
-    public override void SkillEvent()
-    {
-
-        base.SkillEvent();
+        base.SkillEvent(attackList);
         //보여주기용 좌표 
         _coMove = StartCoroutine(CoMoveSpear(_ec, base._attackPos));
         _ec.transform.localPosition = _moveDir.normalized * 0.2f;

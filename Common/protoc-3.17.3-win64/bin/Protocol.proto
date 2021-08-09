@@ -11,6 +11,8 @@ enum MsgId {
   S_DESPAWN = 3; 
   C_MOVE = 4; 
   S_MOVE = 5;
+  C_SKILL = 6;
+  S_SKILL = 7; 
 }
  enum ControllerState
  {
@@ -19,6 +21,16 @@ enum MsgId {
    SKILL = 2;
    DEAD = 3; 
  }
+
+  enum Weapons
+ {
+   EMPTY = 0;
+   SWORD = 1;
+   BOW = 2;
+   STAFF = 3;
+   SPEAR = 4;
+ }
+
 
 message S_EnterGame {
   PlayerInfo player =1;
@@ -37,12 +49,22 @@ message S_Despawn{
 }
 
 message C_Move{
-	PositionInfo posInfo = 1;
+	PositionInfo posInfo = 1;	
 }
 
 message S_Move{
 	int32 playerId = 1;
 	PositionInfo posInfo = 2;
+}
+
+message C_Skill{
+	TargetInfo targetInfo = 1;
+}
+message S_Skill{
+	int32 playerId = 1; 
+	TargetInfo targetInfo = 2;
+	repeated AttackPos attackList= 3;
+
 
 }
 
@@ -52,15 +74,33 @@ message PlayerInfo{
 	string name = 2; 
 	PositionInfo posInfo = 3;
 	int32 teamId = 4; 
-
+	WeaponInfo weaponInfo = 5; 
 
 }
 
 message PositionInfo{
+
 	ControllerState state = 1;
 	int32 posX = 2; 
 	int32 posY = 3;
 	int32 dir = 4; 
+
+}
+
+message WeaponInfo{
+
+	int32 weaponId = 1;
+	Weapons weaponType = 2;
+}
+
+message TargetInfo{
+	float targetPosX = 1;
+	float targetPosY = 2; 
+}
+
+message AttackPos{
+	int32 attkPosX = 1;
+	int32 attkPosY = 2;
 }
 
 

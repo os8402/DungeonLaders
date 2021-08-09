@@ -26,7 +26,7 @@ public class MonsterController : CreatureController
             base.CL_STATE = value;
 
             //몬스터는 무기 위치 초기화 필요
-            _myWeapon.transform.localPosition = Vector2.zero;
+            MyWeapon.transform.localPosition = Vector2.zero;
 
 
             if(CL_STATE == ControllerState.Moving)
@@ -112,7 +112,7 @@ public class MonsterController : CreatureController
         //스킬사용여부
         Vector3Int dir = (_player.CellPos - CellPos);
         int dist = Managers.Map.CellDistFromZero(dir.x, dir.y);
-        int skillRange = _myWeapon.AttackRange;
+        int skillRange = MyWeapon.AttackRange;
 
         //8방향검사
         if (dist <= skillRange + 1 && Mathf.Abs(dir.x) <= skillRange && Mathf.Abs(dir.y) <= skillRange)
@@ -159,7 +159,7 @@ public class MonsterController : CreatureController
         // 스킬이 아직 사용 가능한지
         Vector3Int dir = (_player.CellPos - CellPos);
         int dist = Managers.Map.CellDistFromZero(dir.x , dir.y);
-        int skillRange = _myWeapon.AttackRange;
+        int skillRange = MyWeapon.AttackRange;
 
         bool canUseSkill = (dist <= skillRange + 1 && Mathf.Abs(dir.x) <= skillRange && Mathf.Abs(dir.y) <= skillRange);
          
@@ -171,8 +171,6 @@ public class MonsterController : CreatureController
             return;
         }
 
-        
-   
          _coSkill = StartCoroutine("CoSkillAttack", 0.5f);
 
 
@@ -212,13 +210,13 @@ public class MonsterController : CreatureController
         }
     }
 
-    IEnumerator CoSkillAttack(float time)
-    {
-        _skillEvent?.Invoke();
-        yield return new WaitForSeconds(time);
-        _coSkill = null;
+    //IEnumerator CoSkillAttack(float time)
+    //{
+    //    _skillEvent?.Invoke();
+    //    yield return new WaitForSeconds(time);
+    //    _coSkill = null;
 
-    }
+    //}
 
     //타겟이 죽었나 확인
     void CheckDeadTarget(PlayerController pc)

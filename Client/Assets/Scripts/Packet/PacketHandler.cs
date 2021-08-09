@@ -4,6 +4,7 @@ using ServerCore;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 class PacketHandler
 {
@@ -54,6 +55,28 @@ class PacketHandler
 
 		cc.PosInfo = movePacket.PosInfo;
 
+
+	}
+	public static void S_SkillHandler(PacketSession session, IMessage packet)
+	{
+		S_Skill skillPacket = packet as S_Skill;
+
+		GameObject go = Managers.Object.FindById(skillPacket.PlayerId);
+		if (go == null)
+			return;
+
+		PlayerController pc = go.GetComponent<PlayerController>();
+		
+		if (pc != null)
+        {
+			float targetX = skillPacket.TargetInfo.TargetPosX;
+			float targetY = skillPacket.TargetInfo.TargetPosY;
+			pc.TargetPos = new Vector3(targetX, targetY);
+
+			List<AttackPos> attackList = skillPacket.AttackList.ToList();
+			pc.UseSkill(attackList);
+        }
+		
 
 	}
 

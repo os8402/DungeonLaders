@@ -27,34 +27,26 @@ public class PlayerController : CreatureController
         Init();
     }
   
-  
-
-    protected override void UpdateRotation()
+    public void UseSkill(List<AttackPos> attackList)
     {
-        Quaternion q = Util.RotateDir2D(transform.position, TargetPos, true);
-
-        if (q.z > Quaternion.identity.z) // 오른쪽
-        {
-            Dir = 1;
-        }
-        else if (q.z < Quaternion.identity.z)// 왼쪽
-        {
-            Dir = -1;
-        }
-
-        else return;
+        if (_coSkill != null)
+            return;
+        // 스킬 공격 
+        _coSkill = StartCoroutine(CoSkillAttack(0.2f , attackList));
 
     }
-   
-
-
-   
-    IEnumerator CoSkillAttack(float time)
+    protected virtual void CheckUpdatedFlag()
     {
-        _skillEvent?.Invoke();
+      
+    }
+
+    IEnumerator CoSkillAttack(float time , List<AttackPos> attackList)
+    {
+        _skillEvent?.Invoke(attackList);
         yield return new WaitForSeconds(time);
         _coSkill = null;
- 
+        CheckUpdatedFlag();
+
 
     }
 

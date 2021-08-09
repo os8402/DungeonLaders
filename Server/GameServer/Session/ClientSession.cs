@@ -41,13 +41,19 @@ namespace GameServer
 			// PROTO Test
 
 			MyPlayer = PlayerManager.Instance.Add();
+
             {
 				MyPlayer.Info.Name = $"MyWarrior_{MyPlayer.Info.PlayerId}";
 				MyPlayer.Info.PosInfo.State = ControllerState.Idle;
 				MyPlayer.Info.PosInfo.PosX = 1;
 				MyPlayer.Info.PosInfo.PosY = 1;
 				MyPlayer.Info.PosInfo.Dir = 1;
-				MyPlayer.Info.TeamId = 1 << 24; 
+				MyPlayer.Info.TeamId = 1 << 24;
+				MyPlayer.Info.WeaponInfo.WeaponId = 4;
+				MyPlayer.Info.WeaponInfo.WeaponType = Weapons.Sword;
+			
+				MyPlayer.Weapon = new Sword();
+				MyPlayer.Weapon.Owner = MyPlayer;
 				MyPlayer.Session = this; 
 			
             }

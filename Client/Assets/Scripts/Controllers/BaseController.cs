@@ -10,7 +10,6 @@ public abstract  class BaseController : MonoBehaviour
     protected int id;
     public int Id { get { return id; } set { id = value; } }
 
-
     [SerializeField]
     //  CellPos , CL_STATE , Dir이 갱신되면 True로 바꾸고 패킷전송
     protected bool _updated = false; 
@@ -31,10 +30,10 @@ public abstract  class BaseController : MonoBehaviour
             if (_positionInfo.Equals(value))
                 return;
 
-            CellPos = new Vector3Int(value.PosX, value.PosY, 0);
+            CellPos = new Vector3Int(value.PosX, value.PosY,0);
             CL_STATE = value.State;
             Dir = value.Dir;
-        
+
         }
     }
 
@@ -106,7 +105,7 @@ public abstract  class BaseController : MonoBehaviour
         
         }
     }
-
+    public Vector3 TargetPos { get; set; }
 
     protected virtual void Init()
     {
