@@ -123,8 +123,9 @@ public class Map
 			_players[y, x] = player; 
         }
 
-		posInfo.PosX = dest.x;
-		posInfo.PosY = dest.y;
+		//posInfo.PosX = dest.x;
+		//posInfo.PosY = dest.y;
+		player.CellPos = new Vector2Int(dest.x, dest.y);
 
 		return true; 
     }

@@ -69,17 +69,20 @@ public class Sword : BaseWeapon
         transform.rotation = _q;
     }
 
-    public override void SkillEvent(List<AttackPos> attackList)
+    public override void SkillEvent(S_Skill skillPacket)
     {
 
-        base.SkillEvent(attackList);
+        base.SkillEvent(skillPacket);
 
         SwordDir = (1 - SwordDir);  // -1 연산 
 
         //보여주기용 좌표
-        _ec.transform.localPosition = new Vector2(_attackPos.x * 0.5f, _attackPos.y * 0.5f);
+        _ec.transform.localPosition = new Vector2(_attackDir.AttkPosX * 0.5f, _attackDir.AttkPosY * 0.5f);
         _ec.transform.localRotation = _rot;
         _ec = null;
+
+      
+        
 
     }
 

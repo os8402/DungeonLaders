@@ -27,12 +27,12 @@ public class PlayerController : CreatureController
         Init();
     }
   
-    public void UseSkill(List<AttackPos> attackList)
+    public void UseSkill(S_Skill skillPacket)
     {
         if (_coSkill != null)
             return;
         // 스킬 공격 
-        _coSkill = StartCoroutine(CoSkillAttack(0.2f , attackList));
+        _coSkill = StartCoroutine(CoSkillAttack(0.2f , skillPacket));
 
     }
     protected virtual void CheckUpdatedFlag()
@@ -40,9 +40,15 @@ public class PlayerController : CreatureController
       
     }
 
-    IEnumerator CoSkillAttack(float time , List<AttackPos> attackList)
+    IEnumerator CoSkillAttack(float time , S_Skill skillPacket)
     {
-        _skillEvent?.Invoke(attackList);
+         float targetX = skillPacket.TargetInfo.TargetX;
+         float targetY = skillPacket.TargetInfo.TargetY;
+
+        TargetPos = new Vector3(targetX, targetY);
+        Dir = skillPacket.TargetInfo.Dir;
+
+        _skillEvent?.Invoke(skillPacket);
         yield return new WaitForSeconds(time);
         _coSkill = null;
         CheckUpdatedFlag();

@@ -58,13 +58,14 @@ message S_Move{
 }
 
 message C_Skill{
-	TargetInfo targetInfo = 1;
+	AttackPos attackPos = 1;
+	TargetInfo targetInfo = 2;
 }
 message S_Skill{
 	int32 playerId = 1; 
-	TargetInfo targetInfo = 2;
-	repeated AttackPos attackList= 3;
-
+	repeated AttackPos attackList= 2;
+	AttackPos attackDir = 3; 
+	TargetInfo targetInfo = 4;
 
 }
 
@@ -94,13 +95,17 @@ message WeaponInfo{
 }
 
 message TargetInfo{
-	float targetPosX = 1;
-	float targetPosY = 2; 
+
+	float targetX = 1;
+	float targetY = 2;
+	int32 dir = 3;
 }
 
 message AttackPos{
+
 	int32 attkPosX = 1;
 	int32 attkPosY = 2;
+	
 }
 
 

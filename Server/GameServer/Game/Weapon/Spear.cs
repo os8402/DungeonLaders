@@ -26,22 +26,10 @@ namespace GameServer.Game
             return attackList;
         }
 
-        protected override Vector2Int GetDirFromNormal(Vector2Int pos)
+        protected override Vector2Int GetDirFromNormal(Vector2Int normal)
         {
-
-            int x = CalcDirFromSpear(pos.x);
-            int y = CalcDirFromSpear(pos.y);
-            return new Vector2Int(x, y);
-
+            return new Vector2Int(normal.x, normal.y);
         }
 
-        int CalcDirFromSpear(int num)
-        {
-            int temp = 0;
-            if (num >= 0.05f) temp = 1;
-            else if (num <= -0.05f) temp = -1;
-
-            return temp;
-        }
     }
 }

@@ -142,18 +142,20 @@ namespace GameServer.Game
                 //info.PosInfo.State = ControllerState.Skill;
 
                 Weapon weapon = player.Weapon;
-                float x = skillPacket.TargetInfo.TargetPosX;
-                float y = skillPacket.TargetInfo.TargetPosY;
-                weapon.TargetPos = new Vector2Int( (int)x , (int)y );                  
-                List<AttackPos> AttackList = weapon.SkillEvent();
+                int x = skillPacket.AttackPos.AttkPosX;
+                int y = skillPacket.AttackPos.AttkPosY;
+                weapon.TargetPos = new Vector2Int(x , y);
+                weapon.SkillEvent();
+
 
 
                 S_Skill skill = new S_Skill();
            
                 skill.PlayerId = info.PlayerId;
+                skill.AttackList.Add(weapon.AttackList);
+                skill.AttackDir = weapon.AttackDir;
                 skill.TargetInfo = skillPacket.TargetInfo;
-                skill.AttackList.Add(AttackList);
-             
+               
                 BroadCast(skill);
                 
 

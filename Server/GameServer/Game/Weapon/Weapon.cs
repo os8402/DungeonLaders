@@ -25,21 +25,40 @@ public abstract class Weapon
         get { return _attackRange; }
     }
 
+    public List<AttackPos> AttackList { get; set; }
+    public AttackPos AttackDir { get; set; }
+
+
     //무기별 공격범위 계산
     protected abstract List<AttackPos> CalcAttackRange(Vector2Int cellPos, int range);
     //무기 공격 방향 처리
     protected abstract Vector2Int GetDirFromNormal(Vector2Int num);
 
     //무기별 스킬 이벤트
-    public List<AttackPos> SkillEvent()
+    public void SkillEvent()
     {
- 
+        if(AttackList != null)
+            AttackList.Clear();
+
         Vector2Int dir = TargetPos - Owner.CellPos;
-        Vector2Int normal = GetDirFromNormal(dir);
-        Vector2Int _attackPos = new Vector2Int(normal.x, normal.y);
+        int dirX = (dir.x != 0) ? dir.x / Math.Abs(dir.x) : 0;
+        int dirY = (dir.y != 0) ? dir.y / Math.Abs(dir.y) : 0;
+      
+        Vector2Int normal = new Vector2Int(dirX , dirY);
+
+        Vector2Int attackPos = GetDirFromNormal(normal);   
+    
+        //공격 방향
+        AttackDir = new AttackPos
+        {
+            AttkPosX = attackPos.x,
+            AttkPosY = attackPos.y
+        };
 
         //공격 범위
-        return CalcAttackRange(_attackPos, _attackRange);
+        AttackList = CalcAttackRange(attackPos, _attackRange);
+
+
     }
 
 }

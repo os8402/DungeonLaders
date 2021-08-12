@@ -32,7 +32,7 @@ public class CreatureController : BaseController
     public Weapons WEAPON_TYPES { get; protected set; } = Weapons.Empty;
 
     protected Coroutine _coSkill = null;
-    protected Action<List<AttackPos>> _skillEvent = null;
+    protected Action<S_Skill> _skillEvent = null;
 
     private Coroutine _coDead = null; 
     

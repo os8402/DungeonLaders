@@ -69,12 +69,7 @@ class PacketHandler
 		
 		if (pc != null)
         {
-			float targetX = skillPacket.TargetInfo.TargetPosX;
-			float targetY = skillPacket.TargetInfo.TargetPosY;
-			pc.TargetPos = new Vector3(targetX, targetY);
-
-			List<AttackPos> attackList = skillPacket.AttackList.ToList();
-			pc.UseSkill(attackList);
+			pc.UseSkill(skillPacket);
         }
 		
 

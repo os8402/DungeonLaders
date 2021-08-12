@@ -61,10 +61,13 @@ namespace GameServer.Game
                     q.Enqueue(nextPos);
                     visited[nextPos] = true;
 
-                    attkPos.AttkPosX = nx;
-                    attkPos.AttkPosY = ny; 
+                    AttackPos newAttkPos = new AttackPos
+                    {
+                        AttkPosX = nx,
+                        AttkPosY = ny
+                    };
 
-                    attackList.Add(attkPos);
+                    attackList.Add(newAttkPos);
                 }
             }
 

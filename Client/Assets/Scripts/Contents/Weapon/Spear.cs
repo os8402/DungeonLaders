@@ -25,31 +25,40 @@ public class Spear : BaseWeapon
         if (_isRot == false)
             return;
 
-        _q = Util.LookAt2D(transform.position, _targetPos , FacingDirection.UP);
+        _q = Util.LookAt2D(transform.position , _targetPos, FacingDirection.UP);
         transform.rotation = _q;
 
     }
 
 
-    public override void SkillEvent(List<AttackPos> attackList)
+    public override void SkillEvent(S_Skill skillPacket)
     {
 
-        base.SkillEvent(attackList);
+        base.SkillEvent(skillPacket);
         //보여주기용 좌표 
-        _coMove = StartCoroutine(CoMoveSpear(_ec, base._attackPos));
-        _ec.transform.localPosition = _moveDir.normalized * 0.2f;
+        _coMove = StartCoroutine(CoMoveSpear());
+
+        _ec.transform.localPosition = _moveDir * 0.5f;
         _ec.transform.localRotation = _rot;
         _ec = null;
 
     }
 
 
-    IEnumerator CoMoveSpear(EffectController ec , Vector3Int destPos,  float time = 0.2f)
-    {     
-        Vector3 newPos = new Vector3(destPos.x * 0.2f, destPos.y * 0.2f, 0);
-        transform.localPosition = newPos;      
+    IEnumerator CoMoveSpear(float time = 0.2f)
+    {
+         _isRot = false;
+
+        Vector3 newPos = new Vector3(_moveDir.x * 0.5f, _moveDir.y * 0.5f);
+        Quaternion newRot = Util.LookAt2D(_moveDir, Vector2.zero, FacingDirection.UP);
+
+        transform.localPosition = newPos;
+        transform.rotation = newRot;
+
         yield return new WaitForSeconds(time);
-        transform.localPosition = -newPos;
+        transform.localPosition = Vector3.zero;
+
+        _isRot = true;
         _coMove = null;
    
 

@@ -70,11 +70,26 @@ public class MyPlayerController : PlayerController
 
             C_Skill skill = new C_Skill()
             {
+                AttackPos = new AttackPos(),
                 TargetInfo = new TargetInfo()
             };
-     
-            skill.TargetInfo.TargetPosX = TargetPos.x;
-            skill.TargetInfo.TargetPosY = TargetPos.y;
+
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos = new Vector3(mousePos.x, mousePos.y, 0);
+
+            Vector3Int attackPos = Managers.Map.CurrentGrid.WorldToCell(mousePos);
+
+            //본인을 직접 공격하면 그냥 return
+            if (attackPos == CellPos)
+                return;
+
+            skill.AttackPos.AttkPosX = attackPos.x;
+            skill.AttackPos.AttkPosY = attackPos.y;
+
+            skill.TargetInfo.TargetX = TargetPos.x;
+            skill.TargetInfo.TargetY = TargetPos.y;
+            skill.TargetInfo.Dir = Dir;
+
 
             Managers.Network.Send(skill);
 

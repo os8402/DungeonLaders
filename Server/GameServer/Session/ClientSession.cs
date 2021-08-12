@@ -51,10 +51,12 @@ namespace GameServer
 				MyPlayer.Info.TeamId = 1 << 24;
 				MyPlayer.Info.WeaponInfo.WeaponId = 4;
 				MyPlayer.Info.WeaponInfo.WeaponType = Weapons.Sword;
-			
+
 				MyPlayer.Weapon = new Sword();
+
 				MyPlayer.Weapon.Owner = MyPlayer;
 				MyPlayer.Session = this; 
+				
 			
             }
 
