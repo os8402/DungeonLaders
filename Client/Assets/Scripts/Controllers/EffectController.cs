@@ -36,7 +36,7 @@ public class EffectController : BaseController
     {   
        if(_coHit == null)
         {
-            StartCoroutine("CoHitCreature", 0.5f);
+            StartCoroutine("CoHitCreature", 0.2f);
         }
     }
 
@@ -57,16 +57,13 @@ public class EffectController : BaseController
             if (Managers.Map.OutOfMap(destPos))
                 continue;
 
-            int mapX = (CellPos.x + attkPos.x) - Managers.Map.MinX;
-            int mapY = Managers.Map.MaxY - (CellPos.y + attkPos.y);
-
             #region 디버그용_공격범위 표시
             {
                 //개발단계에서 공격범위 확인 용
                 //서버에서 패킷보낼 때 잘못 갈 수도 있으므로 대비하기 위함
 
                 SpriteRenderer seeAttack = Managers.Resource.Instantiate("Effect/Common/AttackRange_Eff").GetComponent<SpriteRenderer>();
-                Vector3 visiblePos = new Vector3(CellPos.x + attkPos.x, CellPos.y + attkPos.y);
+                Vector3 visiblePos = new Vector3(destPos.x, destPos.y);
 
                 if (visiblePos == Owner.CellPos)
                     seeAttack.gameObject.SetActive(false);
@@ -85,19 +82,19 @@ public class EffectController : BaseController
             }
             #endregion
 
-            GameObject go = Managers.Map.Objects[mapY, mapX];
+            //GameObject go = Managers.Map.Objects[mapY, mapX];
 
-            if (go == null || Owner.gameObject == go)
-                continue;
+            //if (go == null || Owner.gameObject == go)
+            //    continue;
 
-            CreatureController cc = go.GetComponent<CreatureController>();
+            //CreatureController cc = go.GetComponent<CreatureController>();
 
-            if (Owner.TeamId == cc.TeamId)
-                continue;
+            //if (Owner.TeamId == cc.TeamId)
+            //    continue;
 
 
-            Debug.Log($"Attack : {go.name} , ({attkPos}) , Hp : {cc.Hp} ");
-            cc.OnDamaged(Owner.gameObject, 10);
+            //Debug.Log($"Attack : {go.name} , ({attkPos}) , Hp : {cc.Hp} ");
+            //cc.OnDamaged(Owner.gameObject, 10);
 
         }
     }

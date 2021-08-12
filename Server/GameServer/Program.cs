@@ -38,11 +38,13 @@ namespace GameServer
 			_listener.Init(endPoint, () => { return SessionManager.Instance.Generate(); });
 			Console.WriteLine("Listening...");
 
-			JobTimer.Instace.Push(FlushRoom);
+		//	JobTimer.Instace.Push(FlushRoom);
 
 			while (true)
 			{
-				JobTimer.Instace.Flush();
+				//JobTimer.Instace.Flush();
+				RoomManager.Instance.Find(1).Update();
+				Thread.Sleep(100);
 			}
 		}
 	}

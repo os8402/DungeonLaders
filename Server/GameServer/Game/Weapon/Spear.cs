@@ -8,9 +8,9 @@ namespace GameServer.Game
     public class Spear : Weapon
     {
         //창은 바라보는 방향 + attackRange만 계산해주면 됩니다.
-        //     ㅁ           
-        // ㅁ  me  ㅁ
-        //     ㅁ      
+        //  ㅁ  ㅁ  ㅁ        
+        //  ㅁ  me  ㅁ
+        //  ㅁ  ㅁ  ㅁ       
         protected override List<AttackPos> CalcAttackRange(Vector2Int cellPos, int range)
         {
             List<AttackPos> attackList = new List<AttackPos>();

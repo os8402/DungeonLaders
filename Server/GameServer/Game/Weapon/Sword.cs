@@ -75,10 +75,10 @@ namespace GameServer.Game
         }
      
 
-        protected override Vector2Int GetDirFromNormal(Vector2Int pos)
+        protected override Vector2Int GetDirFromNormal(Vector2Int normal)
         {
-            int x = (pos.x > 0 ? 1 : -1) * _attackRange;
-            int y = (pos.y > 0 ? 1 : -1) * _attackRange;
+            int x = (normal.x > 0 ? 1 : -1) * _attackRange;
+            int y = (normal.y > 0 ? 1 : -1) * _attackRange;
 
             return new Vector2Int(x, y);
         }

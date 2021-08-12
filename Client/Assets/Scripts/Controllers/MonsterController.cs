@@ -78,11 +78,11 @@ public class MonsterController : CreatureController
 
         if (q.z > Quaternion.identity.z) // 오른쪽
         {
-            Dir = -1;
+            Dir = DirState.Left;
         }
         else if (q.z < Quaternion.identity.z)// 왼쪽
         {
-            Dir = 1;
+            Dir = DirState.Right;
         }
 
         else return;

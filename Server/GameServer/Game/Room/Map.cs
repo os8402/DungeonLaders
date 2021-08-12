@@ -68,7 +68,7 @@ public class Map
 	public int SizeY { get { return MaxY - MinY + 1; } }
 
 	bool[,] _collision;
-	Player[,] _players;
+	GameObject[,] _objects;
 
 	bool[,] closed;
 	int[,] open;
@@ -99,33 +99,57 @@ public class Map
 
 		int x = cellPos.x - MinX;
 		int y = MaxY - cellPos.y;
-		return !_collision[y, x] && (!checkObjects || _players[y, x]  == null);
+		return !_collision[y, x] && (!checkObjects || _objects[y, x]  == null);
 	}
-	public bool ApplyMove(Player player , Vector2Int dest)
+
+	public GameObject Find(Vector2Int cellPos)
     {
-		PositionInfo posInfo = player.Info.PosInfo;
-		if (posInfo.PosX < MinX || posInfo.PosX > MaxX)
-			return false;
-		if (posInfo.PosY < MinY || posInfo.PosY > MaxY)
-			return false;
+		if (cellPos.x < MinX || cellPos.x > MaxX)
+			return null;
+        if (cellPos.y < MinY || cellPos.y > MaxY)
+            return null;
+
+        int x = cellPos.x - MinX;
+        int y = MaxY - cellPos.y;
+        return _objects[y, x];
+    }
+
+	public bool ApplyLeave(GameObject gameObject)
+    {
+        PositionInfo posInfo = gameObject.PosInfo;
+        if (posInfo.PosX < MinX || posInfo.PosX > MaxX)
+            return false;
+        if (posInfo.PosY < MinY || posInfo.PosY > MaxY)
+            return false;
+
+        {
+            int x = posInfo.PosX - MinX;
+            int y = MaxY - posInfo.PosY;
+            if (_objects[y, x] == gameObject)
+                _objects[y, x] = null;
+        }
+
+		return true; 
+
+    }
+	public bool ApplyMove(GameObject gameObject, Vector2Int dest)
+    {
+		ApplyLeave(gameObject);
+
+		PositionInfo posInfo = gameObject.PosInfo;
 
 		if (CanGo(dest, true) == false)
 			return false;
-        {
-			int x = posInfo.PosX - MinX;
-			int y = MaxY - posInfo.PosY;
-			if(_players[y ,x ] == player)
-				_players[y, x] = null;
-		}
+  
         {
 			int x = dest.x - MinX;
 			int y = MaxY - dest.y;
-			_players[y, x] = player; 
+			_objects[y, x] = gameObject; 
         }
 
-		//posInfo.PosX = dest.x;
-		//posInfo.PosY = dest.y;
-		player.CellPos = new Vector2Int(dest.x, dest.y);
+		posInfo.PosX = dest.x;
+		posInfo.PosY = dest.y;
+		//player.CellPos = new Vector2Int(dest.x, dest.y);
 
 		return true; 
     }
@@ -146,7 +170,7 @@ public class Map
 		int xCount = MaxX - MinX + 1;
 		int yCount = MaxY - MinY + 1;
 		_collision = new bool[yCount, xCount];
-		_players = new Player[yCount, xCount];
+		_objects = new Player[yCount, xCount];
 	
 		for (int y = 0; y < yCount; y++)
 		{

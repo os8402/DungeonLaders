@@ -14,6 +14,7 @@ public class InputManager
     public bool Mouse_Left = false;
     public float H = 0.0f;
     public float V = 0.0f;
+    public Vector3 GetAxis { get { return new Vector3(H, V); } }
 
     public void InputUpdate()
     {

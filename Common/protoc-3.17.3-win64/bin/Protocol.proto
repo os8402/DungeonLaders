@@ -22,6 +22,27 @@ enum MsgId {
    DEAD = 3; 
  }
 
+ enum GameObjectType
+ {
+	NONE = 0;
+	PLAYER = 1;
+	MONSTER = 2;
+	PROJECTILE = 3;
+
+ }
+
+ enum DirState
+ {
+	UP = 0;
+	DOWN = 1;
+	LEFT = 2;
+	RIGHT = 3;
+	UP_LEFT = 4;
+	DOWN_LEFT = 5;
+	DOWN_RIGHT = 6;
+	UP_RIGHT = 7;
+ }
+
   enum Weapons
  {
    EMPTY = 0;
@@ -33,7 +54,7 @@ enum MsgId {
 
 
 message S_EnterGame {
-  PlayerInfo player =1;
+  ObjectInfo player =1;
 }
 
 message S_LeaveGame{
@@ -41,11 +62,11 @@ message S_LeaveGame{
 }
 
 message S_Spawn{
-	repeated PlayerInfo players = 1; 
+	repeated ObjectInfo objects = 1; 
 }
 
 message S_Despawn{
-	repeated int32 playerIds = 1; 
+	repeated int32 objectIds = 1; 
 }
 
 message C_Move{
@@ -53,7 +74,7 @@ message C_Move{
 }
 
 message S_Move{
-	int32 playerId = 1;
+	int32 objectId = 1;
 	PositionInfo posInfo = 2;
 }
 
@@ -62,16 +83,16 @@ message C_Skill{
 	TargetInfo targetInfo = 2;
 }
 message S_Skill{
-	int32 playerId = 1; 
+	int32 objectId = 1; 
 	repeated AttackPos attackList= 2;
 	AttackPos attackDir = 3; 
 	TargetInfo targetInfo = 4;
 
 }
 
-message PlayerInfo{
+message ObjectInfo{
 	
-	int32 playerId = 1;
+	int32 objectId = 1;
 	string name = 2; 
 	PositionInfo posInfo = 3;
 	int32 teamId = 4; 
@@ -84,7 +105,7 @@ message PositionInfo{
 	ControllerState state = 1;
 	int32 posX = 2; 
 	int32 posY = 3;
-	int32 dir = 4; 
+	DirState dir = 4; 
 
 }
 
@@ -98,7 +119,7 @@ message TargetInfo{
 
 	float targetX = 1;
 	float targetY = 2;
-	int32 dir = 3;
+	DirState dir = 3;
 }
 
 message AttackPos{

@@ -41,18 +41,25 @@ public class CreatureController : BaseController
     {
         Init();
     }
-    public override int Dir
+    public override DirState Dir
     {
         get { return PosInfo.Dir; }
         set
         {
             base.Dir = value;
-            // TODO : 나중에 json에서 파싱된 값을 가져와야 함
+       
             if (_hand == null)
                 return;
 
-            Vector2 hand = new Vector2(-0.2f, -0.3f);
-            hand.x = (Dir == 1 ? hand.x * -1 : hand.x);
+            // TODO : 나중에 json에서 파싱된 값을 가져와야 함
+            Vector2 hand = Vector2.zero;
+
+            if(MyWeapon.GetType() == typeof(Sword) || MyWeapon.GetType() == typeof(Spear))
+                hand = new Vector2(-0.2f, -0.3f);
+            else
+                hand = new Vector2(-0.2f, 0f);
+
+            hand.x = (Dir == DirState.Right ? hand.x * -1 : hand.x);
             _hand.localPosition = hand;
 
         }
@@ -60,7 +67,6 @@ public class CreatureController : BaseController
     protected override void Init()
     {
         base.Init();
-        Managers.Object.Add(id , gameObject);
         GameObject eff = Managers.Resource.Instantiate("Effect/Common/Resurrect_Eff");
         eff.transform.position = new Vector3(transform.position.x + 0.25f, transform.position.y) ;
         Hp = MaxHp;

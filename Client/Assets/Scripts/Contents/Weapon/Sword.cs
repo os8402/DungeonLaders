@@ -8,7 +8,6 @@ public class Sword : BaseWeapon
 {
     //TODO : 검은 공격할 때 방향에 따라 Sorting Order도 적용
     private int _swordDir = 0;
-    public Transform temp_target;
 
     public int SwordDir
     {
@@ -38,7 +37,7 @@ public class Sword : BaseWeapon
     protected override void UpdateRotation()
     {
 
-        if (_owner.Dir == -1)
+        if (_owner.Dir == DirState.Left)
         {
             //무기의 위치 , 마우스 위치
             switch (_swordDir)
@@ -80,9 +79,6 @@ public class Sword : BaseWeapon
         _ec.transform.localPosition = new Vector2(_attackDir.AttkPosX * 0.5f, _attackDir.AttkPosY * 0.5f);
         _ec.transform.localRotation = _rot;
         _ec = null;
-
-      
-        
 
     }
 

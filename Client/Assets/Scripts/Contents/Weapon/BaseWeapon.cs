@@ -11,9 +11,7 @@ public abstract class BaseWeapon : MonoBehaviour
     protected int id;
     public int Id { get; set; }
     protected SpriteRenderer _spriteRenderer;
-    [SerializeField]
     protected CreatureController _owner;
-    [SerializeField]
     protected Vector3 _targetPos; 
     protected int _attackRange = 1;
     public int AttackRange { get { return _attackRange; } }
@@ -45,6 +43,7 @@ public abstract class BaseWeapon : MonoBehaviour
     void GetControllerType()
     {
         //플레이어 몬스터 둘 다 무기를 들 수 있음
+ 
 
         if (_owner == null)
             Init();

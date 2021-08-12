@@ -11,32 +11,52 @@ public class ObjectManager
 	public MyPlayerController MyPlayer { get; set; }
 	Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
 
-	public void Add(PlayerInfo info , bool myPlayer = false)
+	public static GameObjectType GetObjectTypeById(int id)
     {
-		if (myPlayer)
-        {
-			CreateCreature("MyWarrior", info);
-	
-		}
-		else
-        {
-			CreateCreature("Warrior", info);
-		}
+		int type = (id >> 24) & 0x07F;
+		return (GameObjectType)type; 
     }
-	public void CreateCreature(string prefabName, PlayerInfo info)
+
+	public void Add(ObjectInfo info , bool myPlayer = false)
+    {
+
+		GameObjectType objectType = GetObjectTypeById(info.ObjectId);
+		if(objectType == GameObjectType.Player)
+        {
+            if (myPlayer)     
+                CreateCreature("MyWarrior", info);
+            
+            else
+                CreateCreature("Warrior", info);
+            
+        }
+		else if(objectType == GameObjectType.Monster)
+        {
+
+        }
+        else if (objectType == GameObjectType.Projectile)
+        {
+			CreateCreature("Arrow", info);
+		}
+
+    }
+	public void CreateCreature(string prefabName, ObjectInfo info)
 	{
 
 		GameObject go = Managers.Resource.Instantiate
-		($"Character/{prefabName}", name: $"{prefabName}_{info.PlayerId.ToString("000")}");
+		($"Character/{prefabName}", name: $"{prefabName}_{info.ObjectId.ToString("000")}");
+
 		CreatureController cc = go.GetComponent<CreatureController>();
 
-	
+		
 		cc.PosInfo = info.PosInfo;
-		cc.Id = info.PlayerId;
+		cc.Id = info.ObjectId;
 		cc.TeamId = info.TeamId;
 		cc.SyncPos();
 
 		cc.CreateWeapon(info.WeaponInfo, 1);
+
+		_objects.Add(info.ObjectId, go);
 
 		//Vector3Int initPos;
 		//int loop = 0; //무한루프 방지용
@@ -59,13 +79,6 @@ public class ObjectManager
 
 
 	}
-
-	public void Add(int id , GameObject go)
-	{
-		_objects.Add(id , go);
-	}
-
-
 
 	public void RemoveMyPlayer()
     {

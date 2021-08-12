@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-
 public abstract class Weapon
 {
  
@@ -32,7 +31,7 @@ public abstract class Weapon
     //무기별 공격범위 계산
     protected abstract List<AttackPos> CalcAttackRange(Vector2Int cellPos, int range);
     //무기 공격 방향 처리
-    protected abstract Vector2Int GetDirFromNormal(Vector2Int num);
+    protected abstract Vector2Int GetDirFromNormal(Vector2Int normal);
 
     //무기별 스킬 이벤트
     public void SkillEvent()
@@ -57,7 +56,8 @@ public abstract class Weapon
 
         //공격 범위
         AttackList = CalcAttackRange(attackPos, _attackRange);
-
+        //자기 자신도 포함됬을 경우 제거 [안전 장치] 
+        AttackList.Remove(new AttackPos { AttkPosX = 0, AttkPosY = 0 }); 
 
     }
 

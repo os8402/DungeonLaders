@@ -33,8 +33,7 @@ public class MyPlayerController : PlayerController
         }
 
         Vector3Int destPos = CellPos;
-
-        destPos += new Vector3Int((int)Managers.Input.H, (int)Managers.Input.V, 0);
+        destPos += Vector3Int.FloorToInt(Managers.Input.GetAxis);
 
         if (Managers.Map.CanGo(destPos) && Managers.Object.Find(destPos) == null)
         {
@@ -50,11 +49,11 @@ public class MyPlayerController : PlayerController
 
         if (q.z > Quaternion.identity.z) // 오른쪽
         {
-            Dir = 1;
+            Dir = DirState.Right;
         }
         else if (q.z < Quaternion.identity.z)// 왼쪽
         {
-            Dir = -1;
+            Dir = DirState.Left;
         }
 
         else return;

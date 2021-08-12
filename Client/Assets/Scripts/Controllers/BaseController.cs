@@ -10,7 +10,6 @@ public abstract  class BaseController : MonoBehaviour
     protected int id;
     public int Id { get { return id; } set { id = value; } }
 
-    [SerializeField]
     //  CellPos , CL_STATE , Dir이 갱신되면 True로 바꾸고 패킷전송
     protected bool _updated = false; 
     protected float Speed { get;  set; } = 10.0f;
@@ -21,7 +20,7 @@ public abstract  class BaseController : MonoBehaviour
 
     protected Animator _animator;
 
-    PositionInfo _positionInfo = new PositionInfo();
+    protected PositionInfo _positionInfo = new PositionInfo();
     public PositionInfo PosInfo
     {
         get { return _positionInfo; }
@@ -41,7 +40,10 @@ public abstract  class BaseController : MonoBehaviour
     //2.마우스 위치를 기준으로 합니다. 
     //3.관련 기능 매핑해둘 것
   
-    public virtual int Dir
+
+    // 방향은 8개지만 , 
+    // 캐릭터형 오브젝트들은 Left , Right만 보면 됩니다. 
+    public virtual DirState Dir
     {
 
         get { return PosInfo.Dir; }
@@ -56,8 +58,8 @@ public abstract  class BaseController : MonoBehaviour
             if (_spriteRenderer == null)
                 return;
 
-           _spriteRenderer.flipX = (Dir == 1 ? true : false);
-            float flipY = (Dir == 1 ? 180 : 0);
+           _spriteRenderer.flipX = (Dir == DirState.Right ? true : false);
+   
          
             UpdateAnimation();
             _updated = true;
