@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 
-public class Sword : BaseWeapon
+public class Sword : EquipWeapon
 {
     //TODO : 검은 공격할 때 방향에 따라 Sorting Order도 적용
     private int _swordDir = 0;

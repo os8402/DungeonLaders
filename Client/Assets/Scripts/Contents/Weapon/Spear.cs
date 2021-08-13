@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 
-public class Spear : BaseWeapon
+public class Spear : EquipWeapon
 {
     Coroutine _coMove = null;
     bool _isRot = true; 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 
-public class ArrowController : CreatureController
+public class ArrowController : BaseController
 {
     void GetDirRot()
     {
@@ -41,7 +41,6 @@ public class ArrowController : CreatureController
     protected override void Init()
     {
         GetDirRot();
-        Speed = 15f;
     }
 
     void Start()
@@ -49,10 +48,12 @@ public class ArrowController : CreatureController
         Init();
     }
 
-
-    //혹시 몰라서 다 막음
     protected override void UpdateAnimation() { }
-    public override void OnDamaged(GameObject attacker, int damage) { }
-    public override void OnDead(GameObject attacker) { }
 
+    protected override void UpdateRotation() { }
+
+    protected override void UpdateIdle() { }
+ 
+    protected override void MoveToNextPos() { }
+  
 }

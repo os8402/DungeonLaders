@@ -1,14 +1,21 @@
-﻿using Google.Protobuf.Protocol;
+﻿using GameServer.Data;
+using Google.Protobuf.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace GameServer.Game
 {
-    public class Sword : Weapon
+    public class Sword : EquipWeapon
     {
 
+        public Sword(Weapon WeaponData)
+        {
+            this.WeaponData = WeaponData;
+            Id = WeaponData.id;
+            WeaponType = WeaponData.weaponType;
 
+        }
         // 검은 자신을 기준으로 상 or 하 or 좌 or 우  중에서 
         // 2방향을 지정하고 
         // 그 후 2방향을 기준으로 대각선도 검사함  [즉 3방향] + [자기자신의 위치도 포함합니다]

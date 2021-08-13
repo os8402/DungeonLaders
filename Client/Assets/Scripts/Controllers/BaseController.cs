@@ -7,18 +7,39 @@ using static Define;
 
 public abstract  class BaseController : MonoBehaviour
 {
-    protected int id;
-    public int Id { get { return id; } set { id = value; } }
-
-    //  CellPos , CL_STATE , Dir이 갱신되면 True로 바꾸고 패킷전송
-    protected bool _updated = false; 
-    protected float Speed { get;  set; } = 10.0f;
-    protected bool _ignoreCollision = false; 
-
     protected SpriteRenderer _spriteRenderer;
     public SpriteRenderer SpriteRenderer { get { return _spriteRenderer; } }
 
     protected Animator _animator;
+
+    protected int _id;
+    public int Id { get { return _id; } set { _id = value; } }
+    public int TeamId { get; set; }
+
+    //  CellPos , CL_STATE , Dir이 갱신되면 True로 바꾸고 패킷전송
+    protected bool _updated = false; 
+
+    protected bool _ignoreCollision = false;
+
+    protected StatInfo _stat = new StatInfo();
+    public virtual StatInfo Stat
+    {
+        get { return _stat; }
+        set
+        {
+            if (_stat.Equals(value))
+                return;
+
+            _stat.Hp = value.Hp;
+            _stat.MaxHp = value.MaxHp;
+            _stat.Speed = value.Speed;
+        }
+    }
+    public  float Speed
+    {
+        get { return Stat.Speed; }
+        set { Stat.Speed = value;  }
+    }
 
     protected PositionInfo _positionInfo = new PositionInfo();
     public PositionInfo PosInfo
@@ -58,7 +79,9 @@ public abstract  class BaseController : MonoBehaviour
             if (_spriteRenderer == null)
                 return;
 
-           _spriteRenderer.flipX = (Dir == DirState.Right ? true : false);
+            string name = Enum.GetName(typeof(DirState) , Dir);
+          
+           _spriteRenderer.flipX = (name.Contains("Right") ? true : false);
    
          
             UpdateAnimation();
@@ -107,7 +130,7 @@ public abstract  class BaseController : MonoBehaviour
         
         }
     }
-    public Vector3 TargetPos { get; set; }
+
 
     protected virtual void Init()
     {

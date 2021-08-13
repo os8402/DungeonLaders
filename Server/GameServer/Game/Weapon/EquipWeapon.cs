@@ -1,15 +1,14 @@
-﻿using GameServer.Game;
-using Google.Protobuf.Protocol;
+﻿using Google.Protobuf.Protocol;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameServer.Data;
+using GameServer.Game;
 
-
-public abstract class Weapon
+public abstract class EquipWeapon
 {
- 
+    public Weapon WeaponData { get; set; }
 
-    protected int id;
     public int Id { get; set; }
 
     public Weapons WeaponType { get; set; }
@@ -57,8 +56,8 @@ public abstract class Weapon
         //공격 범위
         AttackList = CalcAttackRange(attackPos, _attackRange);
         //자기 자신도 포함됬을 경우 제거 [안전 장치] 
-        AttackList.Remove(new AttackPos { AttkPosX = 0, AttkPosY = 0 }); 
-
+        AttackList.Remove(new AttackPos { AttkPosX = 0, AttkPosY = 0 });
+        
     }
 
 }

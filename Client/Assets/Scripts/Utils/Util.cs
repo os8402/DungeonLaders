@@ -51,21 +51,14 @@ public class Util
 
         return null;
     }
-    static float GetAtan(Vector2 startPos, Vector2 targetPos, bool player = false)
+    static float GetAtan(Vector2 startPos, Vector2 targetPos)
     {
         Vector2 direction = targetPos - startPos;
-        float angle; 
-
-        if(player)
-            angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
-        else
-            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        return angle;
+        return Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
     }
-    public static Quaternion RotateDir2D(Vector2 startPos, Vector2 targetPos , bool player = false)
+    public static Quaternion RotateDir2D(Vector2 startPos, Vector2 targetPos)
     {
-        float angle = GetAtan(startPos, targetPos, player);
+        float angle = GetAtan(startPos, targetPos);
         return Quaternion.AngleAxis(angle, Vector3.forward);
     }
 

@@ -170,7 +170,7 @@ public class Map
 		int xCount = MaxX - MinX + 1;
 		int yCount = MaxY - MinY + 1;
 		_collision = new bool[yCount, xCount];
-		_objects = new Player[yCount, xCount];
+		_objects = new GameObject[yCount, xCount];
 	
 		for (int y = 0; y < yCount; y++)
 		{
@@ -190,7 +190,7 @@ public class Map
 	// 상하좌우 cost = 1  , 대각선 cost = 1.4f  , 실수는 연산부하가 있으므로 10을 곱해서 정수로 계산하였음 
 	int[] _cost = new int[] { 10, 10, 10, 10, 14, 14, 14, 14 };
 
-	public List<Vector2Int> FindPath(Vector2Int startCellPos, Vector2Int destCellPos, bool ignoreDestCollision = false)
+	public List<Vector2Int> FindPath(Vector2Int startCellPos, Vector2Int destCellPos, bool checkObjects = true)
 	{
 		// 점수 매기기
 		// F = G + H
@@ -244,9 +244,9 @@ public class Map
 
 				// 유효 범위를 벗어났으면 스킵
 				// 벽으로 막혀서 갈 수 없으면 스킵
-				if (!ignoreDestCollision || next.Y != dest.Y || next.X != dest.X)
+				if (next.Y != dest.Y || next.X != dest.X)
 				{
-					if (CanGo(Pos2Cell(next)) == false) // CellPos
+					if (CanGo(Pos2Cell(next) , checkObjects) == false) // CellPos
 						continue;
 				}
 

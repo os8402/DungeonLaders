@@ -1,0 +1,38 @@
+{
+  "weapons": [
+    {
+      "id": "101",
+      "weaponType": "Sword",
+      "name": "³ì½¼ °Ë",
+      "cooldown": "0.2",
+      "damage": "8",
+      "skillType": "SkillNormal"
+
+    },
+    {
+      "id": "201",
+      "weaponType": "Spear",
+      "name": "³ì½¼ Ã¢",
+      "cooldown": "0.2",
+      "damage": "10",
+      "skillType": "SkillNormal"
+
+    },
+    {
+      "id": "301",
+      "weaponType": "Bow",
+      "name": "³ì½¼ È°",
+      "cooldown": "0.2",
+      "damage": "50",
+      "skillType": "SkillProjectile",
+      "projectile": {
+        "name": "È­»ì",
+        "speed": "30.0",
+        "range": "100",
+        "prefab" : "Creature/Arrow"
+      }
+
+    }
+
+  ]
+} 

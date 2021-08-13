@@ -61,33 +61,8 @@ public class MonsterController : CreatureController
     protected override void Init()
     {
         base.Init();
-        Speed = 5f;
   
     }
-
-
-    protected override void UpdateRotation()
-    {
-
-        if (_player == null)
-            return;
-
-        TargetPos = _player.transform.position;
-
-        Quaternion q = Util.RotateDir2D(_player.transform.position, transform.position , true);
-
-        if (q.z > Quaternion.identity.z) // 오른쪽
-        {
-            Dir = DirState.Left;
-        }
-        else if (q.z < Quaternion.identity.z)// 왼쪽
-        {
-            Dir = DirState.Right;
-        }
-
-        else return;
-    }
-
 
     protected override void UpdateIdle()
     {
@@ -131,7 +106,7 @@ public class MonsterController : CreatureController
 
         Vector3Int nextPos = path[1];
   
-        if (Managers.Map.CanGo(nextPos) && Managers.Object.Find(nextPos) == null)
+        if (Managers.Map.CanGo(nextPos) && Managers.Object.FindCreature(nextPos) == null)
         {
             CellPos = nextPos;
         }

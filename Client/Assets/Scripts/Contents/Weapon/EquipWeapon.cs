@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEngine;
 using static Define;
 
-public abstract class BaseWeapon : MonoBehaviour
+public abstract class EquipWeapon : MonoBehaviour
 {
     protected int id;
     public int Id { get; set; }
@@ -75,11 +75,11 @@ public abstract class BaseWeapon : MonoBehaviour
         string weaponName = this.GetType().Name;
 
         _moveDir = new Vector3(_attackDir.AttkPosX, _attackDir.AttkPosY);
-   
+        _rot = Util.LookAt2D(_moveDir, Vector2.zero, FacingDirection.LEFT);
+
         //이펙트 출력
         GameObject go = Managers.Resource.Instantiate($"Effect/{weaponName}/{weaponName}_Eff_{id.ToString("000")}");
         _ec = go.GetComponent<EffectController>();
-        _rot = Util.LookAt2D(_moveDir, Vector2.zero, FacingDirection.LEFT);
         _ec.transform.parent = transform.parent;
         //실제 좌표 + 소유자 등록 [누가 공격했는지 전달해줘야 함 ] 
         _ec.CellPos = _owner.CellPos;

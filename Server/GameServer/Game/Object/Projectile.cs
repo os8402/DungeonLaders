@@ -7,6 +7,9 @@ namespace GameServer.Game
 {
     public class Projectile : GameObject
     {
+
+        public GameObject Owner { get; set; }
+        public Data.Weapon WeaponData { get; set; }
         public Projectile()
         {
             ObjectType = GameObjectType.Projectile;
@@ -14,7 +17,7 @@ namespace GameServer.Game
 
         public AttackPos AttackPos { get; set; }
 
-        public virtual void Update() { } 
+      
      
         public Vector2Int GetFrontCellPos()
         {

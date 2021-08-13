@@ -9,6 +9,7 @@ using System.Net;
 using Google.Protobuf.Protocol;
 using Google.Protobuf;
 using GameServer.Game;
+using GameServer.Data;
 
 namespace GameServer
 {
@@ -50,12 +51,11 @@ namespace GameServer
 				MyPlayer.PosInfo.Dir = DirState.Left;
 				MyPlayer.Info.TeamId = 1 << 24;
 
-				MyPlayer.WeaponInfo.WeaponType = Weapons.Bow;
-				MyPlayer.WeaponInfo.WeaponId = 2;
-
-				MyPlayer.Weapon = new Bow();
-
-				MyPlayer.Weapon.Owner = MyPlayer;
+				StatInfo stat = null;
+				DataManager.StatDict.TryGetValue(1, out stat);
+				MyPlayer.Stat.MergeFrom(stat);
+					
+				
 				MyPlayer.Session = this; 
 				
 			

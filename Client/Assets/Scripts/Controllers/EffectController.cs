@@ -10,6 +10,8 @@ public class EffectController : BaseController
     public CreatureController Owner { get; set; }
     public List<AttackPos> AttackList { get; set; }
 
+    public float destroyTime = 0.5f;
+
 
     private void Awake()
     {
@@ -36,7 +38,7 @@ public class EffectController : BaseController
     {   
        if(_coHit == null)
         {
-            StartCoroutine("CoHitCreature", 0.2f);
+            StartCoroutine("CoHitCreature", destroyTime);
         }
     }
 

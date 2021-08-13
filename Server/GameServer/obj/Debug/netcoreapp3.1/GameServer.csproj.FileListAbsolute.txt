@@ -15,3 +15,4 @@ C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\GameServer\obj\Debug\netco
 C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\GameServer\obj\Debug\netcoreapp3.1\GameServer.pdb
 C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\GameServer\obj\Debug\netcoreapp3.1\GameServer.genruntimeconfig.cache
 C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\GameServer\bin\Debug\netcoreapp3.1\Google.Protobuf.dll
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\GameServer\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll

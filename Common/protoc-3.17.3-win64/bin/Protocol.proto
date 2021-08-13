@@ -13,6 +13,8 @@ enum MsgId {
   S_MOVE = 5;
   C_SKILL = 6;
   S_SKILL = 7; 
+  S_CHANGE_HP = 8;
+  S_DIE = 9;
 }
  enum ControllerState
  {
@@ -52,6 +54,14 @@ enum MsgId {
    SPEAR = 4;
  }
 
+ enum SkillType
+ {
+	SKILL_NONE = 0;
+	SKILL_NORMAL = 1;
+	SKILL_PROJECTILE = 2; 
+
+ }
+
 
 message S_EnterGame {
   ObjectInfo player =1;
@@ -89,6 +99,17 @@ message S_Skill{
 	TargetInfo targetInfo = 4;
 
 }
+message S_ChangeHp {
+	int32 objectId = 1; 
+	int32 hp = 2;
+	int32 attackerId = 3; 
+
+}
+message S_Die {
+	int32 objectId = 1; 
+	int32 attackerId = 2;
+
+}
 
 message ObjectInfo{
 	
@@ -97,6 +118,7 @@ message ObjectInfo{
 	PositionInfo posInfo = 3;
 	int32 teamId = 4; 
 	WeaponInfo weaponInfo = 5; 
+	StatInfo statInfo = 6; 
 
 }
 
@@ -112,7 +134,6 @@ message PositionInfo{
 message WeaponInfo{
 
 	int32 weaponId = 1;
-	Weapons weaponType = 2;
 }
 
 message TargetInfo{
@@ -127,6 +148,16 @@ message AttackPos{
 	int32 attkPosX = 1;
 	int32 attkPosY = 2;
 	
+}
+
+message StatInfo {
+
+	int32 level = 1;
+	int32 hp = 2;
+	int32 maxHp = 3;
+	int32 attack = 4;
+	float speed = 5;
+	int32 totalExp = 6; 
 }
 
 

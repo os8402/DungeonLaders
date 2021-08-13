@@ -1,32 +1,45 @@
-﻿using System;
+﻿using Google.Protobuf.Protocol;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Data
-{ 
-#region Stat
-	//[Serializable]
-	//public class Stat
-	//{
-	//	public int level;
-	//	public int maxHp;
-	//	public int attack;
-	//	public int totalExp;
-	//}
+{
+  
+    #region Weapon
+    [Serializable]
+    public class Weapon
+    {
+        public int id;
+        public Weapons weaponType; 
+        public string name;
+        public float cooldown;
+        public int damage;
+        public SkillType skillType;
+        public ProjectileInfo projectile;
+    }
 
-	//[Serializable]
-	//public class StatData : ILoader<int, Stat>
-	//{
-	//	public List<Stat> stats = new List<Stat>();
+    public class ProjectileInfo
+    {
+        public string name;
+        public float speed;
+        public int range;
+        public string prefab;
+    }
 
-	//	public Dictionary<int, Stat> MakeDict()
-	//	{
-	//		Dictionary<int, Stat> dict = new Dictionary<int, Stat>();
-	//		foreach (Stat stat in stats)
-	//			dict.Add(stat.level, stat);
-	//		return dict;
-	//	}
-	//}
-	#endregion
+    public class WeaponData : ILoader<int, Weapon>
+    {
+        public List<Weapon> weapons = new List<Weapon>();
+
+        public Dictionary<int, Weapon> MakeDict()
+        {
+            Dictionary<int, Weapon> dict = new Dictionary<int, Weapon>();
+            foreach (Weapon weapon in weapons)
+                dict.Add(weapon.id, weapon);
+            return dict;
+        }
+    }
+
+    #endregion
 }

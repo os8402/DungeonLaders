@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "OY40HApHvlF7PIODE0CYjydEGjIGzUamNQX7m/lu6zECc0vO+J8LAw9i8A9v7n+CDt9UOcdgL18ny720g1fjnw==",
+  "dgSpecHash": "d+EEhg9znyAhidPI4ds+DTWam6xw/GWTODV4GRkUPrm63dGY7x+1UcnbWOs7ybakCvr7GUuILPTlHaMC6mKTAA==",
   "success": true,
   "projectFilePath": "C:\\Users\\lenovo\\Documents\\GitHub\\DungeonLaders\\Server\\GameServer\\GameServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lenovo\\.nuget\\packages\\google.protobuf\\3.17.3\\google.protobuf.3.17.3.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\lenovo\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\lenovo\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
   ],

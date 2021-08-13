@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 
-public class Bow : BaseWeapon
+public class Bow : EquipWeapon
 {
     private Animator _animator;
 
@@ -33,4 +33,5 @@ public class Bow : BaseWeapon
         _animator.Play("Bow");
 
     }
+    
 }

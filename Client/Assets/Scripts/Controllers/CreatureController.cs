@@ -1,4 +1,5 @@
-﻿using Google.Protobuf.Protocol;
+﻿using Data;
+using Google.Protobuf.Protocol;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,32 +11,27 @@ public class CreatureController : BaseController
  
 
     HpBar _hpBar;
-
-    protected int _hp;
-    public int MaxHp { get; protected set; } = 100;
-    public int Hp
+    public override StatInfo Stat
     {
-        get { return _hp; }
-      
-        set 
-        {
-            _hp = value;
-            UpdateHpBar();
-        }
+        get { return base.Stat; }
+        set { base.Stat = value; UpdateHpBar(); }
     }
 
 
-    public int TeamId { get; set; }
+    public int Hp
+    {
+        get { return Stat.Hp; }
+        set { Stat.Hp = value; UpdateHpBar(); }    
+    }
+
 
     protected Transform _hand;
-    public BaseWeapon MyWeapon { get; set;  }
+    public EquipWeapon MyWeapon { get; set;  }
     public Weapons WEAPON_TYPES { get; protected set; } = Weapons.Empty;
 
     protected Coroutine _coSkill = null;
     protected Action<S_Skill> _skillEvent = null;
-
-    private Coroutine _coDead = null; 
-    
+    public Vector3 TargetPos { get; set; }
 
     void Start()
     {
@@ -69,7 +65,6 @@ public class CreatureController : BaseController
         base.Init();
         GameObject eff = Managers.Resource.Instantiate("Effect/Common/Resurrect_Eff");
         eff.transform.position = new Vector3(transform.position.x + 0.25f, transform.position.y) ;
-        Hp = MaxHp;
         AddHpBar();
 
     }
@@ -89,114 +84,99 @@ public class CreatureController : BaseController
             return;
 
         float ratio = 0.0f;
-        if (MaxHp > 0)
-            ratio = ((float)Hp / MaxHp);
-
+        if (Stat.MaxHp > 0)      
+            ratio = ((float)Hp / Stat.MaxHp);
+            
         _hpBar.SetHpBar(ratio);
+ 
     }
 
-
-    public void CreateWeapon(WeaponInfo weaponInfo, int idx)
+    public void ConvertColorHit()
     {
-        if (weaponInfo.WeaponType == Weapons.Empty)
-            return;
-
-        WEAPON_TYPES = weaponInfo.WeaponType;
-
-        _hand = Util.FindChild<Transform>(gameObject, "Weapon_Hand", false);
-
-        string name = weaponInfo.WeaponType.ToString();
-
-       GameObject go =Managers.Resource.Instantiate($"Weapon/{name}_{idx.ToString("000")}");
-        go.transform.parent = _hand;
-        go.transform.localPosition = Vector3.zero;
-
-        MyWeapon = go.GetComponent<BaseWeapon>();
-        MyWeapon.Id = weaponInfo.WeaponId;
-      
-        _skillEvent -= MyWeapon.SkillEvent;
-        _skillEvent += MyWeapon.SkillEvent;
-
-    }
-
-
-
-    protected override void MoveToNextPos() { }
-
-    protected override void UpdateIdle() { }
-
-    protected override void UpdateRotation() { }
-
-    public virtual void OnDamaged(GameObject attacker, int damage)
-    {
-        //나중에 서버로 옮길건데 멀티스레드에선 갑자기 없어질 수도 잇어서 return
-        if (attacker == null)
-            return;
-
-        if (CL_STATE == ControllerState.Dead)
-            return;
-
-        damage = Mathf.Max(0, damage);
-        Hp = Mathf.Max(0, Hp - damage);
-
-        if(Hp <= 0)
-        {
-           
-            OnDead(attacker);
-            return;
-        }
-
-
-        ConvertColorHit();
-
-    }
-    
-    void ConvertColorHit()
-    {
-        if(_spriteRenderer.color == Color.white)
+        if (_spriteRenderer.color == Color.white)
         {
             _spriteRenderer.color = Color.red;
             Invoke("ConvertColorHit", 0.2f);
         }
-            
+
         else
         {
             CancelInvoke();
             _spriteRenderer.color = Color.white;
         }
-  
+
     }
 
-    public virtual void OnDead(GameObject attacker)
+    public void CreateWeapon(WeaponInfo weaponInfo)
     {
+        Data.Weapon weapon  = null;
+        int id = weaponInfo.WeaponId;
+        if (Managers.Data.WeaponDict.TryGetValue(id, out weapon) == false)
+            return;
 
-        Debug.Log($"{attacker.name} -> {gameObject.name} Kill!");
-     
-        _coDead = StartCoroutine(CoCreatureDead(3 , attacker));
+        if (weapon.weaponType == Weapons.Empty)
+            return;
+
+        WEAPON_TYPES = weapon.weaponType;
+
+        _hand = Util.FindChild<Transform>(gameObject, "Weapon_Hand", false);
+        string name = weapon.weaponType.ToString();
+
+        int typeId = id % 100; 
+       
+        GameObject go = Managers.Resource.Instantiate($"Weapon/{name}_{typeId.ToString("000")}");
+        go.transform.parent = _hand;
+        go.transform.localPosition = Vector3.zero;
+
+        MyWeapon = go.GetComponent<EquipWeapon>();
+        MyWeapon.Id = typeId;
+
+
+        _skillEvent -= MyWeapon.SkillEvent;
+        _skillEvent += MyWeapon.SkillEvent;
+
+   
+    }
+
+    protected override void UpdateRotation() 
+    {
+        Quaternion q = Util.LookAt2D(transform.position , TargetPos, FacingDirection.DOWN);
+
+        if (q.z > Quaternion.identity.z) // 오른쪽       
+            Dir = DirState.Right;
+
+        else if (q.z < Quaternion.identity.z)// 왼쪽    
+            Dir = DirState.Left;
+
+        else
+            return;
 
     }
 
-    IEnumerator CoCreatureDead(float time , GameObject attacker)
+    protected override void MoveToNextPos() { }
+
+    protected override void UpdateIdle() { }
+
+ 
+
+    public virtual void OnDamaged()
+    {
+        ConvertColorHit();
+    }
+
+    public virtual void OnDead()
     {
         CL_STATE = ControllerState.Dead;
+
+        if (Managers.Object.MyPlayer == this)
+            Managers.Input.Clear();
 
         _hpBar.gameObject.SetActive(false);
         _hand.gameObject.SetActive(false);
 
-        //TODO : 죽엇다고 이벤트 전달
-     
-        yield return new WaitForSeconds(time);
-
-        Managers.Object.Remove(id);
-        CreatureController cc = gameObject.GetComponent<CreatureController>();
-
-        int nameIndex = gameObject.name.LastIndexOf('_');
-        string myName = gameObject.name.Substring(0, nameIndex);
-
-        //부.활
-        //Managers.Object.CreateCreature(myName, id, TeamId, WEAPONS);
-
     }
+
+  
 
 
 

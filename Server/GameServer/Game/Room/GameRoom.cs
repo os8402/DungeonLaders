@@ -1,4 +1,5 @@
-﻿using Google.Protobuf;
+﻿using GameServer.Data;
+using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using System;
 using System.Collections.Generic;
@@ -20,13 +21,23 @@ namespace GameServer.Game
         public void Init(int mapId)
         {
             Map.LoadMap(mapId);
+
+            Monster monster = ObjectManager.Instance.Add<Monster>();
+            monster.CellPos = new Vector2Int(5, 5);
+            EnterGame(monster);
         }
 
         public void Update()
         {
             lock (_lock)
             {
-                foreach(Projectile projectile in _projectiles.Values)
+                foreach(Player player in _players.Values)
+                {
+                    if (player == null)
+                        return;
+                    player.Update();
+                }
+                foreach (Projectile projectile in _projectiles.Values)
                 {
                     projectile.Update();
                 }
@@ -49,6 +60,8 @@ namespace GameServer.Game
                     _players.Add(gameObject.Id, player);
                     player.Room = this;
 
+                    Map.ApplyMove(player, new Vector2Int(player.CellPos.x, player.CellPos.y));
+
                     //본인한테 전송
                     {
       
@@ -63,6 +76,13 @@ namespace GameServer.Game
                                 spawnPacket.Objects.Add(p.Info);
                         }
 
+                        foreach(Monster m in _monsters.Values)                       
+                            spawnPacket.Objects.Add(m.Info);
+                        
+                        foreach (Projectile p in _projectiles.Values)                      
+                            spawnPacket.Objects.Add(p.Info);
+                        
+
                         player.Session.Send(spawnPacket);
                     }
 
@@ -71,7 +91,9 @@ namespace GameServer.Game
                 {
                     Monster monster = gameObject as Monster;
                     _monsters.Add(gameObject.Id, monster);
-                    monster.Room = this; 
+                    monster.Room = this;
+
+                    Map.ApplyMove(monster, new Vector2Int(monster.CellPos.x, monster.CellPos.y));
                 }
                 else if (type == GameObjectType.Projectile)
                 {
@@ -199,7 +221,7 @@ namespace GameServer.Game
                 //통과
                 //info.PosInfo.State = ControllerState.Skill;
 
-                Weapon weapon = player.Weapon;
+                EquipWeapon weapon = player.EquipWeapon;
                 int x = skillPacket.AttackPos.AttkPosX;
                 int y = skillPacket.AttackPos.AttkPosY;
                 weapon.TargetPos = new Vector2Int(x , y);
@@ -220,32 +242,49 @@ namespace GameServer.Game
                
                 BroadCast(skill);
 
-                
-                if(weapon.GetType() != typeof(Bow))
+                Data.Weapon weaponData = null;
+                if (DataManager.WeaponDict.TryGetValue(weapon.WeaponData.id, out weaponData) == false)
+                    return;
+
+                switch(weaponData.skillType)
                 {
-                    // TODO : 데미지 판정
-                    foreach (AttackPos pos in weapon.AttackList)
-                    {
-                        Vector2Int skillPos = new Vector2Int(info.PosInfo.PosX + pos.AttkPosX,
-                           info.PosInfo.PosY + pos.AttkPosY);
+                    case SkillType.SkillNormal:
 
-                        GameObject target = Map.Find(skillPos);
-
-                        if (target != null)
+                        // TODO : 데미지 판정
+                        foreach (AttackPos pos in weapon.AttackList)
                         {
-                            Console.WriteLine("Player Hit!!");
+                            Vector2Int skillPos = new Vector2Int(info.PosInfo.PosX + pos.AttkPosX,
+                               info.PosInfo.PosY + pos.AttkPosY);
+
+                            GameObject target = Map.Find(skillPos);
+
+                            if (target != null)
+                            {
+                                Console.WriteLine("Player Hit!!");
+                            }
                         }
-                    }
-                }
-                else
-                {
-                    // 투사체를 발사하는 원거리류는 생성만
-                    Bow bow = weapon as Bow;
-                    bow.ShootArrow();
-                }
+                        break;
 
+                    case SkillType.SkillProjectile:
 
+                        // 투사체를 발사하는 원거리류는 생성만
+                        Bow bow = weapon as Bow;
+                        bow.ShootArrow();
+                        break; 
+                }
+              
             }
+        }
+
+        public Player FindPlayer(Func<GameObject,bool> condition )
+        {
+            foreach(Player player in _players.Values)
+            {
+                if (condition.Invoke(player))
+                    return player;
+            }
+
+            return null; 
         }
 
         public void BroadCast(IMessage packet)

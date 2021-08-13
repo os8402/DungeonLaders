@@ -10,16 +10,16 @@ public interface ILoader<Key, Value>
 
 public class DataManager
 {
-    //public Dictionary<int, Data.Stat> StatDict { get; private set; } = new Dictionary<int, Data.Stat>();
-
+    public  Dictionary<int, Data.Weapon> WeaponDict { get; private set; } = new Dictionary<int, Data.Weapon>();
     public void Init()
-    {
-       // StatDict = LoadJson<Data.StatData, int, Data.Stat>("StatData").MakeDict();
+    {   
+        WeaponDict = LoadJson<Data.WeaponData, int, Data.Weapon>("WeaponData").MakeDict();
     }
 
-    Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
+    static Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
     {
-		TextAsset textAsset = Managers.Resource.Load<TextAsset>($"Data/{path}");
-        return JsonUtility.FromJson<Loader>(textAsset.text);
-	}
+        TextAsset textAsset = Managers.Resource.Load<TextAsset>($"Data/{path}");
+        return Newtonsoft.Json.JsonConvert.DeserializeObject<Loader>(textAsset.text);
+
+    }
 }

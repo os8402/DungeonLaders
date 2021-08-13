@@ -20,14 +20,25 @@ public class ObjectManager
 	public void Add(ObjectInfo info , bool myPlayer = false)
     {
 
-		GameObjectType objectType = GetObjectTypeById(info.ObjectId);
+        if (MyPlayer != null && MyPlayer.Id == info.ObjectId)
+            return;
+
+        if (_objects.ContainsKey(info.ObjectId))
+            return;
+
+        GameObjectType objectType = GetObjectTypeById(info.ObjectId);
 		if(objectType == GameObjectType.Player)
         {
-            if (myPlayer)     
-                CreateCreature("MyWarrior", info);
+            if (myPlayer)
+            {
+				
+				CreateObject("MyWarrior", info , true);
+
+			}
+                
             
             else
-                CreateCreature("Warrior", info);
+                CreateObject("Warrior", info);
             
         }
 		else if(objectType == GameObjectType.Monster)
@@ -36,27 +47,35 @@ public class ObjectManager
         }
         else if (objectType == GameObjectType.Projectile)
         {
-			CreateCreature("Arrow", info);
+			CreateObject("Arrow", info);
 		}
 
     }
-	public void CreateCreature(string prefabName, ObjectInfo info)
+	public void CreateObject(string prefabName, ObjectInfo info , bool myPlayer = false)
 	{
 
 		GameObject go = Managers.Resource.Instantiate
 		($"Character/{prefabName}", name: $"{prefabName}_{info.ObjectId.ToString("000")}");
 
-		CreatureController cc = go.GetComponent<CreatureController>();
+		BaseController bc = go.GetComponent<BaseController>();
 
-		
-		cc.PosInfo = info.PosInfo;
-		cc.Id = info.ObjectId;
-		cc.TeamId = info.TeamId;
-		cc.SyncPos();
+		bc.Id = info.ObjectId;
+		bc.TeamId = info.TeamId;
+		bc.PosInfo = info.PosInfo;
+		bc.Stat = info.StatInfo;
+	
+		bc.SyncPos();
 
-		cc.CreateWeapon(info.WeaponInfo, 1);
+		CreatureController cc = bc.GetComponent<CreatureController>();
+		if(cc != null)
+			cc.CreateWeapon(info.WeaponInfo);
 
 		_objects.Add(info.ObjectId, go);
+
+		if(myPlayer)
+        {
+			MyPlayer = bc as MyPlayerController;
+        }
 
 		//Vector3Int initPos;
 		//int loop = 0; //무한루프 방지용
@@ -80,21 +99,19 @@ public class ObjectManager
 
 	}
 
-	public void RemoveMyPlayer()
-    {
-		if (MyPlayer == null)
-			return;
-
-		Remove(MyPlayer.Id);
-		MyPlayer = null; 
-    }
 	public void Remove(int id)
 	{
-		GameObject go = null;
-		if (_objects.TryGetValue(id, out go) == false)
-			return;
+        if (MyPlayer != null && MyPlayer.Id == id)
+            return;
 
-		_objects.Remove(id);
+        if (_objects.ContainsKey(id) == false)
+            return;
+
+        GameObject go = FindById(id);
+        if (go == null)
+            return;
+
+        _objects.Remove(id);
 		Managers.Resource.Destroy(go);
 
 	}
@@ -104,7 +121,7 @@ public class ObjectManager
 		_objects.TryGetValue(id, out go);
 		return go; 
     }
-	public GameObject Find(Vector3Int cellPos)
+	public GameObject FindCreature(Vector3Int cellPos)
 	{
 		foreach (GameObject obj in _objects.Values)
 		{
@@ -135,12 +152,12 @@ public class ObjectManager
 	}
 
 
-
 	public void Clear()
 	{
 		foreach (GameObject obj in _objects.Values)
 			Managers.Resource.Destroy(obj);
 		_objects.Clear();
+		MyPlayer = null;
 	}
 
 

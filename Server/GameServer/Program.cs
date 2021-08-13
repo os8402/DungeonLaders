@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using GameServer.Data;
 using GameServer.Game;
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
@@ -18,15 +19,26 @@ namespace GameServer
 	class Program
 	{
 		static Listener _listener = new Listener();
-	
 
-		static void FlushRoom()
+        static void GameLogicTask()
+        {
+            while (true)
+            {
+				RoomManager.Instance.Find(1).Update();
+				Thread.Sleep(0);
+            }
+        }
+
+        static void FlushRoom()
         {
 			JobTimer.Instace.Push(FlushRoom, 250);
         }
 
 		static void Main(string[] args)
         {
+			ConfigManager.LoadConfig();
+			DataManager.LoadData();
+
 			RoomManager.Instance.Add(1);
 
             // DNS (Domain Name System)
@@ -38,14 +50,12 @@ namespace GameServer
 			_listener.Init(endPoint, () => { return SessionManager.Instance.Generate(); });
 			Console.WriteLine("Listening...");
 
-		//	JobTimer.Instace.Push(FlushRoom);
+            //	JobTimer.Instace.Push(FlushRoom);
 
-			while (true)
-			{
-				//JobTimer.Instace.Flush();
-				RoomManager.Instance.Find(1).Update();
-				Thread.Sleep(100);
-			}
+            // GameLogic
+            Thread.CurrentThread.Name = "GameLogic";
+            GameLogicTask();
+
 		}
 	}
 }
