@@ -10,7 +10,7 @@ namespace GameServer.Game
     {
         public Bow(Weapon WeaponData)
         {
-            this.WeaponData = WeaponData;
+            this.Data = WeaponData;
             Id = WeaponData.id;
             WeaponType = WeaponData.weaponType;
 
@@ -50,7 +50,7 @@ namespace GameServer.Game
                 return;
             
             arrow.Owner = Owner;
-            arrow.WeaponData = WeaponData;
+            arrow.WeaponData = Data;
             arrow.PosInfo.State = ControllerState.Moving;
 
             int posX = AttackList[0].AttkPosX;
@@ -60,8 +60,8 @@ namespace GameServer.Game
             arrow.PosInfo.PosY = Owner.CellPos.y;
             arrow.Dir = arrow.GetDirState(posX, posY);
             arrow.AttackPos = new AttackPos() { AttkPosX = posX, AttkPosY = posY };
-            arrow.Speed = WeaponData.projectile.speed;
-            Owner.Room.EnterGame(arrow);
+            arrow.Speed = Data.projectile.speed;
+            Owner.Room.Push(Owner.Room.EnterGame , arrow);
         }
 
         

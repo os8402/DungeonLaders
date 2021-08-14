@@ -7,14 +7,14 @@ using GameServer.Game;
 
 public abstract class EquipWeapon
 {
-    public Weapon WeaponData { get; set; }
+    public Weapon Data { get; set; }
 
     public int Id { get; set; }
 
     public Weapons WeaponType { get; set; }
 
     //소유자 
-    public Player Owner { get; set; }
+    public GameObject Owner { get; set; }
     public Vector2Int TargetPos { get; set; }  //플레이어 -> 마우스 / 몬스터 -> 플레이어
     protected int _attackRange = 1; // 공격범위
 

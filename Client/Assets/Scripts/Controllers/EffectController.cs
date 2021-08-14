@@ -48,7 +48,7 @@ public class EffectController : BaseController
 
     void AttackObject()
     {
-        if (AttackList == null)
+        if (AttackList == null || Owner == null)
             return;
 
         foreach (AttackPos pos in AttackList)
@@ -59,44 +59,7 @@ public class EffectController : BaseController
             if (Managers.Map.OutOfMap(destPos))
                 continue;
 
-            #region 디버그용_공격범위 표시
-            {
-                //개발단계에서 공격범위 확인 용
-                //서버에서 패킷보낼 때 잘못 갈 수도 있으므로 대비하기 위함
-
-                SpriteRenderer seeAttack = Managers.Resource.Instantiate("Effect/Common/AttackRange_Eff").GetComponent<SpriteRenderer>();
-                Vector3 visiblePos = new Vector3(destPos.x, destPos.y);
-
-                if (visiblePos == Owner.CellPos)
-                    seeAttack.gameObject.SetActive(false);
-
-                seeAttack.transform.position = visiblePos + (Vector3.one * 0.5f);
-
-                if (Owner.GetType() == typeof(PlayerController))
-                {
-                    seeAttack.color = Color.yellow;
-                    seeAttack.sortingOrder += 1;
-                }
-
-                else
-                    seeAttack.color = Color.blue;
-
-            }
-            #endregion
-
-            //GameObject go = Managers.Map.Objects[mapY, mapX];
-
-            //if (go == null || Owner.gameObject == go)
-            //    continue;
-
-            //CreatureController cc = go.GetComponent<CreatureController>();
-
-            //if (Owner.TeamId == cc.TeamId)
-            //    continue;
-
-
-            //Debug.Log($"Attack : {go.name} , ({attkPos}) , Hp : {cc.Hp} ");
-            //cc.OnDamaged(Owner.gameObject, 10);
+            Managers.Map.VisibleCellEffect(destPos, Owner);
 
         }
     }

@@ -103,7 +103,12 @@ public class MyPlayerController : PlayerController
 
         base.UpdateController();
     }
+    protected override void UpdateRotation()
+    {
+        _q = Util.RotatePlayer2D(transform.position, TargetPos);
+        base.UpdateRotation();
 
+    }
 
     protected override void UpdateIdle()
     {

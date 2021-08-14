@@ -6,6 +6,18 @@ using static Define;
 
 public class ArrowController : BaseController
 {
+
+    public override PositionInfo PosInfo
+    {
+        get { return base.PosInfo; }
+        set
+        {
+            base.PosInfo = value;
+
+            Managers.Map.VisibleCellEffect(CellPos , this);
+        }
+    }
+
     void GetDirRot()
     {
        

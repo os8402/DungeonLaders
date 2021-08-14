@@ -51,16 +51,25 @@ public class Util
 
         return null;
     }
-    static float GetAtan(Vector2 startPos, Vector2 targetPos)
+    static float GetAtan(Vector2 startPos, Vector2 targetPos , bool myPlayer = false)
     {
         Vector2 direction = targetPos - startPos;
+
         return Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
     }
-    public static Quaternion RotateDir2D(Vector2 startPos, Vector2 targetPos)
+    public static Quaternion RotateObject2D(Vector2 startPos, Vector2 targetPos)
     {
         float angle = GetAtan(startPos, targetPos);
         return Quaternion.AngleAxis(angle, Vector3.forward);
+
     }
+    public static Quaternion RotatePlayer2D(Vector2 startingPosition, Vector2 targetPosition)
+    {
+        Vector2 direction = targetPosition - startingPosition;
+        float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+        return Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
 
     public static Quaternion LookAt2D(Vector2 startPos, Vector2 targetPos, FacingDirection facing = FacingDirection.RIGHT)
     {

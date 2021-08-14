@@ -11,7 +11,7 @@ namespace GameServer.Game
 
         public Sword(Weapon WeaponData)
         {
-            this.WeaponData = WeaponData;
+            this.Data = WeaponData;
             Id = WeaponData.id;
             WeaponType = WeaponData.weaponType;
 

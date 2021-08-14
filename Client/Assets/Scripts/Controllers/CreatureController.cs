@@ -29,7 +29,6 @@ public class CreatureController : BaseController
     public EquipWeapon MyWeapon { get; set;  }
     public Weapons WEAPON_TYPES { get; protected set; } = Weapons.Empty;
 
-    protected Coroutine _coSkill = null;
     protected Action<S_Skill> _skillEvent = null;
     public Vector3 TargetPos { get; set; }
 
@@ -93,6 +92,9 @@ public class CreatureController : BaseController
 
     public void ConvertColorHit()
     {
+        if (_spriteRenderer == null)
+            return;
+
         if (_spriteRenderer.color == Color.white)
         {
             _spriteRenderer.color = Color.red;
@@ -140,12 +142,11 @@ public class CreatureController : BaseController
 
     protected override void UpdateRotation() 
     {
-        Quaternion q = Util.LookAt2D(transform.position , TargetPos, FacingDirection.DOWN);
 
-        if (q.z > Quaternion.identity.z) // 오른쪽       
+        if (_q.z > Quaternion.identity.z) // 오른쪽       
             Dir = DirState.Right;
 
-        else if (q.z < Quaternion.identity.z)// 왼쪽    
+        else if (_q.z < Quaternion.identity.z)// 왼쪽    
             Dir = DirState.Left;
 
         else
@@ -157,7 +158,16 @@ public class CreatureController : BaseController
 
     protected override void UpdateIdle() { }
 
- 
+    public virtual void UseSkill(S_Skill skillPacket)
+    {
+        float targetX = skillPacket.TargetInfo.TargetX;
+        float targetY = skillPacket.TargetInfo.TargetY;
+
+        TargetPos = new Vector3(targetX, targetY);
+        Dir = skillPacket.TargetInfo.Dir;
+
+        _skillEvent?.Invoke(skillPacket);
+    }
 
     public virtual void OnDamaged()
     {
@@ -171,12 +181,14 @@ public class CreatureController : BaseController
         if (Managers.Object.MyPlayer == this)
             Managers.Input.Clear();
 
+        transform.position = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(0.5f, 0.5f);
+
         _hpBar.gameObject.SetActive(false);
         _hand.gameObject.SetActive(false);
 
     }
 
-  
+    protected virtual void CheckUpdatedFlag() { }
 
 
 

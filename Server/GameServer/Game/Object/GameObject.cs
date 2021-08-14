@@ -16,9 +16,7 @@ namespace GameServer.Game
             set { Info.ObjectId = value; }
         }
         public GameRoom Room { get; set; }
-
         public ObjectInfo Info { get; set; } = new ObjectInfo();
-
         public PositionInfo PosInfo { get; private set; } = new PositionInfo();
         public WeaponInfo WeaponInfo { get; private set; } = new WeaponInfo();
         public EquipWeapon EquipWeapon { get; set; }
@@ -28,6 +26,11 @@ namespace GameServer.Game
         {
             get { return Stat.Speed; }
             set { Stat.Speed = value; }
+        }
+        public int HP
+        {
+            get { return Stat.Hp; }
+            set { Stat.Hp = Math.Clamp(value, 0 , Stat.MaxHp); }
         }
 
         public ControllerState State
@@ -92,21 +95,15 @@ namespace GameServer.Game
             return state;
         }
 
-        long _nextDeadTick = 0;
         public virtual void Update()
         {
-            //if(_deadFlag)
-            //{
-            //    if (_nextDeadTick > Environment.TickCount64)
-            //        return;
-
-            //        ReviveGameObject();
-
-            //}
         }
 
         public virtual void OnDamaged(GameObject attacker, int damage)
         {
+            if (Room == null)
+                return;
+
             if (Stat.Hp <= 0)
                 return;
 
@@ -122,36 +119,30 @@ namespace GameServer.Game
             {
                 OnDead(attacker);
             }
-
         }
 
-        bool _deadFlag = false;
 
         public virtual void OnDead(GameObject attacker)
         {
-            Console.WriteLine($"Player_{attacker.Id} -> Player{Id} Kill!");
+            if (Room == null)
+                return;
+                    
+            Console.WriteLine($"{attacker.GetType().Name}_{attacker.Id} -> {GetType().Name}_{Id} Kill");
+
+            State = ControllerState.Dead;
 
             S_Die diePacket = new S_Die();
             diePacket.ObjectId = Id;
             diePacket.AttackerId = attacker.Id;
             Room.BroadCast(diePacket);
-
             GameRoom room = Room;
-            room.LeaveGame(Id);
-
-            Stat.Hp = Stat.MaxHp;
-            PosInfo.State = ControllerState.Idle;
-            PosInfo.Dir = DirState.Right;
-            PosInfo.PosX = 0;
-            PosInfo.PosY = 0;
-
-            room.EnterGame(this);
-
+            room.PushAfter(2000, ReviveGameObject);
         }
 
         void ReviveGameObject()
         {
-            _deadFlag = false;
+            if (Room == null)
+                return;
 
             GameRoom room = Room;
             room.LeaveGame(Id);
@@ -163,7 +154,6 @@ namespace GameServer.Game
             PosInfo.PosY = 0;
 
             room.EnterGame(this);
-
 
         }
     }

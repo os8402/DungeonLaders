@@ -19,19 +19,17 @@ namespace GameServer
 	class Program
 	{
 		static Listener _listener = new Listener();
-
-        static void GameLogicTask()
+        static List<System.Timers.Timer> _timers = new List<System.Timers.Timer>();
+        
+        static void TickRoom(GameRoom room, int tick = 100)
         {
-            while (true)
-            {
-				RoomManager.Instance.Find(1).Update();
-				Thread.Sleep(0);
-            }
-        }
+            var timer = new System.Timers.Timer();
+            timer.Interval = tick;
+            timer.Elapsed += ((s, e) => { room.Update(); });
+            timer.AutoReset = true;
+            timer.Enabled = true;
 
-        static void FlushRoom()
-        {
-			JobTimer.Instace.Push(FlushRoom, 250);
+            _timers.Add(timer);
         }
 
 		static void Main(string[] args)
@@ -39,7 +37,8 @@ namespace GameServer
 			ConfigManager.LoadConfig();
 			DataManager.LoadData();
 
-			RoomManager.Instance.Add(1);
+			GameRoom room =  RoomManager.Instance.Add(1);
+            TickRoom(room, 50);
 
             // DNS (Domain Name System)
             string host = Dns.GetHostName();
@@ -50,12 +49,11 @@ namespace GameServer
 			_listener.Init(endPoint, () => { return SessionManager.Instance.Generate(); });
 			Console.WriteLine("Listening...");
 
-            //	JobTimer.Instace.Push(FlushRoom);
+            while (true)
+            {
+                Thread.Sleep(100);
+            }
 
-            // GameLogic
-            Thread.CurrentThread.Name = "GameLogic";
-            GameLogicTask();
-
-		}
+        }
 	}
 }

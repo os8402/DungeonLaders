@@ -30,21 +30,16 @@ public class ObjectManager
 		if(objectType == GameObjectType.Player)
         {
             if (myPlayer)
-            {
-				
-				CreateObject("MyWarrior", info , true);
+                CreateObject("MyWarrior", info, true);
 
-			}
-                
-            
             else
                 CreateObject("Warrior", info);
             
         }
 		else if(objectType == GameObjectType.Monster)
         {
-
-        }
+			CreateObject("Skeleton", info);
+		}
         else if (objectType == GameObjectType.Projectile)
         {
 			CreateObject("Arrow", info);
@@ -76,26 +71,6 @@ public class ObjectManager
         {
 			MyPlayer = bc as MyPlayerController;
         }
-
-		//Vector3Int initPos;
-		//int loop = 0; //무한루프 방지용
-
-		//while (true)
-		//{
-
-		//	initPos = new Vector3Int
-		//	{
-		//		x = UnityEngine.Random.Range(Managers.Map.MinX + 1, Managers.Map.MaxX - 1),
-		//		y = UnityEngine.Random.Range(Managers.Map.MinY + 1, Managers.Map.MaxY - 1),
-		//	};
-
-		//	loop++;
-
-		//	if (Managers.Map.CanGo(initPos) || loop >= 200)
-		//		break;
-
-		//}
-
 
 	}
 
@@ -151,6 +126,7 @@ public class ObjectManager
 		return null;
 	}
 
+	
 
 	public void Clear()
 	{

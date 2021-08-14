@@ -27,7 +27,7 @@ namespace GameServer.Game
 
                 if (gameObject.ObjectType == GameObjectType.Player)
                 {
-                    gameObject.EquipWeapon = CreatePlayerWeapon(2);
+                    gameObject.EquipWeapon = CreateObjectWeapon(2);
                     gameObject.EquipWeapon.Owner = gameObject as Player;
                     gameObject.WeaponInfo.WeaponId = gameObject.EquipWeapon.Id;
 
@@ -53,13 +53,13 @@ namespace GameServer.Game
             return (GameObjectType)type;
         }
 
-        public EquipWeapon CreatePlayerWeapon(int id = 0)
+        public EquipWeapon CreateObjectWeapon(int id = -1)
         {
 
             Weapon weapon = null;
             List<int> keyList = DataManager.WeaponDict.Keys.ToList();
 
-            if(id == 0)
+            if(id == -1)
             {
                 Random rand = new Random();
                 id = rand.Next(0, keyList.Count);

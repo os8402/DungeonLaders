@@ -10,6 +10,8 @@ namespace GameServer.Game
      
         public ClientSession Session { get; set; }
 
+        public Action<Player> _checkDeadTarget;
+
         public Player()
         {
             ObjectType = GameObjectType.Player;
@@ -28,6 +30,8 @@ namespace GameServer.Game
         }
         public override void OnDead(GameObject attacker)
         {
+
+            _checkDeadTarget.Invoke(this);
             base.OnDead(attacker);
         }
 

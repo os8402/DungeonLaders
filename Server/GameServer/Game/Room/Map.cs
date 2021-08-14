@@ -116,13 +116,16 @@ public class Map
 
 	public bool ApplyLeave(GameObject gameObject)
     {
-        PositionInfo posInfo = gameObject.PosInfo;
-        if (posInfo.PosX < MinX || posInfo.PosX > MaxX)
+        if (gameObject.Room == null)
             return false;
-        if (posInfo.PosY < MinY || posInfo.PosY > MaxY)
+        if (gameObject.Room.Map != this)
             return false;
 
-        {
+        PositionInfo posInfo = gameObject.PosInfo;
+		if( OutOfMap(gameObject.CellPos))
+			return false;
+
+		{
             int x = posInfo.PosX - MinX;
             int y = MaxY - posInfo.PosY;
             if (_objects[y, x] == gameObject)
@@ -136,8 +139,12 @@ public class Map
     {
 		ApplyLeave(gameObject);
 
-		PositionInfo posInfo = gameObject.PosInfo;
+        if (gameObject.Room == null)
+            return false;
+        if (gameObject.Room.Map != this)
+            return false;
 
+		PositionInfo posInfo = gameObject.PosInfo;
 		if (CanGo(dest, true) == false)
 			return false;
   
@@ -149,8 +156,6 @@ public class Map
 
 		posInfo.PosX = dest.x;
 		posInfo.PosY = dest.y;
-		//player.CellPos = new Vector2Int(dest.x, dest.y);
-
 		return true; 
     }
 

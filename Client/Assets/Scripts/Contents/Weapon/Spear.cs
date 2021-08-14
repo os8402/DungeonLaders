@@ -36,6 +36,7 @@ public class Spear : EquipWeapon
 
         base.SkillEvent(skillPacket);
         //보여주기용 좌표 
+
         _coMove = StartCoroutine(CoMoveSpear());
 
         _ec.transform.localPosition = _moveDir * 0.5f;
@@ -47,7 +48,8 @@ public class Spear : EquipWeapon
 
     IEnumerator CoMoveSpear(float time = 0.2f)
     {
-         _isRot = false;
+      
+        _isRot = false;
 
         Vector3 newPos = new Vector3(_moveDir.x * 0.5f, _moveDir.y * 0.5f);
         Quaternion newRot = Util.LookAt2D(_moveDir, Vector2.zero, FacingDirection.UP);

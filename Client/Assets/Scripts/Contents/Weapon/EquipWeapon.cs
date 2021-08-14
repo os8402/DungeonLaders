@@ -81,11 +81,16 @@ public abstract class EquipWeapon : MonoBehaviour
         GameObject go = Managers.Resource.Instantiate($"Effect/{weaponName}/{weaponName}_Eff_{id.ToString("000")}");
         _ec = go.GetComponent<EffectController>();
         _ec.transform.parent = transform.parent;
+        ////실제 공격범위는 서버에서 처리 예정
+        _ec.AttackList = attackList;
+
+        if (_owner == null)
+            return;
+
         //실제 좌표 + 소유자 등록 [누가 공격했는지 전달해줘야 함 ] 
         _ec.CellPos = _owner.CellPos;
         _ec.Owner = _owner;
-        ////실제 공격범위는 서버에서 처리 예정
-        _ec.AttackList = attackList;
+   
 
     }
 

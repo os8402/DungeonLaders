@@ -41,15 +41,14 @@ namespace GameServer.Game
             else
             {
                 GameObject target = Room.Map.Find(destPos);
-                if(target != null)
+                if(target != null && target != Owner)
                 {
                     //TODO : 피격판정
                     target.OnDamaged(this, WeaponData.damage + Owner.Stat.Attack);
-                   
-                }
 
+                }
                 //소멸
-                Room.LeaveGame(Id);
+                Room.Push(Room.LeaveGame, Id);
             }
         }
     }

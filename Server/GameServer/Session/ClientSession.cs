@@ -46,8 +46,8 @@ namespace GameServer
             {
 				MyPlayer.Info.Name = $"MyWarrior_{MyPlayer.Info.ObjectId}";
 				MyPlayer.PosInfo.State = ControllerState.Idle;
-				MyPlayer.PosInfo.PosX = 1;
-				MyPlayer.PosInfo.PosY = 1;
+				MyPlayer.PosInfo.PosX = 3;
+				MyPlayer.PosInfo.PosY = 3;
 				MyPlayer.PosInfo.Dir = DirState.Left;
 				MyPlayer.Info.TeamId = 1 << 24;
 
@@ -61,7 +61,8 @@ namespace GameServer
 			
             }
 
-			RoomManager.Instance.Find(1).EnterGame(MyPlayer);
+			GameRoom room = RoomManager.Instance.Find(1);
+			room.Push(room.EnterGame, MyPlayer); 
 		}
 
 		public override void OnRecvPacket(ArraySegment<byte> buffer)
@@ -72,7 +73,8 @@ namespace GameServer
 		public override void OnDisconnected(EndPoint endPoint)
 		{
 
-			RoomManager.Instance.Find(1).LeaveGame(MyPlayer.Info.ObjectId);
+			GameRoom room = RoomManager.Instance.Find(1);
+			room.Push(room.LeaveGame , MyPlayer.Info.ObjectId);
 
 			Console.WriteLine($"OnDisconnected : {endPoint}");
 

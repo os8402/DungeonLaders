@@ -42,7 +42,7 @@ public abstract  class BaseController : MonoBehaviour
     }
 
     protected PositionInfo _positionInfo = new PositionInfo();
-    public PositionInfo PosInfo
+    public virtual PositionInfo PosInfo
     {
         get { return _positionInfo; }
         set
@@ -153,6 +153,7 @@ public abstract  class BaseController : MonoBehaviour
         UpdateController();      
     }
 
+    protected Quaternion _q;
     protected abstract void UpdateRotation();
     protected virtual void UpdateController()
     {

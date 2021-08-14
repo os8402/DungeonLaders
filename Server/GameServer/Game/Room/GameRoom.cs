@@ -7,9 +7,8 @@ using System.Text;
 
 namespace GameServer.Game
 {
-    public class GameRoom
+    public class GameRoom : JobSerializer
     {
-        object _lock = new object();
         public int RoomId { get; set; }
 
         Dictionary<int, Player> _players = new Dictionary<int, Player>();
@@ -25,23 +24,23 @@ namespace GameServer.Game
             Monster monster = ObjectManager.Instance.Add<Monster>();
             monster.CellPos = new Vector2Int(5, 5);
             EnterGame(monster);
+   
         }
+      
 
         public void Update()
         {
-            lock (_lock)
+
+            foreach (Monster monster in _monsters.Values)
             {
-                foreach(Player player in _players.Values)
-                {
-                    if (player == null)
-                        return;
-                    player.Update();
-                }
-                foreach (Projectile projectile in _projectiles.Values)
-                {
-                    projectile.Update();
-                }
+                monster.Update();
             }
+            foreach (Projectile projectile in _projectiles.Values)
+            {
+                projectile.Update();
+            }
+
+            Flush();
         }
 
 
@@ -52,250 +51,241 @@ namespace GameServer.Game
 
             GameObjectType type = ObjectManager.GetObjectTypeId(gameObject.Id);
 
-            lock(_lock)
+
+            if (type == GameObjectType.Player)
             {
-                if(type == GameObjectType.Player)
+                Player player = gameObject as Player;
+                _players.Add(gameObject.Id, player);
+                player.Room = this;
+
+                Map.ApplyMove(player, new Vector2Int(player.CellPos.x, player.CellPos.y));
+
+                //본인한테 전송
                 {
-                    Player player = gameObject as Player;
-                    _players.Add(gameObject.Id, player);
-                    player.Room = this;
 
-                    Map.ApplyMove(player, new Vector2Int(player.CellPos.x, player.CellPos.y));
+                    S_EnterGame enterPacket = new S_EnterGame();
+                    enterPacket.Player = player.Info;
+                    player.Session.Send(enterPacket);
 
-                    //본인한테 전송
-                    {
-      
-                        S_EnterGame enterPacket = new S_EnterGame();
-                        enterPacket.Player = player.Info;
-                        player.Session.Send(enterPacket);
-
-                        S_Spawn spawnPacket = new S_Spawn();
-                        foreach (Player p in _players.Values)
-                        {
-                            if (player != p)
-                                spawnPacket.Objects.Add(p.Info);
-                        }
-
-                        foreach(Monster m in _monsters.Values)                       
-                            spawnPacket.Objects.Add(m.Info);
-                        
-                        foreach (Projectile p in _projectiles.Values)                      
-                            spawnPacket.Objects.Add(p.Info);
-                        
-
-                        player.Session.Send(spawnPacket);
-                    }
-
-                }
-                else if (type == GameObjectType.Monster)
-                {
-                    Monster monster = gameObject as Monster;
-                    _monsters.Add(gameObject.Id, monster);
-                    monster.Room = this;
-
-                    Map.ApplyMove(monster, new Vector2Int(monster.CellPos.x, monster.CellPos.y));
-                }
-                else if (type == GameObjectType.Projectile)
-                {
-                    Projectile projectile = gameObject as Projectile;
-                    _projectiles.Add(gameObject.Id, projectile);
-                    projectile.Room = this;
-                }
-
-                //타인한테도 전송
-                {
                     S_Spawn spawnPacket = new S_Spawn();
-                    spawnPacket.Objects.Add(gameObject.Info);
-                    foreach(Player p in _players.Values)
+                    foreach (Player p in _players.Values)
                     {
-                        if (p.Id != gameObject.Id)
-                            p.Session.Send(spawnPacket);
+                        if (player != p)
+                            spawnPacket.Objects.Add(p.Info);
                     }
 
+                    foreach (Monster m in _monsters.Values)
+                        spawnPacket.Objects.Add(m.Info);
+
+                    foreach (Projectile p in _projectiles.Values)
+                        spawnPacket.Objects.Add(p.Info);
+
+
+                    player.Session.Send(spawnPacket);
                 }
+
+            }
+            else if (type == GameObjectType.Monster)
+            {
+                Monster monster = gameObject as Monster;
+                _monsters.Add(gameObject.Id, monster);
+                monster.Room = this;
+
+                Map.ApplyMove(monster, new Vector2Int(monster.CellPos.x, monster.CellPos.y));
+            }
+            else if (type == GameObjectType.Projectile)
+            {
+                Projectile projectile = gameObject as Projectile;
+                _projectiles.Add(gameObject.Id, projectile);
+                projectile.Room = this;
             }
 
-          
+            //타인한테도 전송
+            {
+                S_Spawn spawnPacket = new S_Spawn();
+                spawnPacket.Objects.Add(gameObject.Info);
+                foreach (Player p in _players.Values)
+                {
+                    if (p.Id != gameObject.Id)
+                        p.Session.Send(spawnPacket);
+                }
+
+            }
+
+
+
         }
 
         public void LeaveGame(int objectId)
         {
             GameObjectType type = ObjectManager.GetObjectTypeId(objectId);
 
-            lock (_lock)
+
+            if (type == GameObjectType.Player)
             {
-                if(type == GameObjectType.Player)
+                Player player = null;
+                if (_players.Remove(objectId, out player) == false)
+                    return;
+
+            
+                Map.ApplyLeave(player);
+                player.Room = null;
+
+                //본인
                 {
-                    Player player = null;
-                    if (_players.Remove(objectId, out player) == false)
-                        return;
-
-                    player.Room = null;
-                    Map.ApplyLeave(player);
-
-                    //본인
-                    {
-                        S_LeaveGame leavePacket = new S_LeaveGame();
-                        player.Session.Send(leavePacket);
-                    }
+                    S_LeaveGame leavePacket = new S_LeaveGame();
+                    player.Session.Send(leavePacket);
                 }
-                else if(type == GameObjectType.Monster)
-                {
-                    Monster monster = null;
-                    if (_monsters.Remove(objectId, out monster) == false)
-                        return;
+            }
+            else if (type == GameObjectType.Monster)
+            {
+                Monster monster = null;
+                if (_monsters.Remove(objectId, out monster) == false)
+                    return;
+          
+                Map.ApplyLeave(monster);
+                monster.Room = null;
+            }
+            else if (type == GameObjectType.Projectile)
+            {
+                Projectile projectile = null;
 
-                    monster.Room = null;
-                    Map.ApplyLeave(monster);
-                }
-                else if (type == GameObjectType.Projectile)
-                {
-                    Projectile projectile = null;
+                if (_projectiles.Remove(objectId, out projectile) == false)
+                    return;
 
-                    if (_projectiles.Remove(objectId, out projectile) == false)
-                        return;
-
-                    projectile.Room = null;
-               
-                }
-
-                //타인
-                {
-                    S_Despawn despawnPacket = new S_Despawn();
-                    despawnPacket.ObjectIds.Add(objectId);
-
-                    foreach(Player p in _players.Values)
-                    {
-                        if(p.Id != objectId)
-                           p.Session.Send(despawnPacket);
-                    }
-                }
+                projectile.Room = null;
 
             }
-        }
 
-        public void HandleMove(Player player , C_Move movePacket)
-        {
-            if (player == null)
-                return; 
-
-            lock(_lock)
+            //타인
             {
-                // TODO : 검증 
-                PositionInfo movePosInfo = movePacket.PosInfo;
-                ObjectInfo info = player.Info;
-                
-                //다른 좌표로 이동할 경우 갈 수 있는지 
-                if(movePosInfo.PosX != info.PosInfo.PosX || movePosInfo.PosY != info.PosInfo.PosY)
+                S_Despawn despawnPacket = new S_Despawn();
+                despawnPacket.ObjectIds.Add(objectId);
+
+                foreach (Player p in _players.Values)
                 {
-                    if (Map.CanGo(new Vector2Int(movePosInfo.PosX, movePosInfo.PosY)) == false)
-                        return;
+                    if (p.Id != objectId)
+                        p.Session.Send(despawnPacket);
                 }
-
-                info.PosInfo.State = movePosInfo.State;
-                info.PosInfo.Dir = movePosInfo.Dir;
-                Map.ApplyMove(player, new Vector2Int(movePosInfo.PosX, movePosInfo.PosY));
-
-                //다른 플레이어한테도 알려준다 
-                S_Move resMovePacket = new S_Move();
-                resMovePacket.ObjectId = info.ObjectId;
-                resMovePacket.PosInfo = movePacket.PosInfo;    
-                BroadCast(resMovePacket);
             }
+
 
         }
 
-        public void HandleSkill(Player player , C_Skill skillPacket)
+        public void HandleMove(Player player, C_Move movePacket)
         {
             if (player == null)
                 return;
 
-            lock(_lock)
+            // TODO : 검증 
+            PositionInfo movePosInfo = movePacket.PosInfo;
+            ObjectInfo info = player.Info;
+
+            //다른 좌표로 이동할 경우 갈 수 있는지 
+            if (movePosInfo.PosX != info.PosInfo.PosX || movePosInfo.PosY != info.PosInfo.PosY)
             {
-                ObjectInfo info = player.Info;
-                // if (info.PosInfo.State != ControllerState.Idle)
-                //  return;
-
-                //TODO : 스킬 사용 가능 여부
-
-                //통과
-                //info.PosInfo.State = ControllerState.Skill;
-
-                EquipWeapon weapon = player.EquipWeapon;
-                int x = skillPacket.AttackPos.AttkPosX;
-                int y = skillPacket.AttackPos.AttkPosY;
-                weapon.TargetPos = new Vector2Int(x , y);
-                weapon.SkillEvent();
-
-                
-                //1.공격 범위 
-                //2.공격 방향
-                //3.타겟 정보
-                //모아서 클라에 보냄
-
-                S_Skill skill = new S_Skill();
-           
-                skill.ObjectId = info.ObjectId;
-                skill.AttackList.Add(weapon.AttackList);
-                skill.AttackDir = weapon.AttackDir;
-                skill.TargetInfo = skillPacket.TargetInfo;
-               
-                BroadCast(skill);
-
-                Data.Weapon weaponData = null;
-                if (DataManager.WeaponDict.TryGetValue(weapon.WeaponData.id, out weaponData) == false)
+                if (Map.CanGo(new Vector2Int(movePosInfo.PosX, movePosInfo.PosY)) == false)
                     return;
-
-                switch(weaponData.skillType)
-                {
-                    case SkillType.SkillNormal:
-
-                        // TODO : 데미지 판정
-                        foreach (AttackPos pos in weapon.AttackList)
-                        {
-                            Vector2Int skillPos = new Vector2Int(info.PosInfo.PosX + pos.AttkPosX,
-                               info.PosInfo.PosY + pos.AttkPosY);
-
-                            GameObject target = Map.Find(skillPos);
-
-                            if (target != null)
-                            {
-                                Console.WriteLine("Player Hit!!");
-                            }
-                        }
-                        break;
-
-                    case SkillType.SkillProjectile:
-
-                        // 투사체를 발사하는 원거리류는 생성만
-                        Bow bow = weapon as Bow;
-                        bow.ShootArrow();
-                        break; 
-                }
-              
             }
+
+            info.PosInfo.State = movePosInfo.State;
+            info.PosInfo.Dir = movePosInfo.Dir;
+            Map.ApplyMove(player, new Vector2Int(movePosInfo.PosX, movePosInfo.PosY));
+
+            //다른 플레이어한테도 알려준다 
+            S_Move resMovePacket = new S_Move();
+            resMovePacket.ObjectId = info.ObjectId;
+            resMovePacket.PosInfo = movePacket.PosInfo;
+            BroadCast(resMovePacket);
+
+
         }
 
-        public Player FindPlayer(Func<GameObject,bool> condition )
+        public void HandleSkill(Player player, C_Skill skillPacket)
         {
-            foreach(Player player in _players.Values)
+            if (player == null)
+                return;
+
+
+            ObjectInfo info = player.Info;
+
+            //TODO : 스킬 사용 가능 여부
+
+            EquipWeapon weapon = player.EquipWeapon;
+            int x = skillPacket.AttackPos.AttkPosX;
+            int y = skillPacket.AttackPos.AttkPosY;
+            weapon.TargetPos = new Vector2Int(x, y);
+            weapon.SkillEvent();
+
+
+            //1.공격 범위 
+            //2.공격 방향
+            //3.타겟 정보
+            //모아서 클라에 보냄
+
+            S_Skill skill = new S_Skill();
+
+            skill.ObjectId = info.ObjectId;
+            skill.AttackList.Add(weapon.AttackList);
+            skill.AttackDir = weapon.AttackDir;
+            skill.TargetInfo = skillPacket.TargetInfo;
+
+            BroadCast(skill);
+
+            // Data.Weapon weaponData = null;
+            //// if (DataManager.WeaponDict.TryGetValue(weapon.Data.id, out weaponData) == false)
+            //    return;
+            Data.Weapon weaponData = weapon.Data; 
+
+            switch (weaponData.skillType)
+            {
+                case SkillType.SkillNormal:
+
+                    // TODO : 데미지 판정
+                    foreach (AttackPos pos in weapon.AttackList)
+                    {
+                        Vector2Int skillPos = new Vector2Int(info.PosInfo.PosX + pos.AttkPosX,
+                           info.PosInfo.PosY + pos.AttkPosY);
+
+                        GameObject target = Map.Find(skillPos);
+
+                        if (target != null)
+                        {
+                            target.OnDamaged(target, weapon.Data.damage + player.Stat.Attack);
+                        }
+                    }
+                    break;
+
+                case SkillType.SkillProjectile:
+
+                    // 투사체를 발사하는 원거리류는 생성만
+                    Bow bow = weapon as Bow;
+                    bow.ShootArrow();
+                    break;
+            }
+
+
+        }
+
+        public Player FindPlayer(Func<GameObject, bool> condition)
+        {
+            foreach (Player player in _players.Values)
             {
                 if (condition.Invoke(player))
                     return player;
             }
 
-            return null; 
+            return null;
         }
 
         public void BroadCast(IMessage packet)
         {
-            lock(_lock)
+
+            foreach (Player p in _players.Values)
             {
-                foreach(Player p in _players.Values)
-                {
-                    p.Session.Send(packet);
-                }
+                p.Session.Send(packet);
             }
+
         }
 
     }

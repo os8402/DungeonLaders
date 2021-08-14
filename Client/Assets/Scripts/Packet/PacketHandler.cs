@@ -69,11 +69,11 @@ class PacketHandler
 		if (go == null)
 			return;
 
-		PlayerController pc = go.GetComponent<PlayerController>();
+		CreatureController cc = go.GetComponent<CreatureController>();
 		
-		if (pc != null)
+		if (cc != null)
         {
-			pc.UseSkill(skillPacket);
+			cc.UseSkill(skillPacket);
         }
 		
 
@@ -92,7 +92,7 @@ class PacketHandler
         {
 			cc.Hp = changePacket.Hp;
 
-			if (cc.Id != changePacket.AttackerId)
+		//	if (cc.Id != changePacket.AttackerId)
 				cc.OnDamaged();
 		}
 

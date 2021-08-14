@@ -40,17 +40,6 @@ public class MapManager
 	int[,] open;
 	Pos[,] parent; // 경로추적을 위해서
 
-	public int CellDistFromZero(int x , int y)
-    {
-		return Math.Abs(x) + Math.Abs(y);
-	}
-
-
-	public void SetPosObject(Vector3Int vec3 , GameObject go)
-    {
-		Pos pos = Cell2Pos(vec3);
-		Managers.Map.Objects[pos.Y, pos.X] = go;
-	}
 	
 	public bool OutOfMap(Vector3Int cellPos)
     {
@@ -73,7 +62,30 @@ public class MapManager
 		return !_collision[y, x] && (Objects[y ,x] == false);
 	}
 
-	public void LoadMap(int mapId)
+	public void VisibleCellEffect(Vector3Int cellPos , BaseController bc)
+	{
+        #region 디버그용_공격범위 표시
+        {
+            //개발단계에서 공격범위 확인 용
+            //서버에서 패킷보낼 때 잘못 갈 수도 있으므로 대비하기 위함
+
+            SpriteRenderer seeAttack = Managers.Resource.Instantiate("Effect/Common/AttackRange_Eff").GetComponent<SpriteRenderer>();
+
+			seeAttack.color = new Color(0, 0, 1, 0.5f);
+
+            if (bc.GetType() == typeof(MyPlayerController))
+            {
+				seeAttack.color = new Color(1, 1, 0, 0.5f);
+				seeAttack.sortingOrder += 1;
+            }
+		
+            seeAttack.transform.position = cellPos + (Vector3.one * 0.5f);
+
+        }
+        #endregion
+    }
+
+    public void LoadMap(int mapId)
     {
         DestroyMap();
 
@@ -110,8 +122,6 @@ public class MapManager
             
         }
     }
-
-
 
     public void DestroyMap()
     {
