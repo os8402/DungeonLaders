@@ -40,11 +40,8 @@ public abstract class EquipWeapon : MonoBehaviour
 
     }
 
-    void GetControllerType()
+    void GetTargetPos()
     {
-        //플레이어 몬스터 둘 다 무기를 들 수 있음
- 
-
         if (_owner == null)
             Init();
 
@@ -54,7 +51,7 @@ public abstract class EquipWeapon : MonoBehaviour
 
     void Update()
     {
-        GetControllerType();
+        GetTargetPos();
         UpdateRotation();
     }
 

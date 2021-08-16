@@ -1,0 +1,50 @@
+{
+  "weapons": [
+    {
+      "id": "1",
+      "name": "≥ÏΩº ∞À",
+      "weaponType": "Sword",
+      "damage": "8"
+
+    },
+    {
+      "id": "2",
+      "name": "≥ÏΩº √¢",
+      "weaponType": "Spear",
+      "damage": "8"
+
+    },
+    {
+      "id": "3",
+      "name": "≥ÏΩº »∞",
+      "weaponType": "Bow",
+      "damage": "8"
+
+    }
+  ],
+  "armors": [
+    {
+      "id": "100",
+      "name": "ª¿ ∞©ø ",
+      "armorType": "Armor",
+      "defence": "8"
+
+    },
+    {
+      "id": "101",
+      "name": "ª¿ ≈ı±∏",
+      "armorType": "Helmet",
+      "defence": "8"
+
+    }
+  ],
+  "consumables": [
+    {
+      "id": "200",
+      "name": "Hp π∞æ‡",
+      "consumableType": "Potion",
+      "damage": "8"
+
+    }
+  ]
+} 

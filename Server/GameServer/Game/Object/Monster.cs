@@ -17,12 +17,41 @@ namespace GameServer.Game
             Stat.Hp = 100;
             Stat.MaxHp = 100;
             Stat.Speed = 5.0f;
+            
             EquipWeapon = ObjectManager.Instance.CreateObjectWeapon(2);
             EquipWeapon.Owner = this;
             WeaponInfo.WeaponId = EquipWeapon.Id;
 
             State = ControllerState.Idle;
         
+        }
+
+        bool CanUseSkill(float dist , int x , int y )
+        {
+            bool canSkill = false;
+
+            if (EquipWeapon == null || EquipWeapon.WeaponType == WeaponType.None)
+                return false; 
+
+
+            switch (EquipWeapon.Data.skillType)
+            {
+                //일반 
+                case SkillType.SkillNormal:
+                    canSkill =
+                        dist <= _skillRange + 1 && Math.Abs(x) <= _skillRange && Math.Abs(y) <= _skillRange;
+                    break;
+
+                //투사체
+                case SkillType.SkillProjectile:
+
+                    canSkill =
+                        dist <= _skillRange + 1 && ((Math.Abs(x) <= _skillRange && y == 0)  || (Math.Abs(y) <= _skillRange && x == 0));
+                    break;
+            }
+
+            return canSkill;
+
         }
 
         //FSM [Finite State Machine} 
@@ -77,7 +106,7 @@ namespace GameServer.Game
             State = ControllerState.Moving;
         }
 
-        int _skillRange = 1; 
+        int _skillRange = 5; 
         long _nextMoveTick = 0;
         protected virtual void UpdateMoving()
         {
@@ -114,7 +143,10 @@ namespace GameServer.Game
                 return;
             }
 
-            if(dist <= _skillRange + 1  && Math.Abs(dir.x) <= _skillRange && Math.Abs(dir.y) <= _skillRange)
+            bool canUseSKill = CanUseSkill(dist , dir.x , dir.y);
+
+
+            if (canUseSKill)
             {
                 _coolTick = 0; 
                 State = ControllerState.Skill;
@@ -155,8 +187,10 @@ namespace GameServer.Game
                 // 스킬이 사용 가능한지
                 Vector2Int dir = (_target.CellPos - CellPos);
                 int dist = dir.cellDistFromZero;
-                bool canUseSKill = (dist <= _skillRange + 1  && Math.Abs(dir.x) <= _skillRange && Math.Abs(dir.y) <= _skillRange);
-                if(canUseSKill == false)
+
+                bool canUseSKill = CanUseSkill(dist, dir.x, dir.y);
+
+                if (canUseSKill == false)
                 {
                     State = ControllerState.Moving;
                     BroadCastMove();
@@ -171,8 +205,26 @@ namespace GameServer.Game
                     BroadCastMove();
 
                 }
-                //데미지 판정
-                _target.OnDamaged(this, EquipWeapon.Data.damage + Stat.Attack);
+
+                EquipWeapon.TargetPos = new Vector2Int(_target.CellPos.x, _target.CellPos.y);
+                EquipWeapon.SkillEvent();
+
+                TargetPos = new Vector2Int(_target.CellPos.x, _target.CellPos.y);
+
+                switch (EquipWeapon.Data.skillType)
+                {
+                    case SkillType.SkillNormal:
+                        //데미지 판정
+                        _target.OnDamaged(this, EquipWeapon.Data.damage + Stat.Attack);
+                        break;
+
+                    case SkillType.SkillProjectile:
+                        // 투사체를 발사하는 원거리류는 생성만
+                        Bow bow = EquipWeapon as Bow;
+                        bow.ShootArrow();
+                        break;
+
+                }
 
                 //스킬 사용 broadCast 
 
@@ -182,13 +234,8 @@ namespace GameServer.Game
                     TargetInfo = new TargetInfo() 
                 };
 
-                EquipWeapon.TargetPos = new Vector2Int(_target.CellPos.x, _target.CellPos.y);
-                EquipWeapon.SkillEvent();
-
                 skill.ObjectId = Id;
-                skill.TargetInfo.TargetX = _target.CellPos.x;
-                skill.TargetInfo.TargetY = _target.CellPos.y;
-                skill.TargetInfo.Dir = Dir;
+                skill.TargetInfo = Target;
                 skill.AttackList.Add(EquipWeapon.AttackList);
                 skill.AttackDir = EquipWeapon.AttackDir;
 
@@ -197,6 +244,9 @@ namespace GameServer.Game
                 //스킬 쿨타임 적용
                 int coolTick = (int)(1000 * EquipWeapon.Data.cooldown);
                 _coolTick = Environment.TickCount64 + coolTick;
+
+                      
+
             }
 
             if (_coolTick > Environment.TickCount64)

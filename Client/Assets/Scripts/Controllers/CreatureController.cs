@@ -27,10 +27,9 @@ public class CreatureController : BaseController
 
     protected Transform _hand;
     public EquipWeapon MyWeapon { get; set;  }
-    public Weapons WEAPON_TYPES { get; protected set; } = Weapons.Empty;
+    public WeaponType WEAPON_TYPES { get; protected set; } = WeaponType.None;
 
     protected Action<S_Skill> _skillEvent = null;
-    public Vector3 TargetPos { get; set; }
 
     void Start()
     {
@@ -38,7 +37,7 @@ public class CreatureController : BaseController
     }
     public override DirState Dir
     {
-        get { return PosInfo.Dir; }
+        get { return PosInfo.Target.Dir; }
         set
         {
             base.Dir = value;
@@ -116,7 +115,7 @@ public class CreatureController : BaseController
         if (Managers.Data.WeaponDict.TryGetValue(id, out weapon) == false)
             return;
 
-        if (weapon.weaponType == Weapons.Empty)
+        if (weapon.weaponType == WeaponType.None)
             return;
 
         WEAPON_TYPES = weapon.weaponType;
@@ -139,20 +138,7 @@ public class CreatureController : BaseController
 
    
     }
-
-    protected override void UpdateRotation() 
-    {
-
-        if (_q.z > Quaternion.identity.z) // 오른쪽       
-            Dir = DirState.Right;
-
-        else if (_q.z < Quaternion.identity.z)// 왼쪽    
-            Dir = DirState.Left;
-
-        else
-            return;
-
-    }
+    protected override void UpdateRotation() { }
 
     protected override void MoveToNextPos() { }
 
@@ -160,12 +146,8 @@ public class CreatureController : BaseController
 
     public virtual void UseSkill(S_Skill skillPacket)
     {
-        float targetX = skillPacket.TargetInfo.TargetX;
-        float targetY = skillPacket.TargetInfo.TargetY;
 
-        TargetPos = new Vector3(targetX, targetY);
-        Dir = skillPacket.TargetInfo.Dir;
-
+        Target = skillPacket.TargetInfo;
         _skillEvent?.Invoke(skillPacket);
     }
 
@@ -188,8 +170,8 @@ public class CreatureController : BaseController
 
     }
 
-    protected virtual void CheckUpdatedFlag() { }
 
 
 
+  
 }

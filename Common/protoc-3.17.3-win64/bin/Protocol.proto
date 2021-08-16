@@ -15,6 +15,13 @@ enum MsgId {
   S_SKILL = 7; 
   S_CHANGE_HP = 8;
   S_DIE = 9;
+  S_CONNECTED = 10;
+  C_LOGIN = 11;
+  S_LOGIN = 12;
+  C_ENTER_GAME = 13;
+  C_CREATE_PLAYER = 14;
+  S_CREATE_PLAYER = 15;
+  S_ITEM_LIST = 16;
 }
  enum ControllerState
  {
@@ -45,13 +52,13 @@ enum MsgId {
 	UP_RIGHT = 7;
  }
 
-  enum Weapons
+  enum WeaponType
  {
-   EMPTY = 0;
-   SWORD = 1;
-   BOW = 2;
-   STAFF = 3;
-   SPEAR = 4;
+   WEAPON_TYPE_NONE = 0;
+   WEAPON_TYPE_SWORD = 1;
+   WEAPON_TYPE_BOW = 2;
+   WEAPON_TYPE_STAFF = 3;
+   WEAPON_TYPE_SPEAR = 4;
  }
 
  enum SkillType
@@ -62,11 +69,38 @@ enum MsgId {
 
  }
 
+ enum PlayerServerState{
+
+	SERVER_STATE_LOGIN = 0;
+	SERVER_STATE_LOBBY = 1;
+	SERVER_STATE_GAME = 2;
+ }
+ enum ItemType{
+	  ITEM_TYPE_NONE = 0;
+	  ITEM_TYPE_WEAPON = 1;
+	  ITEM_TYPE_ARMOR = 2;
+	  ITEM_TYPE_CONSUMABLE = 3;
+ }
+  enum ArmorType
+ {
+   ARMOR_TYPE_NONE = 0;
+   ARMOR_TYPE_HELMET = 1;
+   ARMOR_TYPE_ARMOR = 2;
+   ARMOR_TYPE_BOOTS = 3;
+
+ }
+ enum ConsumableType
+ {
+	CONSUMABLE_TYPE_NONE = 0;
+	CONSUMABLE_TYPE_POTION = 1;
+ }
 
 message S_EnterGame {
   ObjectInfo player =1;
 }
-
+message S_ItemList{
+	repeated ItemInfo items = 1; 
+}
 message S_LeaveGame{
 
 }
@@ -110,6 +144,36 @@ message S_Die {
 	int32 attackerId = 2;
 
 }
+message S_Connected{
+
+}
+message C_Login{
+	string uniqueId = 1;
+
+}
+
+message S_Login{
+	int32 loginOk = 1;
+	repeated LobbyPlayerInfo players = 2;
+}
+
+message C_CreatePlayer{
+	string name = 1;
+
+}
+message S_CreatePlayer{
+	LobbyPlayerInfo player = 1;
+}
+
+message LobbyPlayerInfo{
+	int32 playerDbId = 1;
+	string name = 2;
+	StatInfo statInfo = 3;
+}
+
+message C_EnterGame{
+	string name = 1;
+}
 
 message ObjectInfo{
 	
@@ -127,7 +191,7 @@ message PositionInfo{
 	ControllerState state = 1;
 	int32 posX = 2; 
 	int32 posY = 3;
-	DirState dir = 4; 
+	TargetInfo target = 4; 
 
 }
 
@@ -160,4 +224,10 @@ message StatInfo {
 	int32 totalExp = 6; 
 }
 
+message ItemInfo{
+	int32 itemDbId = 1;
+	int32 templateId = 2;
+	int32 count = 3;
+	int32 slot = 4;
+}
 

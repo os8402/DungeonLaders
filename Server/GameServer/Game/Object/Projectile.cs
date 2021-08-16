@@ -9,7 +9,7 @@ namespace GameServer.Game
     {
 
         public GameObject Owner { get; set; }
-        public Data.Weapon WeaponData { get; set; }
+        public Data.WeaponSkillData WeaponData { get; set; }
         public Projectile()
         {
             ObjectType = GameObjectType.Projectile;

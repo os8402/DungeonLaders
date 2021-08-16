@@ -57,6 +57,9 @@ class PacketHandler
 		if (bc == null)
 			return;
 
+		if (bc.CL_STATE == ControllerState.Dead)
+			return;
+
 		bc.PosInfo = movePacket.PosInfo;
 
 
@@ -71,7 +74,7 @@ class PacketHandler
 
 		CreatureController cc = go.GetComponent<CreatureController>();
 		
-		if (cc != null)
+		if (cc != null && cc.CL_STATE != ControllerState.Dead)
         {
 			cc.UseSkill(skillPacket);
         }
@@ -91,9 +94,7 @@ class PacketHandler
 		if(cc != null)
         {
 			cc.Hp = changePacket.Hp;
-
-		//	if (cc.Id != changePacket.AttackerId)
-				cc.OnDamaged();
+			cc.OnDamaged();
 		}
 
 	}
@@ -114,4 +115,66 @@ class PacketHandler
         }
       
     }
+    public static void S_ConnectedHandler(PacketSession session, IMessage packet)
+    {
+		Debug.Log("S_ConnectedHandler");
+		C_Login loginPacket = new C_Login();
+		loginPacket.UniqueId = SystemInfo.deviceUniqueIdentifier;
+		Managers.Network.Send(loginPacket);
+
+    }
+
+	// 로그인 Ok + 캐릭터 목록
+    public static void S_LoginHandler(PacketSession session, IMessage packet)
+    {
+		S_Login loginPacket = (S_Login)packet;
+		Debug.Log($"LoginOk_{loginPacket.LoginOk}");
+
+		//TODO : 로비 UI에서 캐릭터목록 + 캐릭터 선택
+		if(loginPacket.Players == null || loginPacket.Players.Count == 0)
+        {
+			C_CreatePlayer createPacket = new C_CreatePlayer();
+			createPacket.Name = $"MyWarrior_{Random.Range(0,1000).ToString("000")}";
+			Managers.Network.Send(createPacket);
+        }
+		else
+        {
+			//무조건 첫번째 로그인 
+			LobbyPlayerInfo info = loginPacket.Players[0];
+			C_EnterGame enterGamePacket = new C_EnterGame();
+			enterGamePacket.Name = info.Name;
+			Managers.Network.Send(enterGamePacket);
+        }
+
+    }
+    public static void S_CreatePlayerHandler(PacketSession session, IMessage packet)
+    {
+ 
+		S_CreatePlayer createOkPacket = (S_CreatePlayer)packet;
+
+		if(createOkPacket.Player == null)
+        {
+            C_CreatePlayer createPacket = new C_CreatePlayer();
+            createPacket.Name = $"MyWarrior_{Random.Range(0, 1000).ToString("000")}";
+            Managers.Network.Send(createPacket);
+        }
+		else
+        {
+            C_EnterGame enterGamePacket = new C_EnterGame();
+            enterGamePacket.Name = createOkPacket.Player.Name;
+            Managers.Network.Send(enterGamePacket);
+        }
+
+    }
+    public static void S_ItemListHandler(PacketSession session, IMessage packet)
+    {
+		S_ItemList itemList = (S_ItemList)packet;
+
+		foreach(ItemInfo item in itemList.Items)
+        {
+			Debug.Log($"{item.TemplateId} : {item.Count}");
+        }
+
+
+	}
 }

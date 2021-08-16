@@ -77,10 +77,7 @@ public class MyPlayerController : PlayerController
 
         skill.AttackPos.AttkPosX = attackPos.x;
         skill.AttackPos.AttkPosY = attackPos.y;
-
-        skill.TargetInfo.TargetX = TargetPos.x;
-        skill.TargetInfo.TargetY = TargetPos.y;
-        skill.TargetInfo.Dir = Dir;
+        skill.TargetInfo = Target;
 
 
         Managers.Network.Send(skill);
@@ -105,8 +102,17 @@ public class MyPlayerController : PlayerController
     }
     protected override void UpdateRotation()
     {
-        _q = Util.RotatePlayer2D(transform.position, TargetPos);
-        base.UpdateRotation();
+        Vector3 targetPos = new Vector3(Target.TargetX, Target.TargetY);
+        Quaternion _q = Util.RotatePlayer2D(transform.position, targetPos);
+
+        if (_q.z > Quaternion.identity.z) // 오른쪽       
+            Dir = DirState.Right;
+
+        else if (_q.z < Quaternion.identity.z)// 왼쪽    
+            Dir = DirState.Left;
+
+        else
+            return;
 
     }
 

@@ -13,13 +13,17 @@ using GameServer.Data;
 
 namespace GameServer
 {
-	public class ClientSession : PacketSession
+	public partial class ClientSession : PacketSession
 	{
+		public PlayerServerState ServerState { get; private set; } = PlayerServerState.ServerStateLogin;
 
 		public Player MyPlayer { get; set; }
 		public int SessionId { get; set; }
 
-		public void Send(IMessage packet)
+		
+
+        #region Network
+        public void Send(IMessage packet)
         {
 
 			string msgName =  packet.Descriptor.Name.Replace("_", string.Empty);
@@ -33,36 +37,15 @@ namespace GameServer
 
 			Send(new ArraySegment<byte>(sendBuffer));
 		}
-
-
 		public override void OnConnected(EndPoint endPoint)
 		{
 			Console.WriteLine($"OnConnected : {endPoint}");
 
-			// PROTO Test
-
-			MyPlayer = ObjectManager.Instance.Add<Player>();
-
             {
-				MyPlayer.Info.Name = $"MyWarrior_{MyPlayer.Info.ObjectId}";
-				MyPlayer.PosInfo.State = ControllerState.Idle;
-				MyPlayer.PosInfo.PosX = 3;
-				MyPlayer.PosInfo.PosY = 3;
-				MyPlayer.PosInfo.Dir = DirState.Left;
-				MyPlayer.Info.TeamId = 1 << 24;
-
-				StatInfo stat = null;
-				DataManager.StatDict.TryGetValue(1, out stat);
-				MyPlayer.Stat.MergeFrom(stat);
-					
-				
-				MyPlayer.Session = this; 
-				
-			
+				S_Connected connectedPacket = new S_Connected();
+				Send(connectedPacket);
             }
 
-			GameRoom room = RoomManager.Instance.Find(1);
-			room.Push(room.EnterGame, MyPlayer); 
 		}
 
 		public override void OnRecvPacket(ArraySegment<byte> buffer)
@@ -87,5 +70,6 @@ namespace GameServer
 		{
 			//Console.WriteLine($"Transferred bytes: {numOfBytes}");
 		}
-	}
+        #endregion
+    }
 }

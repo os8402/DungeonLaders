@@ -17,7 +17,7 @@ namespace GameServer.Game
         }
         public GameRoom Room { get; set; }
         public ObjectInfo Info { get; set; } = new ObjectInfo();
-        public PositionInfo PosInfo { get; private set; } = new PositionInfo();
+        public PositionInfo PosInfo { get; private set; } = new PositionInfo { Target = new TargetInfo() };
         public WeaponInfo WeaponInfo { get; private set; } = new WeaponInfo();
         public EquipWeapon EquipWeapon { get; set; }
         public StatInfo Stat { get; private set; } = new StatInfo();
@@ -38,18 +38,35 @@ namespace GameServer.Game
             get { return PosInfo.State; }
             set { PosInfo.State = value; }
         }
+        public TargetInfo Target
+        {
+            get { return PosInfo.Target; }
+            set { PosInfo.Target = value;  }
+        }
+        public Vector2Int TargetPos
+        {
+            get { return new Vector2Int((int)PosInfo.Target.TargetX , (int)PosInfo.Target.TargetY); }
+            set 
+            { 
+                PosInfo.Target.TargetX = value.x; 
+                PosInfo.Target.TargetY = value.y; 
+            }
+        }
+
         public DirState Dir
         {
-            get { return PosInfo.Dir; }
-            set { PosInfo.Dir = value; }
+            get { return PosInfo.Target.Dir; }
+            set { PosInfo.Target.Dir = value; }
 
         }
 
         public GameObject()
         {
             Info.PosInfo = PosInfo;
+            Info.PosInfo.Target = new TargetInfo(); 
             Info.WeaponInfo = WeaponInfo;
             Info.StatInfo = Stat;
+           
 
         }
 
@@ -68,7 +85,15 @@ namespace GameServer.Game
         }
         public DirState GetDirState(Vector2Int dir)
         {
-            return GetDirState(dir.x, dir.y);
+            int x = 0;
+            int y = 0;
+
+            if (dir.x != 0)
+                x = dir.x / Math.Abs(dir.x);
+            if (dir.y != 0)
+                y = dir.y / Math.Abs(dir.y);
+
+            return GetDirState(x, y);
         }
 
         public DirState GetDirState(int posX, int posY)
@@ -149,7 +174,7 @@ namespace GameServer.Game
 
             Stat.Hp = Stat.MaxHp;
             PosInfo.State = ControllerState.Idle;
-            PosInfo.Dir = DirState.Right;
+            PosInfo.Target.Dir = DirState.Right;
             PosInfo.PosX = 0;
             PosInfo.PosY = 0;
 

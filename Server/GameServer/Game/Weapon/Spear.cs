@@ -8,7 +8,7 @@ namespace GameServer.Game
 {
     public class Spear : EquipWeapon
     {
-        public Spear(Weapon WeaponData)
+        public Spear(WeaponSkillData WeaponData)
         {
             this.Data = WeaponData;
             Id = WeaponData.id;

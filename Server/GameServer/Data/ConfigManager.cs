@@ -9,6 +9,7 @@ namespace GameServer.Data
     public class ServerConfig
     {
         public string dataPath;
+        public string connectionString;
     }
     
     public class ConfigManager

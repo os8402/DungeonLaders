@@ -18,11 +18,6 @@ public class MonsterController : CreatureController
   
     }
 
-    protected override void UpdateRotation()
-    {
-        _q = Util.RotateObject2D(transform.position , TargetPos);
-        base.UpdateRotation();
-    }
 
     public override void UseSkill(S_Skill skillPacket)
     {

@@ -12,7 +12,7 @@ namespace Data
     public class Weapon
     {
         public int id;
-        public Weapons weaponType; 
+        public WeaponType weaponType; 
         public string name;
         public float cooldown;
         public int damage;

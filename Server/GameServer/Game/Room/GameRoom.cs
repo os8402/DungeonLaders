@@ -20,11 +20,13 @@ namespace GameServer.Game
         public void Init(int mapId)
         {
             Map.LoadMap(mapId);
-
             Monster monster = ObjectManager.Instance.Add<Monster>();
-            monster.CellPos = new Vector2Int(5, 5);
+
+            monster.CellPos = new Vector2Int(3, 3);
             EnterGame(monster);
-   
+
+            
+
         }
       
 
@@ -127,7 +129,7 @@ namespace GameServer.Game
                 if (_players.Remove(objectId, out player) == false)
                     return;
 
-            
+                player.OnLeaveGame();
                 Map.ApplyLeave(player);
                 player.Room = null;
 
@@ -189,7 +191,7 @@ namespace GameServer.Game
             }
 
             info.PosInfo.State = movePosInfo.State;
-            info.PosInfo.Dir = movePosInfo.Dir;
+            info.PosInfo.Target = movePosInfo.Target;
             Map.ApplyMove(player, new Vector2Int(movePosInfo.PosX, movePosInfo.PosY));
 
             //다른 플레이어한테도 알려준다 
@@ -231,13 +233,8 @@ namespace GameServer.Game
             skill.TargetInfo = skillPacket.TargetInfo;
 
             BroadCast(skill);
-
-            // Data.Weapon weaponData = null;
-            //// if (DataManager.WeaponDict.TryGetValue(weapon.Data.id, out weaponData) == false)
-            //    return;
-            Data.Weapon weaponData = weapon.Data; 
-
-            switch (weaponData.skillType)
+    
+            switch (weapon.Data.skillType)
             {
                 case SkillType.SkillNormal:
 

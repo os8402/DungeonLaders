@@ -41,7 +41,7 @@ public abstract  class BaseController : MonoBehaviour
         set { Stat.Speed = value;  }
     }
 
-    protected PositionInfo _positionInfo = new PositionInfo();
+    protected PositionInfo _positionInfo = new PositionInfo { Target = new TargetInfo() };
     public virtual PositionInfo PosInfo
     {
         get { return _positionInfo; }
@@ -52,28 +52,51 @@ public abstract  class BaseController : MonoBehaviour
 
             CellPos = new Vector3Int(value.PosX, value.PosY,0);
             CL_STATE = value.State;
-            Dir = value.Dir;
+            Target = value.Target;
+      
 
         }
     }
 
-    //1.여기서 방향을 받는 김에 회전도 같이 설정
-    //2.마우스 위치를 기준으로 합니다. 
-    //3.관련 기능 매핑해둘 것
-  
 
-    // 방향은 8개지만 , 
-    // 캐릭터형 오브젝트들은 Left , Right만 보면 됩니다. 
+
+    public TargetInfo Target
+    {
+        get { return PosInfo.Target; }
+        set
+        {
+            if (PosInfo.Target.Equals(value))
+                return;
+
+
+            TargetPos = new Vector3(value.TargetX, value.TargetY);
+            Dir = value.Dir;
+        }
+    } 
+    public Vector3 TargetPos
+    {
+        get { return new Vector3(PosInfo.Target.TargetX, PosInfo.Target.TargetY); }
+        set
+        {
+            if (PosInfo.Target.TargetX.Equals(value.x) && PosInfo.Target.TargetY.Equals(value.y))
+                return;
+
+            PosInfo.Target.TargetX = value.x;
+            PosInfo.Target.TargetY = value.y;
+
+        }
+    }
+
     public virtual DirState Dir
     {
 
-        get { return PosInfo.Dir; }
+        get { return PosInfo.Target.Dir; }
         set
         {
-            if (PosInfo.Dir.Equals(value))
+            if (PosInfo.Target.Dir.Equals(value))
                 return;
 
-            PosInfo.Dir = value;
+            PosInfo.Target.Dir = value;
 
             //초기화가 안된 것
             if (_spriteRenderer == null)
@@ -86,6 +109,7 @@ public abstract  class BaseController : MonoBehaviour
          
             UpdateAnimation();
             _updated = true;
+            CheckUpdatedFlag();
 
         }
     }
@@ -116,15 +140,9 @@ public abstract  class BaseController : MonoBehaviour
             if (PosInfo.PosX == value.x && PosInfo.PosY == value.y)
                 return;
 
-       //     if (_ignoreCollision == false)
-          //   Managers.Map.SetPosObject(CellPos, null);
-
             PosInfo.PosX = value.x;
             PosInfo.PosY = value.y;
             _updated = true;
-
-        //    if (_ignoreCollision == false)
-            // Managers.Map.SetPosObject(CellPos, gameObject);
             
             UpdateAnimation();
         
@@ -136,6 +154,8 @@ public abstract  class BaseController : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
+
+        
 
         Vector3 pos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(0.5f, 0.5f);
         transform.position = pos;
@@ -239,5 +259,7 @@ public abstract  class BaseController : MonoBehaviour
                 break;
         }
     }
+
+    protected virtual void CheckUpdatedFlag() { }
 
 }

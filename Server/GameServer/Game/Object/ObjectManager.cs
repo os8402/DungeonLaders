@@ -26,13 +26,8 @@ namespace GameServer.Game
                 gameObject.Id = GenerateId(gameObject.ObjectType);
 
                 if (gameObject.ObjectType == GameObjectType.Player)
-                {
-                    gameObject.EquipWeapon = CreateObjectWeapon(2);
-                    gameObject.EquipWeapon.Owner = gameObject as Player;
-                    gameObject.WeaponInfo.WeaponId = gameObject.EquipWeapon.Id;
-
+                {              
                     _players.Add(gameObject.Id, gameObject as Player);
-
                 }
             }
 
@@ -56,15 +51,15 @@ namespace GameServer.Game
         public EquipWeapon CreateObjectWeapon(int id = -1)
         {
 
-            Weapon weapon = null;
+            WeaponSkillData weapon = null;
             List<int> keyList = DataManager.WeaponDict.Keys.ToList();
 
-            if(id == -1)
+            if (id == -1)
             {
                 Random rand = new Random();
                 id = rand.Next(0, keyList.Count);
             }
-      
+
 
             if (DataManager.WeaponDict.ContainsKey(keyList[id]) == false)
                 return null;
@@ -76,13 +71,13 @@ namespace GameServer.Game
 
             switch (weapon.weaponType)
             {
-                case Weapons.Sword:
+                case WeaponType.Sword:
                     equipWeapon = new Sword(weapon);
                     break;
-                case Weapons.Spear:
+                case WeaponType.Spear:
                     equipWeapon = new Spear(weapon);
                     break;
-                case Weapons.Bow:
+                case WeaponType.Bow:
                     equipWeapon = new Bow(weapon);
                     break;
             }

@@ -7,11 +7,11 @@ using GameServer.Game;
 
 public abstract class EquipWeapon
 {
-    public Weapon Data { get; set; }
+    public WeaponSkillData Data { get; set; }
 
     public int Id { get; set; }
 
-    public Weapons WeaponType { get; set; }
+    public WeaponType WeaponType { get; set; }
 
     //소유자 
     public GameObject Owner { get; set; }
