@@ -22,6 +22,10 @@ namespace GameServer.Game
         public EquipWeapon EquipWeapon { get; set; }
         public StatInfo Stat { get; private set; } = new StatInfo();
 
+        public virtual int TotalAttack { get { return Stat.Attack; } }
+        public virtual int TotalDefence { get { return 0; } }
+            
+
         public float Speed
         {
             get { return Stat.Speed; }
@@ -57,7 +61,6 @@ namespace GameServer.Game
         {
             get { return PosInfo.Target.Dir; }
             set { PosInfo.Target.Dir = value; }
-
         }
 
         public GameObject()
@@ -67,7 +70,6 @@ namespace GameServer.Game
             Info.WeaponInfo = WeaponInfo;
             Info.StatInfo = Stat;
            
-
         }
 
         public Vector2Int CellPos
@@ -152,7 +154,7 @@ namespace GameServer.Game
             if (Room == null)
                 return;
                     
-            Console.WriteLine($"{attacker.GetType().Name}_{attacker.Id} -> {GetType().Name}_{Id} Kill");
+            Console.WriteLine($"{attacker.GetOwner().GetType().Name}_{attacker.Id} -> {GetType().Name}_{Id} Kill");
 
             State = ControllerState.Dead;
 
@@ -180,6 +182,11 @@ namespace GameServer.Game
 
             room.EnterGame(this);
 
+        }
+
+        public virtual GameObject GetOwner()
+        {
+            return this; 
         }
     }
 }

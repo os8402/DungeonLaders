@@ -168,13 +168,57 @@ class PacketHandler
     }
     public static void S_ItemListHandler(PacketSession session, IMessage packet)
     {
-		S_ItemList itemList = (S_ItemList)packet;
+        S_ItemList itemList = (S_ItemList)packet;
 
-		foreach(ItemInfo item in itemList.Items)
+        Managers.Inven.Clear();
+
+        foreach (ItemInfo itemInfo in itemList.Items)
         {
-			Debug.Log($"{item.TemplateId} : {item.Count}");
+            Item item = Item.MakeItem(itemInfo);
+            Managers.Inven.Add(item);
+
         }
 
 
-	}
+    }
+	public static void S_AddItemHandler(PacketSession session, IMessage packet)
+    {
+		S_AddItem itemList = (S_AddItem)packet;
+
+		foreach (ItemInfo itemInfo in itemList.Items)
+        {
+            Item item = Item.MakeItem(itemInfo);
+            Managers.Inven.Add(item);
+
+        }
+
+		Debug.Log("아이템 획득! ");
+        UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+        UI_Inventory invenUI = gameSceneUI.InvenUI;
+        invenUI.RefreshUI();
+
+    }
+    public static void S_EquipItemHandler(PacketSession session, IMessage packet)
+    {
+		S_EquipItem equipItemOk  = (S_EquipItem)packet;
+
+		//메모리에 저장
+		Item item = Managers.Inven.Get(equipItemOk.ItemDbId);
+		if (item == null)
+			return;
+
+		item.Equipped = equipItemOk.Equipped;
+		Debug.Log("아이템 착용 변경");
+
+        UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+        UI_Inventory invenUI = gameSceneUI.InvenUI;
+		invenUI.RefreshUI();
+
+    }
+    public static void S_ChangeStatHandler(PacketSession session, IMessage packet)
+    {
+		S_ChangeStat equipOk = (S_ChangeStat)packet;
+
+
+    }
 }

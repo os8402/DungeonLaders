@@ -46,28 +46,28 @@ namespace GameServer
                 {
                     db.Items.Add(new ItemDb()
                     {
-                        TemplateId = 1,
+                        TemplateId = 201,
                         Count = 1,
                         Slot = 0,
                         Owner = player
                     });
                     db.Items.Add(new ItemDb()
                     {
-                        TemplateId = 100,
+                        TemplateId = 1001,
                         Count = 1,
                         Slot = 1,
                         Owner = player
                     });
                     db.Items.Add(new ItemDb()
                     {
-                        TemplateId = 101,
+                        TemplateId = 1101,
                         Count = 1,
                         Slot = 2,
                         Owner = player
                     });
                     db.Items.Add(new ItemDb()
                     {
-                        TemplateId = 200,
+                        TemplateId = 2001,
                         Count = 10,
                         Slot = 5,
                         Owner = player

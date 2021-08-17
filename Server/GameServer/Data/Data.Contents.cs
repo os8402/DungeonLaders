@@ -6,8 +6,10 @@ using System.Text;
 
 namespace GameServer.Data
 {
+
+
     #region Stat
-  
+
     [Serializable]
     public class StatData : ILoader<int, StatInfo>
     {
@@ -115,6 +117,42 @@ namespace GameServer.Data
                 dict.Add(item.id, item);
             }
 
+            return dict;
+        }
+    }
+
+    #endregion
+
+    #region Monster
+    [Serializable]
+    public class RewardData
+    {
+
+        public int probability;  //100분율
+        public int itemId;
+        public int count; 
+
+    }
+
+    [Serializable]
+    public class MonsterData
+    {
+        public int id;
+        public string name;
+        public StatInfo stat;
+        public List<RewardData> rewards; 
+        //public string prefabPath; 
+    }
+
+    public class MonsterLoader : ILoader<int, MonsterData>
+    {
+        public List<MonsterData> monsters = new List<MonsterData>();
+
+        public Dictionary<int, MonsterData> MakeDict()
+        {
+            Dictionary<int, MonsterData> dict = new Dictionary<int, MonsterData>();
+            foreach (MonsterData monser in monsters)
+                dict.Add(monser.id, monser);
             return dict;
         }
     }

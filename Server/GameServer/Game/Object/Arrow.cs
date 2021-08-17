@@ -51,5 +51,10 @@ namespace GameServer.Game
                 Room.Push(Room.LeaveGame, Id);
             }
         }
+
+        public override GameObject GetOwner()
+        {
+            return Owner;
+        }
     }
 }

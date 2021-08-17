@@ -7,7 +7,6 @@ public class MyPlayerController : PlayerController
 {
 
     bool _moveKeyPressed = false;
-    bool _mouseKeyPressed = false;
 
     private ChasePlayerCam _cam;
     public ChasePlayerCam Cam { get { return _cam; } }
@@ -52,6 +51,22 @@ public class MyPlayerController : PlayerController
         if (_coSkillCoolTime == null && Managers.Input.Mouse_Left)
         {
             SendSkill();
+        }
+
+        if(Managers.Input.I)
+        {
+            UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+            UI_Inventory invenUI = gameSceneUI.InvenUI;
+
+            if(invenUI.gameObject.activeSelf)
+            {
+                invenUI.gameObject.SetActive(false);
+            }
+            else
+            {
+                invenUI.gameObject.SetActive(true);
+                invenUI.RefreshUI();
+            }
         }
     }
 

@@ -12,6 +12,8 @@ public class InputManager
     public bool D = false;
     public bool S = false;
     public bool Mouse_Left = false;
+    public bool I = false; 
+        
     public float H = 0.0f;
     public float V = 0.0f;
     public Vector3 GetAxis { get { return new Vector3(H, V); } }
@@ -36,6 +38,7 @@ public class InputManager
         A = false;
         S = false;
         D = false;
+        I = false;
         Mouse_Left = false;
         H = 0.0f;
         V = 0.0f;
@@ -48,6 +51,7 @@ public class InputManager
         A = Input.GetKey(KeyCode.A);
         S = Input.GetKey(KeyCode.S);
         D = Input.GetKey(KeyCode.D);
+        I = Input.GetKeyDown(KeyCode.I); 
         Mouse_Left = Input.GetMouseButtonDown(0);
         H = Input.GetAxisRaw("Horizontal");
         V = Input.GetAxisRaw("Vertical");

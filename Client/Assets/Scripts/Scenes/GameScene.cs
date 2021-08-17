@@ -6,6 +6,8 @@ using static Define;
 
 public class GameScene : BaseScene
 {
+    UI_GameScene _sceneUI; 
+
     protected override void Init()
     {
         base.Init();
@@ -19,6 +21,8 @@ public class GameScene : BaseScene
         Managers.Data.Init();
         //맵 로딩
         Managers.Map.LoadMap(1);
+
+        _sceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();
 
     }
 

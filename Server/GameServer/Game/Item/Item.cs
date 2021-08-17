@@ -28,6 +28,16 @@ namespace GameServer.Game
             get { return Info.Count; }
             set { Info.Count = value; }
         }
+        public int Slot
+        {
+            get { return Info.Slot; }
+            set { Info.Slot = value; }
+        }
+        public bool Equipped
+        {
+            get { return Info.Equipped; }
+            set { Info.Equipped = value; }
+        }
 
         public ItemType ItemType { get; private set; }
         public bool Stackable { get; protected set; }
@@ -63,6 +73,8 @@ namespace GameServer.Game
             {
                 item.ItemDbId = itemDb.ItemDbId;
                 item.Count = itemDb.Count;
+                item.Slot = itemDb.Slot;
+                item.Equipped = itemDb.Equipped;
             }
 
 

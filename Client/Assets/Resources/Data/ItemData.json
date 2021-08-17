@@ -1,49 +1,55 @@
 {
   "weapons": [
     {
-      "id": "1",
+      "id": "101",
       "name": "≥ÏΩº ∞À",
       "weaponType": "Sword",
-      "damage": "8"
+      "damage": "8",
+      "iconPath": "Sprites/Weapon/sword_001"
 
     },
     {
-      "id": "2",
+      "id": "201",
       "name": "≥ÏΩº √¢",
       "weaponType": "Spear",
-      "damage": "8"
+      "damage": "8",
+      "iconPath": "Sprites/Weapon/spear_001"
 
     },
     {
-      "id": "3",
+      "id": "301",
       "name": "≥ÏΩº »∞",
       "weaponType": "Bow",
-      "damage": "8"
+      "damage": "8",
+      "iconPath": "Sprites/Weapon/bow_001"
 
     }
   ],
   "armors": [
     {
-      "id": "100",
+      "id": "1001",
       "name": "ª¿ ∞©ø ",
       "armorType": "Armor",
-      "defence": "8"
+      "defence": "8",
+      "iconPath": "Sprites/Armor/armor_001"
 
     },
     {
-      "id": "101",
+      "id": "1101",
       "name": "ª¿ ≈ı±∏",
       "armorType": "Helmet",
-      "defence": "8"
+      "defence": "8",
+      "iconPath": "Sprites/Armor/helmet_001"
 
     }
   ],
   "consumables": [
     {
-      "id": "200",
+      "id": "2001",
       "name": "Hp π∞æ‡",
       "consumableType": "Potion",
-      "damage": "8"
+      "damage": "8",
+      "iconPath": "Sprites/Item/hp_001"
 
     }
   ]

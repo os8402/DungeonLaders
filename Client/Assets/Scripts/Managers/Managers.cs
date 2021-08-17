@@ -8,6 +8,7 @@ public class Managers : MonoBehaviour
     static Managers Instance { get { Init(); return s_instance; } } // 유일한 매니저를 갖고온다
 
     #region Contents
+    InventoryMananger _inven = new InventoryMananger();
     MapManager _map = new MapManager();
     ObjectManager _object = new ObjectManager();
     NetworkManager _network = new NetworkManager();
@@ -20,6 +21,7 @@ public class Managers : MonoBehaviour
     UIManager _ui = new UIManager();
     InputManager _input = new InputManager();
 
+    public static InventoryMananger Inven { get { return Instance._inven; } }
     public static MapManager Map { get { return Instance._map; } }
     public static ObjectManager Object { get { return Instance._object; } }
     public static NetworkManager Network { get { return Instance._network; } }

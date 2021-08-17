@@ -6,20 +6,21 @@ using UnityEngine;
 
 namespace Data
 {
-  
+
+
     #region Weapon
     [Serializable]
-    public class Weapon
+    public class WeaponSkillData
     {
         public int id;
-        public WeaponType weaponType; 
+        public WeaponType weaponType;
         public string name;
         public float cooldown;
         public int damage;
         public SkillType skillType;
         public ProjectileInfo projectile;
     }
-
+    [Serializable]
     public class ProjectileInfo
     {
         public string name;
@@ -27,16 +28,103 @@ namespace Data
         public int range;
         public string prefab;
     }
-
-    public class WeaponData : ILoader<int, Weapon>
+    [Serializable]
+    public class WeaponLoader : ILoader<int, WeaponSkillData>
     {
-        public List<Weapon> weapons = new List<Weapon>();
+        public List<WeaponSkillData> weapons = new List<WeaponSkillData>();
 
-        public Dictionary<int, Weapon> MakeDict()
+        public Dictionary<int, WeaponSkillData> MakeDict()
         {
-            Dictionary<int, Weapon> dict = new Dictionary<int, Weapon>();
-            foreach (Weapon weapon in weapons)
+            Dictionary<int, WeaponSkillData> dict = new Dictionary<int, WeaponSkillData>();
+            foreach (WeaponSkillData weapon in weapons)
                 dict.Add(weapon.id, weapon);
+            return dict;
+        }
+    }
+
+    #endregion
+
+    #region Item
+    [Serializable]
+    public class ItemData
+    {
+        public int id;
+        public string name;
+        public ItemType itemType;
+        public string iconPath;
+
+    }
+    [Serializable]
+    public class WeaponData : ItemData
+    {
+        public WeaponType weaponType;
+        public int damage;
+    }
+    [Serializable]
+    public class ArmorData : ItemData
+    {
+        public ArmorType armorType;
+        public int defence;
+    }
+    [Serializable]
+    public class ConsumableData : ItemData
+    {
+        public ConsumableType consumableType;
+        public int maxCount;
+    }
+
+    [Serializable]
+    public class ItemLoader : ILoader<int, ItemData>
+    {
+        public List<WeaponData> weapons = new List<WeaponData>();
+        public List<ArmorData> armors = new List<ArmorData>();
+        public List<ConsumableData> consumables = new List<ConsumableData>();
+
+        public Dictionary<int, ItemData> MakeDict()
+        {
+            Dictionary<int, ItemData> dict = new Dictionary<int, ItemData>();
+            foreach (ItemData item in weapons)
+            {
+                item.itemType = ItemType.Weapon;
+                dict.Add(item.id, item);
+            }
+            foreach (ItemData item in armors)
+            {
+                item.itemType = ItemType.Armor;
+                dict.Add(item.id, item);
+            }
+            foreach (ItemData item in consumables)
+            {
+                item.itemType = ItemType.Consumable;
+                dict.Add(item.id, item);
+            }
+
+            return dict;
+        }
+    }
+
+    #endregion
+
+    #region Monster
+
+    [Serializable]
+    public class MonsterData
+    {
+        public int id;
+        public string name;
+        public StatInfo stat; 
+        public string prefabPath; 
+    }
+
+    public class MonsterLoader : ILoader<int, MonsterData>
+    {
+        public List<MonsterData> monsters = new List<MonsterData>();
+
+        public Dictionary<int, MonsterData> MakeDict()
+        {
+            Dictionary<int, MonsterData> dict = new Dictionary<int, MonsterData>();
+            foreach (MonsterData monser in monsters)
+                dict.Add(monser.id, monser);
             return dict;
         }
     }

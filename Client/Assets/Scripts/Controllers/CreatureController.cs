@@ -110,7 +110,7 @@ public class CreatureController : BaseController
 
     public void CreateWeapon(WeaponInfo weaponInfo)
     {
-        Data.Weapon weapon  = null;
+        Data.WeaponSkillData weapon  = null;
         int id = weaponInfo.WeaponId;
         if (Managers.Data.WeaponDict.TryGetValue(id, out weapon) == false)
             return;

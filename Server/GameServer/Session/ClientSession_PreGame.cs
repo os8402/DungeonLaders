@@ -96,8 +96,6 @@ namespace GameServer
             if (playerInfo == null)
                 return;
 
-
- 
             MyPlayer = ObjectManager.Instance.Add<Player>();
 
             {
