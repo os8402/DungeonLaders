@@ -56,8 +56,8 @@ public class ObjectManager
 
 		bc.Id = info.ObjectId;
 		bc.TeamId = info.TeamId;
-		bc.PosInfo = info.PosInfo;
-		bc.Stat = info.StatInfo;
+		bc.PosInfo.MergeFrom(info.PosInfo);
+		bc.Stat.MergeFrom(info.StatInfo);
 	
 		bc.SyncPos();
 

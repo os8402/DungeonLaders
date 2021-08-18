@@ -35,6 +35,7 @@ public class CreatureController : BaseController
     {
         Init();
     }
+
     public override DirState Dir
     {
         get { return PosInfo.Target.Dir; }
@@ -58,6 +59,7 @@ public class CreatureController : BaseController
 
         }
     }
+
     protected override void Init()
     {
         base.Init();

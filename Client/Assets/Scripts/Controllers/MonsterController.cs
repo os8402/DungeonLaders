@@ -13,9 +13,14 @@ public class MonsterController : CreatureController
     }
 
     protected override void Init()
-    {
+    { 
         base.Init();
-  
+        if (Hp == 0)
+        {
+            UpdateAnimation();
+            OnDead();
+        }
+         
     }
 
 

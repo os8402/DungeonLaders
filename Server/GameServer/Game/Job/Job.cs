@@ -4,9 +4,10 @@ using System.Text;
 
 namespace GameServer.Game
 {
-    public interface IJob
+    public abstract class IJob
     {
-        void Execute();
+        public abstract void Execute();
+        public bool Cancle { get; set; }
     }   
     public class Job : IJob
     {
@@ -16,9 +17,10 @@ namespace GameServer.Game
             _action = action;
         }
 
-        public void Execute()
+        public override void Execute()
         {
-            _action.Invoke();
+            if (Cancle == false)
+              _action.Invoke();
         }
     }
     public class Job<T1> : IJob
@@ -33,9 +35,10 @@ namespace GameServer.Game
         }
 
 
-        public void Execute()
+        public override void Execute()
         {
-            _action.Invoke(_t1);
+            if (Cancle == false)
+                _action.Invoke(_t1);
         }
     }
 
@@ -53,9 +56,10 @@ namespace GameServer.Game
         }
 
 
-        public void Execute()
+        public override  void Execute()
         {
-            _action.Invoke(_t1 , _t2);
+            if (Cancle == false)
+                _action.Invoke(_t1 , _t2);
         }
     }
 
@@ -74,10 +78,10 @@ namespace GameServer.Game
             _t3 = t3;
         }
 
-
-        public void Execute()
+        public override void Execute()
         {
-            _action.Invoke(_t1, _t2 , _t3);
+            if (Cancle == false)
+                _action.Invoke(_t1, _t2 , _t3);
         }
     }
 }

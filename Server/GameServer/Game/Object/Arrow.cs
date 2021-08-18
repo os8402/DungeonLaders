@@ -8,35 +8,26 @@ namespace GameServer.Game
     public class Arrow : Projectile
     {
        
-
-        long _nextMoveTick = 0;
-
         public override void Update()
         {
             if (WeaponData == null || WeaponData.projectile == null ||
                     Owner == null || Room == null)
                 return;
 
+            int tick = (int)(1000 / WeaponData.projectile.speed);
+            Room.PushAfter(tick, Update);
 
-            if (_nextMoveTick >= Environment.TickCount64)
-                return;
-
-            long tick = (long)(1000 / WeaponData.projectile.speed);
-
-            _nextMoveTick = Environment.TickCount64 + tick;
             //TODO : 이동방법 구현
             Vector2Int destPos = GetFrontCellPos();
 
-            if (Room.Map.CanGo(destPos))
+            if (Room.Map.ApplyMove(this , destPos , collision : false))
             {
-                CellPos = destPos;
-
+    
                 S_Move movePacket = new S_Move();
                 movePacket.ObjectId = Id;
                 movePacket.PosInfo = PosInfo;
-                Room.BroadCast(movePacket);
+                Room.Broadcast(CellPos, movePacket);
 
-              //  Console.WriteLine("Move Arrow");
             }
             else
             {
@@ -44,7 +35,7 @@ namespace GameServer.Game
                 if(target != null && target != Owner)
                 {
                     //TODO : 피격판정
-                    target.OnDamaged(this, WeaponData.damage + Owner.Stat.Attack);
+                    target.OnDamaged(this, WeaponData.damage + Owner.TotalAttack);
 
                 }
                 //소멸

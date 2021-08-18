@@ -26,11 +26,9 @@ namespace GameServer.Game
             Stat.Hp = monsterData.stat.MaxHp;
             State = ControllerState.Idle;
 
-            EquipWeapon = ObjectManager.Instance.CreateObjectWeapon(2);
+            EquipWeapon = ObjectManager.Instance.CreateObjectWeapon(1);
             EquipWeapon.Owner = this;
             WeaponInfo.WeaponId = EquipWeapon.Id;
-
-         
 
         }
 
@@ -63,6 +61,7 @@ namespace GameServer.Game
         }
 
         //FSM [Finite State Machine} 
+        IJob _job;
         public override void Update()
         {
             switch (State)
@@ -80,6 +79,9 @@ namespace GameServer.Game
                     UpdateDead();
                     break;
             }
+
+            if (Room != null)
+                _job = Room.PushAfter(200, Update);
 
         }
 
@@ -114,7 +116,7 @@ namespace GameServer.Game
             State = ControllerState.Moving;
         }
 
-        int _skillRange = 5; 
+        int _skillRange = 1; 
         long _nextMoveTick = 0;
         protected virtual void UpdateMoving()
         {
@@ -142,7 +144,7 @@ namespace GameServer.Game
                 return;
             }
 
-            List<Vector2Int> path =   Room.Map.FindPath(CellPos, _target.CellPos , checkObjects : false);
+            List<Vector2Int> path =   Room.Map.FindPath(CellPos, _target.CellPos , checkObjects : true);
             if(path.Count < 2 || path.Count > _chaseCellDist)
             {
                 _target = null;
@@ -175,7 +177,7 @@ namespace GameServer.Game
             S_Move movePacket = new S_Move();
             movePacket.ObjectId = Id;
             movePacket.PosInfo = PosInfo;
-            Room.BroadCast(movePacket);
+            Room.Broadcast(CellPos, movePacket);
         }
 
         long _coolTick = 0; 
@@ -223,7 +225,7 @@ namespace GameServer.Game
                 {
                     case SkillType.SkillNormal:
                         //데미지 판정
-                        _target.OnDamaged(this, EquipWeapon.Data.damage + Stat.Attack);
+                        _target.OnDamaged(this, EquipWeapon.Data.damage + TotalAttack);
                         break;
 
                     case SkillType.SkillProjectile:
@@ -247,7 +249,7 @@ namespace GameServer.Game
                 skill.AttackList.Add(EquipWeapon.AttackList);
                 skill.AttackDir = EquipWeapon.AttackDir;
 
-                Room.BroadCast(skill);
+                Room.Broadcast(CellPos, skill);
 
                 //스킬 쿨타임 적용
                 int coolTick = (int)(1000 * EquipWeapon.Data.cooldown);
@@ -268,6 +270,12 @@ namespace GameServer.Game
         }
         public override void OnDead(GameObject attacker)
         {
+            if (_job != null)
+            {
+                _job.Cancle = true;
+                _job = null;
+
+            }
             _target = null;
 
             base.OnDead(attacker);
@@ -285,6 +293,7 @@ namespace GameServer.Game
                     
                 }
             }
+
         }
 
         void CheckDeadTarget(Player target)

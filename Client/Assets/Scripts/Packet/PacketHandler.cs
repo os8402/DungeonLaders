@@ -13,7 +13,6 @@ class PacketHandler
 		S_EnterGame enterGamePacket = packet as S_EnterGame;
 		Managers.Object.Add(enterGamePacket.Player, myPlayer: true); 
 
-
 	}
 	public static void S_LeaveGameHandler(PacketSession session, IMessage packet)
 	{
@@ -119,7 +118,8 @@ class PacketHandler
     {
 		Debug.Log("S_ConnectedHandler");
 		C_Login loginPacket = new C_Login();
-		loginPacket.UniqueId = SystemInfo.deviceUniqueIdentifier;
+		string path = Application.dataPath;
+		loginPacket.UniqueId = path.GetHashCode().ToString();
 		Managers.Network.Send(loginPacket);
 
     }
@@ -179,7 +179,8 @@ class PacketHandler
 
         }
 
-
+		if (Managers.Object.MyPlayer != null)
+			Managers.Object.MyPlayer.RefreshCalcStat();
     }
 	public static void S_AddItemHandler(PacketSession session, IMessage packet)
     {
@@ -194,10 +195,13 @@ class PacketHandler
 
 		Debug.Log("아이템 획득! ");
         UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
-        UI_Inventory invenUI = gameSceneUI.InvenUI;
-        invenUI.RefreshUI();
+        gameSceneUI.InvenUI.RefreshUI();
+        gameSceneUI.StatUI.RefreshUI();
 
-    }
+        if (Managers.Object.MyPlayer != null)
+			Managers.Object.MyPlayer.RefreshCalcStat();
+
+	}
     public static void S_EquipItemHandler(PacketSession session, IMessage packet)
     {
 		S_EquipItem equipItemOk  = (S_EquipItem)packet;
@@ -211,14 +215,23 @@ class PacketHandler
 		Debug.Log("아이템 착용 변경");
 
         UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
-        UI_Inventory invenUI = gameSceneUI.InvenUI;
-		invenUI.RefreshUI();
+        gameSceneUI.InvenUI.RefreshUI();
+        gameSceneUI.StatUI.RefreshUI();
 
+
+        if (Managers.Object.MyPlayer != null)
+            Managers.Object.MyPlayer.RefreshCalcStat();
     }
     public static void S_ChangeStatHandler(PacketSession session, IMessage packet)
     {
 		S_ChangeStat equipOk = (S_ChangeStat)packet;
+		//TODO 
 
-
+    }
+    public static void S_PingHandler(PacketSession session, IMessage packet)
+    {
+		C_Pong pongPacket = new C_Pong();
+		Debug.Log("[Server] Ping Check");
+		Managers.Network.Send(pongPacket);
     }
 }

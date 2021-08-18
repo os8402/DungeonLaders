@@ -142,9 +142,14 @@ namespace GameServer
 
             ServerState = PlayerServerState.ServerStateGame;
 
+            GameLogic.Instance.Push(() =>
+            {
+                GameRoom room = GameLogic.Instance.Find(1);
+                room.Push(room.EnterGame, MyPlayer , true);
+            });
+
             //TODO 입장 요청
-            GameRoom room = RoomManager.Instance.Find(1);
-            room.Push(room.EnterGame, MyPlayer);
+        
 
         }
 

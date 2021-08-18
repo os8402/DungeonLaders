@@ -11,11 +11,14 @@ public class MyPlayerController : PlayerController
     private ChasePlayerCam _cam;
     public ChasePlayerCam Cam { get { return _cam; } }
 
+    public int WeaponDamage { get; set; }
+    public int ArmorDefence { get; set; }
 
     protected override void Init()
     {
-
         base.Init();
+
+        RefreshCalcStat();
 
         Transform camera = Camera.main.transform;
         _cam = camera.GetComponent<ChasePlayerCam>();
@@ -45,29 +48,44 @@ public class MyPlayerController : PlayerController
 
     }
 
+    void GetUIKey()
+    {
+        if (Managers.Input.I)
+        {
+            UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+            UI_Inventory invenUI = gameSceneUI.InvenUI;
+
+            bool active = invenUI.gameObject.activeSelf;
+            invenUI.gameObject.SetActive(!active);
+
+            if (active == false)
+                invenUI.RefreshUI();
+        }
+
+        if(Managers.Input.C)
+        {
+            UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+            UI_Stat statUI = gameSceneUI.StatUI;
+
+            bool active = statUI.gameObject.activeSelf;
+            statUI.gameObject.SetActive(!active);
+
+            if(active == false)
+                statUI.RefreshUI();
+        }
+    }
+
 
     void UpdateInput()
     {
+        GetUIKey();
+
         if (_coSkillCoolTime == null && Managers.Input.Mouse_Left)
         {
             SendSkill();
         }
 
-        if(Managers.Input.I)
-        {
-            UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
-            UI_Inventory invenUI = gameSceneUI.InvenUI;
-
-            if(invenUI.gameObject.activeSelf)
-            {
-                invenUI.gameObject.SetActive(false);
-            }
-            else
-            {
-                invenUI.gameObject.SetActive(true);
-                invenUI.RefreshUI();
-            }
-        }
+     
     }
 
     void SendSkill()
@@ -143,7 +161,6 @@ public class MyPlayerController : PlayerController
         CL_STATE = ControllerState.Idle;
     }
 
-
     protected override void CheckUpdatedFlag()
     {
         if (_updated)
@@ -153,6 +170,28 @@ public class MyPlayerController : PlayerController
             movePacket.PosInfo = PosInfo;
             Managers.Network.Send(movePacket);
             _updated = false;
+        }
+    }
+
+    public void RefreshCalcStat()
+    {
+        WeaponDamage = 0;
+        ArmorDefence = 0;
+
+        foreach (Item item in Managers.Inven.Items.Values)
+        {
+            if (item.Equipped == false)
+                continue;
+
+            switch (item.ItemType)
+            {
+                case ItemType.Weapon:
+                    WeaponDamage += ((Weapon)item).Damage;
+                    break;
+                case ItemType.Armor:
+                    ArmorDefence += ((Armor)item).Defence;
+                    break;
+            }
         }
     }
 

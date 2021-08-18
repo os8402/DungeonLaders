@@ -192,7 +192,7 @@ public abstract  class BaseController : MonoBehaviour
                 UpdateRotation();
                 break;
             case ControllerState.Dead:
-            
+                
                 break;
 
         }

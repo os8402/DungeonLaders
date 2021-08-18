@@ -30,7 +30,7 @@
       "id": "1001",
       "name": "ª¿ ∞©ø ",
       "armorType": "Armor",
-      "defence": "8",
+      "defence": "20",
       "iconPath": "Sprites/Armor/armor_001"
 
     },
@@ -38,7 +38,7 @@
       "id": "1101",
       "name": "ª¿ ≈ı±∏",
       "armorType": "Helmet",
-      "defence": "8",
+      "defence": "20",
       "iconPath": "Sprites/Armor/helmet_001"
 
     }

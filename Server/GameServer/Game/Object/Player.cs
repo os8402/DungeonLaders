@@ -11,7 +11,9 @@ namespace GameServer.Game
     {
         public int PlayerDbId { get; set; }
         public ClientSession Session { get; set; }
+        public VisionCube Vision { get; set; }
         public Inventory Inven { get; private set; } = new Inventory();
+
 
         public Action<Player> _checkDeadTarget;
 
@@ -24,6 +26,7 @@ namespace GameServer.Game
         public Player()
         {
             ObjectType = GameObjectType.Player;
+            Vision = new VisionCube(this);
 
             EquipWeapon = ObjectManager.Instance.CreateObjectWeapon(2);
             EquipWeapon.Owner = this;

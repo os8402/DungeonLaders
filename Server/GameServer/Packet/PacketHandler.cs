@@ -27,11 +27,11 @@ class PacketHandler
 			return;
 
 		room.Push(room.HandleMove, player, movePacket);
-	
+
 	}
 
-	public static void C_SkillHandler(PacketSession session , IMessage packet)
-    {
+	public static void C_SkillHandler(PacketSession session, IMessage packet)
+	{
 		C_Skill skillPacket = packet as C_Skill;
 		ClientSession clientSession = session as ClientSession;
 
@@ -52,7 +52,7 @@ class PacketHandler
 		C_Login loginPacket = packet as C_Login;
 		ClientSession clientSession = session as ClientSession;
 		clientSession.HandleLogin(loginPacket);
-		
+
 	}
 	public static void C_EnterGameHandler(PacketSession session, IMessage packet)
 	{
@@ -60,16 +60,16 @@ class PacketHandler
 		ClientSession clientSession = (ClientSession)session;
 		clientSession.HandleEnterGame(enterGamePacket);
 	}
-    public static void C_CreatePlayerHandler(PacketSession session, IMessage packet)
-    {
-        C_CreatePlayer createPlayerPacket = (C_CreatePlayer)packet;
-        ClientSession clientSession = (ClientSession)session;
+	public static void C_CreatePlayerHandler(PacketSession session, IMessage packet)
+	{
+		C_CreatePlayer createPlayerPacket = (C_CreatePlayer)packet;
+		ClientSession clientSession = (ClientSession)session;
 		clientSession.HandleCreatePlayer(createPlayerPacket);
-    }
-    public static void C_EquipItemHandler(PacketSession session, IMessage packet)
-    {
+	}
+	public static void C_EquipItemHandler(PacketSession session, IMessage packet)
+	{
 		C_EquipItem equipPacket = (C_EquipItem)packet;
-        ClientSession clientSession = (ClientSession)session;
+		ClientSession clientSession = (ClientSession)session;
 
 		Player player = clientSession.MyPlayer;
 		if (player == null)
@@ -80,8 +80,13 @@ class PacketHandler
 			return;
 
 		room.Push(room.HandleEquipItem, player, equipPacket);
-				
-  
-    }
+
+
+	}
+	public static void C_PongHandler(PacketSession session, IMessage packet)
+	{
+		ClientSession clientSession = (ClientSession)session;
+		clientSession.HandlePong();
+	}
 
 }

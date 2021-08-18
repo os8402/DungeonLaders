@@ -66,7 +66,8 @@ namespace GameServer.Game
         public GameObject()
         {
             Info.PosInfo = PosInfo;
-            Info.PosInfo.Target = new TargetInfo(); 
+            //Info.PosInfo.Target = new TargetInfo(); 
+            Info.PosInfo.Target = Target; 
             Info.WeaponInfo = WeaponInfo;
             Info.StatInfo = Stat;
            
@@ -134,13 +135,15 @@ namespace GameServer.Game
             if (Stat.Hp <= 0)
                 return;
 
+            damage = Math.Max((damage - TotalDefence) , 0);
+
             Stat.Hp = Math.Max(Stat.Hp - damage, 0);
 
             S_ChangeHp changePacket = new S_ChangeHp();
             changePacket.ObjectId = Id;
             changePacket.Hp = Stat.Hp;
             changePacket.AttackerId = attacker.Id;
-            Room.BroadCast(changePacket);
+            Room.Broadcast(CellPos, changePacket);
 
             if (Stat.Hp <= 0)
             {
@@ -161,7 +164,7 @@ namespace GameServer.Game
             S_Die diePacket = new S_Die();
             diePacket.ObjectId = Id;
             diePacket.AttackerId = attacker.Id;
-            Room.BroadCast(diePacket);
+            Room.Broadcast(CellPos, diePacket);
             GameRoom room = Room;
             room.PushAfter(2000, ReviveGameObject);
         }
@@ -175,12 +178,8 @@ namespace GameServer.Game
             room.LeaveGame(Id);
 
             Stat.Hp = Stat.MaxHp;
-            PosInfo.State = ControllerState.Idle;
-            PosInfo.Target.Dir = DirState.Right;
-            PosInfo.PosX = 0;
-            PosInfo.PosY = 0;
-
-            room.EnterGame(this);
+            State = ControllerState.Idle;
+            room.EnterGame(this , randomPos : true);
 
         }
 

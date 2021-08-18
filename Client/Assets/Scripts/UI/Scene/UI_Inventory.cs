@@ -5,12 +5,26 @@ using UnityEngine;
 
 public class UI_Inventory : UI_Base
 {
+    enum Images
+    {
+        Item_Info_Icon,
+  
+    }
+    enum Texts
+    {
+        Item_Name_Text,
+        Item_Info_Text,
+        Attack_ValueText,
+        Range_ValueText,
+        CoolTime_ValueText
+
+    }
     public List<UI_Inventory_Item> Items { get; }  = new List<UI_Inventory_Item>();
     public override void Init()
     {
         Items.Clear();
 
-        GameObject grid = transform.Find("ItemGrid").gameObject;
+        GameObject grid = Util.FindChild(gameObject, "ItemGrid", true);
         foreach (Transform child in grid.transform)
             Destroy(child.gameObject);
 
@@ -39,6 +53,11 @@ public class UI_Inventory : UI_Base
 
             Items[item.Slot].SetItem(item);
         }
+
+    }
+
+    public void SetItemInfo()
+    {
 
     }
 }

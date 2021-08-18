@@ -35,7 +35,7 @@ namespace GameServer.Game
             S_Move resMovePacket = new S_Move();
             resMovePacket.ObjectId = info.ObjectId;
             resMovePacket.PosInfo = movePacket.PosInfo;
-            BroadCast(resMovePacket);
+            Broadcast(player.CellPos, resMovePacket);
 
 
         }
@@ -69,7 +69,7 @@ namespace GameServer.Game
             skill.AttackDir = weapon.AttackDir;
             skill.TargetInfo = skillPacket.TargetInfo;
 
-            BroadCast(skill);
+            Broadcast(player.CellPos, skill);
 
             switch (weapon.Data.skillType)
             {

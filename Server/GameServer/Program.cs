@@ -16,70 +16,73 @@ using ServerCore;
 
 namespace GameServer
 {
+    //1.GameRoom 방식
+    //2.더 넓은 영역 관리
+    //3. 심리스 MMO
 
+
+    //사용 중인 스레드
+    //1. Recv(N개)
+    //2. GameLogic(1)
+    //3. Send(1)
+    //4. DbTask(1)
 
 	class Program
 	{
 		static Listener _listener = new Listener();
-        static List<System.Timers.Timer> _timers = new List<System.Timers.Timer>();
-        
-        static void TickRoom(GameRoom room, int tick = 100)
-        {
-            var timer = new System.Timers.Timer();
-            timer.Interval = tick;
-            timer.Elapsed += ((s, e) => { room.Update(); });
-            timer.AutoReset = true;
-            timer.Enabled = true;
 
-            _timers.Add(timer);
+        static void GameLogicTask()
+        {
+            while(true)
+            {
+                GameLogic.Instance.Update();
+                Thread.Sleep(0);
+            }
+        }
+        static void DbTask()
+        {
+            while (true)
+            {
+                DbTransaction.Instance.Flush();
+                Thread.Sleep(0);
+            }
+        }
+        static void NetworkTask()
+        {
+            while(true)
+            {
+                List<ClientSession> sessions = SessionManager.Instance.GetSessions();
+                foreach(ClientSession session in sessions)
+                {
+                    session.FlushSend();
+                }
+
+                Thread.Sleep(0);
+            }
         }
 
-		static void Main(string[] args)
+
+        //static List<System.Timers.Timer> _timers = new List<System.Timers.Timer>();
+
+        //static void TickRoom(GameRoom room, int tick = 100)
+        //{
+        //    var timer = new System.Timers.Timer();
+        //    timer.Interval = tick;
+        //    timer.Elapsed += ((s, e) => { room.Update(); });
+        //    timer.AutoReset = true;
+        //    timer.Enabled = true;
+
+        //    _timers.Add(timer);
+        //}
+
+        static void Main(string[] args)
         {
 			ConfigManager.LoadConfig();
 			DataManager.LoadData();
-            //test
-            using (AppDbContext db = new AppDbContext())
-            {
-                PlayerDb player = db.Players.FirstOrDefault();
-                if(player != null)
-                {
-                    db.Items.Add(new ItemDb()
-                    {
-                        TemplateId = 201,
-                        Count = 1,
-                        Slot = 0,
-                        Owner = player
-                    });
-                    db.Items.Add(new ItemDb()
-                    {
-                        TemplateId = 1001,
-                        Count = 1,
-                        Slot = 1,
-                        Owner = player
-                    });
-                    db.Items.Add(new ItemDb()
-                    {
-                        TemplateId = 1101,
-                        Count = 1,
-                        Slot = 2,
-                        Owner = player
-                    });
-                    db.Items.Add(new ItemDb()
-                    {
-                        TemplateId = 2001,
-                        Count = 10,
-                        Slot = 5,
-                        Owner = player
-                    });
 
-                    db.SaveChangesEx();
-                }
-            }
-
-      
-			GameRoom room =  RoomManager.Instance.Add(1);
-            TickRoom(room, 50);
+            GameLogic.Instance.Push(() => { GameRoom room = GameLogic.Instance.Add(1); });
+  
+          //  TickRoom(room, 50);
 
             // DNS (Domain Name System)
             string host = Dns.GetHostName();
@@ -90,10 +93,23 @@ namespace GameServer
 			_listener.Init(endPoint, () => { return SessionManager.Instance.Generate(); });
 			Console.WriteLine("Listening...");
 
-            while (true)
+            //DB Task
             {
-                DbTransaction.Instance.Flush();
+                Thread t = new Thread(DbTask);
+                t.Name = "DB";
+                t.Start();
             }
+            //NetworkSend Task
+            {
+                Thread t = new Thread(NetworkTask);
+                t.Name = "Network Send";
+                t.Start();
+            }
+
+
+            //GameLogic
+            Thread.CurrentThread.Name = "GameLogic";
+            GameLogicTask();
 
         }
 	}
