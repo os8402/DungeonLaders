@@ -42,7 +42,7 @@ public class ObjectManager
 		}
         else if (objectType == GameObjectType.Projectile)
         {
-			CreateObject("Arrow", info);
+			CreateObject("Arrow_004", info);
 		}
 
     }

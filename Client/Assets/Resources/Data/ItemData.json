@@ -3,34 +3,314 @@
     {
       "id": "101",
       "name": "녹슨 검",
+      "info": "너무 오래 써서 녹이 쓴 검",
       "weaponType": "Sword",
       "damage": "8",
+      "attackRange": "1",
+      "cooldown": "0.2",
+      "skillType": "Normal",
+      "handPosX" :  "-0.2",
+      "handPosY" :  "-0.3",
+      "effPosX" :  "0.5",
+      "effPosY" :  "0.5",
       "iconPath": "Sprites/Weapon/sword_001"
 
     },
     {
+      "id": "102",
+      "name": "롱소드",
+      "info": "평범한 보급형 검",
+      "weaponType": "Sword",
+      "damage": "20",
+      "attackRange": "1",
+      "cooldown": "0.2",
+      "skillType": "Normal",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.5",
+      "effPosY": "0.5",
+      "iconPath": "Sprites/Weapon/sword_002"
+
+    },
+    {
+      "id": "103",
+      "name": "봉인된 성검",
+      "info": "봉인을 풀지 못한 성검",
+      "weaponType": "Sword",
+      "damage": "60",
+      "attackRange": "1",
+      "cooldown": "1.0",
+      "skillType": "Normal",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.5",
+      "effPosY": "0.5",
+      "iconPath": "Sprites/Weapon/sword_003"
+
+    },
+    {
+      "id": "104",
+      "name": "자연의 검",
+      "info": "자연의 힘이 깃든 검 그러나 무겁다.",
+      "weaponType": "Sword",
+      "damage": "80",
+      "attackRange": "1",
+      "cooldown": "1",
+      "skillType": "Normal",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.5",
+      "effPosY": "0.5",
+      "iconPath": "Sprites/Weapon/sword_004"
+
+    },
+    {
+      "id": "105",
+      "name": "후라이팬",
+      "info": "요리에도 사용 가능한 검",
+      "weaponType": "Sword",
+      "damage": "100",
+      "attackRange": "1",
+      "cooldown": "1",
+      "skillType": "Normal",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.5",
+      "effPosY": "0.5",
+      "iconPath": "Sprites/Weapon/sword_005"
+
+    },
+    {
+      "id": "106",
+      "name": "카타나",
+      "info": "빠르게 적을 베는 것에 중점을 둔 검",
+      "weaponType": "Sword",
+      "damage": "40",
+      "attackRange": "1",
+      "cooldown": "0.2",
+      "skillType": "Normal",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.8",
+      "effPosY": "0.8",
+      "iconPath": "Sprites/Weapon/sword_006"
+
+    },
+    {
+      "id": "107",
+      "name": "도검",
+      "info": "카타나보다 조금 더 쌘 검",
+      "weaponType": "Sword",
+      "damage": "55",
+      "attackRange": "1",
+      "cooldown": "0.2",
+      "skillType": "Normal",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.8",
+      "effPosY": "0.8",
+      "iconPath": "Sprites/Weapon/sword_007"
+
+    },
+    {
+      "id": "108",
+      "name": "귀신의 검",
+      "info": "너무 오래 써서 녹이 쓴 검",
+      "weaponType": "Sword",
+      "damage": "120",
+      "attackRange": "3",
+      "cooldown": "0.4",
+      "skillType": "Normal",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.5",
+      "effPosY": "0.5",
+      "iconPath": "Sprites/Weapon/sword_008"
+
+    },
+    {
+      "id": "109",
+      "name": "청동검",
+      "info": "은은한 청동빛의 검",
+      "weaponType": "Sword",
+      "damage": "200",
+      "attackRange": "1",
+      "cooldown": "0.2",
+      "skillType": "Normal",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.9",
+      "effPosY": "0.9",
+      "iconPath": "Sprites/Weapon/sword_009"
+
+    },
+    {
+      "id": "110",
+      "name": "마왕의 검",
+      "info": "전설의 마왕이 쓴 마검",
+      "weaponType": "Sword",
+      "damage": "300",
+      "attackRange": "2",
+      "cooldown": "0.3",
+      "skillType": "Normal",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.5",
+      "effPosY": "0.5",
+      "iconPath": "Sprites/Weapon/sword_010"
+
+    },
+
+    {
       "id": "201",
       "name": "녹슨 창",
+      "info": "너무 오래 써서 녹이 쓴 창",
       "weaponType": "Spear",
       "damage": "8",
+      "attackRange": "1",
+      "cooldown": "0.2",
+      "skillType": "Normal",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.5",
+      "effPosY": "0.5",
       "iconPath": "Sprites/Weapon/spear_001"
 
     },
     {
       "id": "301",
       "name": "녹슨 활",
+      "info": "너무 오래 써서 녹이 쓴 활",
       "weaponType": "Bow",
-      "damage": "8",
-      "iconPath": "Sprites/Weapon/bow_001"
-
+      "damage": "5",
+      "attackRange": "5",
+      "cooldown": "0.5",
+      "skillType": "Projectile",
+      "handPosX": "-0.2",
+      "handPosY": "0",
+      "effPosX": "0",
+      "effPosY": "0",
+      "iconPath": "Sprites/Weapon/bow_001",
+      "projectile": {
+        "name": "화살",
+        "speed": "30.0",
+        "range": "100",
+        "prefab": "Character/Arrow_001"
+      }
+    },
+    {
+      "id": "302",
+      "name": "장궁",
+      "info": "널리 쓰이는 활",
+      "weaponType": "Bow",
+      "damage": "30",
+      "attackRange": "6",
+      "cooldown": "0.4",
+      "skillType": "Projectile",
+      "handPosX": "-0.15",
+      "handPosY": "0",
+      "effPosX": "0",
+      "effPosY": "0",
+      "iconPath": "Sprites/Weapon/bow_002",
+      "projectile": {
+        "name": "화살",
+        "speed": "30.0",
+        "range": "100",
+        "prefab": "Character/Arrow_001"
+      }
+    },
+    {
+      "id": "303",
+      "name": "요정의 활",
+      "info": "숲의 정기를 받은 활",
+      "weaponType": "Bow",
+      "damage": "40",
+      "attackRange": "6",
+      "cooldown": "0.3",
+      "skillType": "Projectile",
+      "handPosX": "-0.15",
+      "handPosY": "0",
+      "effPosX": "0",
+      "effPosY": "0",
+      "iconPath": "Sprites/Weapon/bow_003",
+      "projectile": {
+        "name": "화살",
+        "speed": "30.0",
+        "range": "100",
+        "prefab": "Character/Arrow_004"
+      }
+    },
+    {
+      "id": "304",
+      "name": "게임패드 활",
+      "info": "게임도 할 수 있는 활",
+      "weaponType": "Bow",
+      "damage": "80",
+      "attackRange": "6",
+      "cooldown": "0.2",
+      "skillType": "Projectile",
+      "handPosX": "-0.25",
+      "handPosY": "0",
+      "effPosX": "0",
+      "effPosY": "0",
+      "iconPath": "Sprites/Weapon/bow_004",
+      "projectile": {
+        "name": "화살",
+        "speed": "30.0",
+        "range": "100",
+        "prefab": "Character/Arrow_005"
+      }
+    },
+    {
+      "id": "305",
+      "name": "석궁",
+      "info": "활보단 느리지만 강력한 석궁",
+      "weaponType": "Bow",
+      "damage": "80",
+      "attackRange": "6",
+      "cooldown": "0.8",
+      "skillType": "Projectile",
+      "handPosX": "0",
+      "handPosY": "0",
+      "effPosX": "0",
+      "effPosY": "0",
+      "iconPath": "Sprites/Weapon/bow_005",
+      "projectile": {
+        "name": "화살",
+        "speed": "30.0",
+        "range": "100",
+        "prefab": "Character/Arrow_003"
+      }
+    },
+    {
+      "id": "306",
+      "name": "귀신의 석궁",
+      "info": "귀신의 힘이 깃든 석궁",
+      "weaponType": "Bow",
+      "damage": "200",
+      "attackRange": "7",
+      "cooldown": "0.5",
+      "skillType": "Projectile",
+      "handPosX": "0",
+      "handPosY": "0",
+      "effPosX": "0",
+      "effPosY": "0",
+      "iconPath": "Sprites/Weapon/bow_006",
+      "projectile": {
+        "name": "화살",
+        "speed": "30.0",
+        "range": "100",
+        "prefab": "Character/Arrow_006"
+      }
     }
+  
   ],
   "armors": [
     {
       "id": "1001",
       "name": "뼈 갑옷",
       "armorType": "Armor",
-      "defence": "20",
+      "defence": "1000",
       "iconPath": "Sprites/Armor/armor_001"
 
     },
@@ -38,7 +318,7 @@
       "id": "1101",
       "name": "뼈 투구",
       "armorType": "Helmet",
-      "defence": "20",
+      "defence": "1000",
       "iconPath": "Sprites/Armor/helmet_001"
 
     }
@@ -48,7 +328,7 @@
       "id": "2001",
       "name": "Hp 물약",
       "consumableType": "Potion",
-      "damage": "8",
+      "heal": "8",
       "iconPath": "Sprites/Item/hp_001"
 
     }

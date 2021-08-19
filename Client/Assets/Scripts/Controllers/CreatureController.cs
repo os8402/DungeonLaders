@@ -26,6 +26,7 @@ public class CreatureController : BaseController
 
 
     protected Transform _hand;
+    public Vector2 HandPos { get; set; }
     public EquipWeapon MyWeapon { get; set;  }
     public WeaponType WEAPON_TYPES { get; protected set; } = WeaponType.None;
 
@@ -47,12 +48,7 @@ public class CreatureController : BaseController
                 return;
 
             // TODO : 나중에 json에서 파싱된 값을 가져와야 함
-            Vector2 hand = Vector2.zero;
-
-            if(MyWeapon.GetType() == typeof(Sword) || MyWeapon.GetType() == typeof(Spear))
-                hand = new Vector2(-0.2f, -0.3f);
-            else
-                hand = new Vector2(-0.2f, 0f);
+            Vector2 hand = HandPos;
 
             hand.x = (Dir == DirState.Right ? hand.x * -1 : hand.x);
             _hand.localPosition = hand;
@@ -66,6 +62,12 @@ public class CreatureController : BaseController
         GameObject eff = Managers.Resource.Instantiate("Effect/Common/Resurrect_Eff");
         eff.transform.position = new Vector3(transform.position.x + 0.25f, transform.position.y) ;
         AddHpBar();
+
+        if (Hp == 0)
+        {
+            UpdateAnimation();
+            OnDead();
+        }
 
     }
 
@@ -112,27 +114,38 @@ public class CreatureController : BaseController
 
     public void CreateWeapon(WeaponInfo weaponInfo)
     {
-        Data.WeaponSkillData weapon  = null;
+        ItemData itemData  = null;
         int id = weaponInfo.WeaponId;
-        if (Managers.Data.WeaponDict.TryGetValue(id, out weapon) == false)
+        if (Managers.Data.ItemDict.TryGetValue(id, out itemData) == false)
             return;
 
-        if (weapon.weaponType == WeaponType.None)
+        WeaponData weaponData = (WeaponData)itemData;
+
+        if (weaponData.weaponType == WeaponType.None)
             return;
 
-        WEAPON_TYPES = weapon.weaponType;
+        WEAPON_TYPES = weaponData.weaponType;
 
         _hand = Util.FindChild<Transform>(gameObject, "Weapon_Hand", false);
-        string name = weapon.weaponType.ToString();
+        string name = weaponData.weaponType.ToString();
 
-        int typeId = id % 100; 
-       
+        int typeId = id % 100;
+
+     
+
         GameObject go = Managers.Resource.Instantiate($"Weapon/{name}_{typeId.ToString("000")}");
         go.transform.parent = _hand;
         go.transform.localPosition = Vector3.zero;
 
         MyWeapon = go.GetComponent<EquipWeapon>();
         MyWeapon.Id = typeId;
+
+
+        MyWeapon.WeaponDamage = weaponData.damage;
+        MyWeapon.CoolDown = weaponData.cooldown;
+        MyWeapon.AttackRange = weaponData.attackRange;
+        MyWeapon.EffPos = new Vector3(weaponData.effPosX, weaponData.effPosY);
+        HandPos = new Vector2(weaponData.handPosX, weaponData.handPosY);
 
 
         _skillEvent -= MyWeapon.SkillEvent;
@@ -151,6 +164,9 @@ public class CreatureController : BaseController
 
         Target = skillPacket.TargetInfo;
         _skillEvent?.Invoke(skillPacket);
+
+ 
+       
     }
 
     public virtual void OnDamaged()

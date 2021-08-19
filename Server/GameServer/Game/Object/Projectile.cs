@@ -1,4 +1,5 @@
-﻿using Google.Protobuf.Protocol;
+﻿using GameServer.Data;
+using Google.Protobuf.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,7 @@ namespace GameServer.Game
     {
 
         public GameObject Owner { get; set; }
-        public Data.WeaponSkillData WeaponData { get; set; }
+        public WeaponData Data { get; set; }
         public Projectile()
         {
             ObjectType = GameObjectType.Projectile;

@@ -11,7 +11,7 @@ public class MyPlayerController : PlayerController
     private ChasePlayerCam _cam;
     public ChasePlayerCam Cam { get { return _cam; } }
 
-    public int WeaponDamage { get; set; }
+
     public int ArmorDefence { get; set; }
 
     protected override void Init()
@@ -115,7 +115,7 @@ public class MyPlayerController : PlayerController
 
         Managers.Network.Send(skill);
 
-        _coSkillCoolTime = StartCoroutine("CoInputCoolTime", 0.2f);
+        _coSkillCoolTime = StartCoroutine("CoInputCoolTime", MyWeapon.CoolDown);
 
 
     }
@@ -175,24 +175,24 @@ public class MyPlayerController : PlayerController
 
     public void RefreshCalcStat()
     {
-        WeaponDamage = 0;
-        ArmorDefence = 0;
+        //WeaponDamage = 0;
+        //ArmorDefence = 0;
 
-        foreach (Item item in Managers.Inven.Items.Values)
-        {
-            if (item.Equipped == false)
-                continue;
+        //foreach (Item item in Managers.Inven.Items.Values)
+        //{
+        //    if (item.Equipped == false)
+        //        continue;
 
-            switch (item.ItemType)
-            {
-                case ItemType.Weapon:
-                    WeaponDamage += ((Weapon)item).Damage;
-                    break;
-                case ItemType.Armor:
-                    ArmorDefence += ((Armor)item).Defence;
-                    break;
-            }
-        }
+        //    switch (item.ItemType)
+        //    {
+        //        case ItemType.Weapon:
+        //            WeaponDamage += ((Weapon)item).Damage;
+        //            break;
+        //        case ItemType.Armor:
+        //            ArmorDefence += ((Armor)item).Defence;
+        //            break;
+        //    }
+        //}
     }
 
 }

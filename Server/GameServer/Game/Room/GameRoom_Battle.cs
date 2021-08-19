@@ -73,7 +73,7 @@ namespace GameServer.Game
 
             switch (weapon.Data.skillType)
             {
-                case SkillType.SkillNormal:
+                case SkillType.Normal:
 
                     // TODO : 데미지 판정
                     foreach (AttackPos pos in weapon.AttackList)
@@ -90,7 +90,7 @@ namespace GameServer.Game
                     }
                     break;
 
-                case SkillType.SkillProjectile:
+                case SkillType.Projectile:
 
                     // 투사체를 발사하는 원거리류는 생성만
                     Bow bow = weapon as Bow;

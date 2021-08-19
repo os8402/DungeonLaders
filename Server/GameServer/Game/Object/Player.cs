@@ -28,7 +28,7 @@ namespace GameServer.Game
             ObjectType = GameObjectType.Player;
             Vision = new VisionCube(this);
 
-            EquipWeapon = ObjectManager.Instance.CreateObjectWeapon(2);
+            EquipWeapon = ObjectManager.Instance.CreateObjectWeapon(13);
             EquipWeapon.Owner = this;
             WeaponInfo.WeaponId = EquipWeapon.Id;
 

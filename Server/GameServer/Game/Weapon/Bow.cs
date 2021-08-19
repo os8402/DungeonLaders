@@ -8,11 +8,11 @@ namespace GameServer.Game
 {
     public class Bow : EquipWeapon
     {
-        public Bow(WeaponSkillData WeaponData)
+        public Bow(WeaponData weaponData)
         {
-            this.Data = WeaponData;
-            Id = WeaponData.id;
-            WeaponType = WeaponData.weaponType;
+            this.Data = weaponData;
+            Id = weaponData.id;
+            WeaponType = weaponData.weaponType;
 
         }
 
@@ -23,11 +23,11 @@ namespace GameServer.Game
         //  ㅁ  ㅁ  ㅁ        
         //  ㅁ  me  ㅁ
         //  ㅁ  ㅁ  ㅁ    
-        protected override List<AttackPos> CalcAttackRange(Vector2Int cellPos, int range)
+        protected override List<AttackPos> CalcAttackRange(Vector2Int cellPos)
         {
             List<AttackPos> attackList = new List<AttackPos>();
 
-            for (int i = 1; i <= range; i++)
+            for (int i = 1; i <= AttackRange; i++)
                 attackList.Add(
                     new AttackPos
                     {
@@ -50,7 +50,7 @@ namespace GameServer.Game
                 return;
             
             arrow.Owner = Owner;
-            arrow.WeaponData = Data;
+            arrow.Data = Data;
             arrow.PosInfo.State = ControllerState.Moving;
 
             int posX = AttackList[0].AttkPosX;

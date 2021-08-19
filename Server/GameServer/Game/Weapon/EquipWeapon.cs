@@ -7,7 +7,7 @@ using GameServer.Game;
 
 public abstract class EquipWeapon
 {
-    public WeaponSkillData Data { get; set; }
+    public WeaponData Data { get; set; }
 
     public int Id { get; set; }
 
@@ -16,19 +16,16 @@ public abstract class EquipWeapon
     //소유자 
     public GameObject Owner { get; set; }
     public Vector2Int TargetPos { get; set; }  //플레이어 -> 마우스 / 몬스터 -> 플레이어
-    protected int _attackRange = 1; // 공격범위
+    public int AttackRange { get { return Data.attackRange; } }
+    public float Cooldown { get { return Data.cooldown; } }
 
-    public int AttackRange
-    {
-        get { return _attackRange; }
-    }
 
     public List<AttackPos> AttackList { get; set; }
     public AttackPos AttackDir { get; set; }
 
 
     //무기별 공격범위 계산
-    protected abstract List<AttackPos> CalcAttackRange(Vector2Int cellPos, int range);
+    protected abstract List<AttackPos> CalcAttackRange(Vector2Int cellPos);
     //무기 공격 방향 처리
     protected abstract Vector2Int GetDirFromNormal(Vector2Int normal);
 
@@ -54,7 +51,7 @@ public abstract class EquipWeapon
         };
 
         //공격 범위
-        AttackList = CalcAttackRange(attackPos, _attackRange);
+        AttackList = CalcAttackRange(attackPos);
         //자기 자신도 포함됬을 경우 제거 [안전 장치] 
         AttackList.Remove(new AttackPos { AttkPosX = 0, AttkPosY = 0 });
         

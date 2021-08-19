@@ -29,56 +29,37 @@ namespace GameServer.Data
     }
     #endregion
 
-    #region Weapon
-    [Serializable]
-    public class WeaponSkillData
-    {
-        public int id;
-        public WeaponType weaponType;
-        public string name;
-        public float cooldown;
-        public int damage;
-        public SkillType skillType;
-        public ProjectileInfo projectile;
-    }
-
-    public class ProjectileInfo
-    {
-        public string name;
-        public float speed;
-        public int range;
-        public string prefab; 
-    }
-
-    public class WeaponLoader : ILoader<int, WeaponSkillData>
-    {
-        public List<WeaponSkillData> weapons = new List<WeaponSkillData>();
-
-        public Dictionary<int, WeaponSkillData> MakeDict()
-        {
-            Dictionary<int, WeaponSkillData> dict = new Dictionary<int, WeaponSkillData>();
-            foreach (WeaponSkillData weapon in weapons)
-                dict.Add(weapon.id, weapon);
-            return dict;
-        }
-    }
-
-    #endregion
-
     #region Item
     [Serializable]
     public class ItemData
     {
         public int id;
         public string name;
+        public string info;
         public ItemType itemType;
 
+    }
+    public class ProjectileInfo
+    {
+        public string name;
+        public float speed;
+        public int range;
+        public string prefab;
     }
 
     public class WeaponData : ItemData
     {
         public WeaponType weaponType;
         public int damage;
+        public int attackRange; 
+        public float cooldown; 
+        public SkillType skillType;
+        public ProjectileInfo projectile;
+        //public float handPosX;
+        //public float handPosY;
+        //public float effPosX; 
+        //public float effPosY; 
+
     }
     public class ArmorData : ItemData
     {
@@ -88,6 +69,7 @@ namespace GameServer.Data
     public class ConsumableData : ItemData
     {
         public ConsumableType consumableType;
+        public int heal;
         public int maxCount;
     }
 

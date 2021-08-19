@@ -9,24 +9,16 @@ public class Spear : EquipWeapon
     Coroutine _coMove = null;
     bool _isRot = true; 
 
-    void Awake()
-    {
-        Init();
-    }
-    protected override void Init()
-    {
-        base.Init();
-        _attackRange = 1;
-    }
-    
 
     protected override void UpdateRotation()
     {
-        if (_isRot == false)
+        if (_isRot == false || _owner == null)
             return;
 
+        Quaternion prevQ = _q;
+
         _q = Util.LookAt2D(transform.position , _targetPos, FacingDirection.UP);
-        transform.rotation = _q;
+        transform.rotation = Quaternion.Slerp(prevQ, _q, 1f);
 
     }
 
@@ -51,7 +43,7 @@ public class Spear : EquipWeapon
       
         _isRot = false;
 
-        Vector3 newPos = new Vector3(_moveDir.x * 0.5f, _moveDir.y * 0.5f);
+        Vector3 newPos = new Vector3(_moveDir.x * EffPos.x, _moveDir.y * EffPos.y);
         Quaternion newRot = Util.LookAt2D(_moveDir, Vector2.zero, FacingDirection.UP);
 
         transform.localPosition = newPos;

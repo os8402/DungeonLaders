@@ -4,6 +4,7 @@ C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\bin\Debug\netc
 C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\bin\Debug\netcoreapp3.1\DummyClient.runtimeconfig.dev.json
 C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\bin\Debug\netcoreapp3.1\DummyClient.dll
 C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\bin\Debug\netcoreapp3.1\DummyClient.pdb
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\bin\Debug\netcoreapp3.1\Google.Protobuf.dll
 C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\bin\Debug\netcoreapp3.1\ServerCore.dll
 C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\bin\Debug\netcoreapp3.1\ServerCore.pdb
 C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.csproj.AssemblyReference.cache

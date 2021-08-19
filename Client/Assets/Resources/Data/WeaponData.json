@@ -28,7 +28,7 @@
       "projectile": {
         "name": "È­»ì",
         "speed": "30.0",
-        "range": "100",
+        "range": "20",
         "prefab" : "Creature/Arrow"
       }
 

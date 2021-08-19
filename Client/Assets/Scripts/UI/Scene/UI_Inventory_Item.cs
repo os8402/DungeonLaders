@@ -1,4 +1,5 @@
-﻿using Google.Protobuf.Protocol;
+﻿using Data;
+using Google.Protobuf.Protocol;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -59,7 +60,7 @@ public class UI_Inventory_Item : UI_Base
         Count = item.Count;
         Equipped = item.Equipped;
 
-        Data.ItemData itemData = null;
+        ItemData itemData = null;
         Managers.Data.ItemDict.TryGetValue(TemplateId, out itemData);
 
         Sprite icon = Managers.Resource.Load<Sprite>(itemData.iconPath);

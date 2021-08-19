@@ -69,9 +69,9 @@ enum MsgId {
 
  enum SkillType
  {
-	SKILL_NONE = 0;
-	SKILL_NORMAL = 1;
-	SKILL_PROJECTILE = 2; 
+	SKILL_TYPE_NONE = 0;
+	SKILL_TYPE_NORMAL = 1;
+	SKILL_TYPE_PROJECTILE = 2; 
 
  }
 

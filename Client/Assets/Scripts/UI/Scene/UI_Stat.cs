@@ -95,8 +95,8 @@ public class UI_Stat : UI_Base
 
         GetText((int)Texts.Level_ValueText).text = $"{player.Stat.Level}";
         GetText((int)Texts.Job_ValueText).text = $"전사";
-        int totalDmg = player.Stat.Attack + player.WeaponDamage;
-        GetText((int)Texts.Attack_ValueText).text = $"{totalDmg} + ({player.WeaponDamage})";
+        int totalDmg = player.Stat.Attack + player.MyWeapon.WeaponDamage;
+        GetText((int)Texts.Attack_ValueText).text = $"{totalDmg} + ({player.MyWeapon.WeaponDamage})";
         GetText((int)Texts.Defence_ValueText).text = $"{player.ArmorDefence}";
         GetText((int)Texts.Hp_ValueText).text = $"{player.Hp}";
         GetText((int)Texts.Speed_ValueText).text = $"{player.Speed}";

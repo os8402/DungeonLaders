@@ -8,7 +8,7 @@ public class Bow : EquipWeapon
 {
     private Animator _animator;
 
-    void Awake()
+    void Start()
     {
         Init();
 
@@ -16,14 +16,18 @@ public class Bow : EquipWeapon
     protected override void Init()
     {
         base.Init();
-        _attackRange = 1;
         _animator = GetComponent<Animator>(); 
     }
 
     protected override void UpdateRotation()
     {
+        if (_owner == null)
+            return;
+      
+        Quaternion prevQ = _q;
+
         _q = Util.LookAt2D(_targetPos , transform.position , FacingDirection.LEFT);
-        transform.rotation = _q;
+        transform.rotation = Quaternion.Slerp(prevQ, _q, 1f);
     }
     public override void SkillEvent(S_Skill skillPacket)
     {

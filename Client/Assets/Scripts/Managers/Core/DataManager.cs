@@ -13,15 +13,13 @@ public interface ILoader<Key, Value>
 
 public class DataManager
 {
-   
-    public  Dictionary<int, Data.WeaponSkillData> WeaponDict { get; private set; } = new Dictionary<int, Data.WeaponSkillData>();
+  
     public  Dictionary<int, Data.ItemData> ItemDict { get; private set; } = new Dictionary<int, Data.ItemData>();
     public static Dictionary<int, Data.MonsterData> MonsterDict { get; private set; } = new Dictionary<int, Data.MonsterData>();
 
     public void Init()
     {
    
-        WeaponDict = LoadJson<Data.WeaponLoader, int, WeaponSkillData>("WeaponData").MakeDict();
         ItemDict = LoadJson<Data.ItemLoader, int, ItemData>("ItemData").MakeDict();
         MonsterDict = LoadJson<Data.MonsterLoader, int, MonsterData>("MonsterData").MakeDict();
     }

@@ -238,7 +238,6 @@ public abstract  class BaseController : MonoBehaviour
         //오브젝트의 이름을 알기위해
         //나중에 클래스가 추가되면 수정
         int lastIndex = gameObject.name.LastIndexOf('_');
-
         string subName = gameObject.name.Substring(0, lastIndex);
         subName = subName.Replace("My", string.Empty);
 

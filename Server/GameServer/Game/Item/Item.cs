@@ -86,6 +86,12 @@ namespace GameServer.Game
     {
         public WeaponType WeaponType { get; private set; }
         public int Damage { get; private set; }
+        public int AttackRange { get; private set; }
+        public float Cooldown { get; private set; }
+
+        public SkillType SkillType { get; private set; }
+        public ProjectileInfo Projectile { get; private set; }
+
         public Weapon(int templateId) : base(ItemType.Weapon)
         {
             Init(templateId);
@@ -103,7 +109,12 @@ namespace GameServer.Game
                 Count = 1;
                 WeaponType = data.weaponType;
                 Damage = data.damage;
+                AttackRange = data.attackRange;
+                Cooldown = data.cooldown;
+                SkillType = data.skillType;
+                Projectile = data.projectile;
                 Stackable = false;
+
             }
 
         }
@@ -138,7 +149,9 @@ namespace GameServer.Game
     public class Consumable : Item
     {
         public ConsumableType ConsumableType { get; private set; }
+        public int Heal { get; private set; }
         public int MaxCount { get; private set; }
+
         public Consumable(int templateId) : base(ItemType.Consumable)
         {
             Init(templateId);
@@ -156,6 +169,7 @@ namespace GameServer.Game
                 Count = 1;
                 MaxCount = data.maxCount;
                 ConsumableType = data.consumableType;
+                Heal = data.heal;
                 Stackable = (data.maxCount > 1);
             }
 

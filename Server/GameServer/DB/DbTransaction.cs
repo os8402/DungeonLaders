@@ -37,7 +37,7 @@ namespace GameServer.DB
                         //ME  
                         room.Push(() =>
                         {
-                            Console.WriteLine($"HpSaved_{playerDb.Hp}");
+                         //   Console.WriteLine($"HpSaved_{playerDb.Hp}");
                         });
                     }
 
@@ -79,7 +79,7 @@ namespace GameServer.DB
         }
         public static void SavePlayerStatus_Step3(int hp)
         {
-            Console.WriteLine($"HpSaved_{hp}");
+           // Console.WriteLine($"HpSaved_{hp}");
 
         }
 

@@ -48,37 +48,47 @@ namespace GameServer.Game
             return (GameObjectType)type;
         }
 
+
+        //무기 생성
         public EquipWeapon CreateObjectWeapon(int id = -1)
         {
 
-            WeaponSkillData weapon = null;
-            List<int> keyList = DataManager.WeaponDict.Keys.ToList();
+            ItemData itemData = null;
+            List<int> weaponList = new List<int>();
+
+            foreach(ItemData item in DataManager.ItemDict.Values )
+            {
+                if (item.itemType == ItemType.Weapon)
+                    weaponList.Add(item.id);
+            }
+
 
             if (id == -1)
             {
                 Random rand = new Random();
-                id = rand.Next(0, keyList.Count);
+                id = rand.Next(0, weaponList.Count);
             }
 
 
-            if (DataManager.WeaponDict.ContainsKey(keyList[id]) == false)
+            if (DataManager.ItemDict.ContainsKey(weaponList[id]) == false)
                 return null;
 
-            if (DataManager.WeaponDict.TryGetValue(keyList[id], out weapon) == false)
+            if (DataManager.ItemDict.TryGetValue(weaponList[id], out itemData) == false)
                 return null;
 
             EquipWeapon equipWeapon = null;
+            WeaponData weaponData = (WeaponData)itemData;
 
-            switch (weapon.weaponType)
+            switch (weaponData.weaponType)
             {
                 case WeaponType.Sword:
-                    equipWeapon = new Sword(weapon);
+                    equipWeapon = new Sword(weaponData);
                     break;
                 case WeaponType.Spear:
-                    equipWeapon = new Spear(weapon);
+                    equipWeapon = new Spear(weaponData);
                     break;
                 case WeaponType.Bow:
-                    equipWeapon = new Bow(weapon);
+                    equipWeapon = new Bow(weaponData);
                     break;
             }
 

@@ -8,22 +8,22 @@ namespace GameServer.Game
 {
     public class Spear : EquipWeapon
     {
-        public Spear(WeaponSkillData WeaponData)
+        public Spear(WeaponData weaponData)
         {
-            this.Data = WeaponData;
-            Id = WeaponData.id;
-            WeaponType = WeaponData.weaponType;
+            this.Data = weaponData;
+            Id = weaponData.id;
+            WeaponType = weaponData.weaponType;
 
         }
         //창은 바라보는 방향 + attackRange만 계산해주면 됩니다.
         //  ㅁ  ㅁ  ㅁ        
         //  ㅁ  me  ㅁ
         //  ㅁ  ㅁ  ㅁ       
-        protected override List<AttackPos> CalcAttackRange(Vector2Int cellPos, int range)
+        protected override List<AttackPos> CalcAttackRange(Vector2Int cellPos)
         {
             List<AttackPos> attackList = new List<AttackPos>();
 
-            for (int i = 1; i <= range; i++)
+            for (int i = 1; i <= AttackRange; i++)
                 attackList.Add(
                     new AttackPos
                     {

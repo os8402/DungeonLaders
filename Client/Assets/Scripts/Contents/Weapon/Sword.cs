@@ -23,19 +23,14 @@ public class Sword : EquipWeapon
             _spriteRenderer.sortingOrder = myOrder;
         }
     }
-    void Awake()
-    {
-        Init();
-
-    }
-    protected override void Init()
-    {
-        base.Init();
-        _attackRange = 1;
-    }
+   
 
     protected override void UpdateRotation()
     {
+        if (_owner == null)
+            return;
+
+        Quaternion prevQ = _q;
 
         if (_owner.Dir == DirState.Left)
         {
@@ -65,7 +60,7 @@ public class Sword : EquipWeapon
             }
         }
 
-        transform.rotation = _q;
+        transform.rotation = Quaternion.Slerp(prevQ, _q, 1f);
     }
 
     public override void SkillEvent(S_Skill skillPacket)
@@ -76,7 +71,7 @@ public class Sword : EquipWeapon
         SwordDir = (1 - SwordDir);  // -1 연산 
 
         //보여주기용 좌표
-        _ec.transform.localPosition = new Vector2(_attackDir.AttkPosX * 0.5f, _attackDir.AttkPosY * 0.5f);
+        _ec.transform.localPosition = new Vector2(_attackDir.AttkPosX * EffPos.x, _attackDir.AttkPosY * EffPos.y);
         _ec.transform.localRotation = _rot;
         _ec = null;
 

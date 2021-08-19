@@ -9,11 +9,11 @@ namespace GameServer.Game
     public class Sword : EquipWeapon
     {
 
-        public Sword(WeaponSkillData WeaponData)
+        public Sword(WeaponData weaponData)
         {
-            this.Data = WeaponData;
-            Id = WeaponData.id;
-            WeaponType = WeaponData.weaponType;
+            this.Data = weaponData;
+            Id = weaponData.id;
+            WeaponType = weaponData.weaponType;
 
         }
         // 검은 자신을 기준으로 상 or 하 or 좌 or 우  중에서 
@@ -24,7 +24,7 @@ namespace GameServer.Game
         //   me ㅁ      ㅁ ㅁ
         //   ㅁ ㅁ      ㅁ me
         //   이런 느낌으로 구현
-        protected override List<AttackPos> CalcAttackRange(Vector2Int cellPos, int range)
+        protected override List<AttackPos> CalcAttackRange(Vector2Int cellPos)
         {
             List<AttackPos> attackList = new List<AttackPos>();
 
@@ -60,9 +60,9 @@ namespace GameServer.Game
                         continue;
 
                     //공격 범위를 벗어났는지 체크. 
-                    if (Math.Abs(ny - cellPos.y) > range)
+                    if (Math.Abs(ny - cellPos.y) > AttackRange)
                         continue;
-                    if (Math.Abs(nx - cellPos.x) > range)
+                    if (Math.Abs(nx - cellPos.x) > AttackRange)
                         continue;
 
                     q.Enqueue(nextPos);
@@ -84,8 +84,8 @@ namespace GameServer.Game
 
         protected override Vector2Int GetDirFromNormal(Vector2Int normal)
         {
-            int x = (normal.x > 0 ? 1 : -1) * _attackRange;
-            int y = (normal.y > 0 ? 1 : -1) * _attackRange;
+            int x = (normal.x > 0 ? 1 : -1) * AttackRange;
+            int y = (normal.y > 0 ? 1 : -1) * AttackRange;
 
             return new Vector2Int(x, y);
         }

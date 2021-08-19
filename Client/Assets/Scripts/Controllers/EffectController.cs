@@ -48,16 +48,13 @@ public class EffectController : BaseController
 
     void AttackObject()
     {
-        if (AttackList == null || Owner == null)
+        if (AttackList == null || Owner == null || Owner.MyWeapon.GetType() == typeof(Bow))
             return;
 
         foreach (AttackPos pos in AttackList)
         {
             Vector3Int attkPos = new Vector3Int(pos.AttkPosX, pos.AttkPosY , 0);
             Vector3Int destPos = CellPos + attkPos; 
-            //맵을 벗어낫는지 attkPos
-            if (Managers.Map.OutOfMap(destPos))
-                continue;
 
             Managers.Map.VisibleCellEffect(destPos, Owner);
 

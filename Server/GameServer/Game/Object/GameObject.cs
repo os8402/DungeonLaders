@@ -42,7 +42,7 @@ namespace GameServer.Game
             get { return PosInfo.State; }
             set { PosInfo.State = value; }
         }
-        public TargetInfo Target
+        public TargetInfo TargetInfo
         {
             get { return PosInfo.Target; }
             set { PosInfo.Target = value;  }
@@ -66,8 +66,7 @@ namespace GameServer.Game
         public GameObject()
         {
             Info.PosInfo = PosInfo;
-            //Info.PosInfo.Target = new TargetInfo(); 
-            Info.PosInfo.Target = Target; 
+            Info.PosInfo.Target = TargetInfo; 
             Info.WeaponInfo = WeaponInfo;
             Info.StatInfo = Stat;
            

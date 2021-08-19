@@ -10,11 +10,11 @@ namespace GameServer.Game
        
         public override void Update()
         {
-            if (WeaponData == null || WeaponData.projectile == null ||
+            if (Data == null || Data.projectile == null ||
                     Owner == null || Room == null)
                 return;
 
-            int tick = (int)(1000 / WeaponData.projectile.speed);
+            int tick = (int)(1000 / Data.projectile.speed);
             Room.PushAfter(tick, Update);
 
             //TODO : 이동방법 구현
@@ -32,10 +32,10 @@ namespace GameServer.Game
             else
             {
                 GameObject target = Room.Map.Find(destPos);
-                if(target != null && target != Owner)
+                if(target != null && target.GetType() != Owner.GetType())
                 {
                     //TODO : 피격판정
-                    target.OnDamaged(this, WeaponData.damage + Owner.TotalAttack);
+                    target.OnDamaged(this, Data.damage + Owner.TotalAttack);
 
                 }
                 //소멸
