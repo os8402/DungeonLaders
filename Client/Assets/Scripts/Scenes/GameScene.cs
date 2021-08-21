@@ -11,14 +11,9 @@ public class GameScene : BaseScene
     protected override void Init()
     {
         base.Init();
-
-        Screen.SetResolution(640, 480, false); 
-
-
+        Screen.SetResolution(640, 480, false);
         SceneType = Scene.Game;
 
-        //Json 로딩
-        Managers.Data.Init();
         //맵 로딩
         Managers.Map.LoadMap(1);
 

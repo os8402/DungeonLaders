@@ -88,5 +88,20 @@ class PacketHandler
 		ClientSession clientSession = (ClientSession)session;
 		clientSession.HandlePong();
 	}
+    public static void C_LevelUpHandler(PacketSession session, IMessage packet)
+    {
+		C_LevelUp upPacket = (C_LevelUp)packet;
+		ClientSession clientSession = (ClientSession)session;
+
+        Player player = clientSession.MyPlayer;
+        if (player == null)
+            return;
+
+        GameRoom room = player.Room;
+        if (room == null)
+            return;
+
+		room.Push(room.HandleLevelUp, player, upPacket);
+	}
 
 }

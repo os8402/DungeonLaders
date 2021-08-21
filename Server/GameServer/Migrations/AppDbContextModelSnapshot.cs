@@ -80,6 +80,9 @@ namespace GameServer.Migrations
                     b.Property<int>("Attack")
                         .HasColumnType("int");
 
+                    b.Property<int>("CurExp")
+                        .HasColumnType("int");
+
                     b.Property<int>("Hp")
                         .HasColumnType("int");
 
@@ -87,6 +90,12 @@ namespace GameServer.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("MaxHp")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaxMp")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Mp")
                         .HasColumnType("int");
 
                     b.Property<string>("PlayerName")

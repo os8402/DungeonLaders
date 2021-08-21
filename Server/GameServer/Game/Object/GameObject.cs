@@ -36,6 +36,11 @@ namespace GameServer.Game
             get { return Stat.Hp; }
             set { Stat.Hp = Math.Clamp(value, 0 , Stat.MaxHp); }
         }
+        public int Mp
+        {
+            get { return Stat.Mp; }
+            set { Stat.Mp = Math.Clamp(value, 0, Stat.MaxMp); }
+        }
 
         public ControllerState State
         {
@@ -136,7 +141,7 @@ namespace GameServer.Game
 
             damage = Math.Max((damage - TotalDefence) , 0);
 
-            Stat.Hp = Math.Max(Stat.Hp - damage, 0);
+            HP = Math.Max(Stat.Hp - damage, 0);
 
             S_ChangeHp changePacket = new S_ChangeHp();
             changePacket.ObjectId = Id;
@@ -177,6 +182,7 @@ namespace GameServer.Game
             room.LeaveGame(Id);
 
             Stat.Hp = Stat.MaxHp;
+            
             State = ControllerState.Idle;
             room.EnterGame(this , randomPos : true);
 

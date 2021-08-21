@@ -234,4 +234,52 @@ class PacketHandler
 		Debug.Log("[Server] Ping Check");
 		Managers.Network.Send(pongPacket);
     }
+    public static void S_GetExpHandler(PacketSession session, IMessage packet)
+    {
+		S_GetExp expPacket = (S_GetExp)packet;
+
+        GameObject go = Managers.Object.FindById(expPacket.ObjectId);
+        if (go == null)
+            return;
+
+        MyPlayerController player = go.GetComponent<MyPlayerController>();
+
+        if (player != null)
+        {
+
+			player.Exp = expPacket.Exp;
+
+			if (player.Stat.CurExp >= player.Stat.TotalExp)
+			{
+				Debug.Log($"레벨업!!! , {player.Stat.Level} -> {player.Stat.Level + 1}");
+				C_LevelUp levelUpPacket = new C_LevelUp();
+				Managers.Network.Send(levelUpPacket);
+
+			}
+        }
+
+    }
+    public static void S_LevelUpHandler(PacketSession session, IMessage packet)
+    {
+		S_LevelUp upPacket = (S_LevelUp)packet;
+
+        GameObject go = Managers.Object.FindById(upPacket.ObjectId);
+        if (go == null)
+            return;
+
+        CreatureController cc = go.GetComponent<CreatureController>();
+        if (cc == null)
+            return;
+
+		cc.Stat.MergeFrom(upPacket.StatInfo);
+
+        UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+		cc.LevelUp();
+
+		cc.UpdateHpBar();
+		gameSceneUI.StatUI.RefreshUI();
+		gameSceneUI.StatusUI.RefreshUI();
+
+
+    }
 }

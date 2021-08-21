@@ -18,10 +18,22 @@ public class CreatureController : BaseController
     }
 
 
-    public int Hp
+    public virtual int Hp
     {
         get { return Stat.Hp; }
-        set { Stat.Hp = value; UpdateHpBar(); }    
+        set { Stat.Hp = value; UpdateHpBar(); }
+    }
+    public virtual int Mp
+    {
+        get { return Stat.Mp; }
+        set { Stat.Mp = value; }
+   
+    }
+    public virtual int Exp
+    {
+        get { return Stat.CurExp; }
+        set { Stat.CurExp = value; }
+   
     }
 
 
@@ -47,9 +59,7 @@ public class CreatureController : BaseController
             if (_hand == null)
                 return;
 
-            // TODO : 나중에 json에서 파싱된 값을 가져와야 함
             Vector2 hand = HandPos;
-
             hand.x = (Dir == DirState.Right ? hand.x * -1 : hand.x);
             _hand.localPosition = hand;
 
@@ -80,7 +90,7 @@ public class CreatureController : BaseController
         UpdateHpBar();
     }
 
-    void UpdateHpBar()
+    public void UpdateHpBar()
     {
         if (_hpBar == null)
             return;
@@ -93,6 +103,14 @@ public class CreatureController : BaseController
  
     }
 
+    public void LevelUp()
+    {
+        Exp = 0;
+
+        GameObject eff = Managers.Resource.Instantiate("Effect/Common/LevelUp_Eff");
+        eff.transform.position = new Vector3(transform.position.x + 0.25f, transform.position.y);
+
+    }
     public void ConvertColorHit()
     {
         if (_spriteRenderer == null)
@@ -183,6 +201,10 @@ public class CreatureController : BaseController
 
         transform.position = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(0.5f, 0.5f);
 
+        if (_hpBar == null)
+            return;
+        if (_hand == null)
+            return; 
         _hpBar.gameObject.SetActive(false);
         _hand.gameObject.SetActive(false);
 

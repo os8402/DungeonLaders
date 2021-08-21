@@ -30,9 +30,16 @@ public abstract  class BaseController : MonoBehaviour
             if (_stat.Equals(value))
                 return;
 
+            _stat.Level = value.Level;
             _stat.Hp = value.Hp;
             _stat.MaxHp = value.MaxHp;
+            _stat.Mp = value.Mp;
+            _stat.MaxMp = value.MaxMp;
+            _stat.MaxMp = value.MaxMp;
+            _stat.Attack = value.Attack;
             _stat.Speed = value.Speed;
+            _stat.CurExp = value.CurExp;
+            _stat.TotalExp = value.TotalExp;
         }
     }
     public  float Speed

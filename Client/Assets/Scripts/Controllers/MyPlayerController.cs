@@ -11,14 +11,60 @@ public class MyPlayerController : PlayerController
     private ChasePlayerCam _cam;
     public ChasePlayerCam Cam { get { return _cam; } }
 
+    public override int Hp
+    {
+        get { return Stat.Hp; }
+        set 
+        {
+            base.Hp = value;
+            UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+            UI_Status statusUI = gameSceneUI.StatusUI;
+
+            statusUI.RefreshUI();
+        }
+    }
+    public override int Mp
+    {
+        get { return Stat.Mp; }
+        set
+        {
+            base.Mp = value;
+            UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+            UI_Status statusUI = gameSceneUI.StatusUI;
+            statusUI.RefreshUI();
+        }
+    }
+    public override int Exp
+    {
+        get { return Stat.CurExp; }
+        set
+        {
+            base.Exp = value;
+            UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+            UI_Status statusUI = gameSceneUI.StatusUI;
+            statusUI.RefreshUI();
+        }
+    }
+
+
 
     public int ArmorDefence { get; set; }
 
     protected override void Init()
     {
         base.Init();
-
         RefreshCalcStat();
+        
+
+        UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+        UI_Status statusUI = gameSceneUI.StatusUI;
+        UI_Coin coinUI = gameSceneUI.CoinUI;
+        UI_Passive passiveUI = gameSceneUI.PassiveUI;
+
+        statusUI.gameObject.SetActive(true);
+        coinUI.gameObject.SetActive(true);
+        passiveUI.gameObject.SetActive(true);
+        statusUI.RefreshUI();
 
         Transform camera = Camera.main.transform;
         _cam = camera.GetComponent<ChasePlayerCam>();

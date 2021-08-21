@@ -49,8 +49,11 @@ namespace GameServer
                                 Level = playerDb.Level,
                                 Hp = playerDb.Hp,
                                 MaxHp = playerDb.MaxHp,
+                                Mp = playerDb.Mp,
+                                MaxMp = playerDb.MaxMp,
                                 Attack = playerDb.Attack,
                                 Speed = playerDb.Speed,
+                                CurExp = playerDb.CurExp,
                                 TotalExp = playerDb.TotalExp
                             }
 
@@ -109,6 +112,8 @@ namespace GameServer
                 MyPlayer.Stat.MergeFrom(playerInfo.StatInfo);
                 MyPlayer.Session = this;
 
+ 
+
                 S_ItemList itemListPacket = new S_ItemList();
 
                 //아이템 목록을 갖고온다. 
@@ -131,10 +136,8 @@ namespace GameServer
                         
                     }
 
-                    //TODO 클라한테 아이템 목록 전달
-                
                 }
-
+                //TODO 클라한테 아이템 목록 전달
                 Send(itemListPacket);
 
 
@@ -182,13 +185,17 @@ namespace GameServer
                         Level = stat.Level,
                         Hp = stat.Hp,
                         MaxHp = stat.MaxHp,
+                        Mp = stat.Mp,
+                        MaxMp = stat.MaxMp,
                         Attack = stat.Attack,
                         Speed = stat.Speed,
-                        TotalExp = 0,
+                        CurExp = 0,
+                        TotalExp = stat.TotalExp,
                         AccountDbId = AccountDbId
                     };
                     
                     db.Players.Add(newPlayerDb);
+                  
                     bool success = db.SaveChangesEx();
                     if (success == false)
                         return;
@@ -204,9 +211,12 @@ namespace GameServer
                             Level = stat.Level,
                             Hp = stat.Hp,
                             MaxHp = stat.MaxHp,
+                            Mp = stat.Mp,
+                            MaxMp = stat.MaxMp,
                             Attack = stat.Attack,
                             Speed = stat.Speed,
-                            TotalExp = 0,
+                            CurExp = 0,
+                            TotalExp = stat.TotalExp,
 
                         }
 

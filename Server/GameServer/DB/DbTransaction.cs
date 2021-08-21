@@ -13,7 +13,7 @@ namespace GameServer.DB
         public static DbTransaction Instance { get; } = new DbTransaction();
 
         //ME [Gameroom] -> You [Db] -> Me [GameRoom]
-        public static void SavePlayerStatus_AllInOne(Player player, GameRoom room)
+        public static void SavePlayerStatus_Hp(Player player, GameRoom room)
         {
             if (player == null || room == null)
                 return;
@@ -46,42 +46,97 @@ namespace GameServer.DB
 
 
         }
-
-        public static void SavePlayerStatus_Step1(Player player, GameRoom room)
+        public static void SavePlayerStatus_Exp(Player player , GameRoom room)
         {
             if (player == null || room == null)
                 return;
 
-            //ME [Gameroom]
             PlayerDb playerDb = new PlayerDb();
             playerDb.PlayerDbId = player.PlayerDbId;
-            playerDb.Hp = player.Stat.Hp;
-            Instance.Push<PlayerDb, GameRoom>(SavePlayerStatus_Step2, playerDb, room);
+            playerDb.CurExp = player.Exp;
 
-
-
-        }
-
-        public static void SavePlayerStatus_Step2(PlayerDb playerDb, GameRoom room)
-        {
-            using (AppDbContext db = new AppDbContext())
+            Instance.Push(()=>
             {
-                db.Entry(playerDb).State = EntityState.Unchanged;
-                db.Entry(playerDb).Property(nameof(playerDb.Hp)).IsModified = true;
-                bool success = db.SaveChangesEx();
-                if (success)
+                using(AppDbContext db = new AppDbContext())
                 {
-                    room.Push(SavePlayerStatus_Step3, playerDb.Hp);
+                    db.Entry(playerDb).State = EntityState.Unchanged;
+                    db.Entry(playerDb).Property(nameof(playerDb.CurExp)).IsModified = true;
+                    bool success = db.SaveChangesEx();
+                    if(success)
+                    {
+
+                    }
                 }
-
-            }
-
+            });
         }
-        public static void SavePlayerStatus_Step3(int hp)
+
+        public static void SavePlayerStatus_All(Player player , GameRoom room)
         {
-           // Console.WriteLine($"HpSaved_{hp}");
+            if (player == null || room == null)
+                return;
+
+    
+            //메모리에 추가
+            LobbyPlayerInfo playerInfo =
+                player.Session.LobbyPlayers.Find((l) => l.Name == player.Info.Name);
+            
+            playerInfo.StatInfo.MergeFrom(player.Stat);
+           
+
+            PlayerDb playerDb = new PlayerDb();
+            playerDb.PlayerDbId = player.PlayerDbId;
+            playerDb.Level = player.Stat.Level;
+            playerDb.Hp = player.Stat.MaxHp;
+            playerDb.MaxHp = player.Stat.MaxHp;
+            playerDb.Mp = player.Stat.MaxMp;
+            playerDb.MaxMp = player.Stat.MaxMp;
+            playerDb.Attack = player.Stat.Attack;
+            playerDb.Speed = player.Stat.Speed;
+            playerDb.CurExp = 0;
+            playerDb.TotalExp = player.Stat.TotalExp;
+
+            Instance.Push(() =>
+            {
+                using (AppDbContext db = new AppDbContext())
+                {
+                    db.Entry(playerDb).State = EntityState.Unchanged;
+                    db.Entry(playerDb).Property(nameof(playerDb.Level)).IsModified = true;
+                    db.Entry(playerDb).Property(nameof(playerDb.Hp)).IsModified = true;
+                    db.Entry(playerDb).Property(nameof(playerDb.MaxHp)).IsModified = true;
+                    db.Entry(playerDb).Property(nameof(playerDb.Mp)).IsModified = true;
+                    db.Entry(playerDb).Property(nameof(playerDb.MaxMp)).IsModified = true;
+                    db.Entry(playerDb).Property(nameof(playerDb.Attack)).IsModified = true;
+                    db.Entry(playerDb).Property(nameof(playerDb.Speed)).IsModified = true;
+                    db.Entry(playerDb).Property(nameof(playerDb.CurExp)).IsModified = true;
+                    db.Entry(playerDb).Property(nameof(playerDb.TotalExp)).IsModified = true;
+                    bool success = db.SaveChangesEx();
+
+                    if(success)
+                    {
+                        room.Push(() =>
+                        {
+                            //클라에 레벨업 패킷 전송
+  
+                            S_LevelUp upPacket = new S_LevelUp();
+                        
+                            StatInfo statInfo = new StatInfo();
+                            statInfo.MergeFrom(player.Stat);
+
+                            upPacket.ObjectId = player.Id;
+                            upPacket.StatInfo = new StatInfo();
+                            upPacket.StatInfo.MergeFrom(statInfo);
+
+                            player.Session.Send(upPacket);
+                        
+                        });
+
+                    }
+
+                }
+            });
 
         }
+        
 
         public static void RewardPlayer(Player player, RewardData rewardData, GameRoom room)
         {
@@ -106,6 +161,7 @@ namespace GameServer.DB
             {
                 using (AppDbContext db = new AppDbContext())
                 {
+                 
                     db.Items.Add(itemDb);
                     bool success = db.SaveChangesEx();
                     if (success)

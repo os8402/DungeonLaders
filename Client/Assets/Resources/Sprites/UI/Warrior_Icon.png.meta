@@ -1,0 +1,404 @@
+fileFormatVersion: 2
+guid: 16f0ed1c1baa69f4e83edf75e71df240
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3202472740699881795
+    second: rage icon animation_0
+  - first:
+      213: -7444967207664257253
+    second: rage icon animation_1
+  - first:
+      213: -5364741777234706693
+    second: rage icon animation_2
+  - first:
+      213: 7815587965166605985
+    second: rage icon animation_3
+  - first:
+      213: -7401996790163276859
+    second: rage icon animation_4
+  - first:
+      213: 10849906800677862
+    second: rage icon animation_5
+  - first:
+      213: -1567766508215022972
+    second: rage icon animation_6
+  - first:
+      213: -7326872201903031919
+    second: rage icon animation_7
+  - first:
+      213: 5632702081954894971
+    second: rage icon animation_8
+  - first:
+      213: 4697823605835359392
+    second: rage icon animation_9
+  - first:
+      213: 9115815991721596168
+    second: rage icon animation_10
+  - first:
+      213: 9217855497107289315
+    second: rage icon animation_11
+  - first:
+      213: -940392947061917307
+    second: rage icon animation_12
+  - first:
+      213: 1110794184365008659
+    second: rage icon animation_13
+  - first:
+      213: 7068768752279179627
+    second: rage icon animation_14
+  - first:
+      213: -199359563781956376
+    second: rage icon animation_15
+  - first:
+      213: -6350206958119652176
+    second: rage icon animation_16
+  - first:
+      213: -4251165476434691408
+    second: rage icon animation_17
+  - first:
+      213: -4539900739610712765
+    second: rage icon animation_18
+  - first:
+      213: -4656746061638267149
+    second: rage icon animation_19
+  - first:
+      213: 6394957532580595986
+    second: rage icon animation_20
+  - first:
+      213: 7758965603071638497
+    second: rage icon animation_21
+  - first:
+      213: -5803308934231110941
+    second: rage icon animation_22
+  - first:
+      213: -3600270412290874352
+    second: rage icon animation_23
+  - first:
+      213: -6801093297068996837
+    second: rage icon animation_24
+  - first:
+      213: 4227667939112422532
+    second: rage icon animation_25
+  - first:
+      213: -7598888924077049205
+    second: rage icon animation_26
+  - first:
+      213: -3113076077650412407
+    second: rage icon animation_27
+  - first:
+      213: 5759945184619754040
+    second: rage icon animation_28
+  - first:
+      213: 2837276222099722759
+    second: rage icon animation_29
+  - first:
+      213: -3345634690204579934
+    second: rage icon animation_30
+  - first:
+      213: -8461352865821071136
+    second: rage icon animation_31
+  - first:
+      213: -3085154882750227818
+    second: Warrior_Icon_0
+  - first:
+      213: -496331642451497892
+    second: Warrior_Icon_1
+  - first:
+      213: 7026442006303306816
+    second: Warrior_Icon_2
+  - first:
+      213: -2662334250574077989
+    second: Warrior_Icon_3
+  - first:
+      213: -3683678162977889309
+    second: Warrior_Icon_4
+  - first:
+      213: -8930610778984678466
+    second: Warrior_Icon_5
+  - first:
+      213: -7470183901742157818
+    second: Warrior_Icon_6
+  - first:
+      213: 9085924648525344976
+    second: Warrior_Icon_7
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Warrior_Icon_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69a5c90eaf35f25d0800000000000000
+      internalID: -3085154882750227818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Icon_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5c64e8300dac19f0800000000000000
+      internalID: -496331642451497892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Icon_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 044779ce6cfe28160800000000000000
+      internalID: 7026442006303306816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Icon_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdf1d21da1d7d0bd0800000000000000
+      internalID: -2662334250574077989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Icon_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e3e6dc4a32f0ecc0800000000000000
+      internalID: -3683678162977889309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Icon_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebbf75b10d8101480800000000000000
+      internalID: -8930610778984678466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Icon_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60031d1f153945890800000000000000
+      internalID: -7470183901742157818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Icon_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d0b15b1450b71e70800000000000000
+      internalID: 9085924648525344976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

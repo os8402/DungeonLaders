@@ -125,4 +125,12 @@ class PacketHandler
     {
         C_Pong pongPacket = new C_Pong();
     }
+    public static void S_GetExpHandler(PacketSession session, IMessage packet)
+    {
+        S_GetExp expPacket = (S_GetExp)packet;
+    }
+    public static void S_LevelUpHandler(PacketSession session, IMessage packet)
+    {
+        S_LevelUp upPacket = (S_LevelUp)packet;
+    }
 }

@@ -162,7 +162,7 @@ public class Map
         return true;
 
     }
-    public bool ApplyMove(GameObject gameObject, Vector2Int dest, bool checkObjects = true, bool collision = true)
+    public bool ApplyMove(GameObject gameObject, Vector2Int dest, bool checkObjects = true, bool collision = true , bool canGo = true)
     {
    
         if (gameObject.Room == null)
@@ -171,9 +171,19 @@ public class Map
             return false;
 
         PositionInfo posInfo = gameObject.PosInfo;
-        if (CanGo(dest, checkObjects) == false)
-            return false;
+        if(canGo)
+        {
 
+            if (CanGo(dest, checkObjects) == false)
+                return false;
+
+        }
+        else
+        {
+            if (OutOfMap(dest))
+                return false;
+        }
+    
         if (collision)
         {
             {
@@ -276,7 +286,7 @@ public class Map
     // 상하좌우 cost = 1  , 대각선 cost = 1.4f  , 실수는 연산부하가 있으므로 10을 곱해서 정수로 계산하였음 
     int[] _cost = new int[] { 10, 10, 10, 10, 14, 14, 14, 14 };
 
-    public List<Vector2Int> FindPath(Vector2Int startCellPos, Vector2Int destCellPos, bool checkObjects = true, int maxDist = 10)
+    public List<Vector2Int> FindPath(Vector2Int startCellPos, Vector2Int destCellPos, bool checkObjects = true, int maxDist = 10 , bool canGo = true)
     {
         // 점수 매기기
         // F = G + H
@@ -335,8 +345,13 @@ public class Map
                 // 벽으로 막혀서 갈 수 없으면 스킵
                 if (next.Y != dest.Y || next.X != dest.X)
                 {
-                    if (CanGo(Pos2Cell(next), checkObjects) == false) // CellPos
-                        continue;
+                    if(canGo)
+                    {
+                        if (CanGo(Pos2Cell(next), checkObjects) == false) // CellPos
+                            continue;
+
+                    }
+                 
                 }
 
                 // 이미 방문한 곳이면 스킵

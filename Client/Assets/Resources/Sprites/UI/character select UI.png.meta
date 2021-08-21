@@ -1,7 +1,79 @@
 fileFormatVersion: 2
 guid: 0df95af698bbf234b8eb26c4d9a5550a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1342469751453348825
+    second: character select UI_0
+  - first:
+      213: 6959688270361292255
+    second: character select UI_1
+  - first:
+      213: 4411821602327296207
+    second: character select UI_2
+  - first:
+      213: 3771226592885711395
+    second: character select UI_3
+  - first:
+      213: 1766993991647440604
+    second: character select UI_4
+  - first:
+      213: 9063652750528540353
+    second: character select UI_5
+  - first:
+      213: -543395123354198860
+    second: character select UI_6
+  - first:
+      213: -5508472996765050046
+    second: character select UI_7
+  - first:
+      213: -1367101252923036028
+    second: character select UI_8
+  - first:
+      213: 9182497783674237097
+    second: character select UI_9
+  - first:
+      213: 8105903888247474578
+    second: character select UI_10
+  - first:
+      213: -4110071308849277035
+    second: character select UI_11
+  - first:
+      213: 5439452543032963343
+    second: character select UI_12
+  - first:
+      213: 7143652664662834069
+    second: character select UI_13
+  - first:
+      213: 2115134248534355198
+    second: character select UI_14
+  - first:
+      213: -6017716710580715187
+    second: character select UI_15
+  - first:
+      213: -3358173107996419162
+    second: character select UI_16
+  - first:
+      213: 6642743433049616086
+    second: character select UI_17
+  - first:
+      213: -687347145928924562
+    second: character select UI_18
+  - first:
+      213: 5318969336355184639
+    second: character select UI_19
+  - first:
+      213: 2977363581817324245
+    second: character select UI_20
+  - first:
+      213: -8510107121609282265
+    second: character select UI_21
+  - first:
+      213: 7924038361979515405
+    second: character select UI_22
+  - first:
+      213: 1271027529868253344
+    second: character select UI_23
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +112,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -71,9 +143,537 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: character select UI_0
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 453
+        width: 298
+        height: 470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72c8aeeafd69e5de0800000000000000
+      internalID: -1342469751453348825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_1
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 453
+        width: 298
+        height: 470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdd665e9b97c59060800000000000000
+      internalID: 6959688270361292255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_2
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 453
+        width: 298
+        height: 470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc8fc1b5f50f93d30800000000000000
+      internalID: 4411821602327296207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_3
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 389
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 322a57cfa96165430800000000000000
+      internalID: 3771226592885711395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_4
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 389
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cde25686caf958810800000000000000
+      internalID: 1766993991647440604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_5
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 323
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ceeeb2c72098cd70800000000000000
+      internalID: 9063652750528540353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_6
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 323
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bc1bcba3097578f0800000000000000
+      internalID: -543395123354198860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_7
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 323
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24bdcfc9ef8fd83b0800000000000000
+      internalID: -5508472996765050046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_8
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 327
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48ee78757a4170de0800000000000000
+      internalID: -1367101252923036028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_9
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 327
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a0f6b25519ce6f70800000000000000
+      internalID: 9182497783674237097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_10
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 327
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 299c272b3a4fd7070800000000000000
+      internalID: 8105903888247474578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_11
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 267
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5979382bbe716f6c0800000000000000
+      internalID: -4110071308849277035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_12
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 267
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f013318b441dc7b40800000000000000
+      internalID: 5439452543032963343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_13
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 267
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59b3004ff3a532360800000000000000
+      internalID: 7143652664662834069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_14
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 267
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efc272084677a5d10800000000000000
+      internalID: 2115134248534355198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_15
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 267
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4187e2f886cc7ca0800000000000000
+      internalID: -6017716710580715187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_16
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 267
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ab9a93c95f5561d0800000000000000
+      internalID: -3358173107996419162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_17
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 211
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6de2bf425f3cf2c50800000000000000
+      internalID: 6642743433049616086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_18
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 211
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e622789996d0676f0800000000000000
+      internalID: -687347145928924562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_19
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 211
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fff55a82e66c0d940800000000000000
+      internalID: 5318969336355184639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_20
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 211
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d208652768b15920800000000000000
+      internalID: 2977363581817324245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_21
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 211
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72de4ff49a606e980800000000000000
+      internalID: -8510107121609282265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_22
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 211
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d027b5828e6d7fd60800000000000000
+      internalID: 7924038361979515405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character select UI_23
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 105
+        width: 264
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a81a81edc893a110800000000000000
+      internalID: 1271027529868253344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

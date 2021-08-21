@@ -101,5 +101,13 @@ namespace GameServer.Game
 
         }
 
+        public void HandleLevelUp(Player player, C_LevelUp upPacket)
+        {
+            if (player == null)
+                return;
+
+            player.HandleLevelUp(upPacket);
+        }
+
     }
 }

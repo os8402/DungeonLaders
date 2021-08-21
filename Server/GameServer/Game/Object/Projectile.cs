@@ -18,8 +18,8 @@ namespace GameServer.Game
 
         public AttackPos AttackPos { get; set; }
 
-      
-     
+
+
         public Vector2Int GetFrontCellPos()
         {
             Vector2Int cellPos = CellPos;
@@ -29,6 +29,6 @@ namespace GameServer.Game
             return cellPos;
         }
 
-       
+
     }
 }

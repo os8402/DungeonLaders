@@ -26,7 +26,7 @@ namespace GameServer.Game
                 gameObject.Id = GenerateId(gameObject.ObjectType);
 
                 if (gameObject.ObjectType == GameObjectType.Player)
-                {              
+                {
                     _players.Add(gameObject.Id, gameObject as Player);
                 }
             }
@@ -48,32 +48,34 @@ namespace GameServer.Game
             return (GameObjectType)type;
         }
 
-
-        //무기 생성
-        public EquipWeapon CreateObjectWeapon(int id = -1)
+        public EquipWeapon CreateObjectWeapon()
         {
-
-            ItemData itemData = null;
             List<int> weaponList = new List<int>();
 
-            foreach(ItemData item in DataManager.ItemDict.Values )
+            foreach (ItemData item in DataManager.ItemDict.Values)
             {
                 if (item.itemType == ItemType.Weapon)
                     weaponList.Add(item.id);
             }
 
+            Random rand = new Random();
+            int id = rand.Next(0, weaponList.Count);
 
-            if (id == -1)
-            {
-                Random rand = new Random();
-                id = rand.Next(0, weaponList.Count);
-            }
+            return CreateObjectWeapon(weaponList[id]);
+        }
+        //무기 생성
+        public EquipWeapon CreateObjectWeapon(int id)
+        {
+
+            ItemData itemData = null;
+
+            int key = id;
 
 
-            if (DataManager.ItemDict.ContainsKey(weaponList[id]) == false)
+            if (DataManager.ItemDict.ContainsKey(key) == false)
                 return null;
 
-            if (DataManager.ItemDict.TryGetValue(weaponList[id], out itemData) == false)
+            if (DataManager.ItemDict.TryGetValue(key, out itemData) == false)
                 return null;
 
             EquipWeapon equipWeapon = null;

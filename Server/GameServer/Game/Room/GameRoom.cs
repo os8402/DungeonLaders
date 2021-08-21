@@ -107,7 +107,12 @@ namespace GameServer.Game
                 player.Room = this;
 
                 if (player.HP == 0)
+                {
                     player.HP = player.Stat.MaxHp;
+                    player.Stat.Mp = player.Stat.MaxMp;
+                    player.Exp = player.Stat.CurExp;
+                }
+               
                 
                 player.RefreshCalcStat();
                 

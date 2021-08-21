@@ -28,6 +28,9 @@ enum MsgId {
   S_CHANGE_STAT = 20; 
   S_PING = 21;
   C_PONG = 22;
+  S_GET_EXP =23;
+  C_LEVEL_UP =24;
+  S_LEVEL_UP =25;
 }
  enum ControllerState
  {
@@ -196,6 +199,18 @@ message S_Ping{
 message C_Pong{
 
 }
+message S_GetExp{
+	int32 objectId = 1;
+	int32 exp = 2;
+}
+message C_LevelUp{
+	
+}
+message S_LevelUp{
+	int32 objectId = 1;
+	StatInfo statInfo = 2; 
+	
+}
 
 message LobbyPlayerInfo{
 	int32 playerDbId = 1;
@@ -246,9 +261,12 @@ message StatInfo {
 	int32 level = 1;
 	int32 hp = 2;
 	int32 maxHp = 3;
-	int32 attack = 4;
-	float speed = 5;
-	int32 totalExp = 6; 
+	int32 mp = 4;
+	int32 maxMp = 5;
+	int32 attack = 6;
+	float speed = 7;
+	int32 curExp = 8; 
+	int32 totalExp = 9;
 }
 
 message ItemInfo{

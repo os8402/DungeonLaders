@@ -1,4 +1,5 @@
-﻿using GameServer.DB;
+﻿using GameServer.Data;
+using GameServer.DB;
 using Google.Protobuf.Protocol;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,21 +15,25 @@ namespace GameServer.Game
         public VisionCube Vision { get; set; }
         public Inventory Inven { get; private set; } = new Inventory();
 
-
-        public Action<Player> _checkDeadTarget;
-
         public int WeaponDamage { get; private set; }
         public int ArmorDefence { get; private set; }
+        public int Exp
+        {
+            get { return Stat.CurExp; }
+            set { Stat.CurExp = Math.Clamp(value, 0, Stat.TotalExp); }
+        }
 
         public override int TotalAttack { get { return Stat.Attack + WeaponDamage; } }
         public override int TotalDefence { get { return ArmorDefence; } }
+
+        public Action<Player> _checkDeadTarget;
 
         public Player()
         {
             ObjectType = GameObjectType.Player;
             Vision = new VisionCube(this);
 
-            EquipWeapon = ObjectManager.Instance.CreateObjectWeapon(13);
+            EquipWeapon = ObjectManager.Instance.CreateObjectWeapon(306);
             EquipWeapon.Owner = this;
             WeaponInfo.WeaponId = EquipWeapon.Id;
 
@@ -57,7 +62,8 @@ namespace GameServer.Game
             //2)서버 다운되면 저장되지 않은 정보 날라감
             //3)코드 흐름을 다 막아버림
 
-            DbTransaction.SavePlayerStatus_AllInOne(this, Room);
+            DbTransaction.SavePlayerStatus_Hp(this, Room);
+            DbTransaction.SavePlayerStatus_Exp(this, Room);
         }
 
 
@@ -131,12 +137,12 @@ namespace GameServer.Game
             WeaponDamage = 0;
             ArmorDefence = 0;
 
-            foreach(Item item in Inven.Items.Values)
+            foreach (Item item in Inven.Items.Values)
             {
                 if (item.Equipped == false)
                     continue;
 
-                switch(item.ItemType)
+                switch (item.ItemType)
                 {
                     case ItemType.Weapon:
                         WeaponDamage += ((Weapon)item).Damage;
@@ -148,6 +154,19 @@ namespace GameServer.Game
                 }
             }
         }
+
+        public void HandleLevelUp(C_LevelUp upPacket)
+        {
+            Exp = 0;
+            StatInfo stat = null;
+            DataManager.StatDict.TryGetValue(Stat.Level + 1, out stat);
+
+            Stat.MergeFrom(stat);
+            DbTransaction.SavePlayerStatus_All(this, Room);
+
+        }
+
+
 
     }
 
