@@ -33,16 +33,9 @@ namespace GameServer.Game
             ObjectType = GameObjectType.Player;
             Vision = new VisionCube(this);
 
-            EquipWeapon = ObjectManager.Instance.CreateObjectWeapon(306);
-            EquipWeapon.Owner = this;
-            WeaponInfo.WeaponId = EquipWeapon.Id;
-
         }
 
-        public override void Update()
-        {
-            // base.Update();
-        }
+ 
 
         public override void OnDamaged(GameObject attacker, int damage)
         {
@@ -51,7 +44,7 @@ namespace GameServer.Game
         public override void OnDead(GameObject attacker)
         {
 
-            _checkDeadTarget.Invoke(this);
+            _checkDeadTarget?.Invoke(this);
             base.OnDead(attacker);
         }
 
@@ -121,6 +114,19 @@ namespace GameServer.Game
                 //메모리 선 적용 [중요하지않은 데이터들 ]
                 item.Equipped = equipPacket.Equipped;
 
+                if (item.ItemType == ItemType.Weapon)
+                {
+                    if(item.Equipped == false)
+                    {
+                        EquipWeapon = null;
+                    }
+                    else
+                    {
+                        EquipWeapon = ObjectManager.Instance.CreateObjectWeapon(item.TemplateId);
+                    }
+                   
+                }
+
                 //DB에 Noti
                 DbTransaction.EquipItemNoti(this, item);
 
@@ -130,6 +136,8 @@ namespace GameServer.Game
                 equipOkItem.Equipped = equipPacket.Equipped;
                 Session.Send(equipOkItem);
             }
+
+
             RefreshCalcStat();
         }
         public void RefreshCalcStat()

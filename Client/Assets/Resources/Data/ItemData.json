@@ -192,7 +192,7 @@
       "effPosY": "0",
       "iconPath": "Sprites/Weapon/bow_001",
       "projectile": {
-        "name": "화살",
+        "name": "Arrow_001",
         "speed": "20.0",
         "range": "100",
         "prefab": "Character/Arrow_001"
@@ -213,7 +213,7 @@
       "effPosY": "0",
       "iconPath": "Sprites/Weapon/bow_002",
       "projectile": {
-        "name": "화살",
+        "name": "Arrow_001",
         "speed": "20.0",
         "range": "100",
         "prefab": "Character/Arrow_001"
@@ -234,7 +234,7 @@
       "effPosY": "0",
       "iconPath": "Sprites/Weapon/bow_003",
       "projectile": {
-        "name": "화살",
+        "name": "Arrow_004",
         "speed": "20.0",
         "range": "100",
         "prefab": "Character/Arrow_004"
@@ -255,7 +255,7 @@
       "effPosY": "0",
       "iconPath": "Sprites/Weapon/bow_004",
       "projectile": {
-        "name": "화살",
+        "name": "Arrow_005",
         "speed": "20.0",
         "range": "100",
         "prefab": "Character/Arrow_005"
@@ -276,7 +276,7 @@
       "effPosY": "0",
       "iconPath": "Sprites/Weapon/bow_005",
       "projectile": {
-        "name": "화살",
+        "name": "Arrow_003",
         "speed": "20.0",
         "range": "100",
         "prefab": "Character/Arrow_003"
@@ -297,7 +297,7 @@
       "effPosY": "0",
       "iconPath": "Sprites/Weapon/bow_006",
       "projectile": {
-        "name": "화살",
+        "name": "Arrow_006",
         "speed": "20.0",
         "range": "100",
         "prefab": "Character/Arrow_006"

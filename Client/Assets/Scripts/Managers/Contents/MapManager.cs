@@ -98,8 +98,6 @@ public class MapManager
 
         CurrentGrid = go.GetComponent<Grid>();
 
-        //Collider
-
         TextAsset txt = Managers.Resource.Load<TextAsset>($"Map/Common_Map_{mapId.ToString("000")}");
         StringReader reader = new StringReader(txt.text);
 

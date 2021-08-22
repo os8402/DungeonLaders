@@ -27,24 +27,30 @@ public class ObjectManager
             return;
 
 		
+		
 
 		GameObjectType objectType = GetObjectTypeById(info.ObjectId);
 		if(objectType == GameObjectType.Player)
         {
-            if (myPlayer)
-                CreateObject("MyWarrior", info, true);
+            int lastIndex = info.Name.LastIndexOf('_');
+            string subStr = info.Name.Substring(0, lastIndex);
+			string jobName = subStr;
 
-            else
-                CreateObject("Warrior", info);
-            
-        }
+			if (myPlayer == false)
+            {
+				jobName = subStr.Replace("My", string.Empty);
+			}
+          
+			CreateObject(jobName, info, myPlayer);
+
+		}
 		else if(objectType == GameObjectType.Monster)
         {
 			CreateObject("Skeleton", info);
 		}
         else if (objectType == GameObjectType.Projectile)
         {
-			CreateObject("Arrow_004", info);
+			CreateObject(info.Name, info);
 		}
 
     }
@@ -65,14 +71,16 @@ public class ObjectManager
 
 		CreatureController cc = bc.GetComponent<CreatureController>();
 		if(cc != null)
-			cc.CreateWeapon(info.WeaponInfo);
+			cc.CreateWeapon(info.WeaponId);
 
 		_objects.Add(info.ObjectId, go);
 
 		if(myPlayer)
         {
 			MyPlayer = bc as MyPlayerController;
-        }
+			MyPlayer.JobName = prefabName.Replace("My", string.Empty);
+
+		}
 
 	}
 

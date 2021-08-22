@@ -27,8 +27,7 @@ namespace GameServer.Game
             State = ControllerState.Idle;
 
             EquipWeapon = ObjectManager.Instance.CreateObjectWeapon();
-            EquipWeapon.Owner = this;
-            WeaponInfo.WeaponId = EquipWeapon.Id;
+   
 
         }
 

@@ -11,6 +11,7 @@ class PacketHandler
     public static void S_EnterGameHandler(PacketSession session, IMessage packet)
     {
         S_EnterGame enterGamePacket = packet as S_EnterGame;
+        
     }
     public static void S_LeaveGameHandler(PacketSession session, IMessage packet)
     {
@@ -66,20 +67,23 @@ class PacketHandler
         ServerSession serverSession = (ServerSession)session;
 
         //TODO : 로비 UI에서 캐릭터목록 + 캐릭터 선택
+        //3직업중 랜덤하게 아무나 들어가면 됨
+        Random rand = new Random();
+        int idx = rand.Next(0, loginPacket.Players.Count);
+  
         if (loginPacket.Players == null || loginPacket.Players.Count == 0)
         {
             C_CreatePlayer createPacket = new C_CreatePlayer();
-            createPacket.Name = $"MyWarrior_{serverSession.DummyId.ToString("0000")}";
+            createPacket.Name = $"{serverSession.DummyId.ToString("000")}";
             serverSession.Send(createPacket);
         }
         else
         {
-            //무조건 첫번째 로그인 
-            LobbyPlayerInfo info = loginPacket.Players[0];
             C_EnterGame enterGamePacket = new C_EnterGame();
-            enterGamePacket.Name = info.Name;
+            enterGamePacket.Name = loginPacket.Players[idx].Name;
             serverSession.Send(enterGamePacket);
         }
+
     }
 
     //step 3 
@@ -89,16 +93,26 @@ class PacketHandler
         S_CreatePlayer createOkPacket = (S_CreatePlayer)packet;
         ServerSession serverSession = (ServerSession)session;
 
-        if (createOkPacket.Player == null)
+        Random rand = new Random();
+        int idx = rand.Next(0, createOkPacket.Players.Count);
+
+        //3직업중 랜덤하게 아무나 들어가면 됨
+
+        if (createOkPacket.Players == null || createOkPacket.Players.Count == 0)
         {
-            //생략
+            C_CreatePlayer createPacket = new C_CreatePlayer();
+            createPacket.Name = $"{serverSession.DummyId.ToString("000")}";
+            serverSession.Send(createPacket);
         }
         else
         {
             C_EnterGame enterGamePacket = new C_EnterGame();
-            enterGamePacket.Name = createOkPacket.Player.Name;
+            enterGamePacket.Name = createOkPacket.Players[idx].Name;
             serverSession.Send(enterGamePacket);
         }
+
+
+
     }
     public static void S_ItemListHandler(PacketSession session, IMessage packet)
     {

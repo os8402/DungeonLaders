@@ -85,7 +85,7 @@ namespace GameServer.Game
 
                         if (target != null)
                         {
-                            target.OnDamaged(target, weapon.Data.damage + player.Stat.Attack);
+                            target.OnDamaged(player, weapon.Data.damage + player.Stat.Attack);
                         }
                     }
                     break;

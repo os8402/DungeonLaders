@@ -18,8 +18,23 @@ namespace GameServer.Game
         public GameRoom Room { get; set; }
         public ObjectInfo Info { get; set; } = new ObjectInfo();
         public PositionInfo PosInfo { get; private set; } = new PositionInfo { Target = new TargetInfo() };
-        public WeaponInfo WeaponInfo { get; private set; } = new WeaponInfo();
-        public EquipWeapon EquipWeapon { get; set; }
+     
+        private EquipWeapon _equipWeapon; 
+        public EquipWeapon EquipWeapon 
+        {
+            get { return _equipWeapon; }
+            set 
+            {
+                _equipWeapon = value;
+                if (_equipWeapon == null)
+                    return;
+                _equipWeapon.Owner = this;
+                Info.WeaponId = _equipWeapon.Id;
+
+
+            }
+        }
+      
         public StatInfo Stat { get; private set; } = new StatInfo();
 
         public virtual int TotalAttack { get { return Stat.Attack; } }
@@ -71,8 +86,7 @@ namespace GameServer.Game
         public GameObject()
         {
             Info.PosInfo = PosInfo;
-            Info.PosInfo.Target = TargetInfo; 
-            Info.WeaponInfo = WeaponInfo;
+            Info.PosInfo.Target = TargetInfo;
             Info.StatInfo = Stat;
            
         }

@@ -109,6 +109,7 @@ public class CreatureController : BaseController
 
         GameObject eff = Managers.Resource.Instantiate("Effect/Common/LevelUp_Eff");
         eff.transform.position = new Vector3(transform.position.x + 0.25f, transform.position.y);
+        eff.transform.SetParent(transform);
 
     }
     public void ConvertColorHit()
@@ -130,10 +131,23 @@ public class CreatureController : BaseController
 
     }
 
-    public void CreateWeapon(WeaponInfo weaponInfo)
+    public void DestroyWeapon()
     {
+        //중복방지
+        if (MyWeapon != null)
+        {
+            _skillEvent = null;
+            Managers.Resource.Destroy(MyWeapon.gameObject);
+            MyWeapon = null;
+        }
+    }
+
+    public void CreateWeapon(int weaponId)
+    {
+        DestroyWeapon();
+
         ItemData itemData  = null;
-        int id = weaponInfo.WeaponId;
+        int id = weaponId;
         if (Managers.Data.ItemDict.TryGetValue(id, out itemData) == false)
             return;
 
@@ -148,8 +162,6 @@ public class CreatureController : BaseController
         string name = weaponData.weaponType.ToString();
 
         int typeId = id % 100;
-
-     
 
         GameObject go = Managers.Resource.Instantiate($"Weapon/{name}_{typeId.ToString("000")}");
         go.transform.parent = _hand;
@@ -179,6 +191,9 @@ public class CreatureController : BaseController
 
     public virtual void UseSkill(S_Skill skillPacket)
     {
+
+        if (MyWeapon == null)
+            return;
 
         Target = skillPacket.TargetInfo;
         _skillEvent?.Invoke(skillPacket);

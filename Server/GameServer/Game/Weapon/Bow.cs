@@ -64,9 +64,10 @@ namespace GameServer.Game
 
             arrow.PosInfo.PosX = Owner.CellPos.x;
             arrow.PosInfo.PosY = Owner.CellPos.y;
-         //   arrow.TargetPos = new Vector2Int(posX, posY);
+      
             arrow.Dir = arrow.GetDirState(posX, posY);
             arrow.AttackPos = new AttackPos() { AttkPosX = posX, AttkPosY = posY };
+            arrow.Info.Name = Data.projectile.name;
             arrow.Speed = Data.projectile.speed;
             Owner.Room.Push(Owner.Room.EnterGame , arrow , false);
         }

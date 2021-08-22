@@ -94,9 +94,14 @@ public class UI_Stat : UI_Base
         player.RefreshCalcStat();
 
         GetText((int)Texts.Level_ValueText).text = $"{player.Stat.Level}";
-        GetText((int)Texts.Job_ValueText).text = $"전사";
-        int totalDmg = player.Stat.Attack + player.MyWeapon.WeaponDamage;
-        GetText((int)Texts.Attack_ValueText).text = $"{totalDmg} + ({player.MyWeapon.WeaponDamage})";
+        GetText((int)Texts.Job_ValueText).text = $"{player.JobName}";
+    
+        int weaponDmg = 0;
+        if (player.MyWeapon != null)
+            weaponDmg = player.MyWeapon.WeaponDamage;
+        
+        int totalDmg = player.Stat.Attack + weaponDmg;
+        GetText((int)Texts.Attack_ValueText).text = $"{totalDmg} + ({weaponDmg})";
         GetText((int)Texts.Defence_ValueText).text = $"{player.ArmorDefence}";
         GetText((int)Texts.Hp_ValueText).text = $"{player.Hp}/{player.Stat.MaxHp}";
         GetText((int)Texts.Speed_ValueText).text = $"{player.Speed}";

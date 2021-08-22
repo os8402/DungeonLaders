@@ -11,7 +11,7 @@ public class GameScene : BaseScene
     protected override void Init()
     {
         base.Init();
-        Screen.SetResolution(640, 480, false);
+       
         SceneType = Scene.Game;
 
         //맵 로딩

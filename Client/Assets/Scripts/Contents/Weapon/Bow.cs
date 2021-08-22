@@ -34,6 +34,8 @@ public class Bow : EquipWeapon
 
         base.SkillEvent(skillPacket);
         //투사체 계열 무기들은 애니메이션만 적용 
+        if (_animator == null)
+            return;
         _animator.Play("Bow");
 
     }

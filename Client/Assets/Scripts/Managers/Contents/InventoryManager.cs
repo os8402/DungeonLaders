@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryMananger : MonoBehaviour
+public class InventoryMananger
 {
     public Dictionary<int, Item> Items { get; } = new Dictionary<int, Item>();
 

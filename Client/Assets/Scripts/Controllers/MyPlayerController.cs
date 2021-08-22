@@ -11,15 +11,13 @@ public class MyPlayerController : PlayerController
     private ChasePlayerCam _cam;
     public ChasePlayerCam Cam { get { return _cam; } }
 
+    public string JobName { get; set; }
     public override int Hp
     {
         get { return Stat.Hp; }
-        set 
+        set
         {
             base.Hp = value;
-            UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
-            UI_Status statusUI = gameSceneUI.StatusUI;
-
             statusUI.RefreshUI();
         }
     }
@@ -29,8 +27,6 @@ public class MyPlayerController : PlayerController
         set
         {
             base.Mp = value;
-            UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
-            UI_Status statusUI = gameSceneUI.StatusUI;
             statusUI.RefreshUI();
         }
     }
@@ -40,26 +36,29 @@ public class MyPlayerController : PlayerController
         set
         {
             base.Exp = value;
-            UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
-            UI_Status statusUI = gameSceneUI.StatusUI;
             statusUI.RefreshUI();
         }
     }
 
-
-
     public int ArmorDefence { get; set; }
+
+    UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+    UI_Inventory invenUI;
+    UI_Status statusUI;
+    UI_Stat statUI;
+    UI_Passive passiveUI;
+    UI_Coin coinUI;
 
     protected override void Init()
     {
         base.Init();
         RefreshCalcStat();
-        
 
-        UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
-        UI_Status statusUI = gameSceneUI.StatusUI;
-        UI_Coin coinUI = gameSceneUI.CoinUI;
-        UI_Passive passiveUI = gameSceneUI.PassiveUI;
+        invenUI = gameSceneUI.InvenUI;
+        statUI = gameSceneUI.StatUI;
+        statusUI = gameSceneUI.StatusUI;
+        coinUI = gameSceneUI.CoinUI;
+        passiveUI = gameSceneUI.PassiveUI;
 
         statusUI.gameObject.SetActive(true);
         coinUI.gameObject.SetActive(true);
@@ -94,13 +93,13 @@ public class MyPlayerController : PlayerController
 
     }
 
+
+
     void GetUIKey()
     {
+
         if (Managers.Input.I)
         {
-            UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
-            UI_Inventory invenUI = gameSceneUI.InvenUI;
-
             bool active = invenUI.gameObject.activeSelf;
             invenUI.gameObject.SetActive(!active);
 
@@ -108,17 +107,16 @@ public class MyPlayerController : PlayerController
                 invenUI.RefreshUI();
         }
 
-        if(Managers.Input.C)
+        if (Managers.Input.C)
         {
-            UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
-            UI_Stat statUI = gameSceneUI.StatUI;
-
+          
             bool active = statUI.gameObject.activeSelf;
             statUI.gameObject.SetActive(!active);
 
-            if(active == false)
+            if (active == false)
                 statUI.RefreshUI();
         }
+
     }
 
 
@@ -126,12 +124,18 @@ public class MyPlayerController : PlayerController
     {
         GetUIKey();
 
-        if (_coSkillCoolTime == null && Managers.Input.Mouse_Left)
+        //UI 창 띄울 땐 공격 x
+
+        if(invenUI.gameObject.activeSelf || statUI.gameObject.activeSelf)     
+            return;
+        
+
+        if (MyWeapon != null && _coSkillCoolTime == null && Managers.Input.Mouse_Left)
         {
             SendSkill();
         }
 
-     
+
     }
 
     void SendSkill()

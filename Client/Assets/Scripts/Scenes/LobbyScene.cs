@@ -5,15 +5,18 @@ using static Define;
 
 public class LobbyScene : BaseScene
 {
+   
     protected override void Init()
     {
         base.Init();
-        Screen.SetResolution(640, 480, false);
-
         SceneType = Scene.Lobby;
 
-        //Json 로딩
-        Managers.Data.Init();
+        // Db에서 플레이어 데이터 로딩 대기
+        //  받았으면 그 후에 처리.. 
+
+        Managers.Map.LoadMap(2);
+
+        Managers.Resource.Instantiate("Common/Camp");
 
 
     }

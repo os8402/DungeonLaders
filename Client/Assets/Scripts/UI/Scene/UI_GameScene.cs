@@ -1,9 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_GameScene : UI_Scene
 {
+    enum Buttons
+    {
+        Exit_Btn_All
+    }
+
     public UI_Inventory InvenUI { get; private set; }
     public UI_Stat StatUI { get; private set; }
     public UI_Status StatusUI { get; private set; }
@@ -13,6 +19,13 @@ public class UI_GameScene : UI_Scene
     public override void Init()
     {
         base.Init();
+
+        Bind<Button>(typeof(Buttons));
+        BindEvent(GetButton((int)Buttons.Exit_Btn_All).gameObject, (e) => 
+        {
+            InvenUI.gameObject.SetActive(false);
+            StatUI.gameObject.SetActive(false);
+        });
 
         InvenUI = GetComponentInChildren<UI_Inventory>();
         StatUI = GetComponentInChildren<UI_Stat>();
