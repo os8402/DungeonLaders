@@ -1,9 +1,9 @@
-{
+ï»¿{
   "weapons": [
     {
       "id": "101",
-      "name": "³ì½¼ °Ë",
-      "info": "³Ê¹« ¿À·¡ ½á¼­ ³ìÀÌ ¾´ °Ë",
+      "name": "ë…¹ìŠ¨ ê²€",
+      "info": "ë„ˆë¬´ ì˜¤ë˜ ì¨ì„œ ë…¹ì´ ì“´ ê²€",
       "weaponType": "Sword",
       "damage": "8",
       "attackRange": "1",
@@ -18,8 +18,8 @@
     },
     {
       "id": "102",
-      "name": "·Õ¼Òµå",
-      "info": "Æò¹üÇÑ º¸±ŞÇü °Ë",
+      "name": "ë¡±ì†Œë“œ",
+      "info": "í‰ë²”í•œ ë³´ê¸‰í˜• ê²€",
       "weaponType": "Sword",
       "damage": "20",
       "attackRange": "1",
@@ -34,8 +34,8 @@
     },
     {
       "id": "103",
-      "name": "ºÀÀÎµÈ ¼º°Ë",
-      "info": "ºÀÀÎÀ» Ç®Áö ¸øÇÑ ¼º°Ë",
+      "name": "ë´‰ì¸ëœ ì„±ê²€",
+      "info": "ë´‰ì¸ì„ í’€ì§€ ëª»í•œ ì„±ê²€",
       "weaponType": "Sword",
       "damage": "60",
       "attackRange": "1",
@@ -50,8 +50,8 @@
     },
     {
       "id": "104",
-      "name": "ÀÚ¿¬ÀÇ °Ë",
-      "info": "ÀÚ¿¬ÀÇ ÈûÀÌ ±êµç °Ë ±×·¯³ª ¹«°Ì´Ù.",
+      "name": "ìì—°ì˜ ê²€",
+      "info": "ìì—°ì˜ í˜ì´ ê¹ƒë“  ê²€ ê·¸ëŸ¬ë‚˜ ë¬´ê²ë‹¤.",
       "weaponType": "Sword",
       "damage": "80",
       "attackRange": "1",
@@ -66,8 +66,8 @@
     },
     {
       "id": "105",
-      "name": "ÈÄ¶óÀÌÆÒ",
-      "info": "¿ä¸®¿¡µµ »ç¿ë °¡´ÉÇÑ °Ë",
+      "name": "í›„ë¼ì´íŒ¬",
+      "info": "ìš”ë¦¬ì—ë„ ì‚¬ìš© ê°€ëŠ¥í•œ ê²€",
       "weaponType": "Sword",
       "damage": "100",
       "attackRange": "1",
@@ -82,8 +82,8 @@
     },
     {
       "id": "106",
-      "name": "Ä«Å¸³ª",
-      "info": "ºü¸£°Ô ÀûÀ» º£´Â °Í¿¡ ÁßÁ¡À» µĞ °Ë",
+      "name": "ì¹´íƒ€ë‚˜",
+      "info": "ë¹ ë¥´ê²Œ ì ì„ ë² ëŠ” ê²ƒì— ì¤‘ì ì„ ë‘” ê²€",
       "weaponType": "Sword",
       "damage": "40",
       "attackRange": "1",
@@ -98,8 +98,8 @@
     },
     {
       "id": "107",
-      "name": "µµ°Ë",
-      "info": "Ä«Å¸³ªº¸´Ù Á¶±İ ´õ ½Ú °Ë",
+      "name": "ë„ê²€",
+      "info": "ì¹´íƒ€ë‚˜ë³´ë‹¤ ì¡°ê¸ˆ ë” ìŒ˜ ê²€",
       "weaponType": "Sword",
       "damage": "55",
       "attackRange": "1",
@@ -114,8 +114,8 @@
     },
     {
       "id": "108",
-      "name": "±Í½ÅÀÇ °Ë",
-      "info": "³Ê¹« ¿À·¡ ½á¼­ ³ìÀÌ ¾´ °Ë",
+      "name": "ê·€ì‹ ì˜ ê²€",
+      "info": "ë„ˆë¬´ ì˜¤ë˜ ì¨ì„œ ë…¹ì´ ì“´ ê²€",
       "weaponType": "Sword",
       "damage": "120",
       "attackRange": "3",
@@ -130,8 +130,8 @@
     },
     {
       "id": "109",
-      "name": "Ã»µ¿°Ë",
-      "info": "ÀºÀºÇÑ Ã»µ¿ºûÀÇ °Ë",
+      "name": "ì²­ë™ê²€",
+      "info": "ì€ì€í•œ ì²­ë™ë¹›ì˜ ê²€",
       "weaponType": "Sword",
       "damage": "200",
       "attackRange": "1",
@@ -146,8 +146,8 @@
     },
     {
       "id": "110",
-      "name": "¸¶¿ÕÀÇ °Ë",
-      "info": "Àü¼³ÀÇ ¸¶¿ÕÀÌ ¾´ ¸¶°Ë",
+      "name": "ë§ˆì™•ì˜ ê²€",
+      "info": "ì „ì„¤ì˜ ë§ˆì™•ì´ ì“´ ë§ˆê²€",
       "weaponType": "Sword",
       "damage": "300",
       "attackRange": "2",
@@ -163,8 +163,8 @@
 
     {
       "id": "201",
-      "name": "³ì½¼ Ã¢",
-      "info": "³Ê¹« ¿À·¡ ½á¼­ ³ìÀÌ ¾´ Ã¢",
+      "name": "ë…¹ìŠ¨ ì°½",
+      "info": "ë„ˆë¬´ ì˜¤ë˜ ì¨ì„œ ë…¹ì´ ì“´ ì°½",
       "weaponType": "Spear",
       "damage": "8",
       "attackRange": "1",
@@ -179,8 +179,8 @@
     },
     {
       "id": "301",
-      "name": "³ì½¼ È°",
-      "info": "³Ê¹« ¿À·¡ ½á¼­ ³ìÀÌ ¾´ È°",
+      "name": "ë…¹ìŠ¨ í™œ",
+      "info": "ë„ˆë¬´ ì˜¤ë˜ ì¨ì„œ ë…¹ì´ ì“´ í™œ",
       "weaponType": "Bow",
       "damage": "5",
       "attackRange": "4",
@@ -200,8 +200,8 @@
     },
     {
       "id": "302",
-      "name": "Àå±Ã",
-      "info": "³Î¸® ¾²ÀÌ´Â È°",
+      "name": "ì¥ê¶",
+      "info": "ë„ë¦¬ ì“°ì´ëŠ” í™œ",
       "weaponType": "Bow",
       "damage": "30",
       "attackRange": "5",
@@ -221,8 +221,8 @@
     },
     {
       "id": "303",
-      "name": "¿äÁ¤ÀÇ È°",
-      "info": "½£ÀÇ Á¤±â¸¦ ¹ŞÀº È°",
+      "name": "ìš”ì •ì˜ í™œ",
+      "info": "ìˆ²ì˜ ì •ê¸°ë¥¼ ë°›ì€ í™œ",
       "weaponType": "Bow",
       "damage": "40",
       "attackRange": "6",
@@ -242,8 +242,8 @@
     },
     {
       "id": "304",
-      "name": "°ÔÀÓÆĞµå È°",
-      "info": "°ÔÀÓµµ ÇÒ ¼ö ÀÖ´Â È°",
+      "name": "ê²Œì„íŒ¨ë“œ í™œ",
+      "info": "ê²Œì„ë„ í•  ìˆ˜ ìˆëŠ” í™œ",
       "weaponType": "Bow",
       "damage": "80",
       "attackRange": "7",
@@ -263,8 +263,8 @@
     },
     {
       "id": "305",
-      "name": "¼®±Ã",
-      "info": "È°º¸´Ü ´À¸®Áö¸¸ °­·ÂÇÑ ¼®±Ã",
+      "name": "ì„ê¶",
+      "info": "í™œë³´ë‹¨ ëŠë¦¬ì§€ë§Œ ê°•ë ¥í•œ ì„ê¶",
       "weaponType": "Bow",
       "damage": "80",
       "attackRange": "7",
@@ -284,8 +284,8 @@
     },
     {
       "id": "306",
-      "name": "±Í½ÅÀÇ ¼®±Ã",
-      "info": "±Í½ÅÀÇ ÈûÀÌ ±êµç ¼®±Ã",
+      "name": "ê·€ì‹ ì˜ ì„ê¶",
+      "info": "ê·€ì‹ ì˜ í˜ì´ ê¹ƒë“  ì„ê¶",
       "weaponType": "Bow",
       "damage": "200",
       "attackRange": "7",
@@ -308,25 +308,119 @@
   "armors": [
     {
       "id": "1001",
-      "name": "»À °©¿Ê",
+      "name": "ì…”ì¸ ",
       "armorType": "Armor",
-      "defence": "1000",
+      "info": "ë‚¨ë…€ë…¸ì†Œ ê°€ë³ê²Œ ì…ê¸° ì¢‹ì€ í‰ë²”í•œ ì…”ì¸ ",
+      "defence": "10",
+      "hp": "20",
+      "speed": "0",
       "iconPath": "Sprites/Armor/armor_001"
 
     },
     {
+      "id": "1002",
+      "name": "ì²  ê°‘ì˜·",
+      "armorType": "Armor",
+      "info": "ì œêµ­ì—ì„œ ì¦ê²¨ì…ëŠ” ì²  ì½”íŒ… ê°‘ì˜·",
+      "defence": "20",
+      "hp": "30",
+      "speed": "0",
+      "iconPath": "Sprites/Armor/armor_002"
+
+    },
+    {
+      "id": "1003",
+      "name": "í™©ê¸ˆ ê°‘ì˜·",
+      "armorType": "Armor",
+      "info": "ì„ íƒë°›ì€ ìš©ì‚¬ê°€ ì…ì—ˆë˜ í™©ê¸ˆ ê°‘ì˜·",
+      "defence": "30",
+      "hp": "40",
+      "speed": "1",
+      "iconPath": "Sprites/Armor/armor_003"
+
+    },
+    {
+      "id": "1004",
+      "name": "ì‹ ì˜ ê°‘ì˜·",
+      "armorType": "Armor",
+      "info": "ì„¸ê³„ë¥¼ ì°½ì¡°í•œ ì‹ ì´ ì œì‘í•œ ê°‘ì˜·",
+      "defence": "50",
+      "hp": "100",
+      "speed": "1",
+      "iconPath": "Sprites/Armor/armor_004"
+
+    },
+    {
       "id": "1101",
-      "name": "»À Åõ±¸",
+      "name": "ê°€ì£½ íˆ¬êµ¬",
+      "info": "í‰ë²”í•œ ì—¬í–‰ìš© ê°€ì£½ íˆ¬êµ¬",
       "armorType": "Helmet",
-      "defence": "1000",
+      "defence": "5",
+      "hp": "30",
+      "speed": "0",
       "iconPath": "Sprites/Armor/helmet_001"
+
+    },
+    {
+      "id": "1102",
+      "name": "ì²  íˆ¬êµ¬",
+      "info": "ì œêµ­ì—ì„œ ë§ì´ ë³´ê¸‰ë˜ëŠ” ì²  íˆ¬êµ¬",
+      "armorType": "Helmet",
+      "defence": "7",
+      "hp": "60",
+      "speed": "0",
+      "iconPath": "Sprites/Armor/helmet_002"
+
+    },
+    {
+      "id": "1103",
+      "name": "ì‹ ì˜ íˆ¬êµ¬",
+      "info": "ì‹ ì´ ì§ì ‘ ì œì‘í•œ íˆ¬êµ¬",
+      "armorType": "Helmet",
+      "defence": "10",
+      "hp": "120",
+      "speed": "1",
+      "iconPath": "Sprites/Armor/helmet_003"
+
+    },
+    {
+      "id": "1201",
+      "name": "ì—¬í–‰ìš© ë¶€ì¸ ",
+      "info": "í”í•˜ë”” í”í•œ ì—¬í–‰ìš© ë¶€ì¸ ",
+      "armorType": "Boots",
+      "defence": "2",
+      "hp": "5",
+      "speed": "1",
+      "iconPath": "Sprites/Armor/Boots_001"
+
+    },
+    {
+      "id": "1202",
+      "name": "ì²  ë¶€ì¸ ",
+      "info": "ì œêµ­ ê¸°ì‚¬ë“¤ì´ ì…ëŠ” ë¶€ì¸ ",
+      "armorType": "Boots",
+      "defence": "7",
+      "hp": "15",
+      "speed": "1",
+      "iconPath": "Sprites/Armor/Boots_002"
+
+    },
+    {
+      "id": "1203",
+      "name": "í™©ê¸ˆ ë¶€ì¸ ",
+      "info": "ì „ì„¤ì˜ ìš©ì‚¬ê°€ ì°©ìš©í–ˆì—ˆë˜ ë¶€ì¸ ",
+      "armorType": "Boots",
+      "defence": "10",
+      "hp": "30",
+      "speed": "2",
+      "iconPath": "Sprites/Armor/Boots_003"
 
     }
   ],
   "consumables": [
     {
       "id": "2001",
-      "name": "Hp ¹°¾à",
+      "name": "Hp ë¬¼ì•½",
       "consumableType": "Potion",
       "heal": "8",
       "iconPath": "Sprites/Item/hp_001"

@@ -18,10 +18,16 @@ public class CreatureController : BaseController
     }
 
 
+    public virtual int TotalAttack { get { return Stat.Attack + MyWeapon.WeaponDamage; } }
+    public virtual int TotalDefence { get { return 0; } }
+    public virtual int TotalHp { get { return Stat.MaxHp; } }
+
+
+
     public virtual int Hp
     {
         get { return Stat.Hp; }
-        set { Stat.Hp = value; UpdateHpBar(); }
+        set { Stat.Hp = Mathf.Clamp(value , 0 , TotalHp) ; UpdateHpBar(); }
     }
     public virtual int Mp
     {
@@ -96,8 +102,8 @@ public class CreatureController : BaseController
             return;
 
         float ratio = 0.0f;
-        if (Stat.MaxHp > 0)      
-            ratio = ((float)Hp / Stat.MaxHp);
+        if (TotalHp > 0)      
+            ratio = ((float)Hp / TotalHp);
             
         _hpBar.SetHpBar(ratio);
  
@@ -142,7 +148,7 @@ public class CreatureController : BaseController
         }
     }
 
-    public void CreateWeapon(int weaponId)
+    public virtual void CreateWeapon(int weaponId)
     {
         DestroyWeapon();
 
@@ -197,14 +203,16 @@ public class CreatureController : BaseController
 
         Target = skillPacket.TargetInfo;
         _skillEvent?.Invoke(skillPacket);
-
  
-       
     }
+
+    public int HitLayer { get; set; } = 40; 
 
     public virtual void OnDamaged()
     {
+        
         ConvertColorHit();
+        
     }
 
     public virtual void OnDead()

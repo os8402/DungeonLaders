@@ -43,8 +43,8 @@ public class UI_Status : UI_Base
         GetImage((int)Images.Job_Icon).GetComponent<Animator>().Play($"{subName}_Icon");
 
         float hpRatio = 0.0f;
-        if (player.Stat.MaxHp > 0)
-            hpRatio = ((float)player.Hp / player.Stat.MaxHp);
+        if (player.TotalHp > 0)
+            hpRatio = ((float)player.Hp / player.TotalHp);
 
         float mpRatio = 0.0f;
         if (player.Stat.MaxMp > 0)
@@ -58,7 +58,7 @@ public class UI_Status : UI_Base
         GetImage((int)Images.Mp_Bar).fillAmount = mpRatio;
         GetImage((int)Images.Exp_Bar).fillAmount = expRatio;
 
-        GetText((int)Texts.Hp_ValueText).text = $"{player.Hp}/{player.Stat.MaxHp}";
+        GetText((int)Texts.Hp_ValueText).text = $"{player.Hp}/{player.TotalHp}";
         GetText((int)Texts.Mp_ValueText).text = $"{player.Mp}/{player.Stat.MaxMp}";
         GetText((int)Texts.Exp_ValueText).text = $"{player.Exp}/{player.Stat.TotalExp} ({(expRatio * 100).ToString("F2")}%)";
 

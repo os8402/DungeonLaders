@@ -13,6 +13,10 @@ namespace GameServer.Game
         {
             Items.Add(item.ItemDbId, item);
         }
+        public void Remove(Item item)
+        {
+            Items.Remove(item.ItemDbId); 
+        }
 
         public Item Get(int itemDbId)
         {
@@ -28,6 +32,14 @@ namespace GameServer.Game
                     return item;
             }
             return null;
+        }
+
+        public void RefreshSlot(Item item ,int num)
+        {
+            if (Items.ContainsKey(item.ItemDbId) == false)
+                return;
+
+            Items[item.ItemDbId].Slot = num; 
         }
 
         public int? GetEmptySlot()

@@ -18,6 +18,19 @@ public class InventoryMananger
         Items.TryGetValue(itemDbId, out item);
         return item;
     }
+    public bool Remove(Item item)
+    {
+        return Items.Remove(item.ItemDbId);
+    }
+
+    public void RefreshSlot(Item item, int num)
+    {
+        if (Items.ContainsKey(item.ItemDbId) == false)
+            return;
+
+        Items[item.ItemDbId].Slot = num;
+    }
+
     public Item Find(Func<Item, bool> condition)
     {
         foreach (Item item in Items.Values)

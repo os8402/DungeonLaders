@@ -45,12 +45,15 @@ namespace GameServer.Game
             if (player == null)
                 return;
 
+            EquipWeapon weapon = player.EquipWeapon;
+            
+            if (weapon == null)
+                return;
 
             ObjectInfo info = player.Info;
 
             //TODO : 스킬 사용 가능 여부
 
-            EquipWeapon weapon = player.EquipWeapon;
             int x = skillPacket.AttackPos.AttkPosX;
             int y = skillPacket.AttackPos.AttkPosY;
             weapon.TargetPos = new Vector2Int(x, y);
@@ -85,7 +88,7 @@ namespace GameServer.Game
 
                         if (target != null)
                         {
-                            target.OnDamaged(player, weapon.Data.damage + player.Stat.Attack);
+                            target.OnDamaged(player, player.TotalAttack);
                         }
                     }
                     break;

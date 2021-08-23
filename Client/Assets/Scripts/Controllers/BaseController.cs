@@ -16,7 +16,6 @@ public abstract  class BaseController : MonoBehaviour
     public int Id { get { return _id; } set { _id = value; } }
     public int TeamId { get; set; }
 
-    //  CellPos , CL_STATE , Dir이 갱신되면 True로 바꾸고 패킷전송
     protected bool _updated = false; 
 
     protected bool _ignoreCollision = false;
@@ -48,6 +47,9 @@ public abstract  class BaseController : MonoBehaviour
         set { Stat.Speed = value;  }
     }
 
+    public virtual float TotalSpeed { get { return Speed; } }
+
+
     protected PositionInfo _positionInfo = new PositionInfo { Target = new TargetInfo() };
     public virtual PositionInfo PosInfo
     {
@@ -64,8 +66,6 @@ public abstract  class BaseController : MonoBehaviour
 
         }
     }
-
-
 
     public TargetInfo Target
     {
@@ -226,7 +226,7 @@ public abstract  class BaseController : MonoBehaviour
         }
         else
         {
-            transform.position += moveDir.normalized * Speed * Time.deltaTime;
+            transform.position += moveDir.normalized * TotalSpeed * Time.deltaTime;
             CL_STATE = ControllerState.Moving;
         }
     }

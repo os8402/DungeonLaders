@@ -11,38 +11,50 @@ public class UI_Inventory_Item : UI_Base
     Image _icon = null;
     [SerializeField]
     Image _frame = null;
+    [SerializeField]
+    Text _countText = null; 
 
     public int ItemDbId { get; set; }
     public int TemplateId { get; set; }
     public int Count { get; set; }
     public bool Equipped{ get; set; }
 
-    
+    public bool Selected { get; set; } = false; 
+
+    public Item Item { get; set; }
+
     public override void Init()
     {
+
+        UI_Inventory invenUI = GetComponentInParent<UI_Inventory>();
+ 
+
         _icon.gameObject.BindEvent((e) =>
         {
-            Debug.Log("Click Item");
+           
+            invenUI.SetItemInfo(Item);
 
-            Data.ItemData itemData = null;
-            Managers.Data.ItemDict.TryGetValue(TemplateId, out itemData);
-            if (itemData == null)
-                return;
-            //C_USE_ITEM 
-            if (itemData.itemType == ItemType.Consumable)
-                return;
+            Selected = !Selected;
+            _frame.gameObject.SetActive(Selected);
 
-            C_EquipItem equipItemPacket = new C_EquipItem();
-            equipItemPacket.ItemDbId = ItemDbId;
-            equipItemPacket.Equipped = !Equipped;
 
-            Managers.Network.Send(equipItemPacket);
+
         });
+    }
+
+    public void SelectedCancle()
+    {
+        Selected = false;
+        _frame.gameObject.SetActive(Selected);
+
     }
 
     public void SetItem(Item item)
     {
-        if(item == null)
+
+        _frame.gameObject.SetActive(Selected);
+
+        if (item == null)
         {
             ItemDbId = 0;
             TemplateId = 0;
@@ -54,6 +66,8 @@ public class UI_Inventory_Item : UI_Base
 
             return;
         }
+
+        Item = item; 
 
         ItemDbId = item.ItemDbId;
         TemplateId = item.TemplateId;
@@ -67,9 +81,17 @@ public class UI_Inventory_Item : UI_Base
         _icon.sprite = icon;
 
         _icon.gameObject.SetActive(true);
-        _frame.gameObject.SetActive(Equipped);
-
+       
+        if(itemData.itemType == ItemType.Consumable)
+        {
+            _countText.text = $"{Count}";
+        }
+        else
+        {
+            string e = (Equipped) ? "E" : string.Empty;
+            _countText.text = $"{e}";
+        }
 
     }
- 
+
 }

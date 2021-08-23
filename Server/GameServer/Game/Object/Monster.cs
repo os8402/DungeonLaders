@@ -11,6 +11,9 @@ namespace GameServer.Game
     {
         public int TemplateId { get; private set; }
 
+        public int WeaponDamage { get { return EquipWeapon.Data.damage; } }
+
+        public override int TotalAttack { get { return Stat.Attack + WeaponDamage; } }
         public Monster()
         {
             ObjectType = GameObjectType.Monster;
@@ -126,7 +129,7 @@ namespace GameServer.Game
             if (_nextMoveTick > Environment.TickCount64)
                 return;
 
-            int moveTick = (int)(1000 / Speed);
+            int moveTick = (int)(1000 / TotalSpeed);
             _nextMoveTick = Environment.TickCount64 + moveTick;
 
             if (_target == null || _target.Room != Room)
@@ -232,7 +235,7 @@ namespace GameServer.Game
                 {
                     case SkillType.Normal:
                         //데미지 판정
-                        _target.OnDamaged(this, EquipWeapon.Data.damage + TotalAttack);
+                        _target.OnDamaged(this, TotalAttack);
                         break;
 
                     case SkillType.Projectile:
@@ -330,6 +333,16 @@ namespace GameServer.Game
         {
             MonsterData monsterData = null;
             DataManager.MonsterDict.TryGetValue(TemplateId, out monsterData);
+
+
+            // 자신의 무기도 드랍가능
+            RewardData rewardWeapon = new RewardData
+            {
+                itemId = EquipWeapon.Id,
+                count = 1,
+                probability = 10
+            };
+            monsterData.rewards.Add(rewardWeapon);
 
             int rand = new Random().Next(0, 101);
 

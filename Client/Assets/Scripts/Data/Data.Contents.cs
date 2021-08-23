@@ -45,6 +45,8 @@ namespace Data
     {
         public ArmorType armorType;
         public int defence;
+        public int hp;
+        public float speed;
     }
     public class ConsumableData : ItemData
     {

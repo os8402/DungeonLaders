@@ -10,7 +10,7 @@ public class UI_GameScene : UI_Scene
         Exit_Btn_All
     }
 
-    public UI_Inventory InvenUI { get; private set; }
+    public UI_Inventory InvenUI { get;  set; }
     public UI_Stat StatUI { get; private set; }
     public UI_Status StatusUI { get; private set; }
     public UI_Coin CoinUI { get; private set; }

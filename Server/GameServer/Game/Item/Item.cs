@@ -124,6 +124,8 @@ namespace GameServer.Game
     {
         public ArmorType ArmorType { get; private set; }
         public int Defence { get; private set; }
+        public int Hp { get; private set; }
+        public float Speed { get; private set; }
         public Armor(int templateId) : base(ItemType.Armor)
         {
             Init(templateId);
@@ -141,6 +143,8 @@ namespace GameServer.Game
                 Count = 1;
                 ArmorType = data.armorType;
                 Defence = data.defence;
+                Hp = data.hp;
+                Speed = data.speed;
                 Stackable = false;
             }
 

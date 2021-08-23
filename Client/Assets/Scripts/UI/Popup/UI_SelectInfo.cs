@@ -57,7 +57,7 @@ public class UI_SelectInfo : UI_Popup
       //  GetText((int)Texts.Defence_ValueText).text = $"{player.StatInfo.Attack}";
 
         GetText((int)Texts.Attack_ValueText).text = $"{player.StatInfo.Attack}";
-        GetText((int)Texts.Defence_ValueText).text = $"{player.StatInfo.Attack}";
+        GetText((int)Texts.Defence_ValueText).text = $"{0}";
 
         int hp = (player.StatInfo.Hp == 0) ? player.StatInfo.MaxHp : player.StatInfo.Hp;
         GetText((int)Texts.Hp_ValueText).text = $"{hp}/{player.StatInfo.MaxHp}";

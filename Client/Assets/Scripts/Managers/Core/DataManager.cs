@@ -19,7 +19,6 @@ public class DataManager
 
     public void Init()
     {
-   
         ItemDict = LoadJson<Data.ItemLoader, int, ItemData>("ItemData").MakeDict();
         MonsterDict = LoadJson<Data.MonsterLoader, int, MonsterData>("MonsterData").MakeDict();
     }

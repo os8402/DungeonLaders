@@ -83,6 +83,7 @@ class PacketHandler
     public static void S_ChangeHpHandler(PacketSession session, IMessage packet)
     {
         S_ChangeHp changePacket = packet as S_ChangeHp;
+        
 
         GameObject go = Managers.Object.FindById(changePacket.ObjectId);
         if (go == null)
@@ -92,6 +93,12 @@ class PacketHandler
 
         if (cc != null)
         {
+            
+            UI_HitDamage hitUI = Managers.UI.MakeWorldSpaceUI<UI_HitDamage>(cc.transform);
+            hitUI.Creature = cc;
+            hitUI.Damage = changePacket.Damage;
+            hitUI.RefreshUI();
+
             cc.Hp = changePacket.Hp;
             cc.OnDamaged();
         }
@@ -262,13 +269,13 @@ class PacketHandler
                     Managers.Object.MyPlayer.CreateWeapon(item.TemplateId);
                 }
                    
-
             }
 
         }
 
 
         UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+ 
         gameSceneUI.InvenUI.RefreshUI();
         gameSceneUI.StatUI.RefreshUI();
 
@@ -331,6 +338,43 @@ class PacketHandler
         gameSceneUI.StatUI.RefreshUI();
         gameSceneUI.StatusUI.RefreshUI();
 
+
+    }
+
+    public static void S_UseItemHandler(PacketSession session, IMessage packet)
+    {
+        S_UseItem useItemOk = (S_UseItem)packet;
+
+        //메모리에 저장
+        Item useItem = Managers.Inven.Get(useItemOk.Item.ItemDbId);
+        if (useItem == null)
+            return;
+
+        int count = useItemOk.Item.Count;
+
+        //다썻다면..
+        if (count <= 0)
+        {
+            Managers.Inven.Remove(useItem);
+
+            var sortingItems = Managers.Inven.Items.Values
+                      .Where(i => i.Slot > useItem.Slot)
+                      .ToList();
+
+            foreach (Item i in sortingItems)
+                Managers.Inven.RefreshSlot(i, i.Slot - 1);
+
+        }
+        //아직 남아있다면..
+        else
+        {
+            useItem.Count = useItemOk.Item.Count;
+        }
+
+        UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+
+        gameSceneUI.InvenUI.RefreshUI();
+        gameSceneUI.StatUI.RefreshUI();
 
     }
 }

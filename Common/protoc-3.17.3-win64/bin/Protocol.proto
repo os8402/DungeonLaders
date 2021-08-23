@@ -31,6 +31,8 @@ enum MsgId {
   S_GET_EXP =23;
   C_LEVEL_UP =24;
   S_LEVEL_UP =25;
+  C_USE_ITEM =26;
+  S_USE_ITEM =27;
 }
  enum ControllerState
  {
@@ -148,7 +150,8 @@ message S_Skill{
 message S_ChangeHp {
 	int32 objectId = 1; 
 	int32 hp = 2;
-	int32 attackerId = 3; 
+	int32 damage = 3;
+	int32 attackerId = 4; 
 
 }
 message S_Die {
@@ -210,6 +213,15 @@ message S_LevelUp{
 	int32 objectId = 1;
 	StatInfo statInfo = 2; 
 	
+}
+
+message C_UseItem{
+	int32 itemDbId = 1;
+	int32 useCount = 2;
+}
+
+message S_UseItem{
+	ItemInfo item = 1; 
 }
 
 message LobbyPlayerInfo{

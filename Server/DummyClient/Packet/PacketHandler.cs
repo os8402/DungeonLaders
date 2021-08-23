@@ -147,4 +147,8 @@ class PacketHandler
     {
         S_LevelUp upPacket = (S_LevelUp)packet;
     }
+    public static void S_UseItemHandler(PacketSession session, IMessage packet)
+    {
+        S_UseItem upPacket = (S_UseItem)packet;
+    }
 }

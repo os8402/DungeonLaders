@@ -39,9 +39,10 @@ namespace GameServer.Game
 
         public virtual int TotalAttack { get { return Stat.Attack; } }
         public virtual int TotalDefence { get { return 0; } }
-            
+        public virtual int TotalHp { get { return Stat.MaxHp; } }
 
-        public float Speed
+
+        public virtual float TotalSpeed
         {
             get { return Stat.Speed; }
             set { Stat.Speed = value; }
@@ -49,7 +50,7 @@ namespace GameServer.Game
         public int HP
         {
             get { return Stat.Hp; }
-            set { Stat.Hp = Math.Clamp(value, 0 , Stat.MaxHp); }
+            set { Stat.Hp = Math.Clamp(value, 0 , TotalHp); }
         }
         public int Mp
         {
@@ -160,6 +161,7 @@ namespace GameServer.Game
             S_ChangeHp changePacket = new S_ChangeHp();
             changePacket.ObjectId = Id;
             changePacket.Hp = Stat.Hp;
+            changePacket.Damage = damage;
             changePacket.AttackerId = attacker.Id;
             Room.Broadcast(CellPos, changePacket);
 

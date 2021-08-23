@@ -17,6 +17,12 @@ namespace GameServer.Game
 
             player.HandleEquipItem(equipPacket);
         }
+        public void HandleUseItem(Player player, C_UseItem usePacket)
+        {
+            if (player == null)
+                return;
 
+            player.HandleUseItem(usePacket);
+        }
     }
 }

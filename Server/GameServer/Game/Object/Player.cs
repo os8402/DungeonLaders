@@ -17,6 +17,9 @@ namespace GameServer.Game
 
         public int WeaponDamage { get; private set; }
         public int ArmorDefence { get; private set; }
+        public int ArmorHp { get; private set; }
+        public float ArmorSpeed { get; private set; }
+
         public int Exp
         {
             get { return Stat.CurExp; }
@@ -25,6 +28,9 @@ namespace GameServer.Game
 
         public override int TotalAttack { get { return Stat.Attack + WeaponDamage; } }
         public override int TotalDefence { get { return ArmorDefence; } }
+        public override int TotalHp { get { return Stat.MaxHp + ArmorHp; } }
+        public override float TotalSpeed { get { return Stat.Speed + ArmorSpeed; } }
+     
 
         public Action<Player> _checkDeadTarget;
 
@@ -85,13 +91,8 @@ namespace GameServer.Game
                         Inven.Find(i => i.Equipped && i.ItemType == ItemType.Armor
                         && ((Armor)i).ArmorType == armorType);
 
-
                 }
-                else if (item.ItemType == ItemType.Consumable)
-                {
-
-                }
-
+   
                 if (unEquipItem != null)
                 {
                     //db
@@ -140,10 +141,27 @@ namespace GameServer.Game
 
             RefreshCalcStat();
         }
+
+        public void HandleUseItem(C_UseItem usePacket)
+        {
+            Item item = Inven.Get(usePacket.ItemDbId);
+            if (item == null)
+                return;
+
+            if (item.ItemType != ItemType.Consumable)
+                return;
+
+
+            DbTransaction.UseItem(this, item, usePacket.UseCount  , Room);
+
+        }
+
         public void RefreshCalcStat()
         {
             WeaponDamage = 0;
             ArmorDefence = 0;
+            ArmorHp = 0;
+            ArmorSpeed = 0; 
 
             foreach (Item item in Inven.Items.Values)
             {
@@ -157,6 +175,8 @@ namespace GameServer.Game
                         break;
                     case ItemType.Armor:
                         ArmorDefence += ((Armor)item).Defence;
+                        ArmorHp += ((Armor)item).Hp;
+                        ArmorSpeed += ((Armor)item).Speed;
                         break;
 
                 }

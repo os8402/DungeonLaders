@@ -19,6 +19,7 @@ public class MyPlayerController : PlayerController
         {
             base.Hp = value;
             statusUI.RefreshUI();
+            statUI.RefreshUI();
         }
     }
     public override int Mp
@@ -28,6 +29,7 @@ public class MyPlayerController : PlayerController
         {
             base.Mp = value;
             statusUI.RefreshUI();
+            statUI.RefreshUI();
         }
     }
     public override int Exp
@@ -37,10 +39,21 @@ public class MyPlayerController : PlayerController
         {
             base.Exp = value;
             statusUI.RefreshUI();
+            statUI.RefreshUI();
         }
     }
 
-    public int ArmorDefence { get; set; }
+    public int WeaponDamage { get; private set; }
+    public int ArmorDefence { get; private set; }
+    public int ArmorHp { get; private set; }
+    public float ArmorSpeed { get; private set; }
+
+    public override int TotalAttack { get { return Stat.Attack + WeaponDamage; } }
+    public override int TotalDefence { get { return ArmorDefence; } }
+    public override int TotalHp { get { return Stat.MaxHp + ArmorHp; } }
+    public override float TotalSpeed { get { return Stat.Speed + ArmorSpeed; } }
+
+
 
     UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
     UI_Inventory invenUI;
@@ -52,7 +65,7 @@ public class MyPlayerController : PlayerController
     protected override void Init()
     {
         base.Init();
-        RefreshCalcStat();
+
 
         invenUI = gameSceneUI.InvenUI;
         statUI = gameSceneUI.StatUI;
@@ -60,10 +73,12 @@ public class MyPlayerController : PlayerController
         coinUI = gameSceneUI.CoinUI;
         passiveUI = gameSceneUI.PassiveUI;
 
+
         statusUI.gameObject.SetActive(true);
         coinUI.gameObject.SetActive(true);
         passiveUI.gameObject.SetActive(true);
-        statusUI.RefreshUI();
+
+        RefreshCalcStat();
 
         Transform camera = Camera.main.transform;
         _cam = camera.GetComponent<ChasePlayerCam>();
@@ -73,6 +88,12 @@ public class MyPlayerController : PlayerController
         Managers.Input.keyInputEvent += UpdateInput;
 
     }
+    public override void CreateWeapon(int weaponId)
+    {
+        base.CreateWeapon(weaponId);
+        RefreshCalcStat();
+    }
+
     protected override void MoveToNextPos()
     {
         if (_moveKeyPressed == false)
@@ -223,26 +244,43 @@ public class MyPlayerController : PlayerController
         }
     }
 
+    public override void OnDead()
+    {
+        base.OnDead();
+        statUI.gameObject.SetActive(false);
+        invenUI.gameObject.SetActive(false);
+    }
+
     public void RefreshCalcStat()
     {
-        //WeaponDamage = 0;
-        //ArmorDefence = 0;
+        WeaponDamage = 0;
+        ArmorDefence = 0;
+        ArmorHp = 0;
+        ArmorSpeed = 0;
 
-        //foreach (Item item in Managers.Inven.Items.Values)
-        //{
-        //    if (item.Equipped == false)
-        //        continue;
+        foreach (Item item in Managers.Inven.Items.Values)
+        {
+            if (item.Equipped == false)
+                continue;
 
-        //    switch (item.ItemType)
-        //    {
-        //        case ItemType.Weapon:
-        //            WeaponDamage += ((Weapon)item).Damage;
-        //            break;
-        //        case ItemType.Armor:
-        //            ArmorDefence += ((Armor)item).Defence;
-        //            break;
-        //    }
-        //}
+            switch (item.ItemType)
+            {
+                case ItemType.Weapon:
+                    WeaponDamage += ((Weapon)item).Damage;
+                    break;
+                case ItemType.Armor:
+                    ArmorDefence += ((Armor)item).Defence;
+                    ArmorHp += ((Armor)item).Hp;
+                    ArmorSpeed += ((Armor)item).Speed;
+
+                    break;
+            }
+        }
+
+        UpdateHpBar();
+        
+        if (statusUI != null)
+         statusUI.RefreshUI();
     }
 
 }

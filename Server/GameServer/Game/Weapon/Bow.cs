@@ -68,7 +68,7 @@ namespace GameServer.Game
             arrow.Dir = arrow.GetDirState(posX, posY);
             arrow.AttackPos = new AttackPos() { AttkPosX = posX, AttkPosY = posY };
             arrow.Info.Name = Data.projectile.name;
-            arrow.Speed = Data.projectile.speed;
+            arrow.TotalSpeed = Data.projectile.speed;
             Owner.Room.Push(Owner.Room.EnterGame , arrow , false);
         }
 

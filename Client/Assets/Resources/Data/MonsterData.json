@@ -1,8 +1,8 @@
-{
+ï»¿{
   "monsters": [
     {
       "id": "1",
-      "name": "ÇØ°ñ º´»ç",
+      "name": "í•´ê³¨ ë³‘ì‚¬",
       "stat": {
         "level": "1",
         "maxHp": "20",
@@ -14,24 +14,60 @@
       "rewards": [
         {
           "probability": "10",
-          "itemId": "101",
-          "count" : "1"
-        },
-        {
-          "probability": "10",
-          "itemId": "201",
-          "count": "1"
-
-        },
-        {
-          "probability": "10",
-          "itemId": "301",
-          "count": "1"
-
-        },
-        {
-          "probability": "10",
           "itemId": "1001",
+          "count": "1"
+        },
+        {
+          "probability": "10",
+          "itemId": "1101",
+          "count": "1"
+
+        },
+        {
+          "probability": "10",
+          "itemId": "1201",
+          "count": "1"
+
+        },
+        {
+          "probability": "5",
+          "itemId": "1002",
+          "count": "1"
+
+        },
+        {
+          "probability": "5",
+          "itemId": "1102",
+          "count": "1"
+
+        },
+        {
+          "probability": "5",
+          "itemId": "1202",
+          "count": "1"
+
+        },
+        {
+          "probability": "5",
+          "itemId": "1003",
+          "count": "1"
+
+        },
+        {
+          "probability": "5",
+          "itemId": "1103",
+          "count": "1"
+
+        },
+        {
+          "probability": "5",
+          "itemId": "1203",
+          "count": "1"
+
+        },
+        {
+          "probability": "5",
+          "itemId": "1004",
           "count": "1"
 
         },
