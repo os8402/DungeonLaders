@@ -24,6 +24,8 @@ namespace GameServer.Game
         //   me ㅁ      ㅁ ㅁ
         //   ㅁ ㅁ      ㅁ me
         //   이런 느낌으로 구현
+
+
         protected override List<AttackPos> CalcAttackRange(Vector2Int cellPos)
         {
             List<AttackPos> attackList = new List<AttackPos>();
@@ -32,6 +34,7 @@ namespace GameServer.Game
 
             X = (cellPos.x > 0 ? -1 : 1);
             Y = (cellPos.y < 0 ? 1 : -1);
+
 
             int[] dy = { 0, Y, Y };
             int[] dx = { X, 0, X };

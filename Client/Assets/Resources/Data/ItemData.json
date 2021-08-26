@@ -9,10 +9,10 @@
       "attackRange": "1",
       "cooldown": "0.2",
       "skillType": "Normal",
-      "handPosX" :  "-0.2",
-      "handPosY" :  "-0.3",
-      "effPosX" :  "0.5",
-      "effPosY" :  "0.5",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.5",
+      "effPosY": "0.5",
       "iconPath": "Sprites/Weapon/sword_001"
 
     },
@@ -283,27 +283,102 @@
       }
     },
     {
-      "id": "306",
-      "name": "귀신의 석궁",
-      "info": "귀신의 힘이 깃든 석궁",
-      "weaponType": "Bow",
-      "damage": "200",
-      "attackRange": "7",
-      "cooldown": "0.2",
-      "skillType": "Projectile",
-      "handPosX": "0",
-      "handPosY": "0",
-      "effPosX": "0",
-      "effPosY": "0",
-      "iconPath": "Sprites/Weapon/bow_006",
-      "projectile": {
-        "name": "Arrow_006",
-        "speed": "20.0",
-        "range": "100",
-        "prefab": "Character/Arrow_006"
-      }
+      "id": "401",
+      "name": "견습용 스태프",
+      "info": "견습 마법사들이 사용하는 보급형 스태프",
+      "weaponType": "Staff",
+      "damage": "10",
+      "attackRange": "1",
+      "cooldown": "0.6",
+      "skillType": "Range",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.5",
+      "effPosY": "0.5",
+      "iconPath": "Sprites/Weapon/staff_001"
+
+    },
+    {
+      "id": "402",
+      "name": "제국 마법사의 스태프",
+      "info": "얼음 속성 마법이 장착된 보급형 스태프",
+      "weaponType": "Staff",
+      "damage": "30",
+      "attackRange": "1",
+      "cooldown": "0.6",
+      "skillType": "Range",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.5",
+      "effPosY": "0.5",
+      "iconPath": "Sprites/Weapon/staff_002"
+
+    },
+    {
+      "id": "403",
+      "name": "화룡의 지팡이",
+      "info": "화룡의 심장을 박아넣은 지팡이. 불꽃을 자유자재로 다룰 수 있다.",
+      "weaponType": "Staff",
+      "damage": "50",
+      "attackRange": "2",
+      "cooldown": "0.5",
+      "skillType": "Range",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.5",
+      "effPosY": "0.5",
+      "iconPath": "Sprites/Weapon/staff_003"
+
+    },
+    {
+      "id": "404",
+      "name": "뇌신의 지팡이",
+      "info": "뇌신의 힘이 가득 깃든 신비한 지팡이.",
+      "weaponType": "Staff",
+      "damage": "70",
+      "attackRange": "2",
+      "cooldown": "0.4",
+      "skillType": "Range",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.5",
+      "effPosY": "0.5",
+      "iconPath": "Sprites/Weapon/staff_004"
+
+    },
+    {
+      "id": "405",
+      "name": "얼음대마왕 지팡이",
+      "info": "옛날 옛적 세상을 얼려버렸던 얼음대마왕이 사용한 지팡이",
+      "weaponType": "Staff",
+      "damage": "100",
+      "attackRange": "2",
+      "cooldown": "0.4",
+      "skillType": "Range",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.5",
+      "effPosY": "0.5",
+      "iconPath": "Sprites/Weapon/staff_005"
+
+    },
+    {
+      "id": "406",
+      "name": "창조신의 지팡이",
+      "info": "세계를 창조한 창조신의 힘이 깃든 지팡이",
+      "weaponType": "Staff",
+      "damage": "150",
+      "attackRange": "2",
+      "cooldown": "0.3",
+      "skillType": "Range",
+      "handPosX": "-0.2",
+      "handPosY": "-0.3",
+      "effPosX": "0.5",
+      "effPosY": "0.5",
+      "iconPath": "Sprites/Weapon/staff_006"
+
     }
-  
+
   ],
   "armors": [
     {

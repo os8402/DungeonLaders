@@ -191,7 +191,7 @@ namespace GameServer
                     S_CreatePlayer newPlayer = new S_CreatePlayer();
 
                     string[] jobs = { "MyWarrior_", "MyArcher_", "MyMage_" };
-                    int[] startWeapons = { 101, 301, 201 };
+                    int[] startWeapons = { 101, 301, 401 };
 
                     for (int i = 0; i < 3; i++)
                     {

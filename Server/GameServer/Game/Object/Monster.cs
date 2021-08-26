@@ -60,11 +60,13 @@ namespace GameServer.Game
                         (Math.Abs(y) <= attackRange && x == 0) ||
                         Math.Abs(x) == Math.Abs(y));
                     break;
+
+                case SkillType.Range:
+                    canSkill =
+                        dist <= attackRange + 1 && Math.Abs(x) <= attackRange && Math.Abs(y) <= attackRange;
+                    break;
             }
 
-
-            //if (EquipWeapon.Data.skillType == SkillType.Normal)
-            //    canSkill = false;
 
             return canSkill;
 

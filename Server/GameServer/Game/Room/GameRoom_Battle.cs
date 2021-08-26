@@ -86,10 +86,9 @@ namespace GameServer.Game
 
                         GameObject target = Map.Find(skillPos);
 
-                        if (target != null)
-                        {
+                        if (target != null)                       
                             target.OnDamaged(player, player.TotalAttack);
-                        }
+                        
                     }
                     break;
 
@@ -99,6 +98,22 @@ namespace GameServer.Game
                     Bow bow = weapon as Bow;
                     bow.ShootArrow();
                     break;
+
+                case SkillType.Range:
+
+
+                    foreach (AttackPos pos in weapon.AttackList)
+                    {
+                        Vector2Int skillPos = new Vector2Int(pos.AttkPosX, pos.AttkPosY);
+                     
+                        GameObject target = Map.Find(skillPos);
+
+                        if (target != null)
+                            target.OnDamaged(player, player.TotalAttack);
+
+                    }
+                    break;
+
             }
 
 

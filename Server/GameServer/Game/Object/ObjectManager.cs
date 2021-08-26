@@ -92,6 +92,9 @@ namespace GameServer.Game
                 case WeaponType.Bow:
                     equipWeapon = new Bow(weaponData);
                     break;
+                case WeaponType.Staff:
+                    equipWeapon = new Staff(weaponData);
+                    break;
             }
 
             return equipWeapon;

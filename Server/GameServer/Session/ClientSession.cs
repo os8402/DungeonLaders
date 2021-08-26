@@ -107,7 +107,8 @@ namespace GameServer
 				Send(connectedPacket);
             }
 
-			GameLogic.Instance.PushAfter(5000, Ping);
+			//핑체크
+		//	GameLogic.Instance.PushAfter(5000, Ping);
 
 		}
 

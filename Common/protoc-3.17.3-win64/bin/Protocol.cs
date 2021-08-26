@@ -92,18 +92,19 @@ namespace Google.Protobuf.Protocol {
             "TEVGVBAEEg0KCURPV05fTEVGVBAFEg4KCkRPV05fUklHSFQQBhIMCghVUF9S",
             "SUdIVBAHKnwKCldlYXBvblR5cGUSFAoQV0VBUE9OX1RZUEVfTk9ORRAAEhUK",
             "EVdFQVBPTl9UWVBFX1NXT1JEEAESEwoPV0VBUE9OX1RZUEVfQk9XEAISFQoR",
-            "V0VBUE9OX1RZUEVfU1RBRkYQAxIVChFXRUFQT05fVFlQRV9TUEVBUhAEKlIK",
+            "V0VBUE9OX1RZUEVfU1RBRkYQAxIVChFXRUFQT05fVFlQRV9TUEVBUhAEKmgK",
             "CVNraWxsVHlwZRITCg9TS0lMTF9UWVBFX05PTkUQABIVChFTS0lMTF9UWVBF",
-            "X05PUk1BTBABEhkKFVNLSUxMX1RZUEVfUFJPSkVDVElMRRACKloKEVBsYXll",
-            "clNlcnZlclN0YXRlEhYKElNFUlZFUl9TVEFURV9MT0dJThAAEhYKElNFUlZF",
-            "Ul9TVEFURV9MT0JCWRABEhUKEVNFUlZFUl9TVEFURV9HQU1FEAIqYwoISXRl",
-            "bVR5cGUSEgoOSVRFTV9UWVBFX05PTkUQABIUChBJVEVNX1RZUEVfV0VBUE9O",
-            "EAESEwoPSVRFTV9UWVBFX0FSTU9SEAISGAoUSVRFTV9UWVBFX0NPTlNVTUFC",
-            "TEUQAypjCglBcm1vclR5cGUSEwoPQVJNT1JfVFlQRV9OT05FEAASFQoRQVJN",
-            "T1JfVFlQRV9IRUxNRVQQARIUChBBUk1PUl9UWVBFX0FSTU9SEAISFAoQQVJN",
-            "T1JfVFlQRV9CT09UUxADKkYKDkNvbnN1bWFibGVUeXBlEhgKFENPTlNVTUFC",
-            "TEVfVFlQRV9OT05FEAASGgoWQ09OU1VNQUJMRV9UWVBFX1BPVElPThABQhuq",
-            "AhhHb29nbGUuUHJvdG9idWYuUHJvdG9jb2xiBnByb3RvMw=="));
+            "X05PUk1BTBABEhkKFVNLSUxMX1RZUEVfUFJPSkVDVElMRRACEhQKEFNLSUxM",
+            "X1RZUEVfUkFOR0UQAypaChFQbGF5ZXJTZXJ2ZXJTdGF0ZRIWChJTRVJWRVJf",
+            "U1RBVEVfTE9HSU4QABIWChJTRVJWRVJfU1RBVEVfTE9CQlkQARIVChFTRVJW",
+            "RVJfU1RBVEVfR0FNRRACKmMKCEl0ZW1UeXBlEhIKDklURU1fVFlQRV9OT05F",
+            "EAASFAoQSVRFTV9UWVBFX1dFQVBPThABEhMKD0lURU1fVFlQRV9BUk1PUhAC",
+            "EhgKFElURU1fVFlQRV9DT05TVU1BQkxFEAMqYwoJQXJtb3JUeXBlEhMKD0FS",
+            "TU9SX1RZUEVfTk9ORRAAEhUKEUFSTU9SX1RZUEVfSEVMTUVUEAESFAoQQVJN",
+            "T1JfVFlQRV9BUk1PUhACEhQKEEFSTU9SX1RZUEVfQk9PVFMQAypGCg5Db25z",
+            "dW1hYmxlVHlwZRIYChRDT05TVU1BQkxFX1RZUEVfTk9ORRAAEhoKFkNPTlNV",
+            "TUFCTEVfVFlQRV9QT1RJT04QAUIbqgIYR29vZ2xlLlByb3RvYnVmLlByb3Rv",
+            "Y29sYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.MsgId), typeof(global::Google.Protobuf.Protocol.ControllerState), typeof(global::Google.Protobuf.Protocol.GameObjectType), typeof(global::Google.Protobuf.Protocol.DirState), typeof(global::Google.Protobuf.Protocol.WeaponType), typeof(global::Google.Protobuf.Protocol.SkillType), typeof(global::Google.Protobuf.Protocol.PlayerServerState), typeof(global::Google.Protobuf.Protocol.ItemType), typeof(global::Google.Protobuf.Protocol.ArmorType), typeof(global::Google.Protobuf.Protocol.ConsumableType), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -220,6 +221,7 @@ namespace Google.Protobuf.Protocol {
     [pbr::OriginalName("SKILL_TYPE_NONE")] None = 0,
     [pbr::OriginalName("SKILL_TYPE_NORMAL")] Normal = 1,
     [pbr::OriginalName("SKILL_TYPE_PROJECTILE")] Projectile = 2,
+    [pbr::OriginalName("SKILL_TYPE_RANGE")] Range = 3,
   }
 
   public enum PlayerServerState {
