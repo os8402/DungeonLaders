@@ -61,6 +61,7 @@ public class MyPlayerController : PlayerController
     UI_Stat statUI;
     UI_Passive passiveUI;
     UI_Coin coinUI;
+    UI_News newsUI;
 
     protected override void Init()
     {
@@ -72,11 +73,15 @@ public class MyPlayerController : PlayerController
         statusUI = gameSceneUI.StatusUI;
         coinUI = gameSceneUI.CoinUI;
         passiveUI = gameSceneUI.PassiveUI;
+        newsUI = gameSceneUI.NewsUI;
 
 
         statusUI.gameObject.SetActive(true);
         coinUI.gameObject.SetActive(true);
         passiveUI.gameObject.SetActive(true);
+        newsUI.gameObject.SetActive(true);
+
+
 
         RefreshCalcStat();
 
@@ -147,7 +152,7 @@ public class MyPlayerController : PlayerController
 
         //UI 창 띄울 땐 공격 x
 
-        if(invenUI.gameObject.activeSelf || statUI.gameObject.activeSelf)     
+        if(invenUI.gameObject.activeSelf)     
             return;
         
 

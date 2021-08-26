@@ -149,6 +149,10 @@ class PacketHandler
     }
     public static void S_UseItemHandler(PacketSession session, IMessage packet)
     {
-        S_UseItem upPacket = (S_UseItem)packet;
+        S_UseItem useItemPacket = (S_UseItem)packet;
+    }
+    public static void S_RemoveItemHandler(PacketSession session, IMessage packet)
+    {
+        S_RemoveItem removeItemPacket = (S_RemoveItem)packet;
     }
 }

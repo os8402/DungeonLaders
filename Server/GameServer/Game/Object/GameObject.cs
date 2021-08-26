@@ -197,8 +197,8 @@ namespace GameServer.Game
             GameRoom room = Room;
             room.LeaveGame(Id);
 
-            Stat.Hp = Stat.MaxHp;
-            
+            Stat.Hp = TotalHp;
+
             State = ControllerState.Idle;
             room.EnterGame(this , randomPos : true);
 

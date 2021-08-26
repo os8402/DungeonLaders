@@ -33,6 +33,8 @@ enum MsgId {
   S_LEVEL_UP =25;
   C_USE_ITEM =26;
   S_USE_ITEM =27;
+  C_REMOVE_ITEM =28;
+  S_REMOVE_ITEM =29;
 }
  enum ControllerState
  {
@@ -222,6 +224,14 @@ message C_UseItem{
 
 message S_UseItem{
 	ItemInfo item = 1; 
+}
+message C_RemoveItem{
+
+	int32 itemDbId = 1; 
+}
+
+message S_RemoveItem{
+	int32 itemDbId = 1; 
 }
 
 message LobbyPlayerInfo{

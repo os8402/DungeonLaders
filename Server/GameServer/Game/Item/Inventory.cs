@@ -9,13 +9,19 @@ namespace GameServer.Game
     {
         public Dictionary<int, Item> Items { get; set; } = new Dictionary<int, Item>();
 
+        public HashSet<int?> ReserveSlotList { get; set; } = new HashSet<int?>();
+
         public void Add(Item item)
         {
             Items.Add(item.ItemDbId, item);
+
+            CancleReserveSlot(item.Slot);
         }
         public void Remove(Item item)
         {
-            Items.Remove(item.ItemDbId); 
+            Items.Remove(item.ItemDbId);
+
+            CancleReserveSlot(item.Slot);
         }
 
         public Item Get(int itemDbId)
@@ -24,9 +30,9 @@ namespace GameServer.Game
             Items.TryGetValue(itemDbId, out item);
             return item;
         }
-        public Item Find(Func<Item ,bool> condition)
+        public Item Find(Func<Item, bool> condition)
         {
-            foreach(Item item in Items.Values)
+            foreach (Item item in Items.Values)
             {
                 if (condition.Invoke(item))
                     return item;
@@ -34,24 +40,38 @@ namespace GameServer.Game
             return null;
         }
 
-        public void RefreshSlot(Item item ,int num)
+        public void RefreshSlot(Item item, int num)
         {
             if (Items.ContainsKey(item.ItemDbId) == false)
                 return;
 
-            Items[item.ItemDbId].Slot = num; 
+            Items[item.ItemDbId].Slot = num;
         }
 
         public int? GetEmptySlot()
         {
-            for(int slot = 0; slot < 16; slot++)
+            for (int slot = 0; slot < 16; slot++)
             {
+                if (ReserveSlotList.Contains(slot))
+                    continue;
+
                 Item item = Items.Values.FirstOrDefault(i => i.Slot == slot);
+
                 if (item == null)
-                    return slot;       
+                {
+                
+                    ReserveSlotList.Add(slot);
+                    return slot;
+                }
+
             }
 
             return null;
+        }
+
+        public void CancleReserveSlot(int? slot)
+        {
+            ReserveSlotList.Remove(slot);
         }
     }
 }

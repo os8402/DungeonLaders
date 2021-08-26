@@ -24,5 +24,13 @@ namespace GameServer.Game
 
             player.HandleUseItem(usePacket);
         }
+
+        public void HandleRemoveItem(Player player , C_RemoveItem removePacket)
+        {
+            if (player == null)
+                return;
+
+            player.HandleRemoveItem(removePacket);
+        }
     }
 }

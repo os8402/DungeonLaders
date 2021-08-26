@@ -30,6 +30,7 @@ public class NetworkManager
 			1);
 	}
 
+
 	public void Update()
 	{
 		List<PacketMessage> list = PacketQueue.Instance.PopAll();

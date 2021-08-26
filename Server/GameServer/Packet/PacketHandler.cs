@@ -120,4 +120,23 @@ class PacketHandler
 
 
     }
+	
+	
+    public static void C_RemoveItemHandler(PacketSession session, IMessage packet)
+    {
+		C_RemoveItem removePacket = (C_RemoveItem)packet;
+        ClientSession clientSession = (ClientSession)session;
+
+        Player player = clientSession.MyPlayer;
+        if (player == null)
+            return;
+
+        GameRoom room = player.Room;
+        if (room == null)
+            return;
+
+        room.Push(room.HandleRemoveItem, player, removePacket);
+
+
+    }
 }

@@ -34,6 +34,9 @@ public class UI_Inventory_Item : UI_Base
            
             invenUI.SetItemInfo(Item);
 
+            if (Item == null)
+                return;
+
             Selected = !Selected;
             _frame.gameObject.SetActive(Selected);
 
@@ -52,7 +55,6 @@ public class UI_Inventory_Item : UI_Base
     public void SetItem(Item item)
     {
 
-        _frame.gameObject.SetActive(Selected);
 
         if (item == null)
         {
@@ -63,9 +65,17 @@ public class UI_Inventory_Item : UI_Base
 
             _icon.gameObject.SetActive(false);
             _frame.gameObject.SetActive(false);
+            _countText.text = string.Empty;
 
             return;
         }
+
+
+        _icon.enabled = true;
+        _frame.enabled = true; 
+      
+
+        _frame.gameObject.SetActive(Selected);
 
         Item = item; 
 

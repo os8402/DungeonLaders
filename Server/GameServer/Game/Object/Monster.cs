@@ -336,16 +336,18 @@ namespace GameServer.Game
 
 
             // 자신의 무기도 드랍가능
+
+            int weaponId = EquipWeapon.Id;
+
             RewardData rewardWeapon = new RewardData
             {
-                itemId = EquipWeapon.Id,
+                itemId = weaponId,
                 count = 1,
-                probability = 10
             };
-            monsterData.rewards.Add(rewardWeapon);
-
+       
             int rand = new Random().Next(0, 101);
 
+   
             //10 10 10 10 10 
             int sum = 0;
             foreach (RewardData rewardData in monsterData.rewards)
@@ -357,7 +359,9 @@ namespace GameServer.Game
                 }
             }
 
-            return null;
+          
+
+             return rewardWeapon;
         }
 
     }

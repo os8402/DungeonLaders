@@ -155,6 +155,14 @@ namespace GameServer.Game
             DbTransaction.UseItem(this, item, usePacket.UseCount  , Room);
 
         }
+        public void HandleRemoveItem(C_RemoveItem removePacket)
+        {
+            Item item = Inven.Get(removePacket.ItemDbId);
+            if (item == null)
+                return;
+
+            DbTransaction.RemoveItem(this, item, Room); 
+        }
 
         public void RefreshCalcStat()
         {

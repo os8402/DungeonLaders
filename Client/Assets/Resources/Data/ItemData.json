@@ -421,8 +421,9 @@
     {
       "id": "2001",
       "name": "Hp 물약",
+      "info": "Hp를 소량 회복시켜주는 포션",
       "consumableType": "Potion",
-      "heal": "8",
+      "heal": "200",
       "iconPath": "Sprites/Item/hp_001"
 
     }

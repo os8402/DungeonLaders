@@ -139,12 +139,15 @@ namespace GameServer.DB
         }
 
 
+
         public static void RewardPlayer(Player player, RewardData rewardData, GameRoom room)
         {
             if (player == null || rewardData == null || room == null)
                 return;
 
+
             int? slot = player.Inven.GetEmptySlot();
+
             if (slot == null)
                 return;
 
@@ -156,13 +159,14 @@ namespace GameServer.DB
                 OwnerDbId = player.PlayerDbId,
             };
 
+
             // you [DB]
 
             Instance.Push(() =>
             {
+
                 using (AppDbContext db = new AppDbContext())
                 {
-
                     db.Items.Add(itemDb);
                     bool success = db.SaveChangesEx();
                     if (success)
@@ -181,10 +185,12 @@ namespace GameServer.DB
 
                             player.Session.Send(itemPacket);
 
+
                         });
                     }
 
                 }
+
             });
 
 
@@ -195,23 +201,24 @@ namespace GameServer.DB
             if (player == null || item == null || room == null)
                 return;
 
-            int count = Math.Max(0, item.Count - useCount);
-            int slot = item.Slot;
-
-            ItemDb itemDb = new ItemDb()
-            {
-                ItemDbId = item.ItemDbId,
-                Count = count,
-
-            };
-
-
-            bool remove = false;
 
             Instance.Push(() =>
             {
                 using (AppDbContext db = new AppDbContext())
                 {
+
+                    int count = Math.Max(0, item.Count - useCount);
+                    int slot = item.Slot;
+
+                    ItemDb itemDb = new ItemDb()
+                    {
+                        ItemDbId = item.ItemDbId,
+                        Count = count,
+
+                    };
+
+                    bool remove = false;
+
                     //다썻다면.. 
                     //TODO : 뒤에 있던 아이템들을 다 앞으로 땡겨야 함
                     if (count <= 0)
@@ -224,14 +231,18 @@ namespace GameServer.DB
 
                         //소모템 제거
                         db.Items.Remove(itemDb);
+
                         //칸 땡기기 DB
                         foreach (ItemDb i in sortingItems)
                         {
-                            i.Slot -= 1;
+
                             db.Entry(i).State = EntityState.Unchanged;
                             db.Entry(i).Property(nameof(i.Slot)).IsModified = true;
+                            i.Slot -= 1;
 
                         }
+
+
 
                     }
                     else
@@ -243,25 +254,27 @@ namespace GameServer.DB
                     }
 
 
+
                     bool success = db.SaveChangesEx();
                     if (success)
                     {
                         room.Push(() =>
                         {
-                            //패킷 전송
+                                //패킷 전송
                             Item useItem = player.Inven.Get(itemDb.ItemDbId);
 
-                            //다 썻을 경우
+                                //다 썻을 경우
                             if (remove)
                             {
                                 var sortingItems = player.Inven.Items.Values
-                                  .Where(i => i.Slot > itemDb.Slot)
+                                  .Where(i => i.Slot > useItem.Slot)
                                     .ToList();
 
-                                //메모리 적용                           
+                                    //메모리 적용
+                                    useItem.Count = 0;
                                 player.Inven.Remove(useItem);
 
-                                //칸 땡기기 메모리
+                                    //칸 땡기기 메모리
                                 foreach (Item i in sortingItems)
                                 {
                                     player.Inven.RefreshSlot(i, i.Slot - 1);
@@ -273,18 +286,102 @@ namespace GameServer.DB
                                 useItem.Count -= useCount;
                             }
 
-                            //클라 처리 
+
+                                //클라 처리 
                             S_UseItem useOkPacket = new S_UseItem();
                             useOkPacket.Item = new ItemInfo();
                             useOkPacket.Item.MergeFrom(useItem.Info);
                             player.Session.Send(useOkPacket);
 
+
+                            //포션 하나말고 없어서 일단 여기다가
+                            Consumable itemPotion = useItem as Consumable;
+
+                            player.HP += itemPotion.Heal;
+
+
+                            S_ChangeHp hpPacket = new S_ChangeHp();
+                            hpPacket.ObjectId = player.Id;
+                            hpPacket.Hp = player.HP;
+                            hpPacket.Damage = itemPotion.Heal;
+                            player.Session.Send(hpPacket);
+
                         });
                     }
+
+
                 }
 
+            });
+
+        }
+
+
+        public static void RemoveItem(Player player, Item item, GameRoom room)
+        {
+            if (player == null || item == null || room == null)
+                return;
+
+
+            Instance.Push(() =>
+            {
+                using (AppDbContext db = new AppDbContext())
+                {
+                    ItemDb itemDb = new ItemDb() { ItemDbId = item.ItemDbId };
+                    int slot = item.Slot;
+
+                    var sortingItems = db.Items
+                       .Where(i => i.Slot > slot)
+                       .ToList();
+
+                    //소모템 제거
+                    db.Items.Remove(itemDb);
+
+                    //칸 땡기기 DB
+                    foreach (ItemDb i in sortingItems)
+                    {
+
+                        db.Entry(i).State = EntityState.Unchanged;
+                        db.Entry(i).Property(nameof(i.Slot)).IsModified = true;
+                        i.Slot -= 1;
+
+                    }
+
+
+                    bool success = db.SaveChangesEx();
+                    if (success == false)
+                        return;
+
+                    room.Push(() =>
+                    {
+                        //패킷 전송
+                        Item removeItem = player.Inven.Get(itemDb.ItemDbId);
+
+                        //메모리 적용
+                        var sortingItems = player.Inven.Items.Values
+                          .Where(i => i.Slot > removeItem.Slot)
+                            .ToList();
+
+                        player.Inven.Remove(removeItem);
+
+                        //칸 땡기기 메모리
+                        foreach (Item i in sortingItems)
+                        {
+                            player.Inven.RefreshSlot(i, i.Slot - 1);
+                        }
+
+                        //클라 처리 
+                        S_RemoveItem removeOkPacket = new S_RemoveItem();
+                        removeOkPacket.ItemDbId = removeItem.ItemDbId;
+                        player.Session.Send(removeOkPacket);
+
+
+                    });
+
+                }
 
             });
+
 
         }
 

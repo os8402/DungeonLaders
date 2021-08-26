@@ -225,16 +225,16 @@ class PacketHandler
     public static void S_AddItemHandler(PacketSession session, IMessage packet)
     {
         S_AddItem itemList = (S_AddItem)packet;
+        UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
 
         foreach (ItemInfo itemInfo in itemList.Items)
         {
             Item item = Item.MakeItem(itemInfo);
             Managers.Inven.Add(item);
+            gameSceneUI.NewsUI.RefreshUI($"아이템을 얻었습니다.(+{item.ItemName})");
 
         }
 
-        Debug.Log("아이템 획득! ");
-        UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
         gameSceneUI.InvenUI.RefreshUI();
         gameSceneUI.StatUI.RefreshUI();
 
@@ -304,16 +304,20 @@ class PacketHandler
 
         if (player != null)
         {
+            UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
 
+            gameSceneUI.NewsUI.RefreshUI($"경험치를 획득했습니다.(+{ player.Exp - expPacket.Exp})");
             player.Exp = expPacket.Exp;
+            
 
             if (player.Stat.CurExp >= player.Stat.TotalExp)
             {
-                Debug.Log($"레벨업!!! , {player.Stat.Level} -> {player.Stat.Level + 1}");
+                gameSceneUI.NewsUI.RefreshUI($"레벨업 했습니다! (+{player.Stat.Level} -> {player.Stat.Level + 1})");
                 C_LevelUp levelUpPacket = new C_LevelUp();
                 Managers.Network.Send(levelUpPacket);
 
             }
+         
         }
 
     }
@@ -351,6 +355,7 @@ class PacketHandler
             return;
 
         int count = useItemOk.Item.Count;
+        UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
 
         //다썻다면..
         if (count <= 0)
@@ -364,16 +369,47 @@ class PacketHandler
             foreach (Item i in sortingItems)
                 Managers.Inven.RefreshSlot(i, i.Slot - 1);
 
+            //싹 다 날리고 초기화
+            gameSceneUI.InvenUI.MakeItem();
+
         }
         //아직 남아있다면..
         else
         {
             useItem.Count = useItemOk.Item.Count;
+            gameSceneUI.InvenUI.RefreshUI();
+
         }
+
+       
+        gameSceneUI.StatUI.RefreshUI();
+
+    }
+
+    public static void S_RemoveItemHandler(PacketSession session, IMessage packet)
+    {
+        S_RemoveItem removeOk = (S_RemoveItem)packet;
+
+        
+
+        //메모리에 저장
+        Item removeItem = Managers.Inven.Get(removeOk.ItemDbId);
+        if (removeItem == null)
+            return;
+
+        Managers.Inven.Remove(removeItem);
+
+        var sortingItems = Managers.Inven.Items.Values
+                  .Where(i => i.Slot > removeItem.Slot)
+                  .ToList();
+
+        foreach (Item i in sortingItems)
+            Managers.Inven.RefreshSlot(i, i.Slot - 1);
 
         UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
 
-        gameSceneUI.InvenUI.RefreshUI();
+            //싹 다 날리고 초기화
+        gameSceneUI.InvenUI.MakeItem();
         gameSceneUI.StatUI.RefreshUI();
 
     }

@@ -34,15 +34,33 @@ public class UI_Inventory : UI_Base
     public Item SelectItem { get; set; }
     public int SelectIndex { get; set; }
 
-    void ResetInfo()
+    void ResetInfo(bool next = false)
     {
-        SelectItem = null;
+        if(next == false)
+        {
+            SelectItem = null;
+        }
+        else
+        {
+            Item item = Managers.Inven.Find((i) =>
+            {
+                if (i.Slot == SelectItem.Slot)
+                    return true;
+
+                return false; 
+            });
+
+            SelectItem = item;
+        }
+
         GetImage((int)Images.Slot_ItemInfo).enabled = false;
         GetText((int)Texts.Item_Name_Text).text = string.Empty;
         GetText((int)Texts.Item_Info_Text).text = string.Empty;
         GetText((int)Texts.Stat01_ValueText).text = string.Empty;
         GetText((int)Texts.Stat02_ValueText).text = string.Empty;
         GetText((int)Texts.Stat03_ValueText).text = string.Empty;
+        GetButton((int)Buttons.Request_Btn).interactable = false;
+        GetButton((int)Buttons.Remove_Btn).interactable = false;
     }
 
     private void OnEnable()
@@ -50,10 +68,30 @@ public class UI_Inventory : UI_Base
         ResetInfo();
     }
 
+    public void MakeItem()
+    {
+        Items.Clear();
+        ResetInfo(next : true);
+
+        GameObject grid = Util.FindChild(gameObject, "ItemGrid", true);
+        foreach (Transform child in grid.transform)
+            Destroy(child.gameObject);
+
+        for (int i = 0; i < 16; i++)
+        {
+            GameObject go = Managers.Resource.Instantiate("UI/Scene/UI_Inventory_Item", grid.transform);
+            UI_Inventory_Item item = go.GetOrAddComponent<UI_Inventory_Item>();
+            Items.Add(item);
+        }
+
+        RefreshUI();
+    }
+
     public override void Init()
     {
         Items.Clear();
 
+    
         Bind<Image>(typeof(Images));
         Bind<Text>(typeof(Texts));
         Bind<Button>(typeof(Buttons));
@@ -68,19 +106,9 @@ public class UI_Inventory : UI_Base
         BindEvent(GetButton((int)Buttons.Request_Btn).gameObject, (e) => { RequestEquipOrUseItem(); });
         BindEvent(GetButton((int)Buttons.Remove_Btn).gameObject, (e) => { RemoveItem(); });
 
+        MakeItem();
 
-        GameObject grid = Util.FindChild(gameObject, "ItemGrid", true);
-        foreach (Transform child in grid.transform)
-            Destroy(child.gameObject);
 
-        for(int i = 0; i < 16; i++)
-        {
-            GameObject go = Managers.Resource.Instantiate("UI/Scene/UI_Inventory_Item" , grid.transform);
-            UI_Inventory_Item item = go.GetOrAddComponent<UI_Inventory_Item>();
-            Items.Add(item);
-        }
-
-        RefreshUI();
     }
 
     public void RefreshUI()
@@ -123,6 +151,8 @@ public class UI_Inventory : UI_Base
         if (item == null)
             return;
 
+        GetButton((int)Buttons.Request_Btn).interactable = true;
+        GetButton((int)Buttons.Remove_Btn).interactable = true;
 
         SelectItem = item;
         
@@ -188,7 +218,6 @@ public class UI_Inventory : UI_Base
             C_UseItem useItemPacket = new C_UseItem();
             useItemPacket.ItemDbId = SelectItem.ItemDbId;
             useItemPacket.UseCount = 1; 
-
             Managers.Network.Send(useItemPacket); 
         }
            
@@ -199,18 +228,33 @@ public class UI_Inventory : UI_Base
             C_EquipItem equipItemPacket = new C_EquipItem();
             equipItemPacket.ItemDbId = SelectItem.ItemDbId;
             equipItemPacket.Equipped = !SelectItem.Equipped;
-
             Managers.Network.Send(equipItemPacket);
 
-
         }
-
-   
-
     }
 
     public void RemoveItem()
     {
+        if (SelectItem == null)
+            return;
+
+ 
+
+        //장착여부했으면 삭제 안하고 
+        //TODO : 안내문구 : 정말 삭제할건지
+        if (SelectItem.Equipped)
+        {
+            UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+            gameSceneUI.NewsUI.RefreshUI($"장착 중인 아이템은 버릴 수 없습니다.");
+            return;
+        }
+          
+
+        Debug.Log("Delete Item");
+
+        C_RemoveItem removeItemPacket = new C_RemoveItem();
+        removeItemPacket.ItemDbId = SelectItem.ItemDbId;
+        Managers.Network.Send(removeItemPacket);
 
     }
 }
