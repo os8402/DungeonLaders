@@ -1,0 +1,12 @@
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\SharedDB\bin\Debug\netcoreapp3.1\SharedDB.deps.json
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\SharedDB\bin\Debug\netcoreapp3.1\SharedDB.runtimeconfig.json
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\SharedDB\bin\Debug\netcoreapp3.1\SharedDB.runtimeconfig.dev.json
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\SharedDB\bin\Debug\netcoreapp3.1\SharedDB.dll
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\SharedDB\bin\Debug\netcoreapp3.1\SharedDB.pdb
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\SharedDB\obj\Debug\netcoreapp3.1\SharedDB.csproj.AssemblyReference.cache
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\SharedDB\obj\Debug\netcoreapp3.1\SharedDB.AssemblyInfoInputs.cache
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\SharedDB\obj\Debug\netcoreapp3.1\SharedDB.AssemblyInfo.cs
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\SharedDB\obj\Debug\netcoreapp3.1\SharedDB.csproj.CoreCompileInputs.cache
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\SharedDB\obj\Debug\netcoreapp3.1\SharedDB.dll
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\SharedDB\obj\Debug\netcoreapp3.1\SharedDB.pdb
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\SharedDB\obj\Debug\netcoreapp3.1\SharedDB.genruntimeconfig.cache

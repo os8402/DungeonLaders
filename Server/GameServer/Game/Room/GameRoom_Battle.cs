@@ -3,6 +3,7 @@ using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace GameServer.Game
@@ -46,7 +47,7 @@ namespace GameServer.Game
                 return;
 
             EquipWeapon weapon = player.EquipWeapon;
-            
+
             if (weapon == null)
                 return;
 
@@ -60,19 +61,12 @@ namespace GameServer.Game
             weapon.SkillEvent();
 
 
+  
             //1.공격 범위 
             //2.공격 방향
             //3.타겟 정보
             //모아서 클라에 보냄
 
-            S_Skill skill = new S_Skill();
-
-            skill.ObjectId = info.ObjectId;
-            skill.AttackList.Add(weapon.AttackList);
-            skill.AttackDir = weapon.AttackDir;
-            skill.TargetInfo = skillPacket.TargetInfo;
-
-            Broadcast(player.CellPos, skill);
 
             switch (weapon.Data.skillType)
             {
@@ -86,9 +80,14 @@ namespace GameServer.Game
 
                         GameObject target = Map.Find(skillPos);
 
-                        if (target != null)                       
+                        if (target != null)
+                        {
+                            if (target.GetType() == typeof(Player))
+                                continue;
+
                             target.OnDamaged(player, player.TotalAttack);
-                        
+                        }
+
                     }
                     break;
 
@@ -99,22 +98,50 @@ namespace GameServer.Game
                     bow.ShootArrow();
                     break;
 
-                case SkillType.Range:
+                case SkillType.Magic:
 
+                    System.Random rand = new System.Random();
+                    List<AttackPos> shupplePos = weapon.AttackList.OrderBy(num => rand.Next()).ToList();
+                    weapon.AttackList = shupplePos; // 변경
 
-                    foreach (AttackPos pos in weapon.AttackList)
+                    int tick = (int)(weapon.Cooldown * 1000);
+          
+                    foreach (AttackPos pos in shupplePos)
                     {
+
+
                         Vector2Int skillPos = new Vector2Int(pos.AttkPosX, pos.AttkPosY);
-                     
+
                         GameObject target = Map.Find(skillPos);
 
                         if (target != null)
-                            target.OnDamaged(player, player.TotalAttack);
+                        {
+                            if (target.GetType() == typeof(Player))
+                                continue;
+
+                            PushAfter(tick,  target.OnDamaged , player , player.TotalAttack);
+                           // target.OnDamaged(player, player.TotalAttack); 
+
+                        }
+
 
                     }
                     break;
 
             }
+
+
+
+
+            S_Skill skill = new S_Skill();
+
+            skill.ObjectId = info.ObjectId;
+            skill.AttackList.Add(weapon.AttackList);
+            skill.AttackDir = weapon.AttackDir;
+            skill.TargetInfo = skillPacket.TargetInfo;
+
+            Broadcast(player.CellPos, skill);
+
 
 
         }

@@ -58,7 +58,7 @@ namespace GameServer.Game
                 }
             }
 
-            for(int i = 0; i < 100; i++)
+            for(int i = 0; i < 200; i++)
             {
                 Monster monster = ObjectManager.Instance.Add<Monster>();
                 monster.Init(1);
@@ -108,7 +108,7 @@ namespace GameServer.Game
 
                 if (player.HP == 0)
                 {
-                    player.HP = player.Stat.MaxHp;
+                    player.HP = player.TotalHp;
                     player.Stat.Mp = player.Stat.MaxMp;
                     player.Exp = player.Stat.CurExp;
                 }
@@ -125,6 +125,7 @@ namespace GameServer.Game
 
                     S_EnterGame enterPacket = new S_EnterGame();
                     enterPacket.Player = player.Info;
+            
                     player.Session.Send(enterPacket);
 
                     player.Vision.Update();

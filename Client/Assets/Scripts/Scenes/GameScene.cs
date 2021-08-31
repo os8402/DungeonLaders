@@ -19,6 +19,7 @@ public class GameScene : BaseScene
 
         _sceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();
 
+
     }
 
  

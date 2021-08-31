@@ -29,11 +29,10 @@ public class Staff : EquipWeapon
     }
     IEnumerator CoRandShoot(S_Skill skillPacket)
     {
-        List<AttackPos> attackList = skillPacket.AttackList.ToList();
-        System.Random random = new System.Random();
+        GameObject mage_ready_eff = Managers.Resource.Instantiate($"Effect/Staff/Mage_Attack_Ready_Eff" , _owner.transform);
+        mage_ready_eff.transform.localPosition = new Vector3(0, -0.2f, 0);
 
-        AttackPos[] shupplePos = attackList.OrderBy(num => random.Next()).ToArray();
-
+        yield return new WaitForSeconds(CoolDown);
 
         _attackDir = skillPacket.AttackDir;
 
@@ -44,7 +43,7 @@ public class Staff : EquipWeapon
 
         string weaponName = GetType().Name;
 
-        foreach (AttackPos pos in shupplePos)
+        foreach (AttackPos pos in skillPacket.AttackList)
         {
             //이펙트 출력
             GameObject go = Managers.Resource.Instantiate($"Effect/{weaponName}/{weaponName}_Eff_{Id.ToString("000")}");
@@ -59,12 +58,12 @@ public class Staff : EquipWeapon
 
             //실제 좌표 + 소유자 등록 [누가 공격했는지 전달해줘야 함 ] 
             _ec.CellPos = new Vector3Int(pos.AttkPosX, pos.AttkPosY, 0);
-          //  _ec.transform.position = _ec.CellPos + (Vector3.one * 0.5f);
-            _ec.transform.position = _ec.CellPos;
+            _ec.transform.position = _ec.CellPos + (Vector3.one * 0.5f);
+       
 
             _ec.Owner = _owner;
 
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.05f);
         }
 
      

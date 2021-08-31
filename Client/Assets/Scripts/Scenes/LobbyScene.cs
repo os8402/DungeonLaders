@@ -18,6 +18,8 @@ public class LobbyScene : BaseScene
 
         Managers.Resource.Instantiate("Common/Camp");
 
+      
+
 
     }
     public override void Clear()

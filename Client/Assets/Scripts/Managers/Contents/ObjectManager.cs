@@ -64,14 +64,25 @@ public class ObjectManager
 
 		bc.Id = info.ObjectId;
 		bc.TeamId = info.TeamId;
+		bc.TotalHp = info.TotalHp; 
 		bc.PosInfo.MergeFrom(info.PosInfo);
 		bc.Stat.MergeFrom(info.StatInfo);
 	
 		bc.SyncPos();
 
 		CreatureController cc = bc.GetComponent<CreatureController>();
+
+		
+
 		if(cc != null)
+        {
 			cc.CreateWeapon(info.WeaponId);
+            cc.JobName = prefabName;
+
+        }
+		
+
+
 
 		_objects.Add(info.ObjectId, go);
 

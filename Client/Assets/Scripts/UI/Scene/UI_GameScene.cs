@@ -13,8 +13,8 @@ public class UI_GameScene : UI_Scene
     public UI_Inventory InvenUI { get;  set; }
     public UI_Stat StatUI { get; private set; }
     public UI_Status StatusUI { get; private set; }
-    public UI_Coin CoinUI { get; private set; }
-    public UI_Passive PassiveUI { get; private set; }
+   // public UI_Coin CoinUI { get; private set; }
+    //public UI_Passive PassiveUI { get; private set; }
 
     public UI_News NewsUI { get; private set; }
 
@@ -32,15 +32,15 @@ public class UI_GameScene : UI_Scene
         InvenUI = GetComponentInChildren<UI_Inventory>();
         StatUI = GetComponentInChildren<UI_Stat>();
         StatusUI = GetComponentInChildren<UI_Status>();
-        CoinUI = GetComponentInChildren<UI_Coin>();
-        PassiveUI = GetComponentInChildren<UI_Passive>();
+     //   CoinUI = GetComponentInChildren<UI_Coin>();
+     //   PassiveUI = GetComponentInChildren<UI_Passive>();
         NewsUI = GetComponentInChildren<UI_News>();
 
         InvenUI.gameObject.SetActive(false);
         StatUI.gameObject.SetActive(false);
         StatusUI.gameObject.SetActive(false);
-        CoinUI.gameObject.SetActive(false);
-        PassiveUI.gameObject.SetActive(false);
+      //  CoinUI.gameObject.SetActive(false);
+      //  PassiveUI.gameObject.SetActive(false);
         NewsUI.gameObject.SetActive(false); 
 
     }

@@ -12,8 +12,19 @@ namespace GameServer
 
         int _sessionId = 0;
 
+
         Dictionary<int, ClientSession> _sessions = new Dictionary<int, ClientSession>();
         object _lock = new object();
+
+        public int GetBusyScore()
+        {
+            int count = 0;
+            lock(_lock)
+            {
+                count = _sessions.Count;
+            }
+            return count / 100; 
+        }
 
         public List<ClientSession> GetSessions()
         {

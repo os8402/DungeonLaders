@@ -127,7 +127,7 @@ namespace GameServer.DB
                             upPacket.StatInfo = new StatInfo();
                             upPacket.StatInfo.MergeFrom(statInfo);
 
-                            player.Session.Send(upPacket);
+                            room.Broadcast(player.CellPos, upPacket);
 
                         });
 
@@ -299,12 +299,11 @@ namespace GameServer.DB
 
                             player.HP += itemPotion.Heal;
 
-
-                            S_ChangeHp hpPacket = new S_ChangeHp();
+                            S_ChangeHp  hpPacket = new S_ChangeHp();
                             hpPacket.ObjectId = player.Id;
                             hpPacket.Hp = player.HP;
-                            hpPacket.Damage = itemPotion.Heal;
-                            player.Session.Send(hpPacket);
+                            hpPacket.TotalHp = player.TotalHp;
+                            room.Broadcast(player.CellPos, hpPacket);
 
                         });
                     }
@@ -374,7 +373,7 @@ namespace GameServer.DB
                         S_RemoveItem removeOkPacket = new S_RemoveItem();
                         removeOkPacket.ItemDbId = removeItem.ItemDbId;
                         player.Session.Send(removeOkPacket);
-
+              
 
                     });
 

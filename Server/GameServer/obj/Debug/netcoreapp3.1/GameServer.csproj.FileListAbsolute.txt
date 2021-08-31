@@ -71,3 +71,5 @@ C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\GameServer\bin\Debug\netco
 C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\GameServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\GameServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\GameServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\GameServer\bin\Debug\netcoreapp3.1\SharedDB.dll
+C:\Users\lenovo\Documents\GitHub\DungeonLaders\Server\GameServer\bin\Debug\netcoreapp3.1\SharedDB.pdb

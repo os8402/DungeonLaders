@@ -387,11 +387,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 98d4820db67db294ca2a10c738d92a65, type: 3}
-    m_FontSize: 32
+    m_FontSize: 27
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 3
-    m_MaxSize: 32
+    m_MinSize: 2
+    m_MaxSize: 27
     m_Alignment: 8
     m_AlignByGeometry: 0
     m_RichText: 1

@@ -29,6 +29,7 @@ namespace GameServer.Game
         public override int TotalAttack { get { return Stat.Attack + WeaponDamage; } }
         public override int TotalDefence { get { return ArmorDefence; } }
         public override int TotalHp { get { return Stat.MaxHp + ArmorHp; } }
+   
         public override float TotalSpeed { get { return Stat.Speed + ArmorSpeed; } }
      
 
@@ -38,7 +39,6 @@ namespace GameServer.Game
         {
             ObjectType = GameObjectType.Player;
             Vision = new VisionCube(this);
-
         }
 
  
@@ -95,9 +95,10 @@ namespace GameServer.Game
    
                 if (unEquipItem != null)
                 {
-                    //db
+                   
                     //메모리 선 적용 [중요하지않은 데이터들 ]
                     unEquipItem.Equipped = false;
+    
 
                     //DB에 Noti
                     DbTransaction.EquipItemNoti(this, unEquipItem);
@@ -124,8 +125,17 @@ namespace GameServer.Game
                     else
                     {
                         EquipWeapon = ObjectManager.Instance.CreateObjectWeapon(item.TemplateId);
+                    
                     }
-                   
+
+                    //무기는 변경사실을 모두에게 전달
+                    S_ChangeWeapon changePacket = new S_ChangeWeapon();
+                    changePacket.ObjectId = Id;
+                    changePacket.TemplateId = item.TemplateId;
+                    changePacket.Equipped = item.Equipped;
+
+                    Room.Broadcast(CellPos, changePacket);
+
                 }
 
                 //DB에 Noti
@@ -136,10 +146,17 @@ namespace GameServer.Game
                 equipOkItem.ItemDbId = equipPacket.ItemDbId;
                 equipOkItem.Equipped = equipPacket.Equipped;
                 Session.Send(equipOkItem);
+
+          
             }
 
-
             RefreshCalcStat();
+
+            S_ChangeHp hpPacket = new S_ChangeHp();
+            hpPacket.ObjectId = Id;
+            hpPacket.Hp = HP;
+            hpPacket.TotalHp = TotalHp;
+            Room.Broadcast(CellPos, hpPacket);
         }
 
         public void HandleUseItem(C_UseItem usePacket)
@@ -189,6 +206,8 @@ namespace GameServer.Game
 
                 }
             }
+
+            Info.TotalHp = TotalHp;
         }
 
         public void HandleLevelUp(C_LevelUp upPacket)

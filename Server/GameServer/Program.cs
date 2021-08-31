@@ -12,7 +12,7 @@ using GameServer.Game;
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using ServerCore;
-
+using SharedDB;
 
 namespace GameServer
 {
@@ -61,6 +61,43 @@ namespace GameServer
             }
         }
 
+        static void StartServerInfoTask()
+        {
+            var t = new System.Timers.Timer();
+            t.AutoReset = true;
+            t.Elapsed += ((s, e) =>
+            {
+                using (SharedDbContext shared = new SharedDbContext())
+                {
+                    ServerDb serverDb = shared.Servers.Where(s => s.Name == Name).FirstOrDefault();
+                    if (serverDb != null)
+                    {
+                        serverDb.IpAddress = IpAddress;
+                        serverDb.Port = Port;
+                        serverDb.BusyScore = SessionManager.Instance.GetBusyScore();
+                        shared.SaveChangesEx();
+                    }
+                    else
+                    {
+                        serverDb = new ServerDb()
+                        {
+                            Name = Program.Name,
+                            IpAddress = Program.IpAddress,
+                            Port = Program.Port,
+                            BusyScore = SessionManager.Instance.GetBusyScore()
+                        };
+                        shared.Servers.Add(serverDb);
+                        shared.SaveChangesEx();
+
+                    }
+                }
+      
+            });
+            t.Interval = 10 * 1000;
+            t.Start();
+        }
+        
+
 
         //static List<System.Timers.Timer> _timers = new List<System.Timers.Timer>();
 
@@ -75,8 +112,13 @@ namespace GameServer
         //    _timers.Add(timer);
         //}
 
+        public static string Name { get; } = "데포르쥬";
+        public static int Port { get; } = 7777;
+        public static string IpAddress { get; set; }
+
         static void Main(string[] args)
         {
+    
 			ConfigManager.LoadConfig();
 			DataManager.LoadData();
 
@@ -87,11 +129,16 @@ namespace GameServer
             // DNS (Domain Name System)
             string host = Dns.GetHostName();
 			IPHostEntry ipHost = Dns.GetHostEntry(host);
-			IPAddress ipAddr = ipHost.AddressList[0];
+			IPAddress ipAddr = ipHost.AddressList[1];
 			IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
 
-			_listener.Init(endPoint, () => { return SessionManager.Instance.Generate(); });
+            IpAddress = ipAddr.ToString();
+
+
+            _listener.Init(endPoint, () => { return SessionManager.Instance.Generate(); });
 			Console.WriteLine("Listening...");
+
+            StartServerInfoTask();
 
             //DB Task
             {

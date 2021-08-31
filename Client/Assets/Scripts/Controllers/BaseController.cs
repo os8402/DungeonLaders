@@ -47,10 +47,12 @@ public abstract  class BaseController : MonoBehaviour
         set { Stat.Speed = value;  }
     }
 
+    public virtual int TotalHp { get; set; }
+
     public virtual float TotalSpeed { get { return Speed; } }
+ 
 
-
-    protected PositionInfo _positionInfo = new PositionInfo { Target = new TargetInfo() };
+protected PositionInfo _positionInfo = new PositionInfo { Target = new TargetInfo() };
     public virtual PositionInfo PosInfo
     {
         get { return _positionInfo; }
@@ -155,14 +157,16 @@ public abstract  class BaseController : MonoBehaviour
         
         }
     }
+    void Start()
+    {
+        Init();
+    }
 
 
     protected virtual void Init()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-
-        
 
         Vector3 pos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(0.5f, 0.5f);
         transform.position = pos;

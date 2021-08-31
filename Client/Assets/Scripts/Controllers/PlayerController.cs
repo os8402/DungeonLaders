@@ -14,10 +14,5 @@ public class PlayerController : CreatureController
         base.Init();
     }
 
-    void Start()
-    {
-        Init();
-    }
-
 
 }

@@ -5,7 +5,7 @@
       "name": "해골 병사",
       "stat": {
         "level": "1",
-        "maxHp": "20",
+        "maxHp": "30",
         "maxMp": "0",
         "attack": "5",
         "speed": "5.0",

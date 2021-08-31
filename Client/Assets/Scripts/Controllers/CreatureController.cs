@@ -11,18 +11,18 @@ public class CreatureController : BaseController
  
 
     HpBar _hpBar;
+    UI_WorldCharInfo _worldCharInfoUI; 
     public override StatInfo Stat
     {
         get { return base.Stat; }
         set { base.Stat = value; UpdateHpBar(); }
     }
 
+    public string JobName { get; set; }
+
 
     public virtual int TotalAttack { get { return Stat.Attack + MyWeapon.WeaponDamage; } }
     public virtual int TotalDefence { get { return 0; } }
-    public virtual int TotalHp { get { return Stat.MaxHp; } }
-
-
 
     public virtual int Hp
     {
@@ -42,6 +42,12 @@ public class CreatureController : BaseController
    
     }
 
+    public virtual int Lv
+    {
+        get { return Stat.Level; }
+        set { Stat.Level = value; UpdateCharInfoUI(); }
+    }
+
 
     protected Transform _hand;
     public Vector2 HandPos { get; set; }
@@ -50,11 +56,7 @@ public class CreatureController : BaseController
 
     protected Action<S_Skill> _skillEvent = null;
 
-    void Start()
-    {
-        Init();
-    }
-
+  
     public override DirState Dir
     {
         get { return PosInfo.Target.Dir; }
@@ -78,6 +80,7 @@ public class CreatureController : BaseController
         GameObject eff = Managers.Resource.Instantiate("Effect/Common/Resurrect_Eff");
         eff.transform.position = new Vector3(transform.position.x + 0.25f, transform.position.y) ;
         AddHpBar();
+        AddCharInfoUI();
 
         if (Hp == 0)
         {
@@ -108,6 +111,22 @@ public class CreatureController : BaseController
         _hpBar.SetHpBar(ratio);
  
     }
+
+    protected void AddCharInfoUI()
+    {
+        UI_WorldCharInfo worldCharInfo = Managers.UI.MakeWorldSpaceUI<UI_WorldCharInfo>(transform);
+        worldCharInfo.transform.localPosition = new Vector3(0, 0.9f, 0);
+        worldCharInfo.name = "UI_CharInfoUI";
+        _worldCharInfoUI = worldCharInfo;
+        UpdateCharInfoUI();
+    }
+
+    public virtual void UpdateCharInfoUI()
+    {
+        _worldCharInfoUI.RefreshUI(Stat.Level, JobName); 
+    } 
+
+ 
 
     public void LevelUp()
     {

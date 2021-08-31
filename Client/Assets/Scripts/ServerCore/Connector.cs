@@ -64,7 +64,7 @@ namespace ServerCore
 				else
 				{
 					Debug.Log($"OnConnectCompleted Fail: {args.SocketError}");
-					Managers.Network.Init();
+					//Managers.Network.Init();
 				}
 			}
 			catch (Exception e)

@@ -39,6 +39,12 @@ class PacketHandler
         S_Skill skillPacket = packet as S_Skill;
 
     }
+    public static void S_DamagedHandler(PacketSession session, IMessage packet)
+    {
+        S_Damaged damagedPacket = packet as S_Damaged;
+
+    }
+
     public static void S_ChangeHpHandler(PacketSession session, IMessage packet)
     {
         S_ChangeHp changePacket = packet as S_ChangeHp;
@@ -154,5 +160,9 @@ class PacketHandler
     public static void S_RemoveItemHandler(PacketSession session, IMessage packet)
     {
         S_RemoveItem removeItemPacket = (S_RemoveItem)packet;
+    }
+    public static void S_ChangeWeaponHandler(PacketSession session, IMessage packet)
+    {
+        S_ChangeWeapon changePacket = (S_ChangeWeapon)packet;
     }
 }

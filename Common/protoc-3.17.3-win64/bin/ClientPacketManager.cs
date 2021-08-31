@@ -35,8 +35,8 @@ class PacketManager
 		_handler.Add((ushort)MsgId.SMove, PacketHandler.S_MoveHandler);		
 		_onRecv.Add((ushort)MsgId.SSkill, MakePacket<S_Skill>);
 		_handler.Add((ushort)MsgId.SSkill, PacketHandler.S_SkillHandler);		
-		_onRecv.Add((ushort)MsgId.SChangeHp, MakePacket<S_ChangeHp>);
-		_handler.Add((ushort)MsgId.SChangeHp, PacketHandler.S_ChangeHpHandler);		
+		_onRecv.Add((ushort)MsgId.SDamaged, MakePacket<S_Damaged>);
+		_handler.Add((ushort)MsgId.SDamaged, PacketHandler.S_DamagedHandler);		
 		_onRecv.Add((ushort)MsgId.SDie, MakePacket<S_Die>);
 		_handler.Add((ushort)MsgId.SDie, PacketHandler.S_DieHandler);		
 		_onRecv.Add((ushort)MsgId.SConnected, MakePacket<S_Connected>);
@@ -62,7 +62,11 @@ class PacketManager
 		_onRecv.Add((ushort)MsgId.SUseItem, MakePacket<S_UseItem>);
 		_handler.Add((ushort)MsgId.SUseItem, PacketHandler.S_UseItemHandler);		
 		_onRecv.Add((ushort)MsgId.SRemoveItem, MakePacket<S_RemoveItem>);
-		_handler.Add((ushort)MsgId.SRemoveItem, PacketHandler.S_RemoveItemHandler);
+		_handler.Add((ushort)MsgId.SRemoveItem, PacketHandler.S_RemoveItemHandler);		
+		_onRecv.Add((ushort)MsgId.SChangeWeapon, MakePacket<S_ChangeWeapon>);
+		_handler.Add((ushort)MsgId.SChangeWeapon, PacketHandler.S_ChangeWeaponHandler);		
+		_onRecv.Add((ushort)MsgId.SChangeHp, MakePacket<S_ChangeHp>);
+		_handler.Add((ushort)MsgId.SChangeHp, PacketHandler.S_ChangeHpHandler);
 	}
 
 	public void OnRecvPacket(PacketSession session, ArraySegment<byte> buffer)

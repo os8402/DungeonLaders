@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Data;
 
 class PacketHandler
 {
@@ -80,12 +81,12 @@ class PacketHandler
 
 
     }
-    public static void S_ChangeHpHandler(PacketSession session, IMessage packet)
-    {
-        S_ChangeHp changePacket = packet as S_ChangeHp;
-        
 
-        GameObject go = Managers.Object.FindById(changePacket.ObjectId);
+    public static void S_DamagedHandler(PacketSession session, IMessage packet)
+    {
+        S_Damaged damagedPacket = packet as S_Damaged;
+
+        GameObject go = Managers.Object.FindById(damagedPacket.ObjectId);
         if (go == null)
             return;
 
@@ -93,15 +94,37 @@ class PacketHandler
 
         if (cc != null)
         {
-            
+
             UI_HitDamage hitUI = Managers.UI.MakeWorldSpaceUI<UI_HitDamage>(cc.transform);
             hitUI.Creature = cc;
-            hitUI.Damage = changePacket.Damage;
+            hitUI.Damage = damagedPacket.Damage;
             hitUI.RefreshUI();
 
-            cc.Hp = changePacket.Hp;
+            cc.TotalHp = damagedPacket.TotalHp;
+            cc.Hp = damagedPacket.Hp;
+
             cc.OnDamaged();
         }
+
+    }
+
+
+    public static void S_ChangeHpHandler(PacketSession session, IMessage packet)
+    {
+        S_ChangeHp changePacket = packet as S_ChangeHp;
+
+
+        GameObject go = Managers.Object.FindById(changePacket.ObjectId);
+        if (go == null)
+            return;
+
+        CreatureController cc = go.GetComponent<CreatureController>();
+
+        if (cc == null)
+            return;
+
+        cc.TotalHp = changePacket.TotalHp;
+        cc.Hp = changePacket.Hp;
 
     }
     public static void S_DieHandler(PacketSession session, IMessage packet)
@@ -252,30 +275,44 @@ class PacketHandler
             return;
 
         item.Equipped = equipItemOk.Equipped;
-        Debug.Log("아이템 착용 변경");
+
+        if (Managers.Object.MyPlayer == null)
+            return;
+
+        Managers.Object.MyPlayer.RefreshCalcStat();
+
+        UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+
+        gameSceneUI.InvenUI.RefreshUI();
+        gameSceneUI.StatUI.RefreshUI();
 
 
-        if (Managers.Object.MyPlayer != null)
+
+    }
+    public static void S_ChangeWeaponHandler(PacketSession session, IMessage packet)
+    {
+        S_ChangeWeapon changePacket = (S_ChangeWeapon)packet;
+
+        GameObject go = Managers.Object.FindById(changePacket.ObjectId);
+
+        if (go == null)
+            return;
+
+        CreatureController cc = go.GetComponent<CreatureController>();
+
+        cc.DestroyWeapon();
+
+        if (changePacket.Equipped)
         {
-            Managers.Object.MyPlayer.RefreshCalcStat();
-            if(item.ItemType == ItemType.Weapon)
-            {
-                if(item.Equipped == false)
-                {
-                    Managers.Object.MyPlayer.DestroyWeapon();
-                }
-                else
-                {
-                    Managers.Object.MyPlayer.CreateWeapon(item.TemplateId);
-                }
-                   
-            }
-
+            cc.CreateWeapon(changePacket.TemplateId);
         }
 
 
+
+        Managers.Object.MyPlayer.RefreshCalcStat();
+
         UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
- 
+
         gameSceneUI.InvenUI.RefreshUI();
         gameSceneUI.StatUI.RefreshUI();
 
@@ -306,9 +343,9 @@ class PacketHandler
         {
             UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
 
-            gameSceneUI.NewsUI.RefreshUI($"경험치를 획득했습니다.(+{ player.Exp - expPacket.Exp})");
+            gameSceneUI.NewsUI.RefreshUI($"경험치를 획득했습니다.(+{ expPacket.Exp - player.Exp})");
             player.Exp = expPacket.Exp;
-            
+
 
             if (player.Stat.CurExp >= player.Stat.TotalExp)
             {
@@ -317,7 +354,7 @@ class PacketHandler
                 Managers.Network.Send(levelUpPacket);
 
             }
-         
+
         }
 
     }
@@ -339,6 +376,8 @@ class PacketHandler
         cc.LevelUp();
 
         cc.UpdateHpBar();
+        cc.UpdateCharInfoUI();
+
         gameSceneUI.StatUI.RefreshUI();
         gameSceneUI.StatusUI.RefreshUI();
 
@@ -381,7 +420,7 @@ class PacketHandler
 
         }
 
-       
+
         gameSceneUI.StatUI.RefreshUI();
 
     }
@@ -390,7 +429,7 @@ class PacketHandler
     {
         S_RemoveItem removeOk = (S_RemoveItem)packet;
 
-        
+
 
         //메모리에 저장
         Item removeItem = Managers.Inven.Get(removeOk.ItemDbId);
@@ -408,7 +447,7 @@ class PacketHandler
 
         UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
 
-            //싹 다 날리고 초기화
+        //싹 다 날리고 초기화
         gameSceneUI.InvenUI.MakeItem();
         gameSceneUI.StatUI.RefreshUI();
 

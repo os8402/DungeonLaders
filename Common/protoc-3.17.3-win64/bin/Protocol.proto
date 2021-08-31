@@ -13,7 +13,7 @@ enum MsgId {
   S_MOVE = 5;
   C_SKILL = 6;
   S_SKILL = 7; 
-  S_CHANGE_HP = 8;
+  S_DAMAGED = 8;
   S_DIE = 9;
   S_CONNECTED = 10;
   C_LOGIN = 11;
@@ -35,6 +35,8 @@ enum MsgId {
   S_USE_ITEM =27;
   C_REMOVE_ITEM =28;
   S_REMOVE_ITEM =29;
+  S_CHANGE_WEAPON = 30;
+  S_CHANGE_HP = 31;
 }
  enum ControllerState
  {
@@ -79,7 +81,7 @@ enum MsgId {
 	SKILL_TYPE_NONE = 0;
 	SKILL_TYPE_NORMAL = 1;
 	SKILL_TYPE_PROJECTILE = 2; 
-	SKILL_TYPE_RANGE = 3; 
+	SKILL_TYPE_MAGIC = 3; 
 
  }
 
@@ -150,11 +152,19 @@ message S_Skill{
 	TargetInfo targetInfo = 4;
 
 }
-message S_ChangeHp {
+message S_ChangeHp{
+
+	int32 objectId = 1;
+	int32 hp = 2;
+	int32 totalHp = 3; 
+}
+
+message S_Damaged {
 	int32 objectId = 1; 
 	int32 hp = 2;
 	int32 damage = 3;
 	int32 attackerId = 4; 
+	int32 totalHp = 5; 
 
 }
 message S_Die {
@@ -187,12 +197,16 @@ message C_EnterGame{
 	string name = 1;
 }
 message C_EquipItem{
+
 	int32 itemDbId = 1;
 	bool equipped =  2;
+
 }
 message S_EquipItem{
+
 	int32 itemDbId = 1;
 	bool equipped = 2; 
+    int32 objectId = 3; 
 
 }
 message S_ChangeStat{
@@ -206,6 +220,7 @@ message C_Pong{
 
 }
 message S_GetExp{
+
 	int32 objectId = 1;
 	int32 exp = 2;
 }
@@ -234,11 +249,19 @@ message C_RemoveItem{
 message S_RemoveItem{
 	int32 itemDbId = 1; 
 }
+message S_ChangeWeapon{
+
+	int32 objectId = 1;
+	int32 templateId = 2; 
+	bool equipped = 3; 
+}
 
 message LobbyPlayerInfo{
 	int32 playerDbId = 1;
 	string name = 2;
 	StatInfo statInfo = 3;
+	repeated int32 equippedItemList = 4; 
+
 }
 message ObjectInfo{
 	
@@ -248,6 +271,7 @@ message ObjectInfo{
 	int32 teamId = 4; 
 	int32 weaponId = 5; 
 	StatInfo statInfo = 6; 
+	int32 totalHp = 7; 
 
 }
 

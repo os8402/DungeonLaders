@@ -16,9 +16,6 @@ namespace GameServer.DB
             if (player == null || item == null)
                 return;
 
-            //int? slot = player.Inven.GetEmptySlot();
-            //if (slot == null)
-            //    return;
 
             ItemDb itemDb = new ItemDb()
             {

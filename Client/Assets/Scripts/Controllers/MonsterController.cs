@@ -1,4 +1,5 @@
-﻿using Google.Protobuf.Protocol;
+﻿using Data;
+using Google.Protobuf.Protocol;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,15 +8,19 @@ using static Define;
 public class MonsterController : CreatureController
 {
 
-    void Start()
-    {
-        Init(); 
-    }
 
     protected override void Init()
     { 
         base.Init();
-       
+
+        MonsterData monsterData = null;
+        Managers.Data.MonsterDict.TryGetValue(1, out monsterData);
+
+        if (monsterData == null)
+            return;
+
+        JobName = monsterData.name;
+
     }
 
 

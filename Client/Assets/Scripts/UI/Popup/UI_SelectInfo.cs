@@ -1,4 +1,5 @@
-﻿using Google.Protobuf.Protocol;
+﻿using Data;
+using Google.Protobuf.Protocol;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,16 +53,71 @@ public class UI_SelectInfo : UI_Popup
 
         GetText((int)Texts.LevelText).text = $"LV{player.StatInfo.Level}({expRatio.ToString("F2")})";
 
-        //int totalDmg = player.Stat.Attack + player.MyWeapon.WeaponDamage;
-        //GetText((int)Texts.Attack_ValueText).text = $"{totalDmg} + ({player.MyWeapon.WeaponDamage})";
-      //  GetText((int)Texts.Defence_ValueText).text = $"{player.StatInfo.Attack}";
 
-        GetText((int)Texts.Attack_ValueText).text = $"{player.StatInfo.Attack}";
-        GetText((int)Texts.Defence_ValueText).text = $"{0}";
+        WeaponData weapon = null;
+        ArmorData helmet = null;
+        ArmorData armor = null;
+        ArmorData boots = null; 
+    
+        foreach (int templateId in player.EquippedItemList)
+        {
+            ItemData itemData = null;
+            Managers.Data.ItemDict.TryGetValue(templateId, out itemData);
+            if (itemData == null)
+                continue;
 
-        int hp = (player.StatInfo.Hp == 0) ? player.StatInfo.MaxHp : player.StatInfo.Hp;
-        GetText((int)Texts.Hp_ValueText).text = $"{hp}/{player.StatInfo.MaxHp}";
-        GetText((int)Texts.Speed_ValueText).text = $"{player.StatInfo.Speed}";
+
+            switch(itemData.itemType)
+            {
+                case ItemType.Weapon:
+                    weapon = itemData as WeaponData; 
+                    break;
+                case ItemType.Armor:
+
+                    ArmorData armorData = itemData as ArmorData;
+
+                    if (armorData.armorType == ArmorType.Helmet)
+                        helmet = armorData;
+                    else if (armorData.armorType == ArmorType.Armor)
+                        armor = armorData;
+                    else if (armorData.armorType == ArmorType.Boots)
+                        boots = armorData;
+
+                    break;
+        
+            }
+            
+
+
+        }
+
+
+        //공격력 
+        int totalDmg = (weapon == null) ?  player.StatInfo.Attack  : player.StatInfo.Attack + weapon.damage;
+        GetText((int)Texts.Attack_ValueText).text = $"{totalDmg}+({ totalDmg -  player.StatInfo.Attack})";
+
+
+        //방어력
+        int totalDef = 0;
+        if (helmet != null) totalDef += helmet.defence;
+        if (armor != null) totalDef += armor.defence;
+        if (boots != null) totalDef += boots.defence;
+        GetText((int)Texts.Defence_ValueText).text = $"{totalDef}+({totalDef})";
+
+
+        //체력 
+        int totalHp = player.StatInfo.MaxHp;
+        if (helmet != null) totalHp += helmet.hp;
+        if (armor != null) totalHp += armor.hp;
+        if (boots != null) totalHp += boots.hp;
+        GetText((int)Texts.Hp_ValueText).text = $"{player.StatInfo.Hp}/{totalHp}";
+
+        //이동 속도
+        float totalSpeed = player.StatInfo.Speed;
+        if (helmet != null) totalSpeed += helmet.speed;
+        if (armor != null) totalSpeed += armor.speed;
+        if (boots != null) totalSpeed += boots.speed;
+        GetText((int)Texts.Speed_ValueText).text = $"{totalSpeed}+({totalSpeed -  player.StatInfo.Speed})";
 
         BindEvent(GetButton((int)Buttons.Select_Button).gameObject, (e) =>
         {

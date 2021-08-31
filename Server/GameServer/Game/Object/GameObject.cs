@@ -39,7 +39,11 @@ namespace GameServer.Game
 
         public virtual int TotalAttack { get { return Stat.Attack; } }
         public virtual int TotalDefence { get { return 0; } }
-        public virtual int TotalHp { get { return Stat.MaxHp; } }
+        public virtual int TotalHp
+        {
+            get { return Info.TotalHp; }           
+            set { Info.TotalHp = value; }
+        }
 
 
         public virtual float TotalSpeed
@@ -49,12 +53,12 @@ namespace GameServer.Game
         }
         public int HP
         {
-            get { return Stat.Hp; }
+            get { Stat.Hp = Math.Clamp(Stat.Hp , 0 , TotalHp); return Stat.Hp; }
             set { Stat.Hp = Math.Clamp(value, 0 , TotalHp); }
         }
         public int Mp
         {
-            get { return Stat.Mp; }
+            get {  return Stat.Mp; }
             set { Stat.Mp = Math.Clamp(value, 0, Stat.MaxMp); }
         }
 
@@ -142,9 +146,8 @@ namespace GameServer.Game
             return state;
         }
 
-        public virtual void Update()
-        {
-        }
+        public virtual void Update() { }
+        
 
         public virtual void OnDamaged(GameObject attacker, int damage)
         {
@@ -158,12 +161,13 @@ namespace GameServer.Game
 
             HP = Math.Max(Stat.Hp - damage, 0);
 
-            S_ChangeHp changePacket = new S_ChangeHp();
-            changePacket.ObjectId = Id;
-            changePacket.Hp = Stat.Hp;
-            changePacket.Damage = damage;
-            changePacket.AttackerId = attacker.Id;
-            Room.Broadcast(CellPos, changePacket);
+            S_Damaged damagedPacket = new S_Damaged();
+            damagedPacket.ObjectId = Id;
+            damagedPacket.Hp = Stat.Hp;
+            damagedPacket.Damage = damage;
+            damagedPacket.AttackerId = attacker.Id;
+            damagedPacket.TotalHp = TotalHp;
+            Room.Broadcast(CellPos, damagedPacket);
 
             if (Stat.Hp <= 0)
             {

@@ -11,7 +11,7 @@ public class MyPlayerController : PlayerController
     private ChasePlayerCam _cam;
     public ChasePlayerCam Cam { get { return _cam; } }
 
-    public string JobName { get; set; }
+
     public override int Hp
     {
         get { return Stat.Hp; }
@@ -55,30 +55,33 @@ public class MyPlayerController : PlayerController
 
 
 
-    UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+    /// <summary>
+    /// UI 미리 캐싱 넘 길어서.. 
+    /// </summary>
+    UI_GameScene gameSceneUI;
     UI_Inventory invenUI;
     UI_Status statusUI;
     UI_Stat statUI;
-    UI_Passive passiveUI;
-    UI_Coin coinUI;
+  //  UI_Passive passiveUI;
+ //   UI_Coin coinUI;
     UI_News newsUI;
 
     protected override void Init()
     {
         base.Init();
 
-
+        gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
         invenUI = gameSceneUI.InvenUI;
         statUI = gameSceneUI.StatUI;
         statusUI = gameSceneUI.StatusUI;
-        coinUI = gameSceneUI.CoinUI;
-        passiveUI = gameSceneUI.PassiveUI;
+    //    coinUI = gameSceneUI.CoinUI;
+   //     passiveUI = gameSceneUI.PassiveUI;
         newsUI = gameSceneUI.NewsUI;
 
 
         statusUI.gameObject.SetActive(true);
-        coinUI.gameObject.SetActive(true);
-        passiveUI.gameObject.SetActive(true);
+      //  coinUI.gameObject.SetActive(true);
+     //   passiveUI.gameObject.SetActive(true);
         newsUI.gameObject.SetActive(true);
 
 

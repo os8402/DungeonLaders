@@ -54,10 +54,27 @@ namespace GameServer
                                 Speed = playerDb.Speed,
                                 CurExp = playerDb.CurExp,
                                 TotalExp = playerDb.TotalExp
-                            }
-
+                            },
+  
                         };
 
+
+                        List<ItemDb> itemList = db.Items
+                            .AsNoTracking()
+                            .Where(i => i.OwnerDbId == playerDb.PlayerDbId)
+                            .ToList();
+
+                        
+                        if(itemList != null)
+                        {
+                            foreach (ItemDb itemDb in itemList)
+                            {
+                                if (itemDb.Equipped)
+                                    lobbyPlayer.EquippedItemList.Add(itemDb.TemplateId);
+                            }
+                        }
+
+        
                         //메모리에 보존
                         LobbyPlayers.Add(lobbyPlayer);
 
@@ -104,10 +121,9 @@ namespace GameServer
                 MyPlayer.PlayerDbId = playerInfo.PlayerDbId;
                 MyPlayer.Info.Name = playerInfo.Name;
                 MyPlayer.PosInfo.State = ControllerState.Idle;
-                MyPlayer.PosInfo.PosX = 3;
-                MyPlayer.PosInfo.PosY = 3;
                 MyPlayer.PosInfo.Target.Dir = DirState.Left;
                 MyPlayer.Info.TeamId = 1 << 24;
+               
                 MyPlayer.Stat.MergeFrom(playerInfo.StatInfo);
                 MyPlayer.Session = this;
 
@@ -196,6 +212,10 @@ namespace GameServer
                     for (int i = 0; i < 3; i++)
                     {
                         LobbyPlayerInfo createPlayer = CreatePlayerAll(jobs[i], stat, db, createPacket);
+
+                        //장착한 무기도 보냄
+                        createPlayer.EquippedItemList.Add(startWeapons[i]);
+
                         newPlayer.Players.Add(createPlayer);
 
                         ItemDb newItemDb = new ItemDb()

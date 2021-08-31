@@ -26,7 +26,8 @@ namespace GameServer.Game
             MonsterData monsterData = null;
             DataManager.MonsterDict.TryGetValue(templateId, out monsterData);
             Stat.MergeFrom(monsterData.stat);
-            Stat.Hp = monsterData.stat.MaxHp;
+            TotalHp = monsterData.stat.MaxHp;
+            Stat.Hp = TotalHp;
             State = ControllerState.Idle;
 
             EquipWeapon = ObjectManager.Instance.CreateObjectWeapon();
@@ -61,7 +62,7 @@ namespace GameServer.Game
                         Math.Abs(x) == Math.Abs(y));
                     break;
 
-                case SkillType.Range:
+                case SkillType.Magic:
                     canSkill =
                         dist <= attackRange + 1 && Math.Abs(x) <= attackRange && Math.Abs(y) <= attackRange;
                     break;
@@ -233,20 +234,6 @@ namespace GameServer.Game
 
                 TargetPos = new Vector2Int(_target.CellPos.x, _target.CellPos.y);
 
-                switch (EquipWeapon.Data.skillType)
-                {
-                    case SkillType.Normal:
-                        //데미지 판정
-                        _target.OnDamaged(this, TotalAttack);
-                        break;
-
-                    case SkillType.Projectile:
-                        // 투사체를 발사하는 원거리류는 생성만
-                        Bow bow = EquipWeapon as Bow;
-                        bow.ShootArrow();
-                        break;
-
-                }
 
                 //스킬 사용 broadCast 
 
@@ -262,6 +249,60 @@ namespace GameServer.Game
                 skill.AttackDir = EquipWeapon.AttackDir;
 
                 Room.Broadcast(CellPos, skill);
+
+
+
+                switch (EquipWeapon.Data.skillType)
+                {
+                    case SkillType.Normal:
+                        //데미지 판정
+                        foreach(AttackPos pos in EquipWeapon.AttackList)
+                        {
+                            Vector2Int skillPos = new Vector2Int(PosInfo.PosX + pos.AttkPosX,
+                          PosInfo.PosY + pos.AttkPosY);
+
+                            GameObject target = Room.Map.Find(skillPos);
+
+                            if (target != null)
+                            {
+                                if (target.GetType() == typeof(Monster))
+                                    continue;
+
+                                target.OnDamaged(this, TotalAttack);
+                            }
+                                                         
+                        }
+                        break;
+
+                    case SkillType.Projectile:
+                        // 투사체를 발사하는 원거리류는 생성만
+                        Bow bow = EquipWeapon as Bow;
+                        bow.ShootArrow();
+                        break;
+
+                    case SkillType.Magic:
+                        // 마법
+                        foreach (AttackPos pos in EquipWeapon.AttackList)
+                        {
+                            Vector2Int skillPos = new Vector2Int(pos.AttkPosX, pos.AttkPosY);
+
+                            GameObject target = Room.Map.Find(skillPos); 
+                            
+
+                            if (target != null)
+                            {
+                                if (target.GetType() == typeof(Monster))
+                                    continue;
+
+                                target.OnDamaged(this, TotalAttack);
+                            }
+                              
+
+                        }
+                      
+                        break;
+
+                }
 
                 //스킬 쿨타임 적용
                 int coolTick = (int)(1000 * EquipWeapon.Cooldown);
