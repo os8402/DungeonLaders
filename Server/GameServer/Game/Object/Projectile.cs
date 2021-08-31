@@ -11,6 +11,9 @@ namespace GameServer.Game
 
         public GameObject Owner { get; set; }
         public WeaponData Data { get; set; }
+
+        public Vector2Int StartCellPos { get; set; } 
+
         public Projectile()
         {
             ObjectType = GameObjectType.Projectile;

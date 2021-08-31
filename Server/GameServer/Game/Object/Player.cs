@@ -39,9 +39,8 @@ namespace GameServer.Game
         {
             ObjectType = GameObjectType.Player;
             Vision = new VisionCube(this);
-        }
 
- 
+        }
 
         public override void OnDamaged(GameObject attacker, int damage)
         {

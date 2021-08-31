@@ -122,7 +122,7 @@ namespace GameServer
                 MyPlayer.Info.Name = playerInfo.Name;
                 MyPlayer.PosInfo.State = ControllerState.Idle;
                 MyPlayer.PosInfo.Target.Dir = DirState.Left;
-                MyPlayer.Info.TeamId = 1 << 24;
+                MyPlayer.Info.TeamId = SessionId << 24;
                
                 MyPlayer.Stat.MergeFrom(playerInfo.StatInfo);
                 MyPlayer.Session = this;
@@ -212,6 +212,9 @@ namespace GameServer
                     for (int i = 0; i < 3; i++)
                     {
                         LobbyPlayerInfo createPlayer = CreatePlayerAll(jobs[i], stat, db, createPacket);
+
+                        if (createPlayer == null)
+                            return;
 
                         //장착한 무기도 보냄
                         createPlayer.EquippedItemList.Add(startWeapons[i]);

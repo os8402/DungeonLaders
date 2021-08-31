@@ -21,7 +21,7 @@ namespace GameServer.Game
             //TODO : 이동방법 구현
             int attackRange = Owner.EquipWeapon.AttackRange;
 
-            Vector2Int dir = (CellPos - Owner.CellPos);
+            Vector2Int dir = (CellPos - StartCellPos);
             int dist = dir.cellDistFromZero;
             if (dist > attackRange)
             {
@@ -45,7 +45,8 @@ namespace GameServer.Game
             }
 
             GameObject target = Room.Map.Find(destPos);
-            if (target != null && target.GetType() != Owner.GetType())
+           // if (target != null && target.GetType() != Owner.GetType())
+            if (target != null && target.Info.TeamId != Owner.Info.TeamId)
             {
                 target.OnDamaged(this, Data.damage + Owner.TotalAttack);
                 Room.Push(Room.LeaveGame, Id);

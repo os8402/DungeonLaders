@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameServer.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,9 +22,10 @@ namespace GameServer
             int count = 0;
             lock(_lock)
             {
+
                 count = _sessions.Count;
             }
-            return count / 100; 
+            return count; 
         }
 
         public List<ClientSession> GetSessions()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UI_HitDamage : UI_Base
 {
@@ -19,7 +20,7 @@ public class UI_HitDamage : UI_Base
 
     public override void Init()
     {
-        Bind<Text>(typeof(Texts));
+        Bind<TextMeshProUGUI>(typeof(Texts));
 
     }
     public void RefreshUI()
@@ -28,8 +29,8 @@ public class UI_HitDamage : UI_Base
         transform.position = Creature.transform.position;
 
 
-        GetText((int)Texts.DamageText).color = colors[Creature.HitLayer % 10];
-        GetText((int)Texts.DamageText).text = $"{Damage}";
+     //   Get<TextMeshProUGUI>((int)Texts.DamageText).color = colors[Creature.HitLayer % 10];
+        Get<TextMeshProUGUI>((int)Texts.DamageText).text = $"{Damage}";
 
         Creature.HitLayer++;
     }

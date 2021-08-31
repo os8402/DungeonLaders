@@ -67,9 +67,10 @@ namespace GameServer
             t.AutoReset = true;
             t.Elapsed += ((s, e) =>
             {
+
                 using (SharedDbContext shared = new SharedDbContext())
                 {
-                    ServerDb serverDb = shared.Servers.Where(s => s.Name == Name).FirstOrDefault();
+                    ServerDb serverDb = shared.Servers.Where(s => s.Name == ServerName).FirstOrDefault();
                     if (serverDb != null)
                     {
                         serverDb.IpAddress = IpAddress;
@@ -81,9 +82,9 @@ namespace GameServer
                     {
                         serverDb = new ServerDb()
                         {
-                            Name = Program.Name,
+                            Name = ServerName,
                             IpAddress = Program.IpAddress,
-                            Port = Program.Port,
+                            Port = Port, 
                             BusyScore = SessionManager.Instance.GetBusyScore()
                         };
                         shared.Servers.Add(serverDb);
@@ -96,25 +97,11 @@ namespace GameServer
             t.Interval = 10 * 1000;
             t.Start();
         }
-        
 
-
-        //static List<System.Timers.Timer> _timers = new List<System.Timers.Timer>();
-
-        //static void TickRoom(GameRoom room, int tick = 100)
-        //{
-        //    var timer = new System.Timers.Timer();
-        //    timer.Interval = tick;
-        //    timer.Elapsed += ((s, e) => { room.Update(); });
-        //    timer.AutoReset = true;
-        //    timer.Enabled = true;
-
-        //    _timers.Add(timer);
-        //}
-
-        public static string Name { get; } = "데포르쥬";
-        public static int Port { get; } = 7777;
+        public static string ServerName { get; set; }
+        public static int Port { get; set; }
         public static string IpAddress { get; set; }
+
 
         static void Main(string[] args)
         {
@@ -123,22 +110,25 @@ namespace GameServer
 			DataManager.LoadData();
 
             GameLogic.Instance.Push(() => { GameRoom room = GameLogic.Instance.Add(1); });
-  
-          //  TickRoom(room, 50);
 
             // DNS (Domain Name System)
             string host = Dns.GetHostName();
 			IPHostEntry ipHost = Dns.GetHostEntry(host);
 			IPAddress ipAddr = ipHost.AddressList[1];
-			IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
 
+
+            ServerName = ConfigManager.Config.serverList.name;
+            Port = ConfigManager.Config.serverList.port;
             IpAddress = ipAddr.ToString();
 
 
-            _listener.Init(endPoint, () => { return SessionManager.Instance.Generate(); });
-			Console.WriteLine("Listening...");
+            IPEndPoint endPoint = new IPEndPoint(ipAddr, Port);      
+             _listener.Init(endPoint, () => { return SessionManager.Instance.Generate(); });
 
-            StartServerInfoTask();
+             StartServerInfoTask();
+            
+
+            Console.WriteLine("Listening...");
 
             //DB Task
             {

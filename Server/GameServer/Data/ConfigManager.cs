@@ -10,15 +10,23 @@ namespace GameServer.Data
     {
         public string dataPath;
         public string connectionString;
+        public ServerList serverList; 
     }
-    
+
+    public class ServerList
+    {
+
+        public string name;
+        public int port; 
+    }
+
     public class ConfigManager
     {
         public static ServerConfig Config { get; private set; }
 
         public static void LoadConfig()
         {
-            string text = File.ReadAllText("config.json");
+            string text = File.ReadAllText("../config.json");
             Config =  Newtonsoft.Json.JsonConvert.DeserializeObject<ServerConfig>(text);
         }
     }

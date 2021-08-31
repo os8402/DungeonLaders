@@ -181,7 +181,8 @@ namespace GameServer.Game
             if (Room == null)
                 return;
                     
-            Console.WriteLine($"{attacker.GetOwner().GetType().Name}_{attacker.Id} -> {GetType().Name}_{Id} Kill");
+          //  Console.WriteLine($"{attacker.GetOwner().GetType()}_{attacker.Id} -> {GetType().Name}_{Id} Kill");
+            Console.WriteLine($"{attacker.GetOwner().Info.Name}_{attacker.Id} -> {Info.Name}_{Id} Kill");
 
             State = ControllerState.Dead;
 

@@ -29,6 +29,9 @@ public class Staff : EquipWeapon
     }
     IEnumerator CoRandShoot(S_Skill skillPacket)
     {
+        if (_owner == null)
+            yield break;
+
         GameObject mage_ready_eff = Managers.Resource.Instantiate($"Effect/Staff/Mage_Attack_Ready_Eff" , _owner.transform);
         mage_ready_eff.transform.localPosition = new Vector3(0, -0.2f, 0);
 

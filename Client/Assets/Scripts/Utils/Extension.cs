@@ -15,8 +15,13 @@ public static class Extension
 	{
 		UI_Base.BindEvent(go, action, type);
 	}
+    public static void BindRemoveAllEvent(this GameObject go, Define.UIEvent type = Define.UIEvent.Click)
+    {
+        UI_Base.BindRemoveAllEvent(go, type);
+    }
 
-	public static bool IsValid(this GameObject go)
+
+    public static bool IsValid(this GameObject go)
 	{
 		return go != null && go.activeSelf;
 	}

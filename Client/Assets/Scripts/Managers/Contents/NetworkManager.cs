@@ -8,20 +8,25 @@ using Google.Protobuf;
 
 public class NetworkManager
 {
+
+	public int AccountId { get; set; }
+	public int Token { get; set; }
+
 	ServerSession _session = new ServerSession();
+
+	public string ServerName { get; set; }
 
 	public void Send(IMessage packet)
 	{
 		_session.Send(packet);
 	}
 
-	public void ConnectToGame()
+	public void ConnectToGame(ServerInfo info)
 	{
-		// DNS (Domain Name System)
-		string host = Dns.GetHostName();
-		IPHostEntry ipHost = Dns.GetHostEntry(host);
-		IPAddress ipAddr = ipHost.AddressList[1];
-		IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
+		ServerName = info.Name; 
+
+		IPAddress ipAddr = IPAddress.Parse(info.IpAddress);
+		IPEndPoint endPoint = new IPEndPoint(ipAddr, info.Port);
 
 		Connector connector = new Connector();
 

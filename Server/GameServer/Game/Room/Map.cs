@@ -250,7 +250,7 @@ public class Map
         return true;
     }
 
-    public void LoadMap(int mapId, string pathPrefix = "../../../../../Common/MapData")
+    public void LoadMap(int mapId, string pathPrefix = "../../../../../../Common/MapData")
     {
 
         string mapName = "Common_Map_" + mapId.ToString("000");

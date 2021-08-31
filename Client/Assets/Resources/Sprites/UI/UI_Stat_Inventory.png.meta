@@ -68,6 +68,12 @@ TextureImporter:
   - first:
       213: 4691980339289622302
     second: UI_Stat_Inventory_20
+  - first:
+      213: 4330543282170757022
+    second: UI_Stat_Inventory_21
+  - first:
+      213: -4286988853486676493
+    second: UI_Stat_Inventory_22
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -601,6 +607,48 @@ TextureImporter:
       bones: []
       spriteID: e17897862434d1140800000000000000
       internalID: 4691980339289622302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Stat_Inventory_21
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 70
+        width: 166
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9ffd32cb2e291c30800000000000000
+      internalID: 4330543282170757022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Stat_Inventory_22
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 28
+        width: 166
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f51ed7e95e8184c0800000000000000
+      internalID: -4286988853486676493
       vertices: []
       indices: 
       edges: []

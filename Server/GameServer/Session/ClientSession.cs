@@ -20,8 +20,13 @@ namespace GameServer
 		public Player MyPlayer { get; set; }
 		public int SessionId { get; set; }
 
+		public string ServerName { get; set; }
+		public int Port { get; set; }
+
 		object _lock = new object();
 		List<ArraySegment<byte>> _reserveQueue = new List<ArraySegment<byte>>();
+
+		
 
 		//패킷 모아보내기
 		int _reservedSendBytes = 0;
@@ -66,36 +71,38 @@ namespace GameServer
 			Array.Copy(BitConverter.GetBytes((ushort)(size + 4)), 0, sendBuffer, 0, sizeof(ushort));
 			Array.Copy(BitConverter.GetBytes((ushort)msgId), 0, sendBuffer, 2, sizeof(ushort));
 			Array.Copy(packet.ToByteArray(), 0, sendBuffer, 4, size);
+			
+			lock (_lock)
+			{
+				_reserveQueue.Add(sendBuffer);
+				_reservedSendBytes += sendBuffer.Length;
 
-			_reserveQueue.Add(sendBuffer);
-			_reservedSendBytes += sendBuffer.Length;
+			}
 		}
 
 		//실제 네트워크 IO 처리
 		public void FlushSend()
         {
-			//0.1초가 지났거나 , 너무 패킷이 많이 보일 때 [1만 바이트]
-			long delta = (System.Environment.TickCount64 - _lastSendTick);
-			if (delta < 100 && _reservedSendBytes < 10000)
-				return;
-
-			//패킷 모아 보내기
-			_reservedSendBytes = 0;
-			_lastSendTick = System.Environment.TickCount64;
-
+			
 			List<ArraySegment<byte>> sendList = null;
 
 			lock(_lock)
             {
-				if (_reserveQueue.Count == 0)
-					return;
+                //0.1초가 지났거나 , 너무 패킷이 많이 보일 때 [1만 바이트]
+                long delta = (System.Environment.TickCount64 - _lastSendTick);
+                if (delta < 100 && _reservedSendBytes < 10000)
+                    return;
+
+                //패킷 모아 보내기
+                _reservedSendBytes = 0;
+                _lastSendTick = System.Environment.TickCount64;
 
 				sendList = _reserveQueue;
-				_reserveQueue = new List<ArraySegment<byte>>();
+                _reserveQueue = new List<ArraySegment<byte>>();
 
-			}
+            }
+            Send(sendList);
 
-			Send(sendList);
 		}
 
 		public override void OnConnected(EndPoint endPoint)

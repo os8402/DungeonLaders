@@ -82,7 +82,8 @@ namespace GameServer.Game
 
                         if (target != null)
                         {
-                            if (target.GetType() == typeof(Player))
+                            //if (target.GetType() == typeof(Player))
+                            if (target.Info.TeamId == player.Info.TeamId)
                                 continue;
 
                             target.OnDamaged(player, player.TotalAttack);
@@ -109,23 +110,23 @@ namespace GameServer.Game
                     foreach (AttackPos pos in shupplePos)
                     {
 
-
                         Vector2Int skillPos = new Vector2Int(pos.AttkPosX, pos.AttkPosY);
 
                         GameObject target = Map.Find(skillPos);
 
                         if (target != null)
                         {
-                            if (target.GetType() == typeof(Player))
+                            if (target.Info.TeamId == player.Info.TeamId)
                                 continue;
 
-                            PushAfter(tick,  target.OnDamaged , player , player.TotalAttack);
-                           // target.OnDamaged(player, player.TotalAttack); 
+                            PushAfter(tick, target.OnDamaged, player, player.TotalAttack);
+
 
                         }
 
-
                     }
+
+          
                     break;
 
             }

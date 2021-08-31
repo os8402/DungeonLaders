@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
+
 
 public abstract class UI_Base : MonoBehaviour
 {
@@ -64,4 +66,18 @@ public abstract class UI_Base : MonoBehaviour
 				break;
 		}
 	}
+    public static void BindRemoveAllEvent(GameObject go, Define.UIEvent type = Define.UIEvent.Click)
+    {
+        UI_EventHandler evt = Util.GetOrAddComponent<UI_EventHandler>(go);
+
+        switch (type)
+        {
+            case Define.UIEvent.Click:
+				evt.OnClickHandler = null;
+                break;
+            case Define.UIEvent.Drag:
+				evt.OnDragHandler = null; 
+                break;
+        }
+    }
 }

@@ -65,6 +65,7 @@ public class MyPlayerController : PlayerController
   //  UI_Passive passiveUI;
  //   UI_Coin coinUI;
     UI_News newsUI;
+    UI_GameServerInfo gameServerInfo;
 
     protected override void Init()
     {
@@ -77,12 +78,14 @@ public class MyPlayerController : PlayerController
     //    coinUI = gameSceneUI.CoinUI;
    //     passiveUI = gameSceneUI.PassiveUI;
         newsUI = gameSceneUI.NewsUI;
+        gameServerInfo = gameSceneUI.ServerInfo;
 
 
         statusUI.gameObject.SetActive(true);
       //  coinUI.gameObject.SetActive(true);
      //   passiveUI.gameObject.SetActive(true);
         newsUI.gameObject.SetActive(true);
+        gameServerInfo.gameObject.SetActive(true);
 
 
 

@@ -14,7 +14,7 @@ public class LoginScene : BaseScene
 
         SceneType = Scene.Login;
 
-      //  Managers.UI.ShowPopupUI<UI_Loading>();
+
 
         _sceneUI = Managers.UI.ShowSceneUI<UI_LoginScene>(); 
 

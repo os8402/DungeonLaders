@@ -69,7 +69,13 @@ namespace GameServer.Game
             arrow.AttackPos = new AttackPos() { AttkPosX = posX, AttkPosY = posY };
             arrow.Info.Name = Data.projectile.name;
             arrow.TotalSpeed = Data.projectile.speed;
+
+            arrow.StartCellPos = Owner.CellPos; 
             Owner.Room.Push(Owner.Room.EnterGame , arrow , false);
+            Owner.Room.PushAfter(5 * 1000 ,  Owner.Room.LeaveGame, arrow.Id);
+
+
+
         }
 
         

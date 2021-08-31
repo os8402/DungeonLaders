@@ -18,6 +18,8 @@ public class UI_GameScene : UI_Scene
 
     public UI_News NewsUI { get; private set; }
 
+    public UI_GameServerInfo ServerInfo { get; private set; }
+
     public override void Init()
     {
         base.Init();
@@ -35,13 +37,15 @@ public class UI_GameScene : UI_Scene
      //   CoinUI = GetComponentInChildren<UI_Coin>();
      //   PassiveUI = GetComponentInChildren<UI_Passive>();
         NewsUI = GetComponentInChildren<UI_News>();
+        ServerInfo = GetComponentInChildren<UI_GameServerInfo>();
 
         InvenUI.gameObject.SetActive(false);
         StatUI.gameObject.SetActive(false);
         StatusUI.gameObject.SetActive(false);
       //  CoinUI.gameObject.SetActive(false);
       //  PassiveUI.gameObject.SetActive(false);
-        NewsUI.gameObject.SetActive(false); 
+        NewsUI.gameObject.SetActive(false);
+        ServerInfo.gameObject.SetActive(false);
 
     }
 

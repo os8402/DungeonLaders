@@ -3,6 +3,7 @@ using GameServer.DB;
 using Google.Protobuf.Protocol;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace GameServer.Game
@@ -29,6 +30,8 @@ namespace GameServer.Game
             TotalHp = monsterData.stat.MaxHp;
             Stat.Hp = TotalHp;
             State = ControllerState.Idle;
+            Info.Name = monsterData.name;
+            Info.TeamId = (int)ObjectType << 24 | 0; 
 
             EquipWeapon = ObjectManager.Instance.CreateObjectWeapon();
    
@@ -265,7 +268,8 @@ namespace GameServer.Game
 
                             if (target != null)
                             {
-                                if (target.GetType() == typeof(Monster))
+                                //if (target.GetType() == typeof(Monster))
+                                if (target.Info.TeamId == Info.TeamId)
                                     continue;
 
                                 target.OnDamaged(this, TotalAttack);
@@ -281,25 +285,33 @@ namespace GameServer.Game
                         break;
 
                     case SkillType.Magic:
+
                         // 마법
-                        foreach (AttackPos pos in EquipWeapon.AttackList)
+
+                        System.Random rand = new System.Random();
+                        List<AttackPos> shupplePos = EquipWeapon.AttackList.OrderBy(num => rand.Next()).ToList();
+                        EquipWeapon.AttackList = shupplePos; // 변
+
+                        int t = (int)(EquipWeapon.Cooldown * 1000);
+
+                        foreach (AttackPos pos in shupplePos)
                         {
                             Vector2Int skillPos = new Vector2Int(pos.AttkPosX, pos.AttkPosY);
 
-                            GameObject target = Room.Map.Find(skillPos); 
-                            
+                            GameObject target = Room.Map.Find(skillPos);
 
                             if (target != null)
-                            {
-                                if (target.GetType() == typeof(Monster))
+                            {    
+                                if (target.Info.TeamId == Info.TeamId)
                                     continue;
 
-                                target.OnDamaged(this, TotalAttack);
-                            }
-                              
+                                Room.PushAfter(t, target.OnDamaged, this, TotalAttack);
 
+                            }
+                             
                         }
-                      
+
+             
                         break;
 
                 }

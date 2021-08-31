@@ -63,16 +63,24 @@ public class UI_LoginScene : UI_Scene
         {
             Debug.Log(res.LoginOk);
 
+         //   UI_Loading loading = Managers.UI.ShowPopupUI<UI_Loading>();
+
             GetInput((int)Inputs.Account).text = "";
             GetInput((int)Inputs.Password).text = "";
 
+       
             if (res.LoginOk)
             {
-                Managers.Network.ConnectToGame();
-                Managers.Scene.LoadScene(Define.Scene.Lobby);
-            }
-          
+                Managers.Network.AccountId = res.AccountDbId;
+                Managers.Network.Token = res.Token; 
+
+                UI_SelectServerPopup serverPopup = Managers.UI.ShowPopupUI<UI_SelectServerPopup>();
+                serverPopup.SetServers(res.ServerList);
+            }     
+
         });
+
+      
     }
 
 

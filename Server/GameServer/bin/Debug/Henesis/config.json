@@ -1,0 +1,10 @@
+﻿{
+  "dataPath": "../../../../../../Client/Assets/Resources/Data",
+  "connectionString": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=DungeonLadersDB;",
+  "serverList": 
+    {
+      "name": "헤네시스",
+      "port": "7777"
+    }
+   
+}
