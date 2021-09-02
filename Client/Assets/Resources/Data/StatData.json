@@ -6,7 +6,7 @@
       "maxMp": "200",
       "attack": "10",
       "speed": "10",
-      "totalExp": "50"
+      "totalExp": "30"
     },
     {
       "level": "2",
@@ -14,7 +14,7 @@
       "maxMp": "250",
       "attack": "20",
       "speed": "10",
-      "totalExp": "100"
+      "totalExp": "50"
     },
     {
       "level": "3",
@@ -22,7 +22,7 @@
       "maxMp": "300",
       "attack": "30",
       "speed": "11",
-      "totalExp": "100"
+      "totalExp": "50"
     },
     {
       "level": "4",
@@ -30,7 +30,7 @@
       "maxMp": "350",
       "attack": "40",
       "speed": "11",
-      "totalExp": "100"
+      "totalExp": "50"
     },
     {
       "level": "5",
@@ -47,6 +47,39 @@
       "attack": "60",
       "speed": "12",
       "totalExp": "100"
+    },
+    {
+      "level": "7",
+      "maxHp": "800",
+      "maxMp": "500",
+      "attack": "65",
+      "speed": "13",
+      "totalExp": "100"
+    },
+    {
+      "level": "8",
+      "maxHp": "850",
+      "maxMp": "550",
+      "attack": "70",
+      "speed": "13",
+      "totalExp": "100"
+    },
+    {
+      "level": "9",
+      "maxHp": "900",
+      "maxMp": "550",
+      "attack": "75",
+      "speed": "14",
+      "totalExp": "100"
+    },
+    {
+      "level": "10",
+      "maxHp": "1000",
+      "maxMp": "600",
+      "attack": "80",
+      "speed": "14",
+      "totalExp": "100"
     }
+ 
   ]
 } 

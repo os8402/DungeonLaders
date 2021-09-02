@@ -66,6 +66,7 @@ public class MyPlayerController : PlayerController
  //   UI_Coin coinUI;
     UI_News newsUI;
     UI_GameServerInfo gameServerInfo;
+    UI_Chat chatUI; 
 
     protected override void Init()
     {
@@ -79,6 +80,7 @@ public class MyPlayerController : PlayerController
    //     passiveUI = gameSceneUI.PassiveUI;
         newsUI = gameSceneUI.NewsUI;
         gameServerInfo = gameSceneUI.ServerInfo;
+        chatUI = gameSceneUI.ChatUI; 
 
 
         statusUI.gameObject.SetActive(true);
@@ -149,6 +151,30 @@ public class MyPlayerController : PlayerController
                 statUI.RefreshUI();
         }
 
+        if(Managers.Input.Enter)
+        {
+            bool active = chatUI._playerInput.gameObject.activeSelf;
+            chatUI._playerInput.gameObject.SetActive(!active);
+
+            if (active == false)
+            {   
+                chatUI._playerInput.ActivateInputField();
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(chatUI._playerInput.text))
+                    return;
+                //TODO : 서버로 패킷 보냅니다.
+                C_Chat chatPacket = new C_Chat();
+
+                chatPacket.ObjectId = Id;
+                chatPacket.Msg = $"{JobName}_{Id} : {chatUI._playerInput.text}";
+                Managers.Network.Send(chatPacket);
+
+                chatUI.RefreshUI(chatPacket.Msg); 
+            }
+               
+        }
     }
 
 
@@ -159,6 +185,9 @@ public class MyPlayerController : PlayerController
         //UI 창 띄울 땐 공격 x
 
         if(invenUI.gameObject.activeSelf)     
+            return;
+
+        if (chatUI._playerInput.gameObject.activeSelf)
             return;
         
 
@@ -233,6 +262,7 @@ public class MyPlayerController : PlayerController
 
     protected override void UpdateIdle()
     {
+   
 
         if (_moveKeyPressed)
         {

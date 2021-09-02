@@ -13,7 +13,8 @@ public class InputManager
     public bool S = false;
     public bool Mouse_Left = false;
     public bool I = false; 
-    public bool C = false; 
+    public bool C = false;
+    public bool Enter = false; 
         
     public float H = 0.0f;
     public float V = 0.0f;
@@ -56,6 +57,7 @@ public class InputManager
         I = Input.GetKeyDown(KeyCode.I); 
         C = Input.GetKeyDown(KeyCode.C); 
         Mouse_Left = Input.GetMouseButtonDown(0);
+        Enter = Input.GetKeyDown(KeyCode.Return);
         H = Input.GetAxisRaw("Horizontal");
         V = Input.GetAxisRaw("Vertical");
 

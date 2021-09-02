@@ -58,7 +58,7 @@ namespace GameServer.Game
                 }
             }
 
-            for(int i = 0; i < 50; i++)
+            for(int i = 0; i < 150; i++)
             {
                 Monster monster = ObjectManager.Instance.Add<Monster>();
                 monster.Init(1);
@@ -273,6 +273,15 @@ namespace GameServer.Game
       
 
         }
+
+        //서버 내 모든 플레이어 [채팅류] 
+        public void BroadcastAll(IMessage packet)
+        {
+            foreach(Player p in _players.Values)
+                p.Session.Send(packet);
+            
+        }
+
         public List<Player> GetAdjacentPlayers(Vector2Int pos , int range)
         {
             List<Zone> zones = GetAdjacentZones(pos , range);

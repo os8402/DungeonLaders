@@ -17,7 +17,7 @@ public class UI_GameScene : UI_Scene
     //public UI_Passive PassiveUI { get; private set; }
 
     public UI_News NewsUI { get; private set; }
-
+    public UI_Chat ChatUI { get; private set; }
     public UI_GameServerInfo ServerInfo { get; private set; }
 
     public override void Init()
@@ -34,8 +34,9 @@ public class UI_GameScene : UI_Scene
         InvenUI = GetComponentInChildren<UI_Inventory>();
         StatUI = GetComponentInChildren<UI_Stat>();
         StatusUI = GetComponentInChildren<UI_Status>();
-     //   CoinUI = GetComponentInChildren<UI_Coin>();
-     //   PassiveUI = GetComponentInChildren<UI_Passive>();
+        ChatUI = GetComponentInChildren<UI_Chat>();
+        //   CoinUI = GetComponentInChildren<UI_Coin>();
+        //   PassiveUI = GetComponentInChildren<UI_Passive>();
         NewsUI = GetComponentInChildren<UI_News>();
         ServerInfo = GetComponentInChildren<UI_GameServerInfo>();
 

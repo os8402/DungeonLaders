@@ -28,10 +28,16 @@ public class UI_LoginScene : UI_Scene
         GetImage((int)Images.LoginBtn).gameObject.BindEvent(OnClickLoginButton);
     }
 
+
+    UI_Loading _loading;
+
+
     public void OnClickCreateButton(PointerEventData evt)
     {
         string account = GetInput((int)Inputs.Account).text;
         string password = GetInput((int)Inputs.Password).text;
+
+        _loading = Managers.UI.ShowPopupUI<UI_Loading>();
 
         CreateAccountPacketReq packet = new CreateAccountPacketReq()
         {
@@ -44,7 +50,12 @@ public class UI_LoginScene : UI_Scene
             Debug.Log(res.CreateOk);
             GetInput((int)Inputs.Account).text = "";
             GetInput((int)Inputs.Password).text = "";
+
+            Managers.UI.ClosePopupUI(_loading);
         });
+
+    
+
     }
     public void OnClickLoginButton(PointerEventData evt)
     {

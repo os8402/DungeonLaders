@@ -337,7 +337,7 @@ class PacketHandler
         if (go == null)
             return;
 
-        MyPlayerController player = go.GetComponent<MyPlayerController>();
+        MyPlayerController player = Managers.Object.MyPlayer;
 
         if (player != null)
         {
@@ -429,8 +429,6 @@ class PacketHandler
     {
         S_RemoveItem removeOk = (S_RemoveItem)packet;
 
-
-
         //메모리에 저장
         Item removeItem = Managers.Inven.Get(removeOk.ItemDbId);
         if (removeItem == null)
@@ -451,5 +449,22 @@ class PacketHandler
         gameSceneUI.InvenUI.MakeItem();
         gameSceneUI.StatUI.RefreshUI();
 
+    }
+    public static void S_ChatHandler(PacketSession session, IMessage packet)
+    {
+        S_Chat chatPacket = (S_Chat)packet;
+
+        MyPlayerController player = Managers.Object.MyPlayer;
+
+        if (player == null)
+            return;
+
+        if (player.Id == chatPacket.ObjectId)
+            return; 
+
+
+        UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+
+        gameSceneUI.ChatUI.RefreshUI(chatPacket.Msg);
     }
 }

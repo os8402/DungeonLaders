@@ -37,6 +37,8 @@ enum MsgId {
   S_REMOVE_ITEM =29;
   S_CHANGE_WEAPON = 30;
   S_CHANGE_HP = 31;
+  C_CHAT = 32;
+  S_CHAT = 33;
 }
  enum ControllerState
  {
@@ -254,6 +256,16 @@ message S_ChangeWeapon{
 	int32 objectId = 1;
 	int32 templateId = 2; 
 	bool equipped = 3; 
+}
+message C_Chat{
+
+	int32 objectId = 1;
+	string msg = 2;
+
+}
+message S_Chat{
+	int32 objectId = 1;
+	string msg = 2;
 }
 
 message LobbyPlayerInfo{

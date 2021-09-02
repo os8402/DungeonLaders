@@ -132,8 +132,6 @@ namespace GameServer.Game
             }
 
 
-
-
             S_Skill skill = new S_Skill();
 
             skill.ObjectId = info.ObjectId;
@@ -153,6 +151,14 @@ namespace GameServer.Game
                 return;
 
             player.HandleLevelUp(upPacket);
+        }
+
+        public void HandleChat(Player player, C_Chat chatPacket )
+        {
+            S_Chat chatOk = new S_Chat();
+            chatOk.ObjectId = chatPacket.ObjectId;
+            chatOk.Msg = chatPacket.Msg;
+            BroadcastAll(chatOk);
         }
 
     }

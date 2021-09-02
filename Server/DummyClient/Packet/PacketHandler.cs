@@ -165,4 +165,9 @@ class PacketHandler
     {
         S_ChangeWeapon changePacket = (S_ChangeWeapon)packet;
     }
+    public static void S_ChatHandler(PacketSession session, IMessage packet)
+    {
+        S_Chat chatPacket = (S_Chat)packet;
+
+    }
 }

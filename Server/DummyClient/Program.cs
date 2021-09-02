@@ -21,7 +21,7 @@ namespace DummyClient
 
 
             List<int> portList = new List<int>() { 6666, 7777, 8888 };
-            List<int> connectList = new List<int>() { 90, 90, 40  };
+            List<int> connectList = new List<int>() { 90, 100, 40  };
             int idx = 0;
 
             foreach(int port in portList)
