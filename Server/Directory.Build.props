@@ -1,0 +1,14 @@
+<Project>
+  <!--
+    2021년 원본은 netcoreapp3.1(2022-12 지원 종료) 이었다.
+    모든 서버 프로젝트의 공통 대상 프레임워크/언어 설정을 여기서 한 곳으로 관리한다.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <!-- 원본 코드가 C# 8 시절 스타일이라 신규 분석기 경고를 오류로 승격하지 않는다 -->
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+</Project>

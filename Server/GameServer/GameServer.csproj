@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -11,14 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.17.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.9" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.9">
+    <PackageReference Include="Google.Protobuf" Version="3.28.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,10 +25,42 @@
     <ProjectReference Include="..\SharedDB\SharedDB.csproj" />
   </ItemGroup>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="copy &quot;$(TargetDir)&quot; &quot;bin\Debug\Elenia\Build&quot;;&#xD;&#xA;&#xD;&#xA;copy &quot;$(TargetDir)&quot; &quot;bin\Debug\Henesis\Build&quot;;&#xD;&#xA;&#xD;&#xA;copy &quot;$(TargetDir)&quot; &quot;bin\Debug\Perion\Build&quot;;&#xD;&#xA;&#xD;&#xA;copy &quot;$(TargetDir)&quot; &quot;bin\Debug\Kunning\Build&quot;;&#xD;&#xA;" />
+
+
+
+
+
+  <!--
+    원본은 PreBuildEvent 에서 cmd `copy "$(TargetDir)" "bin\Debug\Elenia\Build"` 를 돌렸다.
+      - 대상 폴더가 없으면(=클린 클론) copy 가 실패해 빌드 전체가 깨진다.
+      - cmd copy 는 하위 폴더를 복사하지 못한다.
+    MSBuild Copy 태스크로 교체: 폴더 자동 생성 + 재귀 복사 + 증분 복사.
+    인스턴스별 config.json 은 Server/Configs/<이름>/ 에서 가져온다.
+  -->
+  <ItemGroup>
+    <ServerInstance Include="Elenia" />
+    <ServerInstance Include="Henesis" />
+    <ServerInstance Include="Perion" />
+    <ServerInstance Include="Kunning" />
+  </ItemGroup>
+
+  <Target Name="FanOutServerInstances" AfterTargets="Build">
+    <MSBuild Projects="$(MSBuildProjectFullPath)"
+             Targets="CopyToServerInstance"
+             Properties="InstanceName=%(ServerInstance.Identity);Configuration=$(Configuration);Platform=$(Platform)" />
   </Target>
 
-
+  <Target Name="CopyToServerInstance">
+    <ItemGroup>
+      <BuiltOutput Include="$(TargetDir)**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(BuiltOutput)"
+          DestinationFolder="$(MSBuildProjectDirectory)\bin\$(Configuration)\$(InstanceName)\Build\%(RecursiveDir)"
+          SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\..\Configs\$(InstanceName)\config.json"
+          DestinationFolder="$(MSBuildProjectDirectory)\bin\$(Configuration)\$(InstanceName)"
+          SkipUnchangedFiles="true"
+          Condition="Exists('$(MSBuildProjectDirectory)\..\Configs\$(InstanceName)\config.json')" />
+  </Target>
 
 </Project>

@@ -1,0 +1,8 @@
+{
+  "dataPath": "../../../../../../Client/Assets/Resources/Data",
+  "connectionString": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=DungeonLadersDB;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;",
+  "serverList": {
+    "name": "페리온",
+    "port": 6666
+  }
+}
