@@ -61,13 +61,31 @@ namespace GameServer
             }
         }
 
+        /// <summary>서버 목록 갱신 주기. AccountServer 의 판정 기준과 짝을 이룬다.</summary>
+        const int HeartbeatIntervalMs = 10 * 1000;
+
         static void StartServerInfoTask()
         {
             var t = new System.Timers.Timer();
             t.AutoReset = true;
-            t.Elapsed += ((s, e) =>
-            {
+            t.Elapsed += (s, e) => WriteServerInfo();
+            t.Interval = HeartbeatIntervalMs;
+            t.Start();
 
+            // Timer 는 Interval 이 지난 뒤에야 처음 발동한다.
+            // 그 사이(최대 10초)에 로그인하면 서버 목록이 비어 보이므로 기동 직후 한 번 즉시 기록한다.
+            WriteServerInfo();
+        }
+
+        /// <summary>
+        /// 이 서버의 접속 정보와 혼잡도를 SharedDB 에 기록한다(upsert).
+        /// LastPingTime 을 함께 갱신해 "살아있음"을 알린다 — AccountServer 는 이 값으로
+        /// 죽은 서버를 목록에서 걸러낸다.
+        /// </summary>
+        static void WriteServerInfo()
+        {
+            try
+            {
                 using (SharedDbContext shared = new SharedDbContext())
                 {
                     ServerDb serverDb = shared.Servers.Where(s => s.Name == ServerName).FirstOrDefault();
@@ -76,6 +94,7 @@ namespace GameServer
                         serverDb.IpAddress = IpAddress;
                         serverDb.Port = Port;
                         serverDb.BusyScore = SessionManager.Instance.GetBusyScore();
+                        serverDb.LastPingTime = DateTime.UtcNow;
                         shared.SaveChangesEx();
                     }
                     else
@@ -83,24 +102,28 @@ namespace GameServer
                         serverDb = new ServerDb()
                         {
                             Name = ServerName,
-                            IpAddress = Program.IpAddress,
-                            Port = Port, 
-                            BusyScore = SessionManager.Instance.GetBusyScore()
+                            IpAddress = IpAddress,
+                            Port = Port,
+                            BusyScore = SessionManager.Instance.GetBusyScore(),
+                            LastPingTime = DateTime.UtcNow
                         };
                         shared.Servers.Add(serverDb);
                         shared.SaveChangesEx();
-
                     }
                 }
-      
-            });
-            t.Interval = 10 * 1000;
-            t.Start();
+            }
+            catch (Exception e)
+            {
+                // System.Timers.Timer 는 콜백에서 터진 예외를 조용히 삼킨다.
+                // 그래서 원래는 DB 가 없어도 서버가 멀쩡히 떠 있는 것처럼 보였다. 반드시 남긴다.
+                Console.WriteLine($"[ServerInfo] SharedDB 갱신 실패 : {e.Message}");
+            }
         }
 
         public static string ServerName { get; set; }
         public static int Port { get; set; }
         public static string IpAddress { get; set; }
+
 
 
         /// <summary>
