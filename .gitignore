@@ -1,0 +1,40 @@
+# 저장소 루트 .gitignore
+# Unity 프로젝트(Client/) 는 Unity 가 생성한 Client/.gitignore 가 함께 담당한다.
+# 여기서는 서버(.NET) 와 저장소 전역 규칙만 다룬다.
+
+# ───────────── Unity Client (Client/.gitignore 보완) ─────────────
+Client/[Ll]ibrary/
+Client/[Tt]emp/
+Client/[Oo]bj/
+Client/[Bb]uild/
+Client/[Bb]uilds/
+Client/[Ll]ogs/
+Client/[Uu]ser[Ss]ettings/
+Client/[Mm]emoryCaptures/
+Client/[Rr]ecordings/
+# Unity 가 자동 생성하는 솔루션/프로젝트 파일 (Client 한정 — 서버 csproj 는 소스다)
+Client/*.csproj
+Client/*.sln
+Client/*.unityproj
+
+# ───────────── .NET Server ─────────────
+# 2021년 원본에는 bin/obj 464개 파일이 그대로 커밋되어 있었다.
+Server/**/bin/
+Server/**/obj/
+Server/.vs/
+Server/*.user
+
+# ───────────── 공통 ─────────────
+*.suo
+*.userprefs
+*.opendb
+*.VC.db
+sysinfo.txt
+crashlytics-build.properties
+
+# ───────────── OS / IDE ─────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
