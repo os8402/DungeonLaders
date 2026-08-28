@@ -30,7 +30,7 @@ public class ChasePlayerCam : MonoBehaviour
         _camera = GetComponent<Camera>();
 
         //TODO : 나중에 MyPlayerController로 교체
-        MyPlayerController player = FindObjectOfType<MyPlayerController>();
+        MyPlayerController player = FindAnyObjectByType<MyPlayerController>();
         if (player == null)
             return;
 
