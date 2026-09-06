@@ -213,6 +213,8 @@ Common/
 docs/
   MIGRATION.md           2021 → 2026 현대화 상세 기록
   ROADMAP.md             현재 위치 점검과 다음 할 일
+  AUTH_FIX.md            인증 우회 구멍(게임 서버가 토큰을 안 봄) 수정 기록
+  LOADTEST.md            230 세션 부하 실측 — CPU · 메모리 · 왕복 시간
 ```
 
 ---
@@ -221,5 +223,8 @@ docs/
 
 2021년 8~9월, 28일간 진행한 프로젝트다.
 2026년 8월에 최신 툴체인으로 현대화했다 — [docs/MIGRATION.md](docs/MIGRATION.md)
+
+2026년 9월, 게임 서버가 계정 서버 토큰을 전혀 검사하지 않던 인증 구멍을 찾아 메웠다 — [docs/AUTH_FIX.md](docs/AUTH_FIX.md)
+같은 달 230 세션 부하 테스트를 실제로 돌려 CPU · 메모리 · 왕복 시간을 기록했다 — [docs/LOADTEST.md](docs/LOADTEST.md)
 
 앞으로의 개선 계획은 [docs/ROADMAP.md](docs/ROADMAP.md) 에 정리해두었다.

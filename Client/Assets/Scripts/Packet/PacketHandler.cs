@@ -148,8 +148,11 @@ class PacketHandler
     {
         Debug.Log("S_ConnectedHandler");
         C_Login loginPacket = new C_Login();
-        string path = Application.dataPath;
-        loginPacket.UniqueId = path.GetHashCode().ToString();
+        // 원래는 Application.dataPath 의 해시를 계정 식별자로 보냈다 — 서버가 검증할 방법이 없는 값이라
+        // 게임 서버 포트에 직접 붙어 아무 문자열이나 보내도 그 계정으로 들어갈 수 있었다.
+        // 이제 AccountServer 로그인 응답으로 받은 (AccountDbId, Token) 을 보내고, 게임 서버가 SharedDB 로 대조한다.
+        loginPacket.AccountDbId = Managers.Network.AccountId;
+        loginPacket.Token = Managers.Network.Token;
         Managers.Network.Send(loginPacket);
         Managers.Scene.LoadScene(Define.Scene.Lobby);
 
@@ -161,7 +164,12 @@ class PacketHandler
         S_Login loginPacket = (S_Login)packet;
         Debug.Log($"LoginOk_{loginPacket.LoginOk}");
 
-
+        if (loginPacket.LoginOk == 0)
+        {
+            // 토큰 검증 실패. 서버가 약 1초 뒤 연결을 끊는다 — 원래는 이 값을 보지 않고 캐릭터 생성으로 넘어갔다.
+            Debug.LogWarning("게임 서버가 로그인을 거부했습니다 (토큰 검증 실패). 로그인 화면에서 다시 로그인하세요.");
+            return;
+        }
 
         //TODO : 로비 UI에서 캐릭터목록 + 캐릭터 선택
         if (loginPacket.Players == null || loginPacket.Players.Count == 0)

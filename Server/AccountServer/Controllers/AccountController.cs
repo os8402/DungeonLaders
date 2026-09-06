@@ -20,6 +20,9 @@ namespace AccountServer.Controllers
         /// <summary>이 시간 동안 갱신이 없는 게임 서버는 목록에서 제외한다 (하트비트 주기 10초의 3배).</summary>
         const int ServerAliveTimeoutSeconds = 30;
 
+        /// <summary>토큰 유효 시간. GameServer 의 ClientSession.VerifyToken 이 이 값으로 기록된 Expired 를 검사한다.</summary>
+        const int TokenLifetimeSeconds = 600;
+
         public AccountController(AppDbContext context , SharedDbContext shared)
         {
             _context = context;
@@ -95,8 +98,9 @@ namespace AccountServer.Controllers
                 res.LoginOk = true;
 
                 //토큰 발급
-                DateTime expired = DateTime.UtcNow;
-                expired.AddSeconds(600);
+                // 원래는 expired.AddSeconds(600) 의 반환값을 버려서(DateTime 은 immutable) 만료 시각이 항상 "지금"이었다.
+                // 아무도 검사하지 않아 드러나지 않았을 뿐이다. 이제 GameServer 가 이 값을 검사한다.
+                DateTime expired = DateTime.UtcNow.AddSeconds(TokenLifetimeSeconds);
 
                 TokenDb tokenDb = _shared.Tokens.Where(t => t.AccountDbId == account.AccountDbId).FirstOrDefault();
                 if(tokenDb != null)

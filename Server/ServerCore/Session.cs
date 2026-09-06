@@ -220,7 +220,11 @@ namespace ServerCore
                 }
                 catch (Exception e)
                 {
+                    // 컨텐츠 핸들러(OnRecv)가 예외를 던지면 RegisterRecv 가 다시 걸리지 않아
+                    // 소켓은 열린 채 아무것도 수신하지 못하는 "좀비 세션"이 남았다 (docs/LOADTEST.md 관찰 3).
+                    // 세션 상태를 믿을 수 없으므로 끊어서 SessionManager 에서도 빠지게 한다.
                     Console.WriteLine($"OnRecvCompleted Failed {e}");
+                    Disconnect();
                 }
             }
             else

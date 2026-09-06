@@ -4,6 +4,7 @@ using GameServer.Game;
 using Google.Protobuf.Protocol;
 using Microsoft.EntityFrameworkCore;
 using ServerCore;
+using SharedDB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,67 @@ namespace GameServer
         public int AccountDbId { get; private set; }
         public List<LobbyPlayerInfo> LobbyPlayers { get; set; } = new List<LobbyPlayerInfo>();
 
+        /// <summary>
+        /// AccountServer 가 로그인 시 SharedDB.Token 에 기록한 (AccountDbId, Token) 쌍과 대조한다.
+        ///
+        /// 원래는 이 검증이 없었다. 클라이언트가 보낸 UniqueId(설치 경로 해시)를 그대로 계정 이름으로 썼고
+        /// 없으면 새로 만들었다. 즉 게임 서버 포트에 직접 붙어 아무 문자열이나 보내면 비밀번호 없이
+        /// 그 계정으로 들어갈 수 있었고, AccountServer 의 로그인·토큰 발급은 게임 진입에 아무 영향이 없었다.
+        ///
+        /// DB 를 읽지 못한 경우도 실패로 본다(fail-closed). 예외를 Recv 스레드로 흘리면
+        /// Session.OnRecvCompleted 가 잡기는 하지만 RegisterRecv 가 다시 걸리지 않아
+        /// 세션이 "붙어는 있는데 아무것도 못 받는" 상태로 남는다 (docs/LOADTEST.md 관찰 참고).
+        /// </summary>
+        bool VerifyToken(int accountDbId, int token)
+        {
+            if (accountDbId <= 0)
+                return false;
+
+            try
+            {
+                using (SharedDbContext shared = new SharedDbContext())
+                {
+                    TokenDb tokenDb = shared.Tokens
+                        .AsNoTracking()
+                        .Where(t => t.AccountDbId == accountDbId)
+                        .FirstOrDefault();
+
+                    if (tokenDb == null || tokenDb.Token != token)
+                        return false;
+
+                    // AccountServer 가 발급 시각 + 600초로 기록한다 (만료 계산 버그도 같이 고쳤다)
+                    if (tokenDb.Expired < DateTime.UtcNow)
+                        return false;
+
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"[Login] SharedDB 토큰 조회 실패 : {e.Message}");
+                return false;
+            }
+        }
+
         public void HandleLogin(C_Login loginPacket)
         {
             //보안 체크~ 
             if (ServerState != PlayerServerState.ServerStateLogin)
                 return;
+
+            // 토큰 검증 — 실패하면 LoginOk=0 을 보내고 끊는다.
+            // Send 는 예약만 하고 Network 스레드가 최대 100ms 뒤에 flush 하므로, 바로 Disconnect 하면 패킷이 안 나간다.
+            if (VerifyToken(loginPacket.AccountDbId, loginPacket.Token) == false)
+            {
+                Console.WriteLine($"[Login] 토큰 검증 실패 AccountDbId={loginPacket.AccountDbId} → 접속 종료");
+                Send(new S_Login() { LoginOk = 0 });
+                GameLogic.Instance.PushAfter(1000, Disconnect);
+                return;
+            }
+
+            // 게임 DB(DungeonLadersDB.Account)의 계정은 AccountServer 의 AccountDbId 로 찾는다.
+            // (이전: 클라이언트가 보낸 설치 경로 해시. 컬럼을 추가하지 않고 기존 AccountName 에 ID 문자열을 넣는다)
+            string accountName = loginPacket.AccountDbId.ToString();
 
             LobbyPlayers.Clear();
 
@@ -28,7 +85,7 @@ namespace GameServer
             {
                 AccountDb findAccount = db.Accounts
                     .Include(a => a.Players)
-                    .Where(a => a.AccountName == loginPacket.UniqueId).FirstOrDefault();
+                    .Where(a => a.AccountName == accountName).FirstOrDefault();
 
                 if (findAccount != null)
                 {
@@ -88,7 +145,7 @@ namespace GameServer
                 }
                 else
                 {
-                    AccountDb newAccount = new AccountDb() { AccountName = loginPacket.UniqueId };
+                    AccountDb newAccount = new AccountDb() { AccountName = accountName };
                     db.Accounts.Add(newAccount);
                     bool success = db.SaveChangesEx();
                     if (success == false)

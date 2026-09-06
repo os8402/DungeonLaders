@@ -178,8 +178,12 @@ message S_Connected{
 
 }
 message C_Login{
+	// (구) 설치 경로 해시. 서버는 더 이상 이 값으로 계정을 찾지 않는다 — 검증할 방법이 없는 값이었다.
 	string uniqueId = 1;
-
+	// AccountServer 로그인 응답(LoginAccountPacketRes)의 AccountDbId / Token.
+	// GameServer 가 SharedDB.Token 과 대조해서 맞을 때만 로비로 보낸다.
+	int32 accountDbId = 2;
+	int32 token = 3;
 }
 
 message S_Login{
